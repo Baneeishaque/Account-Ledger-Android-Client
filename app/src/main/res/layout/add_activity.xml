@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ndk.personal.account_ledger.Add_Activity">
+    tools:context="ndk.personal.account_ledger.Insert_Transaction">
 
     <!-- Login progress -->
     <ProgressBar
@@ -45,29 +45,14 @@
             <!--</android.support.design.widget.TextInputLayout>-->
 
             <!--<Button-->
-                <!--android:id="@+id/button_date"-->
-                <!--style="?android:textAppearanceSmall"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginTop="16dp"-->
-                <!--android:text="Date"-->
-                <!--android:textAllCaps="false"-->
-                <!--android:textStyle="bold" />-->
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/edit_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Name"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLines="1" />
-
-            </android.support.design.widget.TextInputLayout>
+            <!--android:id="@+id/button_date"-->
+            <!--style="?android:textAppearanceSmall"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="Date"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:textStyle="bold" />-->
 
             <Button
                 android:id="@+id/button_date"
@@ -79,123 +64,148 @@
                 android:textAllCaps="false"
                 android:textStyle="bold" />
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <Spinner
+                android:id="@+id/spinner_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/edit_venue"
+                    android:id="@+id/edit_purpose"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Venue"
-                    android:imeOptions="actionDone"
+                    android:hint="Purpose"
+                    android:imeOptions="actionNext"
                     android:inputType="text"
                     android:maxLines="1" />
 
             </android.support.design.widget.TextInputLayout>
 
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
 
-                <!--<EditText-->
-                    <!--android:id="@+id/edit_class"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:hint="Class"-->
-                    <!--android:imeOptions="actionNext"-->
-                    <!--android:inputType="text"-->
-                    <!--android:maxLines="1" />-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Amount"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLines="1" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<EditText-->
+            <!--android:id="@+id/edit_class"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Class"-->
+            <!--android:imeOptions="actionNext"-->
+            <!--android:inputType="text"-->
+            <!--android:maxLines="1" />-->
 
             <!--</android.support.design.widget.TextInputLayout>-->
 
             <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
-                <!--<EditText-->
-                    <!--android:id="@+id/edit_mobile_number"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:hint="Mobile Number"-->
-                    <!--android:imeOptions="actionNext"-->
-                    <!--android:inputType="number"-->
-                    <!--android:maxLines="1" />-->
+            <!--<EditText-->
+            <!--android:id="@+id/edit_mobile_number"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Mobile Number"-->
+            <!--android:imeOptions="actionNext"-->
+            <!--android:inputType="number"-->
+            <!--android:maxLines="1" />-->
 
             <!--</android.support.design.widget.TextInputLayout>-->
 
             <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
-                <!--<EditText-->
-                    <!--android:id="@+id/edit_age"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:hint="Age"-->
-                    <!--android:imeOptions="actionNext"-->
-                    <!--android:inputType="number"-->
-                    <!--android:maxLines="1" />-->
+            <!--<EditText-->
+            <!--android:id="@+id/edit_age"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Age"-->
+            <!--android:imeOptions="actionNext"-->
+            <!--android:inputType="number"-->
+            <!--android:maxLines="1" />-->
 
             <!--</android.support.design.widget.TextInputLayout>-->
 
             <!--<NumberPicker-->
-                <!--android:id="@+id/numberPicker"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="1" />-->
+            <!--android:id="@+id/numberPicker"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1" />-->
 
-            <!--<Spinner-->
-                <!--android:id="@+id/spinner"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="1" />-->
 
             <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
-                <!--<EditText-->
-                    <!--android:id="@+id/edit_registration_fee"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:hint="Registration Fee"-->
-                    <!--android:imeOptions="actionDone"-->
-                    <!--android:inputType="numberDecimal"-->
-                    <!--android:maxLines="1" />-->
+            <!--<EditText-->
+            <!--android:id="@+id/edit_registration_fee"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Registration Fee"-->
+            <!--android:imeOptions="actionDone"-->
+            <!--android:inputType="numberDecimal"-->
+            <!--android:maxLines="1" />-->
 
             <!--</android.support.design.widget.TextInputLayout>-->
 
 
-            <Button
-                android:id="@+id/button_delegates"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Delegates"
-                android:textAllCaps="false"
-                android:textStyle="bold" />
+            <!--<Button-->
+            <!--android:id="@+id/button_delegates"-->
+            <!--style="?android:textAppearanceSmall"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="Delegates"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:textStyle="bold" />-->
 
-            <Button
-                android:id="@+id/button_participants"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Participants"
-                android:textAllCaps="false"
-                android:textStyle="bold" />
+            <!--<Button-->
+            <!--android:id="@+id/button_participants"-->
+            <!--style="?android:textAppearanceSmall"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="Participants"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:textStyle="bold" />-->
 
-            <Button
-                android:id="@+id/button_attendance"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Attendance"
-                android:textAllCaps="false"
-                android:textStyle="bold" />
+            <!--<Button-->
+            <!--android:id="@+id/button_attendance"-->
+            <!--style="?android:textAppearanceSmall"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:text="Attendance"-->
+            <!--android:textAllCaps="false"-->
+            <!--android:textStyle="bold" />-->
 
             <Button
                 android:id="@+id/button_submit"
@@ -206,9 +216,6 @@
                 android:text="Submit"
                 android:textAllCaps="false"
                 android:textStyle="bold" />
-
-
-
 
 
             <!--<Button-->

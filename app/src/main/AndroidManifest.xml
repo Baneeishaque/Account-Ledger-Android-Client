@@ -22,16 +22,28 @@
                 android:value="Account Ledger" />
             <meta-data
                 android:name="SELECT_CONFIGURATION_URL"
-                android:value="Account Ledger" />
+                android:value="http://vfmob.com.md-in-64.webhostbox.net/baneeishaque/account_ledger_production/android/select_Configuration.php" />
             <meta-data
                 android:name="APK_UPDATE_URL"
-                android:value="Account Ledger" />
+                android:value="http://vfmob.com.md-in-64.webhostbox.net/baneeishaque/account_ledger_production/builds/app-debug.apk" />
             <meta-data
                 android:name="NEXT_ACTIVITY_CLASS"
-                android:value="ndk.personal.account_ledger.Add_Activity" />
+                android:value="ndk.personal.account_ledger.activities.Insert_Transaction" />
 
         </activity>
-        <activity android:name=".Add_Activity" />
+
+        <activity android:name=".activities.Insert_Transaction" />
+
+        <activity
+            android:name="ndk.utils.activities.Pass_Book"
+            android:label="Pass Book"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
 
     </application>
 </manifest>
