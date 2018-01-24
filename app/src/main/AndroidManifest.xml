@@ -1,0 +1,37 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ndk.personal.account_ledger">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name="ndk.utils.activities.Splash"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="APPLICATION_NAME"
+                android:value="Account Ledger" />
+            <meta-data
+                android:name="SELECT_CONFIGURATION_URL"
+                android:value="Account Ledger" />
+            <meta-data
+                android:name="APK_UPDATE_URL"
+                android:value="Account Ledger" />
+            <meta-data
+                android:name="NEXT_ACTIVITY_CLASS"
+                android:value="ndk.personal.account_ledger.Add_Activity" />
+
+        </activity>
+        <activity android:name=".Add_Activity" />
+
+    </application>
+</manifest>
