@@ -22,10 +22,10 @@
                 android:value="Account Ledger" />
             <meta-data
                 android:name="SELECT_CONFIGURATION_URL"
-                android:value="http://vfmob.com.md-in-64.webhostbox.net/baneeishaque/account_ledger_production/android/select_Configuration.php" />
+                android:value="http://findandgo.in/account_ledger_production/android/select_Configuration.php" />
             <meta-data
                 android:name="APK_UPDATE_URL"
-                android:value="http://vfmob.com.md-in-64.webhostbox.net/baneeishaque/account_ledger_production/builds/app-debug.apk" />
+                android:value="http://findandgo.in/account_ledger_production/builds/app-debug.apk" />
             <meta-data
                 android:name="NEXT_ACTIVITY_CLASS"
                 android:value="ndk.personal.account_ledger.activities.Insert_Transaction" />
