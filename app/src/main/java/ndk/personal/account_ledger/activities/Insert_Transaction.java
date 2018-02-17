@@ -1,6 +1,5 @@
 package ndk.personal.account_ledger.activities;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
@@ -9,35 +8,33 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.ScrollView;
-import android.widget.Spinner;
 
-import java.text.ParseException;
+import com.kunzisoft.switchdatetime.SwitchDateTimeDialogFragment;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.API;
 import ndk.personal.account_ledger.constants.Application_Specification;
+import ndk.personal.account_ledger.to_utils.Date_Utils;
+import ndk.personal.account_ledger.to_utils.REST_Insert_Task;
 import ndk.utils.Activity_Utils;
-import ndk.utils.Date_Picker_Utils;
-import ndk.utils.Date_Utils;
 import ndk.utils.Spinner_Utils;
 import ndk.utils.Toast_Utils;
 import ndk.utils.Validation_Utils;
 import ndk.utils.activities.Pass_Book;
-import ndk.utils.network_task.REST_Insert_Task;
 
 import static ndk.utils.Network_Utils.isOnline;
 import static ndk.utils.ProgressBar_Utils.showProgress;
 
 public class Insert_Transaction extends AppCompatActivity {
 
+    Context application_context, activity_context = this;
+    REST_Insert_Task REST_Insert_Task = null;
     private android.widget.ProgressBar loginprogress;
     private android.widget.Button buttondate;
     private android.widget.Spinner spinnersection;
@@ -46,8 +43,7 @@ public class Insert_Transaction extends AppCompatActivity {
     private android.widget.Button buttonsubmit;
     private android.widget.ScrollView loginform;
     private Calendar calendar = Calendar.getInstance();
-    Context application_context, activity_context = this;
-    REST_Insert_Task REST_Insert_Task = null;
+    private String current_date_time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,27 +51,75 @@ public class Insert_Transaction extends AppCompatActivity {
         setContentView(R.layout.add_activity);
         application_context = getApplicationContext();
 
-        this.loginform = (ScrollView) findViewById(R.id.login_form);
-        this.buttonsubmit = (Button) findViewById(R.id.button_submit);
-        this.editamount = (EditText) findViewById(R.id.edit_amount);
-        this.editpurpose = (EditText) findViewById(R.id.edit_purpose);
-        this.spinnersection = (Spinner) findViewById(R.id.spinner_section);
-        this.buttondate = (Button) findViewById(R.id.button_date);
-        this.loginprogress = (ProgressBar) findViewById(R.id.login_progress);
+        this.loginform = findViewById(R.id.login_form);
+        this.buttonsubmit = findViewById(R.id.button_submit);
+        this.editamount = findViewById(R.id.edit_amount);
+        this.editpurpose = findViewById(R.id.edit_purpose);
+        this.spinnersection = findViewById(R.id.spinner_section);
+        this.buttondate = findViewById(R.id.button_date);
+        this.loginprogress = findViewById(R.id.login_progress);
 
-        buttondate.setText(Date_Utils.normal_Date_Format_words.format(calendar.getTime()));
-        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                calendar.set(Calendar.YEAR, year);
-                calendar.set(Calendar.MONTH, monthOfYear);
-                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                buttondate.setText(Date_Utils.normal_Date_Format_words.format(calendar.getTime()));
+        associate_button_with_time_stamp();
+
+        // Initialize
+        final SwitchDateTimeDialogFragment dateTimeFragment = SwitchDateTimeDialogFragment.newInstance(
+                "Pick Time",
+                "OK",
+                "Cancel"
+        );
+
+        // Assign values
+        dateTimeFragment.startAtCalendarView();
+        dateTimeFragment.set24HoursMode(true);
+//        dateTimeFragment.setMaximumDateTime(calendar.getTime());
+
+//        dateTimeFragment.setMinimumDateTime(new GregorianCalendar(2015, Calendar.JANUARY, 1).getTime());
+//        dateTimeFragment.setDefaultDateTime(new GregorianCalendar(2017, Calendar.MARCH, 4, 15, 20).getTime());
+
+        // Or assign each element, default element is the current moment
+//        dateTimeFragment.setDefaultHourOfDay(15);
+//        dateTimeFragment.setDefaultMinute(20);
+//        dateTimeFragment.setDefaultDay(4);
+//        dateTimeFragment.setDefaultMonth(Calendar.MARCH);
+//        dateTimeFragment.setDefaultYear(2017);
+
+        // Define new day and month format
+        try {
+            dateTimeFragment.setSimpleDateMonthAndDayFormat(Date_Utils.normal_stripped_date_format);
+        } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
+            Log.e(Application_Specification.APPLICATION_NAME, e.getMessage());
+        }
+
+        // Set listener
+        dateTimeFragment.setOnButtonClickListener(new SwitchDateTimeDialogFragment.OnButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Date date) {
+                // Date is get on positive button click
+                // Do something
+                calendar.set(Calendar.YEAR, dateTimeFragment.getYear());
+                calendar.set(Calendar.MONTH, dateTimeFragment.getMonth());
+                calendar.set(Calendar.DAY_OF_MONTH, dateTimeFragment.getDay());
+                calendar.set(Calendar.HOUR_OF_DAY, dateTimeFragment.getHourOfDay());
+                calendar.set(Calendar.MINUTE, dateTimeFragment.getMinute());
+
+                associate_button_with_time_stamp();
+
+                Log.d(Application_Specification.APPLICATION_NAME, Date_Utils.date_to_mysql_date_time_string((calendar.getTime())));
+                //                dateTimeFragment.setDefaultDateTime(calendar.getTime());
             }
-        };
+
+            @Override
+            public void onNegativeButtonClick(Date date) {
+                // Date is get on negative button click
+            }
+        });
+
+
         buttondate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Date_Picker_Utils.show_date_picker_upto_today(activity_context, date, calendar);
+                // Show
+                dateTimeFragment.show(getSupportFragmentManager(), "dialog_time");
             }
         });
 
@@ -88,6 +132,10 @@ public class Insert_Transaction extends AppCompatActivity {
 
         Spinner_Utils.attach_items_to_simple_spinner(this, spinnersection, new ArrayList<>(Arrays.asList("Debit", "Credit")));
 
+    }
+
+    private void associate_button_with_time_stamp() {
+        buttondate.setText(Date_Utils.normal_date_time_format_words.format(calendar.getTime()));
     }
 
     @Override
@@ -105,7 +153,7 @@ public class Insert_Transaction extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_item_view_pass_book) {
-            Activity_Utils.start_activity_with_string_extras(activity_context, Pass_Book.class,new Pair[]{new Pair<>("URL",API.get_Android_API(API.select_User_Transactions)),new Pair<>("application_name",Application_Specification.APPLICATION_NAME),new Pair<>("user_id","1")});
+            Activity_Utils.start_activity_with_string_extras(activity_context, Pass_Book.class, new Pair[]{new Pair<>("URL", API.get_Android_API(API.select_User_Transactions)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", "1")});
             return true;
         }
 
@@ -137,12 +185,7 @@ public class Insert_Transaction extends AppCompatActivity {
     private void execute_insert_Transaction_Task() {
         if (isOnline(application_context)) {
             showProgress(true, application_context, loginprogress, loginform);
-            try {
-                REST_Insert_Task = new REST_Insert_Task(API.get_Android_API(API.insert_Transaction), REST_Insert_Task, this, loginprogress, loginform, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_string(Date_Utils.normal_Date_Format_words.parse(buttondate.getText().toString()))), new Pair<>("user_id", "1"), new Pair<>("particulars", spinnersection.getSelectedItem().toString() + " : " + editpurpose.getText().toString()), new Pair<>("amount", editamount.getText().toString())}, editamount, Insert_Transaction.class);
-            } catch (ParseException e) {
-                Toast_Utils.longToast(getApplicationContext(), "Date conversion error");
-                Log.d(Application_Specification.APPLICATION_NAME, e.getLocalizedMessage());
-            }
+            REST_Insert_Task = new REST_Insert_Task(API.get_Android_API(API.insert_Transaction), REST_Insert_Task, this, loginprogress, loginform, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", "1"), new Pair<>("particulars", spinnersection.getSelectedItem().toString() + " : " + editpurpose.getText().toString()), new Pair<>("amount", editamount.getText().toString())}, editamount, Insert_Transaction.class, false, new EditText[]{editpurpose, editamount});
             REST_Insert_Task.execute((Void) null);
         } else {
             Toast_Utils.longToast(getApplicationContext(), "Internet is unavailable");
