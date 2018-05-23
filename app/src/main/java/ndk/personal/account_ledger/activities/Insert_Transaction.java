@@ -1,6 +1,7 @@
 package ndk.personal.account_ledger.activities;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
@@ -20,44 +21,39 @@ import java.util.Date;
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.API;
 import ndk.personal.account_ledger.constants.Application_Specification;
-import ndk.personal.account_ledger.to_utils.Date_Utils;
-import ndk.personal.account_ledger.to_utils.REST_Insert_Task;
 import ndk.utils.Activity_Utils;
+import ndk.utils.Date_Utils;
 import ndk.utils.Spinner_Utils;
-import ndk.utils.Toast_Utils;
 import ndk.utils.Validation_Utils;
 import ndk.utils.activities.Pass_Book;
-
-import static ndk.utils.Network_Utils.isOnline;
-import static ndk.utils.ProgressBar_Utils.showProgress;
+import ndk.utils.network_task.REST_Insert_Task_Wrapper;
 
 public class Insert_Transaction extends AppCompatActivity {
 
     Context application_context, activity_context = this;
-    REST_Insert_Task REST_Insert_Task = null;
-    private android.widget.ProgressBar loginprogress;
-    private android.widget.Button buttondate;
-    private android.widget.Spinner spinnersection;
-    private android.widget.EditText editpurpose;
-    private android.widget.EditText editamount;
-    private android.widget.Button buttonsubmit;
-    private android.widget.ScrollView loginform;
+    SharedPreferences settings;
+    private android.widget.ProgressBar login_progress;
+    private android.widget.Button button_date;
+    private android.widget.Spinner spinner_section;
+    private android.widget.EditText edit_purpose;
+    private android.widget.EditText edit_amount;
+    private android.widget.Button button_submit;
     private Calendar calendar = Calendar.getInstance();
-    private String current_date_time;
+    private android.widget.ScrollView login_form;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_activity);
         application_context = getApplicationContext();
-
-        this.loginform = findViewById(R.id.login_form);
-        this.buttonsubmit = findViewById(R.id.button_submit);
-        this.editamount = findViewById(R.id.edit_amount);
-        this.editpurpose = findViewById(R.id.edit_purpose);
-        this.spinnersection = findViewById(R.id.spinner_section);
-        this.buttondate = findViewById(R.id.button_date);
-        this.loginprogress = findViewById(R.id.login_progress);
+        settings = getApplicationContext().getSharedPreferences(Application_Specification.APPLICATION_NAME, Context.MODE_PRIVATE);
+        this.login_form = findViewById(R.id.login_form);
+        this.button_submit = findViewById(R.id.button_submit);
+        this.edit_amount = findViewById(R.id.edit_amount);
+        this.edit_purpose = findViewById(R.id.edit_purpose);
+        this.spinner_section = findViewById(R.id.spinner_section);
+        this.button_date = findViewById(R.id.button_date);
+        this.login_progress = findViewById(R.id.login_progress);
 
         associate_button_with_time_stamp();
 
@@ -115,7 +111,7 @@ public class Insert_Transaction extends AppCompatActivity {
         });
 
 
-        buttondate.setOnClickListener(new View.OnClickListener() {
+        button_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Show
@@ -123,19 +119,19 @@ public class Insert_Transaction extends AppCompatActivity {
             }
         });
 
-        buttonsubmit.setOnClickListener(new View.OnClickListener() {
+        button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 attempt_insert_Transaction();
             }
         });
 
-        Spinner_Utils.attach_items_to_simple_spinner(this, spinnersection, new ArrayList<>(Arrays.asList("Debit", "Credit")));
+        Spinner_Utils.attach_items_to_simple_spinner(this, spinner_section, new ArrayList<>(Arrays.asList("Debit", "Credit")));
 
     }
 
     private void associate_button_with_time_stamp() {
-        buttondate.setText(Date_Utils.normal_date_time_format_words.format(calendar.getTime()));
+        button_date.setText(Date_Utils.normal_date_time_format_words.format(calendar.getTime()));
     }
 
     @Override
@@ -153,7 +149,7 @@ public class Insert_Transaction extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_item_view_pass_book) {
-            Activity_Utils.start_activity_with_string_extras(activity_context, Pass_Book.class, new Pair[]{new Pair<>("URL", API.get_Android_API(API.select_User_Transactions)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", "1")});
+            Activity_Utils.start_activity_with_string_extras(activity_context, Pass_Book.class, new Pair[]{new Pair<>("URL", API.get_Android_API(API.select_User_Transactions)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "1"))});
             return true;
         }
 
@@ -161,8 +157,8 @@ public class Insert_Transaction extends AppCompatActivity {
     }
 
     private void attempt_insert_Transaction() {
-        Validation_Utils.reset_errors(new EditText[]{editpurpose, editamount});
-        Pair<Boolean, EditText> empty_check_result = Validation_Utils.empty_check(new Pair[]{new Pair<>(editamount, "Please Enter Valid Amount..."), new Pair<>(editpurpose, "Please Enter Purpose...")});
+        Validation_Utils.reset_errors(new EditText[]{edit_purpose, edit_amount});
+        Pair<Boolean, EditText> empty_check_result = Validation_Utils.empty_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
 
         if (empty_check_result.first) {
             // There was an error; don't attempt login and focus the first form field with an error.
@@ -171,7 +167,7 @@ public class Insert_Transaction extends AppCompatActivity {
             }
         } else {
 
-            Pair<Boolean, EditText> zero_check_result = Validation_Utils.zero_check(new Pair[]{new Pair<>(editamount, "Please Enter Valid Amount...")});
+            Pair<Boolean, EditText> zero_check_result = Validation_Utils.zero_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
             if (zero_check_result.first) {
                 if (zero_check_result.second != null) {
                     zero_check_result.second.requestFocus();
@@ -183,12 +179,8 @@ public class Insert_Transaction extends AppCompatActivity {
     }
 
     private void execute_insert_Transaction_Task() {
-        if (isOnline(application_context)) {
-            showProgress(true, application_context, loginprogress, loginform);
-            REST_Insert_Task = new REST_Insert_Task(API.get_Android_API(API.insert_Transaction), REST_Insert_Task, this, loginprogress, loginform, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", "1"), new Pair<>("particulars", spinnersection.getSelectedItem().toString() + " : " + editpurpose.getText().toString()), new Pair<>("amount", editamount.getText().toString())}, editamount, Insert_Transaction.class, false, new EditText[]{editpurpose, editamount});
-            REST_Insert_Task.execute((Void) null);
-        } else {
-            Toast_Utils.longToast(getApplicationContext(), "Internet is unavailable");
-        }
+
+        //TODO: Multiple app name parameter bug
+        REST_Insert_Task_Wrapper.execute(this, API.get_Android_API(API.insert_Transaction), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "1")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, Insert_Transaction.class, Application_Specification.APPLICATION_NAME);
     }
 }
