@@ -9,7 +9,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
+import android.widget.Spinner;
 
 import com.kunzisoft.switchdatetime.SwitchDateTimeDialogFragment;
 
@@ -21,6 +25,8 @@ import java.util.Date;
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.API;
 import ndk.personal.account_ledger.constants.Application_Specification;
+import ndk.personal.account_ledger.constants.Server_Endpoint;
+import ndk.utils.API_Utils;
 import ndk.utils.Activity_Utils;
 import ndk.utils.Date_Utils;
 import ndk.utils.Spinner_Utils;
@@ -32,28 +38,31 @@ public class Insert_Transaction extends AppCompatActivity {
 
     Context application_context, activity_context = this;
     SharedPreferences settings;
-    private android.widget.ProgressBar login_progress;
-    private android.widget.Button button_date;
-    private android.widget.Spinner spinner_section;
-    private android.widget.EditText edit_purpose;
-    private android.widget.EditText edit_amount;
-    private android.widget.Button button_submit;
+    private ProgressBar login_progress;
+    private Button button_date;
+    private Spinner spinner_section;
+    private EditText edit_purpose;
+    private EditText edit_amount;
     private Calendar calendar = Calendar.getInstance();
-    private android.widget.ScrollView login_form;
+    private ScrollView login_form;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_activity);
+
         application_context = getApplicationContext();
+
         settings = getApplicationContext().getSharedPreferences(Application_Specification.APPLICATION_NAME, Context.MODE_PRIVATE);
-        this.login_form = findViewById(R.id.login_form);
-        this.button_submit = findViewById(R.id.button_submit);
-        this.edit_amount = findViewById(R.id.edit_amount);
-        this.edit_purpose = findViewById(R.id.edit_purpose);
-        this.spinner_section = findViewById(R.id.spinner_section);
-        this.button_date = findViewById(R.id.button_date);
-        this.login_progress = findViewById(R.id.login_progress);
+
+        login_form = findViewById(R.id.login_form);
+        Button button_submit = findViewById(R.id.button_submit);
+        edit_amount = findViewById(R.id.edit_amount);
+        edit_purpose = findViewById(R.id.edit_purpose);
+        spinner_section = findViewById(R.id.spinner_section);
+        button_date = findViewById(R.id.button_date);
+        login_progress = findViewById(R.id.login_progress);
 
         associate_button_with_time_stamp();
 
@@ -88,10 +97,10 @@ public class Insert_Transaction extends AppCompatActivity {
 
         // Set listener
         dateTimeFragment.setOnButtonClickListener(new SwitchDateTimeDialogFragment.OnButtonClickListener() {
+
             @Override
             public void onPositiveButtonClick(Date date) {
                 // Date is get on positive button click
-                // Do something
                 calendar.set(Calendar.YEAR, dateTimeFragment.getYear());
                 calendar.set(Calendar.MONTH, dateTimeFragment.getMonth());
                 calendar.set(Calendar.DAY_OF_MONTH, dateTimeFragment.getDay());
@@ -100,8 +109,8 @@ public class Insert_Transaction extends AppCompatActivity {
 
                 associate_button_with_time_stamp();
 
-                Log.d(Application_Specification.APPLICATION_NAME, Date_Utils.date_to_mysql_date_time_string((calendar.getTime())));
-                //                dateTimeFragment.setDefaultDateTime(calendar.getTime());
+                Log.d(Application_Specification.APPLICATION_NAME, "Slected : " + Date_Utils.date_to_mysql_date_time_string((calendar.getTime())));
+                // dateTimeFragment.setDefaultDateTime(calendar.getTime());
             }
 
             @Override
@@ -110,8 +119,8 @@ public class Insert_Transaction extends AppCompatActivity {
             }
         });
 
-
         button_date.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 // Show
@@ -127,7 +136,6 @@ public class Insert_Transaction extends AppCompatActivity {
         });
 
         Spinner_Utils.attach_items_to_simple_spinner(this, spinner_section, new ArrayList<>(Arrays.asList("Debit", "Credit")));
-
     }
 
     private void associate_button_with_time_stamp() {
@@ -143,13 +151,14 @@ public class Insert_Transaction extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         if (id == R.id.menu_item_view_pass_book) {
-            Activity_Utils.start_activity_with_string_extras(activity_context, Pass_Book.class, new Pair[]{new Pair<>("URL", API.get_Android_API(API.select_User_Transactions)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "1"))});
+            Activity_Utils.start_activity_with_string_extras(activity_context, Pass_Book.class, new Pair[]{new Pair<>("URL", API_Utils.get_http_API(API.select_User_Transactions, Server_Endpoint.SERVER_IP_ADDRESS, Server_Endpoint.HTTP_API_FOLDER, Server_Endpoint.FILE_EXTENSION)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
             return true;
         }
 
@@ -180,7 +189,6 @@ public class Insert_Transaction extends AppCompatActivity {
 
     private void execute_insert_Transaction_Task() {
 
-        //TODO: Multiple app name parameter bug
-        REST_Insert_Task_Wrapper.execute(this, API.get_Android_API(API.insert_Transaction), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "1")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, Insert_Transaction.class, Application_Specification.APPLICATION_NAME);
+        REST_Insert_Task_Wrapper.execute(this, API_Utils.get_http_API(API.insert_Transaction, Server_Endpoint.SERVER_IP_ADDRESS, Server_Endpoint.HTTP_API_FOLDER, Server_Endpoint.FILE_EXTENSION), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, Insert_Transaction.class);
     }
 }

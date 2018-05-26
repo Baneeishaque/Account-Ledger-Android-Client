@@ -14,6 +14,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -22,13 +23,13 @@
                 android:value="Account Ledger" />
             <meta-data
                 android:name="SELECT_CONFIGURATION_URL"
-                android:value="http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/android/select_Configuration.php" />
+                android:value="http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/http_API/select_Configuration.php" />
             <meta-data
                 android:name="APK_UPDATE_URL"
                 android:value="http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/builds/app-debug.apk" />
             <meta-data
                 android:name="NEXT_ACTIVITY_CLASS"
-                android:value="ndk.personal.account_ledger.activities.Login" />
+                android:value="ndk.utils.activities.Login" />
         </activity>
         <activity android:name="ndk.utils.activities.Login">
             <meta-data
@@ -36,7 +37,7 @@
                 android:value="Account Ledger" />
             <meta-data
                 android:name="SELECT_USER_URL"
-                android:value="http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/android/select_User.php" />
+                android:value="http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/http_API/select_User.php" />
             <meta-data
                 android:name="NEXT_ACTIVITY_CLASS"
                 android:value="ndk.personal.account_ledger.activities.Insert_Transaction" />
@@ -50,9 +51,11 @@
         <activity android:name=".activities.SingleFragmentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.Splash"></activity>
     </application>
 
 </manifest>
