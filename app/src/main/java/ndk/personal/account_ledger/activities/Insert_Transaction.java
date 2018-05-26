@@ -24,14 +24,13 @@ import java.util.Date;
 
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.API;
+import ndk.personal.account_ledger.constants.API_Wrapper;
 import ndk.personal.account_ledger.constants.Application_Specification;
-import ndk.personal.account_ledger.constants.Server_Endpoint;
-import ndk.utils.API_Utils;
 import ndk.utils.Activity_Utils;
 import ndk.utils.Date_Utils;
 import ndk.utils.Spinner_Utils;
 import ndk.utils.Validation_Utils;
-import ndk.utils.activities.Pass_Book;
+import ndk.utils.activities.Pass_Book_Bundle;
 import ndk.utils.network_task.REST_Insert_Task_Wrapper;
 
 public class Insert_Transaction extends AppCompatActivity {
@@ -158,7 +157,7 @@ public class Insert_Transaction extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_item_view_pass_book) {
-            Activity_Utils.start_activity_with_string_extras(activity_context, Pass_Book.class, new Pair[]{new Pair<>("URL", API_Utils.get_http_API(API.select_User_Transactions, Server_Endpoint.SERVER_IP_ADDRESS, Server_Endpoint.HTTP_API_FOLDER, Server_Endpoint.FILE_EXTENSION)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
+            Activity_Utils.start_activity_with_string_extras(activity_context, Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", API_Wrapper.get_http_API(API.select_User_Transactions)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
             return true;
         }
 
@@ -189,6 +188,6 @@ public class Insert_Transaction extends AppCompatActivity {
 
     private void execute_insert_Transaction_Task() {
 
-        REST_Insert_Task_Wrapper.execute(this, API_Utils.get_http_API(API.insert_Transaction, Server_Endpoint.SERVER_IP_ADDRESS, Server_Endpoint.HTTP_API_FOLDER, Server_Endpoint.FILE_EXTENSION), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, Insert_Transaction.class);
+        REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Transaction), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, Insert_Transaction.class);
     }
 }

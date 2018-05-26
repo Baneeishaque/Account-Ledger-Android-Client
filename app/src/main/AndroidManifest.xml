@@ -3,59 +3,40 @@
     package="ndk.personal.account_ledger">
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name="ndk.utils.activities.Splash"
+            android:name=".activities.Splash"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
 
-            <meta-data
-                android:name="APPLICATION_NAME"
-                android:value="Account Ledger" />
-            <meta-data
-                android:name="SELECT_CONFIGURATION_URL"
-                android:value="http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/http_API/select_Configuration.php" />
-            <meta-data
-                android:name="APK_UPDATE_URL"
-                android:value="http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/builds/app-debug.apk" />
-            <meta-data
-                android:name="NEXT_ACTIVITY_CLASS"
-                android:value="ndk.utils.activities.Login" />
-        </activity>
-        <activity android:name="ndk.utils.activities.Login">
-            <meta-data
-                android:name="APPLICATION_NAME"
-                android:value="Account Ledger" />
-            <meta-data
-                android:name="SELECT_USER_URL"
-                android:value="http://vfmob.com.md-in-64.webhostbox.net/wp-production/account_ledger_server/http_API/select_User.php" />
-            <meta-data
-                android:name="NEXT_ACTIVITY_CLASS"
-                android:value="ndk.personal.account_ledger.activities.Insert_Transaction" />
-        </activity>
+        <activity android:name="ndk.utils.activities.Login_Bundle" />
+
         <activity android:name=".activities.Insert_Transaction" />
+
         <activity
-            android:name="ndk.utils.activities.Pass_Book"
+            android:name="ndk.utils.activities.Pass_Book_Bundle"
             android:label="Pass Book"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".activities.SingleFragmentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Splash"></activity>
+
     </application>
 
 </manifest>
