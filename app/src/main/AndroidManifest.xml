@@ -3,40 +3,42 @@
     package="ndk.personal.account_ledger">
 
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".activities.Splash"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name="ndk.utils.activities.Login_Bundle" />
-
         <activity android:name=".activities.Insert_Transaction" />
-
         <activity
             android:name="ndk.utils.activities.Pass_Book_Bundle"
             android:label="Pass Book"
-            android:screenOrientation="landscape"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:screenOrientation="landscape" />
         <activity android:name=".activities.SingleFragmentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.Insert_Transaction_Patch" />
+        <activity android:name=".activities.List_Accounts">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
