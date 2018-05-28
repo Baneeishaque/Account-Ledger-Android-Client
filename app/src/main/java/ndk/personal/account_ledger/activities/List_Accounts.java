@@ -24,7 +24,7 @@ public class List_Accounts extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             fragmentTransaction.replace(R.id.frameLayout, Fragment_List_Accounts.newInstance(getIntent().getStringExtra("HEADER_TITLE")));
         } else {
-            fragmentTransaction.replace(R.id.frameLayout, Fragment_List_Accounts.newInstance(""));
+            fragmentTransaction.replace(R.id.frameLayout, Fragment_List_Accounts.newInstance("NA"));
         }
 
         fragmentTransaction.commit(); // save the changes

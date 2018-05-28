@@ -162,12 +162,12 @@ public class Fragment_List_Accounts extends Fragment {
 
     private void setAdapter() {
 
-        modelList.add(new Account("Asset", "1", " Assets", "Assets", "NA", "0", "Assets", "Currency", "Rs."));
-        modelList.add(new Account("Bsset", "1", " Assets", "Assets", "NA", "0", "Assets", "Currency", "Rs."));
-        modelList.add(new Account("Csset", "1", " Assets", "Assets", "NA", "0", "Assets", "Currency", "Rs."));
-        modelList.add(new Account("Dsset", "1", " Assets", "Assets", "NA", "0", "Assets", "Currency", "Rs."));
+        modelList.add(new Account("Asset", "1", " Assets", "Assets1", "NA", "0", "Assets", "Currency", "Rs."));
+        modelList.add(new Account("Bsset", "1", " Assets", "Assets2", "NA", "0", "Bssets", "Currency", "Rs."));
+        modelList.add(new Account("Csset", "1", " Assets", "Assets3", "NA", "0", "Cssets", "Currency", "Rs."));
+        modelList.add(new Account("Dsset", "1", " Assets", "Assets4", "NA", "0", "Dssets", "Currency", "Rs."));
 
-        if (current_header_title.equals("")) {
+        if (current_header_title.equals("NA")) {
             mAdapter = new List_Accounts_Adapter(getActivity(), modelList);
         } else {
             mAdapter = new List_Accounts_Adapter(getActivity(), modelList, current_header_title);
@@ -187,7 +187,7 @@ public class Fragment_List_Accounts extends Fragment {
 
                 //handle item click events here
                 Toast.makeText(getActivity(), "Selected Accounts Ledger : " + model.getName(), Toast.LENGTH_SHORT).show();
-                Activity_Utils.start_activity_with_string_extras(getActivity(), List_Accounts.class, new Pair[]{new Pair<>("HEADER_TITLE", current_header_title.equals("") ? model.getName() : current_header_title + ":" + model.getName())});
+                Activity_Utils.start_activity_with_string_extras(getActivity(), List_Accounts.class, new Pair[]{new Pair<>("HEADER_TITLE", current_header_title.equals("NA") ? model.getName() : current_header_title + ":" + model.getName())});
 
             }
         });

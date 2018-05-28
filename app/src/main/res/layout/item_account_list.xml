@@ -10,12 +10,12 @@
     android:layout_marginTop="16dp"
     android:clickable="true"
     android:focusable="true"
+    app:cardCornerRadius="0dp"
     android:foreground="?android:attr/selectableItemBackground"
+    app:cardElevation="8dp"
     android:orientation="horizontal"
     app:cardUseCompatPadding="true">
 
-    <!--app:cardElevation="12dp"-->
-    <!--app:cardCornerRadius="1dp"-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,10 +26,10 @@
             android:id="@+id/item_txt_account_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:gravity="left|start"
             android:text="Account Name"
             android:textColor="#212121"
@@ -39,12 +39,12 @@
             android:id="@+id/item_txt_account_balance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="16dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:gravity="right|end"
             android:text="Rs. 0.00"
             android:textColor="#212121"

@@ -68,7 +68,13 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
             headerHolder.txt_Title_Header.setText(mHeaderTitle);
 
         } else if (holder instanceof ViewHolder) {
-            final Account model = getItem(position - 1);
+            final Account model;
+            if(header_presence) {
+                model = getItem(position - 1);
+            }
+            else {
+                model = getItem(position);
+            }
             ViewHolder genericViewHolder = (ViewHolder) holder;
             genericViewHolder.item_Txt_Account_Name.setText(model.getName());
             genericViewHolder.item_Txt_Account_Balance.setText(model.getCommodityType());
@@ -97,7 +103,13 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public int getItemCount() {
 
-        return modelList.size() + 1;
+        if(header_presence) {
+            return modelList.size() + 1;
+        }
+        else
+        {
+            return modelList.size();
+        }
     }
 
     public void SetOnItemClickListener(final OnItemClickListener mItemClickListener) {
@@ -169,7 +181,12 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
                 @Override
                 public void onClick(View view) {
 
-                    mItemClickListener.onItemClick(itemView, getAdapterPosition(), modelList.get(getAdapterPosition() - 1));
+                    if(header_presence) {
+                        mItemClickListener.onItemClick(itemView, getAdapterPosition(), modelList.get(getAdapterPosition() - 1));
+                    }
+                    else {
+                        mItemClickListener.onItemClick(itemView, getAdapterPosition(), modelList.get(getAdapterPosition()));
+                    }
                 }
             });
 
