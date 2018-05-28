@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
     private String mHeaderTitle;
+    Boolean header_presence = true;
 
     private OnHeaderClickListener mHeaderClickListener;
 
@@ -37,10 +37,15 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
         this.mHeaderTitle = headerTitle;
     }
 
+    public List_Accounts_Adapter(Context context, ArrayList<Account> modelList) {
+        this.mContext = context;
+        this.modelList = modelList;
+        this.header_presence = false;
+    }
+
     public void updateList(ArrayList<Account> modelList) {
         this.modelList = modelList;
         notifyDataSetChanged();
-
     }
 
     @Override
@@ -60,13 +65,13 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
         if (holder instanceof HeaderViewHolder) {
             HeaderViewHolder headerHolder = (HeaderViewHolder) holder;
 
-            headerHolder.txtTitleHeader.setText(mHeaderTitle);
+            headerHolder.txt_Title_Header.setText(mHeaderTitle);
 
         } else if (holder instanceof ViewHolder) {
             final Account model = getItem(position - 1);
             ViewHolder genericViewHolder = (ViewHolder) holder;
-            genericViewHolder.itemTxtTitle.setText(model.getName());
-            genericViewHolder.itemTxtMessage.setText(model.getCommodityType());
+            genericViewHolder.item_Txt_Account_Name.setText(model.getName());
+            genericViewHolder.item_Txt_Account_Balance.setText(model.getCommodityType());
 
 
         }
@@ -74,8 +79,12 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public int getItemViewType(int position) {
-        if (isPositionHeader(position)) {
-            return TYPE_HEADER;
+
+        if (header_presence) {
+            if (isPositionHeader(position)) {
+                return TYPE_HEADER;
+            }
+            return TYPE_ITEM;
         }
         return TYPE_ITEM;
     }
@@ -112,11 +121,11 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     class HeaderViewHolder extends RecyclerView.ViewHolder {
-        TextView txtTitleHeader;
+        TextView txt_Title_Header;
 
         public HeaderViewHolder(final View itemView) {
             super(itemView);
-            this.txtTitleHeader = itemView.findViewById(R.id.txt_header);
+            this.txt_Title_Header = itemView.findViewById(R.id.txt_header);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -132,29 +141,28 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imgUser;
-        private TextView itemTxtTitle;
-        private TextView itemTxtMessage;
+        private TextView item_Txt_Account_Name;
+        private TextView item_Txt_Account_Balance;
 
 
         // @BindView(R.id.img_user)
         // ImageView imgUser;
         // @BindView(R.id.item_txt_title)
-        // TextView itemTxtTitle;
+        // TextView item_Txt_Account_Name;
         // @BindView(R.id.item_txt_message)
-        // TextView itemTxtMessage;
+        // TextView item_Txt_Account_Balance;
         // @BindView(R.id.radio_list)
-        // RadioButton itemTxtMessage;
+        // RadioButton item_Txt_Account_Balance;
         // @BindView(R.id.check_list)
         // CheckBox itemCheckList;
+
         public ViewHolder(final View itemView) {
             super(itemView);
 
             // ButterKnife.bind(this, itemView);
 
-            this.imgUser = itemView.findViewById(R.id.img_user);
-            this.itemTxtTitle = itemView.findViewById(R.id.item_txt_title);
-            this.itemTxtMessage = itemView.findViewById(R.id.item_txt_message);
+            this.item_Txt_Account_Name = itemView.findViewById(R.id.item_txt_account_name);
+            this.item_Txt_Account_Balance = itemView.findViewById(R.id.item_txt_account_balance);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -162,8 +170,6 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
                 public void onClick(View view) {
 
                     mItemClickListener.onItemClick(itemView, getAdapterPosition(), modelList.get(getAdapterPosition() - 1));
-
-
                 }
             });
 

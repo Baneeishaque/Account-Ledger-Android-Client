@@ -1,11 +1,10 @@
 package ndk.personal.account_ledger;
 
 import android.app.SearchManager;
-import android.content.Context;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.Pair;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,13 +21,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import ndk.personal.account_ledger.activities.List_Accounts;
 import ndk.personal.account_ledger.models.Account;
+import ndk.utils.Activity_Utils;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Fragment_List_Accounts.OnFragmentInteractionListener} interface
- * to handle interaction events.
  * Use the {@link Fragment_List_Accounts#newInstance} factory method to
  * create an instance of this fragment.
  */
@@ -36,22 +34,12 @@ import ndk.personal.account_ledger.models.Account;
 
 public class Fragment_List_Accounts extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
+    String current_header_title;
 
     private RecyclerView recyclerView;
 
     // @BindView(R.id.recycler_view)
     // RecyclerView recyclerView;
-
 
     private List_Accounts_Adapter mAdapter;
 
@@ -62,26 +50,11 @@ public class Fragment_List_Accounts extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment_List_Accounts.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Fragment_List_Accounts newInstance(String param1, String param2) {
+    public static Fragment_List_Accounts newInstance(String header_title) {
         Fragment_List_Accounts fragment = new Fragment_List_Accounts();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString("HEADER_TITLE", header_title);
         fragment.setArguments(args);
-        return fragment;
-    }
-
-    public static Fragment_List_Accounts newInstance() {
-        Fragment_List_Accounts fragment = new Fragment_List_Accounts();
         return fragment;
     }
 
@@ -91,8 +64,7 @@ public class Fragment_List_Accounts extends Fragment {
         setHasOptionsMenu(true);
 
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            current_header_title = getArguments().getString("HEADER_TITLE");
         }
     }
 
@@ -117,38 +89,12 @@ public class Fragment_List_Accounts extends Fragment {
 
         setAdapter();
 
-
     }
 
 
     private void findViews(View view) {
 
         recyclerView = view.findViewById(R.id.recycler_view);
-    }
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
     }
 
     @Override
@@ -181,10 +127,7 @@ public class Fragment_List_Accounts extends Fragment {
                         return "";
                 }
 
-
                 return null;
-
-
             }
         };
         searchEdit.setFilters(fArray);
@@ -219,12 +162,16 @@ public class Fragment_List_Accounts extends Fragment {
 
     private void setAdapter() {
 
+        modelList.add(new Account("Asset", "1", " Assets", "Assets", "NA", "0", "Assets", "Currency", "Rs."));
+        modelList.add(new Account("Bsset", "1", " Assets", "Assets", "NA", "0", "Assets", "Currency", "Rs."));
+        modelList.add(new Account("Csset", "1", " Assets", "Assets", "NA", "0", "Assets", "Currency", "Rs."));
+        modelList.add(new Account("Dsset", "1", " Assets", "Assets", "NA", "0", "Assets", "Currency", "Rs."));
 
-        modelList.add(new Account("Android", "Hello ", " Android", "", "", "", "", "", "Cur"));
-
-
-        mAdapter = new List_Accounts_Adapter(getActivity(), modelList, "Header");
-
+        if (current_header_title.equals("")) {
+            mAdapter = new List_Accounts_Adapter(getActivity(), modelList);
+        } else {
+            mAdapter = new List_Accounts_Adapter(getActivity(), modelList, current_header_title);
+        }
 
         recyclerView.setHasFixedSize(true);
 
@@ -232,17 +179,15 @@ public class Fragment_List_Accounts extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-
         recyclerView.setAdapter(mAdapter);
-
 
         mAdapter.SetOnItemClickListener(new List_Accounts_Adapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position, Account model) {
 
                 //handle item click events here
-                Toast.makeText(getActivity(), "Hey " + model.getName(), Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(getActivity(), "Selected Accounts Ledger : " + model.getName(), Toast.LENGTH_SHORT).show();
+                Activity_Utils.start_activity_with_string_extras(getActivity(), List_Accounts.class, new Pair[]{new Pair<>("HEADER_TITLE", current_header_title.equals("") ? model.getName() : current_header_title + ":" + model.getName())});
 
             }
         });
@@ -253,28 +198,11 @@ public class Fragment_List_Accounts extends Fragment {
             public void onHeaderClick(View view, String headerTitle) {
 
                 //handle item click events here
-                Toast.makeText(getActivity(), "Hey I am a header", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 
             }
         });
 
-
-    }
-
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 
 }
