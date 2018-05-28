@@ -33,7 +33,7 @@ import ndk.utils.Validation_Utils;
 import ndk.utils.activities.Pass_Book_Bundle;
 import ndk.utils.network_task.REST_Insert_Task_Wrapper;
 
-public class Insert_Transaction extends AppCompatActivity {
+public class Insert_Transaction_Patch extends AppCompatActivity {
 
     Context application_context, activity_context = this;
     SharedPreferences settings;
@@ -49,7 +49,7 @@ public class Insert_Transaction extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_transaction);
+        setContentView(R.layout.add_transaction_patch);
 
         application_context = getApplicationContext();
 
