@@ -68,11 +68,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
 
-            <Spinner
-                android:id="@+id/spinner_section"
+            <Button
+                android:id="@+id/button_from"
+                style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_marginTop="16dp"
+                android:text="From : "
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <Button
+                android:id="@+id/button_to"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="To : "
+                android:textAllCaps="false"
+                android:textStyle="bold" />
 
             <Space
                 android:layout_width="match_parent"

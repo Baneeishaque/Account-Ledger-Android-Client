@@ -92,6 +92,18 @@ public class REST_Select_Task extends AsyncTask<Void, Void, String[]> {
         splash_flag = 1;
     }
 
+    public REST_Select_Task(String URL, Context context,View progressBar, View form, String TAG, Pair[] name_value_pair, Async_Response_JSON_array async_response_json_array, boolean error_flag) {
+
+        this.URL = URL;
+        this.context = context;
+        this.TAG = TAG;
+        this.name_value_pair = name_value_pair;
+        this.async_response_json_array = async_response_json_array;
+        this.progressBar = progressBar;
+        this.form = form;
+        this.error_flag = error_flag;
+    }
+
     public REST_Select_Task(String URL, Context context, String TAG, Pair[] name_value_pair, Async_Response_JSON_array async_response_json_array, boolean error_flag) {
 
         this.URL = URL;

@@ -126,9 +126,9 @@ public class Network_Utils {
         view_to_toggle.setEnabled(true);
     }
 
-    public static void check_network_then_start_activity_with_string_extras(Context context, Class activity, Pair[] extras) {
+    public static void check_network_then_start_activity_with_string_extras(Context context, Class activity, Pair[] extras,boolean for_result_flag,int request_code) {
         if (isOnline(context)) {
-            Activity_Utils.start_activity_with_string_extras(context, activity, extras);
+            Activity_Utils.start_activity_with_string_extras(context, activity, extras,for_result_flag,request_code);
         } else {
             Toast_Utils.longToast(context, "Internet is unavailable");
         }

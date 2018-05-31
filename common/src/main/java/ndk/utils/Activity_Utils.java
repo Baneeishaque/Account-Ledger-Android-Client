@@ -37,14 +37,18 @@ public class Activity_Utils {
         context.startActivity(intent);
     }
 
-    public static void start_activity_with_string_extras(Context context, Class activity, Pair[] extras) {
+    public static void start_activity_with_string_extras(Context context, Class activity, Pair[] extras, boolean for_result_flag, int request_code) {
         Intent intent = new Intent(context, activity);
         if (extras.length != 0) {
             for (Pair extra : extras) {
                 intent.putExtra(extra.first != null ? extra.first.toString() : null, extra.second != null ? extra.second.toString() : null);
             }
         }
-        context.startActivity(intent);
+        if (for_result_flag) {
+            ((AppCompatActivity) context).startActivityForResult(intent, request_code);
+        } else {
+            context.startActivity(intent);
+        }
     }
 
     public static void start_activity_with_integer_extras_and_finish(Context context, Class activity, Pair[] extras) {

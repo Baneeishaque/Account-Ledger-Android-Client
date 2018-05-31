@@ -10,13 +10,12 @@ import android.widget.ProgressBar;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import ndk.utils.R;
-import ndk.utils.models.sortable_tableView.pass_book.Pass_Book_Entry;
 import ndk.utils.network_task.Load_Pass_Book_Task;
 import ndk.utils.widgets.pass_book.Pass_Book_TableView;
+import ndk.utils.widgets.pass_book.Pass_Book_TableView_v2;
 
 import static ndk.utils.Pass_Book_Utils.create_Pass_Book_Pdf;
 import static ndk.utils.Pdf_Utils.prompt_For_Next_Action_After_Creation;
@@ -27,15 +26,22 @@ import static ndk.utils.ProgressBar_Utils.showProgress;
 
 public class Pass_Book_Bundle extends AppCompatActivity {
 
-    ArrayList<Pass_Book_Entry> pass_book_entries;
+    //    ArrayList<Pass_Book_Entry> pass_book_entries;
     private ProgressBar mProgressView;
     private Pass_Book_TableView pass_book_tableView;
+    private Pass_Book_TableView_v2 pass_book_tableView_v2;
     private Load_Pass_Book_Task load_pass_Book_task = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pass_book);
+
+        if (getIntent().getStringExtra("V2_FLAG") == null) {
+            setContentView(R.layout.pass_book);
+        } else {
+            setContentView(R.layout.pass_book_v2);
+        }
+
         initView();
 
         if (load_pass_Book_task != null) {
@@ -53,15 +59,26 @@ public class Pass_Book_Bundle extends AppCompatActivity {
 //        intent.putExtra("user_id", user_id);
 //        startActivity(intent);
 
-        showProgress(true, this, mProgressView, pass_book_tableView);
-        load_pass_Book_task = new Load_Pass_Book_Task(getIntent().getStringExtra("URL"), load_pass_Book_task, this, mProgressView, pass_book_tableView, getIntent().getStringExtra("application_name"), pass_book_tableView, pass_book_entries, new Pair[]{new Pair<>("user_id", getIntent().getStringExtra("user_id"))});
+        if (getIntent().getStringExtra("V2_FLAG") == null) {
+            showProgress(true, this, mProgressView, pass_book_tableView);
+            load_pass_Book_task = new Load_Pass_Book_Task(getIntent().getStringExtra("URL"), this, mProgressView, pass_book_tableView, getIntent().getStringExtra("application_name"), pass_book_tableView, new Pair[]{new Pair<>("user_id", getIntent().getStringExtra("user_id"))});
+
+        } else {
+            showProgress(true, this, mProgressView, pass_book_tableView_v2);
+            load_pass_Book_task = new Load_Pass_Book_Task(getIntent().getStringExtra("URL"), this, mProgressView, pass_book_tableView_v2, getIntent().getStringExtra("application_name"), pass_book_tableView_v2,getIntent().getStringExtra("V2_FLAG"));
+        }
+
         load_pass_Book_task.execute();
 
     }
 
     private void initView() {
         mProgressView = findViewById(R.id.login_progress);
-        pass_book_tableView = findViewById(R.id.tableView);
+        if (getIntent().getStringExtra("V2_FLAG") == null) {
+            pass_book_tableView = findViewById(R.id.tableView);
+        } else {
+            pass_book_tableView_v2 = findViewById(R.id.tableView);
+        }
     }
 
     @Override

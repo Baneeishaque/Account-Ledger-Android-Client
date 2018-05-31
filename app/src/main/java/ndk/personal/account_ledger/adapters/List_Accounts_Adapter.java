@@ -1,6 +1,6 @@
-package ndk.personal.account_ledger;
+package ndk.personal.account_ledger.adapters;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.models.Account;
 
 
@@ -21,24 +22,21 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
     private String mHeaderTitle;
-    Boolean header_presence = true;
+    private Boolean header_presence = true;
 
     private OnHeaderClickListener mHeaderClickListener;
 
-    private Context mContext;
     private ArrayList<Account> modelList;
 
     private OnItemClickListener mItemClickListener;
 
 
-    public List_Accounts_Adapter(Context context, ArrayList<Account> modelList, String headerTitle) {
-        this.mContext = context;
+    public List_Accounts_Adapter(ArrayList<Account> modelList, String headerTitle) {
         this.modelList = modelList;
         this.mHeaderTitle = headerTitle;
     }
 
-    public List_Accounts_Adapter(Context context, ArrayList<Account> modelList) {
-        this.mContext = context;
+    public List_Accounts_Adapter(ArrayList<Account> modelList) {
         this.modelList = modelList;
         this.header_presence = false;
     }
@@ -48,20 +46,21 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
         notifyDataSetChanged();
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == TYPE_HEADER) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_header, parent, false);
             return new HeaderViewHolder(v);
-        } else if (viewType == TYPE_ITEM) {
+        } else {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_account_list, parent, false);
             return new ViewHolder(v);
         }
-        return null;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
+
         if (holder instanceof HeaderViewHolder) {
             HeaderViewHolder headerHolder = (HeaderViewHolder) holder;
 
@@ -78,7 +77,6 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
             ViewHolder genericViewHolder = (ViewHolder) holder;
             genericViewHolder.item_Txt_Account_Name.setText(model.getName());
             genericViewHolder.item_Txt_Account_Balance.setText(model.getCommodityType());
-
 
         }
     }
@@ -135,7 +133,7 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
     class HeaderViewHolder extends RecyclerView.ViewHolder {
         TextView txt_Title_Header;
 
-        public HeaderViewHolder(final View itemView) {
+        HeaderViewHolder(final View itemView) {
             super(itemView);
             this.txt_Title_Header = itemView.findViewById(R.id.txt_header);
 
@@ -168,7 +166,7 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
         // @BindView(R.id.check_list)
         // CheckBox itemCheckList;
 
-        public ViewHolder(final View itemView) {
+        ViewHolder(final View itemView) {
             super(itemView);
 
             // ButterKnife.bind(this, itemView);
@@ -192,6 +190,5 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         }
     }
-
 }
 

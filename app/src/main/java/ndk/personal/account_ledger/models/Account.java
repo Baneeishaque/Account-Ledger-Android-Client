@@ -3,7 +3,6 @@ package ndk.personal.account_ledger.models;
 public class Account {
     private String accountType;
     private String accountId;
-    private String fullName;
     private String notes;
     private String parentAccountId;
     private String ownerId;
@@ -11,10 +10,9 @@ public class Account {
     private String commodityType;
     private String commodityValue;
 
-    public Account(String accountType, String accountId, String fullName, String notes, String parentAccountId, String ownerId, String name, String commodityType, String commodityValue) {
+    public Account(String accountType, String accountId, String notes, String parentAccountId, String ownerId, String name, String commodityType, String commodityValue) {
         this.accountType = accountType;
         this.accountId = accountId;
-        this.fullName = fullName;
         this.notes = notes;
         this.parentAccountId = parentAccountId;
         this.ownerId = ownerId;
@@ -37,14 +35,6 @@ public class Account {
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getNotes() {
@@ -101,7 +91,6 @@ public class Account {
                 "Account{" +
                         "account_type = '" + accountType + '\'' +
                         ",account_id = '" + accountId + '\'' +
-                        ",full_name = '" + fullName + '\'' +
                         ",notes = '" + notes + '\'' +
                         ",parent_account_id = '" + parentAccountId + '\'' +
                         ",owner_id = '" + ownerId + '\'' +

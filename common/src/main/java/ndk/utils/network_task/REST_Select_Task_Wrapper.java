@@ -37,11 +37,23 @@ public class REST_Select_Task_Wrapper {
         }
     }
 
-    public static void execute(String task_URL, Context context, View mProgressView, View mLoginFormView, String application_Name, Pair[] name_value_pairs, REST_Select_Task.Async_Response_JSON_array async_response_json_array_with_error_status_delegate) {
+    public static void execute(String task_URL, Context context, View mProgressView, View mLoginFormView, String application_Name, Pair[] name_value_pairs, REST_Select_Task.Async_Response_JSON_array async_response_json_array) {
 
         if (isOnline(context)) {
             ProgressBar_Utils.showProgress(true, context, mProgressView, mLoginFormView);
-            REST_Select_Task rest_select_task = new REST_Select_Task(task_URL, context, mProgressView, mLoginFormView, application_Name, name_value_pairs, async_response_json_array_with_error_status_delegate);
+            REST_Select_Task rest_select_task = new REST_Select_Task(task_URL, context, mProgressView, mLoginFormView, application_Name, name_value_pairs, async_response_json_array);
+
+            rest_select_task.execute();
+        } else {
+            Toast_Utils.longToast(context, "Internet is unavailable");
+        }
+    }
+
+    public static void execute(String task_URL, Context context, View mProgressView, View mLoginFormView, String application_Name, Pair[] name_value_pairs, REST_Select_Task.Async_Response_JSON_array async_response_json_array,boolean error_flag) {
+
+        if (isOnline(context)) {
+            ProgressBar_Utils.showProgress(true, context, mProgressView, mLoginFormView);
+            REST_Select_Task rest_select_task = new REST_Select_Task(task_URL, context, mProgressView, mLoginFormView, application_Name, name_value_pairs, async_response_json_array,error_flag);
 
             rest_select_task.execute();
         } else {

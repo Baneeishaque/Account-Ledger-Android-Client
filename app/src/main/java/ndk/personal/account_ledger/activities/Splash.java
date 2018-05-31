@@ -1,7 +1,6 @@
 package ndk.personal.account_ledger.activities;
 
 import android.support.v4.util.Pair;
-import android.util.Log;
 
 import ndk.personal.account_ledger.constants.API;
 import ndk.personal.account_ledger.constants.API_Wrapper;
@@ -25,7 +24,7 @@ public class Splash extends Splash_Base_URL {
 
     @Override
     protected String configure_APPLICATION_NAME() {
-        return "Account Ledger";
+        return Application_Specification.APPLICATION_NAME;
     }
 
     @Override
@@ -35,7 +34,8 @@ public class Splash extends Splash_Base_URL {
 
     @Override
     protected Pair[] configure_NEXT_ACTIVITY_CLASS_EXTRAS() {
-        Log.d(Application_Specification.APPLICATION_NAME, "Next Activity : " + Insert_Transaction.class.getName());
         return new Pair[]{new Pair<>("APPLICATION_NAME", Application_Specification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", List_Accounts.class.getName()), new Pair<>("SELECT_USER_URL", API_Wrapper.get_http_API(API.select_User))};
+
+//        return new Pair[]{new Pair<>("APPLICATION_NAME", Application_Specification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", Insert_Transaction.class.getName()), new Pair<>("SELECT_USER_URL", API_Wrapper.get_http_API(API.select_User))};
     }
 }

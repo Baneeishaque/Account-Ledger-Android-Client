@@ -24,8 +24,11 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 import ndk.utils.models.sortable_tableView.pass_book.Pass_Book_Entry;
+import ndk.utils.models.sortable_tableView.pass_book.Pass_Book_Entry_v2;
 import ndk.utils.widgets.pass_book.Pass_Book_TableView;
 import ndk.utils.widgets.pass_book.Pass_Book_TableView_Data_Adapter;
+import ndk.utils.widgets.pass_book.Pass_Book_TableView_Data_Adapter_v2;
+import ndk.utils.widgets.pass_book.Pass_Book_TableView_v2;
 
 import static ndk.utils.Pdf_Utils.addEmptyLine;
 
@@ -35,13 +38,26 @@ import static ndk.utils.Pdf_Utils.addEmptyLine;
 
 public class Pass_Book_Utils {
 
-    static ArrayList<ndk.utils.models.sortable_tableView.pass_book.Pass_Book_Entry> current_pass_book_entries;
+    private static ArrayList<ndk.utils.models.sortable_tableView.pass_book.Pass_Book_Entry> current_pass_book_entries;
+    private static ArrayList<ndk.utils.models.sortable_tableView.pass_book.Pass_Book_Entry_v2> current_pass_book_entries_v2;
+
+    private static boolean v2_flag;
 
     public static void bind(Pass_Book_TableView pass_book_tableView, Context context, ArrayList<ndk.utils.models.sortable_tableView.pass_book.Pass_Book_Entry> pass_book_entries) {
         if (pass_book_tableView != null) {
             final Pass_Book_TableView_Data_Adapter pass_book_tableView_data_adapter = new Pass_Book_TableView_Data_Adapter(context, pass_book_entries, pass_book_tableView);
             pass_book_tableView.setDataAdapter(pass_book_tableView_data_adapter);
             current_pass_book_entries = pass_book_entries;
+            v2_flag = false;
+        }
+    }
+
+    public static void bindv2(Pass_Book_TableView_v2 pass_book_tableView_v2, Context context, ArrayList<ndk.utils.models.sortable_tableView.pass_book.Pass_Book_Entry_v2> pass_book_entries_v2) {
+        if (pass_book_tableView_v2 != null) {
+            final Pass_Book_TableView_Data_Adapter_v2 pass_book_tableView_data_adapter_v2 = new Pass_Book_TableView_Data_Adapter_v2(context, pass_book_entries_v2, pass_book_tableView_v2);
+            pass_book_tableView_v2.setDataAdapter(pass_book_tableView_data_adapter_v2);
+            current_pass_book_entries_v2 = pass_book_entries_v2;
+            v2_flag = true;
         }
     }
 
@@ -89,13 +105,26 @@ public class Pass_Book_Utils {
                 c2.setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell(c2);
 
-                PdfPCell c3 = new PdfPCell(new Phrase("Debit"));
-                c3.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table.addCell(c3);
+                if (v2_flag) {
+                    PdfPCell c3 = new PdfPCell(new Phrase("To A/C"));
+                    c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    table.addCell(c3);
 
-                PdfPCell c4 = new PdfPCell(new Phrase("Credit"));
-                c4.setHorizontalAlignment(Element.ALIGN_CENTER);
-                table.addCell(c4);
+                    PdfPCell c4 = new PdfPCell(new Phrase("Amount"));
+                    c4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    table.addCell(c4);
+
+                } else {
+
+                    PdfPCell c3 = new PdfPCell(new Phrase("Debit"));
+                    c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    table.addCell(c3);
+
+                    PdfPCell c4 = new PdfPCell(new Phrase("Credit"));
+                    c4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    table.addCell(c4);
+
+                }
 
                 PdfPCell c5 = new PdfPCell(new Phrase("Balance"));
                 c5.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -107,14 +136,27 @@ public class Pass_Book_Utils {
 //                    table.addCell("1.2");
 //                    table.addCell("1.3");
 
-                if (!current_pass_book_entries.isEmpty()) {
-                    for (Pass_Book_Entry pass_book_entry : current_pass_book_entries) {
-                        table.addCell(Date_Utils.normal_date_time_short_year_format.format(pass_book_entry.getInsertion_date()));
-                        table.addCell(pass_book_entry.getParticulars());
-                        table.addCell(String.valueOf(pass_book_entry.getDebit_amount()));
-                        table.addCell(String.valueOf(pass_book_entry.getCredit_amount()));
-                        table.addCell(String.valueOf(pass_book_entry.getBalance()));
+                if (v2_flag) {
+                    if (!current_pass_book_entries_v2.isEmpty()) {
+                        for (Pass_Book_Entry_v2 pass_book_entry_v2 : current_pass_book_entries_v2) {
+                            table.addCell(Date_Utils.normal_date_time_short_year_format.format(pass_book_entry_v2.getInsertion_date()));
+                            table.addCell(pass_book_entry_v2.getParticulars());
+                            table.addCell(String.valueOf(pass_book_entry_v2.getTo_account_name()));
+                            table.addCell(String.valueOf(pass_book_entry_v2.getCredit_amount()));
+                            table.addCell(String.valueOf(pass_book_entry_v2.getBalance()));
+                        }
                     }
+                } else {
+                    if (!current_pass_book_entries.isEmpty()) {
+                        for (Pass_Book_Entry pass_book_entry : current_pass_book_entries) {
+                            table.addCell(Date_Utils.normal_date_time_short_year_format.format(pass_book_entry.getInsertion_date()));
+                            table.addCell(pass_book_entry.getParticulars());
+                            table.addCell(String.valueOf(pass_book_entry.getDebit_amount()));
+                            table.addCell(String.valueOf(pass_book_entry.getCredit_amount()));
+                            table.addCell(String.valueOf(pass_book_entry.getBalance()));
+                        }
+                    }
+
                 }
 
                 document.add(table);

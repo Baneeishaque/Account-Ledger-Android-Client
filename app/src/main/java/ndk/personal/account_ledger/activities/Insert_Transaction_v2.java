@@ -1,6 +1,7 @@
 package ndk.personal.account_ledger.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.util.Pair;
@@ -13,12 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 
 import com.kunzisoft.switchdatetime.SwitchDateTimeDialogFragment;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -28,18 +26,18 @@ import ndk.personal.account_ledger.constants.API_Wrapper;
 import ndk.personal.account_ledger.constants.Application_Specification;
 import ndk.utils.Activity_Utils;
 import ndk.utils.Date_Utils;
-import ndk.utils.Spinner_Utils;
+import ndk.utils.Toast_Utils;
 import ndk.utils.Validation_Utils;
 import ndk.utils.activities.Pass_Book_Bundle;
+import ndk.utils.network_task.REST_GET_Task;
 import ndk.utils.network_task.REST_Insert_Task_Wrapper;
 
-public class Insert_Transaction_Patch extends AppCompatActivity {
+public class Insert_Transaction_v2 extends AppCompatActivity {
 
-    Context application_context, activity_context = this;
+    Context application_context;
     SharedPreferences settings;
     private ProgressBar login_progress;
-    private Button button_date;
-    private Spinner spinner_section;
+    private Button button_date, button_to;
     private EditText edit_purpose;
     private EditText edit_amount;
     private Calendar calendar = Calendar.getInstance();
@@ -49,7 +47,7 @@ public class Insert_Transaction_Patch extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_transaction_patch);
+        setContentView(R.layout.add_transaction_v2);
 
         application_context = getApplicationContext();
 
@@ -57,13 +55,16 @@ public class Insert_Transaction_Patch extends AppCompatActivity {
 
         login_form = findViewById(R.id.login_form);
         Button button_submit = findViewById(R.id.button_submit);
+        Button button_from = findViewById(R.id.button_from);
+        button_to = findViewById(R.id.button_to);
         edit_amount = findViewById(R.id.edit_amount);
         edit_purpose = findViewById(R.id.edit_purpose);
-        spinner_section = findViewById(R.id.spinner_section);
         button_date = findViewById(R.id.button_date);
         login_progress = findViewById(R.id.login_progress);
 
         associate_button_with_time_stamp();
+
+        button_from.setText("From : " + getIntent().getStringExtra("CURRENT_ACCOUNT_FULL_NAME"));
 
         // Initialize
         final SwitchDateTimeDialogFragment dateTimeFragment = SwitchDateTimeDialogFragment.newInstance(
@@ -108,7 +109,7 @@ public class Insert_Transaction_Patch extends AppCompatActivity {
 
                 associate_button_with_time_stamp();
 
-                Log.d(Application_Specification.APPLICATION_NAME, "Slected : " + Date_Utils.date_to_mysql_date_time_string((calendar.getTime())));
+                Log.d(Application_Specification.APPLICATION_NAME, "Selected : " + Date_Utils.date_to_mysql_date_time_string((calendar.getTime())));
                 // dateTimeFragment.setDefaultDateTime(calendar.getTime());
             }
 
@@ -134,7 +135,30 @@ public class Insert_Transaction_Patch extends AppCompatActivity {
             }
         });
 
-        Spinner_Utils.attach_items_to_simple_spinner(this, spinner_section, new ArrayList<>(Arrays.asList("Debit", "Credit")));
+        button_to.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                select_to_account();
+            }
+        });
+
+    }
+
+    private void select_to_account() {
+
+        Activity_Utils.start_activity_with_string_extras(this, List_Accounts.class, new Pair[]{new Pair<>("HEADER_TITLE", "NA"), new Pair<>("PARENT_ACCOUNT_ID", "0"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))}, true, 0);
+    }
+
+    String to_selected_account_id = "0";
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+
+            button_to.setText("To : " + data.getStringExtra("SELECTED_ACCOUNT_FULL_NAME"));
+            to_selected_account_id = data.getStringExtra("SELECTED_ACCOUNT_ID");
+
+        }
     }
 
     private void associate_button_with_time_stamp() {
@@ -157,37 +181,44 @@ public class Insert_Transaction_Patch extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_item_view_pass_book) {
-            Activity_Utils.start_activity_with_string_extras(activity_context, Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", API_Wrapper.get_http_API(API.select_User_Transactions)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
-            return true;
+
+            Activity_Utils.start_activity_with_string_extras(this, Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG",getIntent().getStringExtra("CURRENT_ACCOUNT_ID") )
+            }, false, 0);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     private void attempt_insert_Transaction() {
-        Validation_Utils.reset_errors(new EditText[]{edit_purpose, edit_amount});
-        Pair<Boolean, EditText> empty_check_result = Validation_Utils.empty_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
 
-        if (empty_check_result.first) {
-            // There was an error; don't attempt login and focus the first form field with an error.
-            if (empty_check_result.second != null) {
-                empty_check_result.second.requestFocus();
-            }
+        if (to_selected_account_id.equals("0")) {
+            Toast_Utils.longToast(this, "Please select To A/C...");
         } else {
 
-            Pair<Boolean, EditText> zero_check_result = Validation_Utils.zero_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
-            if (zero_check_result.first) {
-                if (zero_check_result.second != null) {
-                    zero_check_result.second.requestFocus();
+            Validation_Utils.reset_errors(new EditText[]{edit_purpose, edit_amount});
+            Pair<Boolean, EditText> empty_check_result = Validation_Utils.empty_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
+
+            if (empty_check_result.first) {
+                // There was an error; don't attempt login and focus the first form field with an error.
+                if (empty_check_result.second != null) {
+                    empty_check_result.second.requestFocus();
                 }
             } else {
-                execute_insert_Transaction_Task();
+
+                Pair<Boolean, EditText> zero_check_result = Validation_Utils.zero_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
+                if (zero_check_result.first) {
+                    if (zero_check_result.second != null) {
+                        zero_check_result.second.requestFocus();
+                    }
+                } else {
+                    execute_insert_Transaction_Task();
+                }
             }
         }
     }
 
     private void execute_insert_Transaction_Task() {
 
-        REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Transaction), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, new EditText[]{edit_purpose, edit_amount});
+        REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Transaction_v2), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString()), new Pair<>("from_account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID")), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, new EditText[]{edit_purpose, edit_amount});
     }
 }
