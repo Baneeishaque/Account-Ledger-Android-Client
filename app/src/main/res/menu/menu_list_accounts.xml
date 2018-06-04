@@ -5,9 +5,15 @@
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/abc_ic_search_api_material"
-        android:title="Search"
+        android:title="Search Accounts"
         compat:actionViewClass="android.support.v7.widget.SearchView"
         compat:showAsAction="collapseActionView|always" />
+
+    <item
+        android:id="@+id/action_add_account"
+        android:icon="@android:drawable/ic_input_add"
+        android:title="Add Sub-account"
+        compat:showAsAction="always" />
 
     <item
         android:id="@+id/action_add_transaction"

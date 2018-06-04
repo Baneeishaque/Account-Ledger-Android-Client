@@ -10,7 +10,7 @@ import ndk.utils.activities.Splash_Base_URL;
 
 import static ndk.personal.account_ledger.constants.Server_Endpoint.UPDATE_URL;
 
-public class Splash extends Splash_Base_URL {
+public class Splash_v2 extends Splash_Base_URL {
 
     @Override
     protected String configure_GET_CONFIGURATION_URL() {
@@ -34,8 +34,8 @@ public class Splash extends Splash_Base_URL {
 
     @Override
     protected Pair[] configure_NEXT_ACTIVITY_CLASS_EXTRAS() {
-//        return new Pair[]{new Pair<>("APPLICATION_NAME", Application_Specification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", List_Accounts.class.getName()), new Pair<>("SELECT_USER_URL", API_Wrapper.get_http_API(API.select_User))};
+        return new Pair[]{new Pair<>("APPLICATION_NAME", Application_Specification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", List_Accounts.class.getName()), new Pair<>("SELECT_USER_URL", API_Wrapper.get_http_API(API.select_User))};
 
-        return new Pair[]{new Pair<>("APPLICATION_NAME", Application_Specification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", Insert_Transaction.class.getName()), new Pair<>("SELECT_USER_URL", API_Wrapper.get_http_API(API.select_User))};
+//        return new Pair[]{new Pair<>("APPLICATION_NAME", Application_Specification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", Insert_Transaction.class.getName()), new Pair<>("SELECT_USER_URL", API_Wrapper.get_http_API(API.select_User))};
     }
 }

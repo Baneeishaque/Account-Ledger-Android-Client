@@ -45,4 +45,20 @@ public class REST_Insert_Task_Wrapper {
             Toast_Utils.longToast(context, "Internet is unavailable");
         }
     }
+
+    public static void execute(Context context, String task_URL, AppCompatActivity current_activity, View mProgressView, View mLoginFormView, String APPLICATION_NAME, Pair[] name_value_pairs, View view_to_focus_on_error) {
+
+        Log.d(APPLICATION_NAME, "REST Insert TASK URL : " + task_URL);
+
+        if (isOnline(context)) {
+
+            ProgressBar_Utils.showProgress(true, context, mProgressView, mLoginFormView);
+
+            REST_Insert_Task rest_insert_task = new REST_Insert_Task(task_URL, current_activity, mProgressView, mLoginFormView, APPLICATION_NAME, name_value_pairs, view_to_focus_on_error);
+
+            rest_insert_task.execute();
+        } else {
+            Toast_Utils.longToast(context, "Internet is unavailable");
+        }
+    }
 }

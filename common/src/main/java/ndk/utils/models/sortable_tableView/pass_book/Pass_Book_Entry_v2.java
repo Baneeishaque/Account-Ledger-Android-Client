@@ -68,4 +68,16 @@ public class Pass_Book_Entry_v2 {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+    @Override
+    public String toString() {
+        return "Pass_Book_Entry_v2{" +
+                "insertion_date=" + insertion_date +
+                ", particulars='" + particulars + '\'' +
+                ", to_account_name='" + to_account_name + '\'' +
+                ", credit_amount=" + credit_amount +
+                ", debit_amount=" + debit_amount +
+                ", balance=" + balance +
+                '}';
+    }
 }

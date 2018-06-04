@@ -22,9 +22,9 @@ public class List_Accounts extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         // replace the FrameLayout with new Fragment
         if (getIntent().getExtras() != null) {
-            fragmentTransaction.replace(R.id.frameLayout, Fragment_List_Accounts.newInstance(getIntent().getStringExtra("HEADER_TITLE"),getIntent().getStringExtra("PARENT_ACCOUNT_ID"),getIntent().getStringExtra("ACTIVITY_FOR_RESULT_FLAG")));
+            fragmentTransaction.replace(R.id.frameLayout, Fragment_List_Accounts.newInstance(getIntent().getStringExtra("HEADER_TITLE"), getIntent().getStringExtra("PARENT_ACCOUNT_ID"), getIntent().getStringExtra("ACTIVITY_FOR_RESULT_FLAG"), getIntent().getStringExtra("CURRENT_ACCOUNT_TYPE"), getIntent().getStringExtra("CURRENT_ACCOUNT_COMMODITY_TYPE"), getIntent().getStringExtra("CURRENT_ACCOUNT_COMMODITY_VALUE"), getIntent().getStringExtra("CURRENT_ACCOUNT_TAXABLE"), getIntent().getStringExtra("CURRENT_ACCOUNT_PLACE_HOLDER")));
         } else {
-            fragmentTransaction.replace(R.id.frameLayout, Fragment_List_Accounts.newInstance("NA","0",String.valueOf(false)));
+            fragmentTransaction.replace(R.id.frameLayout, Fragment_List_Accounts.newInstance("NA", "0", String.valueOf(false), "Assets", "CURRENCY", "INR", "F", "F"));
         }
 
         fragmentTransaction.commit(); // save the changes

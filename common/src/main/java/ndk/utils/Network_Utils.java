@@ -89,11 +89,14 @@ public class Network_Utils {
                     case "0":
                         Toast.makeText(current_activity, "OK", Toast.LENGTH_LONG).show();
                         switch (action_flag) {
-                            case 1: //finish
+                            case 1: //finish and switch
                                 Activity_Utils.start_activity_with_finish(current_activity, to_switch_activity, TAG);
                                 break;
                             case 2: //clear fields
                                 Text_Clear_Utils.reset_fields(texts_to_clear);
+                                break;
+                            case 3: //self finish
+                                current_activity.finish();
                                 break;
                         }
                         break;

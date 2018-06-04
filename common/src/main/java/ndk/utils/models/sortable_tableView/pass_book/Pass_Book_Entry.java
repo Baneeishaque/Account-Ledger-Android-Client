@@ -59,5 +59,14 @@ public class Pass_Book_Entry {
         this.insertion_date = insertion_date;
     }
 
-
+    @Override
+    public String toString() {
+        return "Pass_Book_Entry{" +
+                "insertion_date=" + insertion_date +
+                ", particulars='" + particulars + '\'' +
+                ", debit_amount=" + debit_amount +
+                ", credit_amount=" + credit_amount +
+                ", balance=" + balance +
+                '}';
+    }
 }

@@ -60,12 +60,14 @@ public class Pass_Book_Bundle extends AppCompatActivity {
 //        startActivity(intent);
 
         if (getIntent().getStringExtra("V2_FLAG") == null) {
+
             showProgress(true, this, mProgressView, pass_book_tableView);
             load_pass_Book_task = new Load_Pass_Book_Task(getIntent().getStringExtra("URL"), this, mProgressView, pass_book_tableView, getIntent().getStringExtra("application_name"), pass_book_tableView, new Pair[]{new Pair<>("user_id", getIntent().getStringExtra("user_id"))});
 
         } else {
+
             showProgress(true, this, mProgressView, pass_book_tableView_v2);
-            load_pass_Book_task = new Load_Pass_Book_Task(getIntent().getStringExtra("URL"), this, mProgressView, pass_book_tableView_v2, getIntent().getStringExtra("application_name"), pass_book_tableView_v2,getIntent().getStringExtra("V2_FLAG"));
+            load_pass_Book_task = new Load_Pass_Book_Task(getIntent().getStringExtra("URL"), this, mProgressView, pass_book_tableView_v2, getIntent().getStringExtra("application_name"), pass_book_tableView_v2, getIntent().getStringExtra("V2_FLAG"));
         }
 
         load_pass_Book_task.execute();

@@ -10,7 +10,6 @@ import java.util.List;
 import de.codecrafters.tableview.TableView;
 import de.codecrafters.tableview.toolkit.LongPressAwareTableDataAdapter;
 import ndk.utils.Date_Utils;
-import ndk.utils.Toast_Utils;
 import ndk.utils.models.sortable_tableView.pass_book.Pass_Book_Entry_v2;
 
 import static android.graphics.Color.BLACK;
@@ -56,10 +55,6 @@ public class Pass_Book_TableView_Data_Adapter_v2 extends LongPressAwareTableData
 
     @Override
     public View getLongPressCellView(int rowIndex, int columnIndex, ViewGroup parentView) {
-
-        Toast_Utils.longToast(getContext(),"Date");
-        Toast_Utils.longToast(getContext(),"Part");
-        Toast_Utils.longToast(getContext(),"To Account");
 
         return getDefaultCellView(rowIndex, columnIndex, parentView);
     }
