@@ -23,8 +23,8 @@ final class Pass_Book_TableView_Comparators_v2 {
         return new Particulars_Comparator();
     }
 
-    static Comparator<Pass_Book_Entry_v2> get_To_Account_Comparator() {
-        return new To_Account_Comparator();
+    static Comparator<Pass_Book_Entry_v2> get_Second_Account_Comparator() {
+        return new Second_Account_Comparator();
     }
 
     static Comparator<Pass_Book_Entry_v2> get_Credit_Amount_Comparator() {
@@ -52,12 +52,12 @@ final class Pass_Book_TableView_Comparators_v2 {
     }
 
 
-    private static class To_Account_Comparator implements Comparator<Pass_Book_Entry_v2> {
+    private static class Second_Account_Comparator implements Comparator<Pass_Book_Entry_v2> {
 
         @Override
         public int compare(final Pass_Book_Entry_v2 pass_book_entry1, final Pass_Book_Entry_v2 pass_book_entry2) {
 
-                return pass_book_entry1.getTo_account_name().compareTo(pass_book_entry2.getTo_account_name());
+            return pass_book_entry1.getSecond_account_name().compareTo(pass_book_entry2.getSecond_account_name());
 
         }
 

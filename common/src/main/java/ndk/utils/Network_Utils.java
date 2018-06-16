@@ -74,7 +74,7 @@ public class Network_Utils {
         }
     }
 
-    public static void handle_json_insertion_response_and_switch_with_finish_or_clear_fields(String[] network_action_response_array, AppCompatActivity current_activity, Class to_switch_activity, EditText[] texts_to_clear, View view_to_focus_on_error, String TAG, int action_flag) {
+    public static void handle_json_insertion_response_and_switch_with_finish_or_clear_fields(String[] network_action_response_array, AppCompatActivity current_activity, Class to_switch_activity, EditText[] texts_to_clear, View view_to_focus_on_error, String TAG, int action_flag, Pair[] next_class_extras) {
 
         Log.d(TAG, "Network Action Response Index 0 : " + network_action_response_array[0]);
         Log.d(TAG, "Network Action Response Index 1 : " + network_action_response_array[1]);
@@ -89,14 +89,21 @@ public class Network_Utils {
                     case "0":
                         Toast.makeText(current_activity, "OK", Toast.LENGTH_LONG).show();
                         switch (action_flag) {
+
                             case 1: //finish and switch
                                 Activity_Utils.start_activity_with_finish(current_activity, to_switch_activity, TAG);
                                 break;
+
                             case 2: //clear fields
                                 Text_Clear_Utils.reset_fields(texts_to_clear);
                                 break;
+
                             case 3: //self finish
                                 current_activity.finish();
+                                break;
+
+                            case 4: //finish and switch with extras
+                                Activity_Utils.start_activity_with_string_extras_and_finish(current_activity, to_switch_activity, next_class_extras);
                                 break;
                         }
                         break;
@@ -125,13 +132,13 @@ public class Network_Utils {
 
     public static void handle_json_insertion_response_and_switch_with_finish_and_toggle_view(String[] network_action_response_array, AppCompatActivity current_activity, Class to_switch_activity, View view_to_focus_on_error, View view_to_toggle, String TAG) {
 
-        handle_json_insertion_response_and_switch_with_finish_or_clear_fields(network_action_response_array, current_activity, to_switch_activity, new EditText[]{}, view_to_focus_on_error, TAG, 1);
+        handle_json_insertion_response_and_switch_with_finish_or_clear_fields(network_action_response_array, current_activity, to_switch_activity, new EditText[]{}, view_to_focus_on_error, TAG, 1, new Pair[]{});
         view_to_toggle.setEnabled(true);
     }
 
-    public static void check_network_then_start_activity_with_string_extras(Context context, Class activity, Pair[] extras,boolean for_result_flag,int request_code) {
+    public static void check_network_then_start_activity_with_string_extras(Context context, Class activity, Pair[] extras, boolean for_result_flag, int request_code) {
         if (isOnline(context)) {
-            Activity_Utils.start_activity_with_string_extras(context, activity, extras,for_result_flag,request_code);
+            Activity_Utils.start_activity_with_string_extras(context, activity, extras, for_result_flag, request_code);
         } else {
             Toast_Utils.longToast(context, "Internet is unavailable");
         }

@@ -66,6 +66,15 @@ public class Date_Utils {
         }
     }
 
+    public static String normal_date_time_words_string_to_mysql_date_time_string(String normal_date_time_words, String APPLICATION_NAME) {
+        try {
+            return mysql_date_time_format.format(normal_date_time_format_words.parse(normal_date_time_words));
+        } catch (ParseException e) {
+            Log.d(APPLICATION_NAME, "Unable to convert Normal Date Time Words String " + normal_date_time_words + " to MySQL Date Time String, Error : " + e.getLocalizedMessage());
+            return mysql_date_time_format.format(new Date());
+        }
+    }
+
     public static String mysql_date_string_to_normal_date_string(String mysql_date, String APPLICATION_NAME) {
         try {
             return normal_Date_Format.format(mysql_Date_Format.parse(mysql_date));

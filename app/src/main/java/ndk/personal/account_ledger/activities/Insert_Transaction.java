@@ -30,7 +30,6 @@ import ndk.utils.Activity_Utils;
 import ndk.utils.Date_Utils;
 import ndk.utils.Spinner_Utils;
 import ndk.utils.Validation_Utils;
-import ndk.utils.activities.Pass_Book_Bundle;
 import ndk.utils.network_task.REST_Insert_Task_Wrapper;
 
 public class Insert_Transaction extends AppCompatActivity {
@@ -157,7 +156,7 @@ public class Insert_Transaction extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_item_view_pass_book) {
-            Activity_Utils.start_activity_with_string_extras(activity_context, Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", API_Wrapper.get_http_API(API.select_User_Transactions)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))},false,0);
+            Activity_Utils.start_activity_with_string_extras(activity_context, Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", API_Wrapper.get_http_API(API.select_User_Transactions)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))}, false, 0);
             return true;
         }
 

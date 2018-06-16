@@ -56,6 +56,11 @@ public class Pass_Book_Utils {
         if (pass_book_tableView_v2 != null) {
             final Pass_Book_TableView_Data_Adapter_v2 pass_book_tableView_data_adapter_v2 = new Pass_Book_TableView_Data_Adapter_v2(context, pass_book_entries_v2, pass_book_tableView_v2);
             pass_book_tableView_v2.setDataAdapter(pass_book_tableView_data_adapter_v2);
+
+//            ListView internalListView=((AppCompatActivity)context).findViewById(pass_book_tableView_v2.getId());
+//            internalListView.setSelection(pass_book_entries_v2.size()-1);
+
+            pass_book_tableView_v2.setScrollY(pass_book_tableView_v2.getBottom());
             current_pass_book_entries_v2 = pass_book_entries_v2;
             v2_flag = true;
         }
@@ -141,7 +146,7 @@ public class Pass_Book_Utils {
                         for (Pass_Book_Entry_v2 pass_book_entry_v2 : current_pass_book_entries_v2) {
                             table.addCell(Date_Utils.normal_date_time_short_year_format.format(pass_book_entry_v2.getInsertion_date()));
                             table.addCell(pass_book_entry_v2.getParticulars());
-                            table.addCell(String.valueOf(pass_book_entry_v2.getTo_account_name()));
+                            table.addCell(String.valueOf(pass_book_entry_v2.getSecond_account_name()));
                             table.addCell(String.valueOf(pass_book_entry_v2.getCredit_amount()));
                             table.addCell(String.valueOf(pass_book_entry_v2.getBalance()));
                         }

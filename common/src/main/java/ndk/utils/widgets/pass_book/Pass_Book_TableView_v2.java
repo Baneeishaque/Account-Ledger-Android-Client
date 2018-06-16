@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import de.codecrafters.tableview.SortableTableView;
 import de.codecrafters.tableview.listeners.SwipeToRefreshListener;
@@ -29,6 +30,8 @@ import ndk.utils.models.sortable_tableView.pass_book.Pass_Book_Entry_v2;
  * @author ISchwarz
  */
 public class Pass_Book_TableView_v2 extends SortableTableView<Pass_Book_Entry_v2> {
+
+    private OnRowLongClickListener rowLongClickListener;
 
     public Pass_Book_TableView_v2(final Context context) {
         this(context, null);
@@ -61,7 +64,7 @@ public class Pass_Book_TableView_v2 extends SortableTableView<Pass_Book_Entry_v2
 
         setColumnComparator(0, Pass_Book_TableView_Comparators_v2.get_Insertion_Date_Comparator());
         setColumnComparator(1, Pass_Book_TableView_Comparators_v2.get_Particulars_Comparator());
-        setColumnComparator(2, Pass_Book_TableView_Comparators_v2.get_To_Account_Comparator());
+        setColumnComparator(2, Pass_Book_TableView_Comparators_v2.get_Second_Account_Comparator());
         setColumnComparator(3, Pass_Book_TableView_Comparators_v2.get_Credit_Amount_Comparator());
         setColumnComparator(4, Pass_Book_TableView_Comparators_v2.get_Debit_Amount_Comparator());
         setColumnComparator(5, Pass_Book_TableView_Comparators_v2.get_Balance_Comparator());
@@ -135,7 +138,9 @@ public class Pass_Book_TableView_v2 extends SortableTableView<Pass_Book_Entry_v2
             @Override
             public void onDataClicked(int rowIndex, Pass_Book_Entry_v2 clickedData) {
 
+                Log.d("Clicked On : ", clickedData.toString());
                 Toast_Utils.longToast(context, clickedData.toString());
+
             }
         });
 
@@ -143,8 +148,9 @@ public class Pass_Book_TableView_v2 extends SortableTableView<Pass_Book_Entry_v2
             @Override
             public boolean onDataLongClicked(int rowIndex, Pass_Book_Entry_v2 clickedData) {
 
-                Toast_Utils.longToast(context, clickedData.toString());
-                return false;
+                Log.d("Clicked On : ", clickedData.toString());
+                rowLongClickListener.onRowLongClick(clickedData);
+                return true;
             }
         });
 
@@ -161,6 +167,14 @@ public class Pass_Book_TableView_v2 extends SortableTableView<Pass_Book_Entry_v2
                 Toast_Utils.longToast(context, "Endless");
             }
         });
+    }
+
+    public void SetOnRowLongClickListener(final OnRowLongClickListener rowLongClickListener) {
+        this.rowLongClickListener = rowLongClickListener;
+    }
+
+    public interface OnRowLongClickListener {
+        void onRowLongClick(Pass_Book_Entry_v2 clickedData);
     }
 
 }

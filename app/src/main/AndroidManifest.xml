@@ -41,7 +41,7 @@
             android:label="Wallet Ledger" />
 
         <activity
-            android:name="ndk.utils.activities.Pass_Book_Bundle"
+            android:name=".activities.Clickable_Pass_Book_Bundle"
             android:label="Pass Book"
             android:screenOrientation="landscape" />
 
@@ -57,6 +57,8 @@
         </activity>
 
         <activity android:name=".activities.Insert_Account" />
+        <activity android:name=".activities.Insert_Transaction_v2_Quick" />
+        <activity android:name=".activities.Edit_Transaction_v2" />
 
     </application>
 

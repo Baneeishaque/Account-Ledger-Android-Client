@@ -4,8 +4,7 @@
 
     <item
         android:id="@+id/menu_item_view_pass_book"
-        android:icon="@android:drawable/ic_menu_compass"
-        android:title="Pass Book"
+        android:title="FPBook"
         app:showAsAction="always" />
 
 </menu>

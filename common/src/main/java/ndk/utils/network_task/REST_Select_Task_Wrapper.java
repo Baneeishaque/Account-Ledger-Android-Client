@@ -3,6 +3,7 @@ package ndk.utils.network_task;
 import android.content.Context;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import ndk.utils.Network_Utils;
@@ -49,15 +50,31 @@ public class REST_Select_Task_Wrapper {
         }
     }
 
-    public static void execute(String task_URL, Context context, View mProgressView, View mLoginFormView, String application_Name, Pair[] name_value_pairs, REST_Select_Task.Async_Response_JSON_array async_response_json_array,boolean error_flag) {
+    public static void execute(String task_URL, Context context, View mProgressView, View mLoginFormView, String application_Name, Pair[] name_value_pairs, REST_Select_Task.Async_Response_JSON_array async_response_json_array, boolean error_flag) {
 
         if (isOnline(context)) {
             ProgressBar_Utils.showProgress(true, context, mProgressView, mLoginFormView);
-            REST_Select_Task rest_select_task = new REST_Select_Task(task_URL, context, mProgressView, mLoginFormView, application_Name, name_value_pairs, async_response_json_array,error_flag);
+            REST_Select_Task rest_select_task = new REST_Select_Task(task_URL, context, mProgressView, mLoginFormView, application_Name, name_value_pairs, async_response_json_array, error_flag);
 
             rest_select_task.execute();
         } else {
             Toast_Utils.longToast(context, "Internet is unavailable");
+        }
+    }
+
+    public static void execute(String task_URL, Context context, String application_Name, Pair[] name_value_pairs, REST_Select_Task.Async_Response_JSON_array async_response_json_array, boolean error_flag, boolean background_flag) {
+
+        if (isOnline(context)) {
+
+            REST_Select_Task rest_select_task = new REST_Select_Task(task_URL, context, application_Name, name_value_pairs, async_response_json_array, error_flag, background_flag);
+
+            rest_select_task.execute();
+        } else {
+            if (background_flag) {
+                Log.d(application_Name, "Internet is unavailable");
+            } else {
+                Toast_Utils.longToast(context, "Internet is unavailable");
+            }
         }
     }
 

@@ -37,7 +37,7 @@ public class Pass_Book_TableView_Data_Adapter_v2 extends LongPressAwareTableData
                 renderedView = renderString(pass_book_entry_v2.getParticulars());
                 break;
             case 2:
-                renderedView = renderString(String.valueOf(pass_book_entry_v2.getTo_account_name()));
+                renderedView = renderString(String.valueOf(pass_book_entry_v2.getSecond_account_name()));
                 break;
             case 3:
                 renderedView = renderString(String.valueOf(pass_book_entry_v2.getCredit_amount()));

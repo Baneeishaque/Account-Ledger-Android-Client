@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_item_view_from_pass_book"
+        android:title="FPBook"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_item_view_to_pass_book"
+        android:title="TPBook"
+        app:showAsAction="always" />
+
+</menu>
