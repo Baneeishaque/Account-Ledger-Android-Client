@@ -229,7 +229,6 @@ public class REST_Select_Task extends AsyncTask<Void, Void, String[]> {
         }
     }
 
-    // you may separate this or combined to caller class.
     public interface Async_Response_JSON_array {
         void processFinish(JSONArray json_array);
     }

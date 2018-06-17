@@ -30,6 +30,8 @@ import static android.graphics.Color.RED;
 
 public class Network_Utils {
 
+    static further_Actions further_actions;
+
     public static void display_Long_no_FAB_no_network_bottom_SnackBar(View view, View.OnClickListener network_function) {
         Snackbar snackbar = Snackbar
                 .make(view, "Internet unavailable!", Snackbar.LENGTH_INDEFINITE)
@@ -74,7 +76,9 @@ public class Network_Utils {
         }
     }
 
-    public static void handle_json_insertion_response_and_switch_with_finish_or_clear_fields(String[] network_action_response_array, AppCompatActivity current_activity, Class to_switch_activity, EditText[] texts_to_clear, View view_to_focus_on_error, String TAG, int action_flag, Pair[] next_class_extras) {
+    public static void handle_json_insertion_response_and_switch_with_finish_or_clear_fields(String[] network_action_response_array, AppCompatActivity current_activity, Class to_switch_activity, EditText[] texts_to_clear, View view_to_focus_on_error, String TAG, int action_flag, Pair[] next_class_extras, further_Actions further_actions) {
+
+        Network_Utils.further_actions = further_actions;
 
         Log.d(TAG, "Network Action Response Index 0 : " + network_action_response_array[0]);
         Log.d(TAG, "Network Action Response Index 1 : " + network_action_response_array[1]);
@@ -84,10 +88,15 @@ public class Network_Utils {
             Log.d(TAG, "Error, Network Action Response Index 1 : " + network_action_response_array[1]);
         } else {
             try {
+
                 JSONObject json = new JSONObject(network_action_response_array[1]);
+
                 switch (json.getString("status")) {
+
                     case "0":
+
                         Toast.makeText(current_activity, "OK", Toast.LENGTH_LONG).show();
+
                         switch (action_flag) {
 
                             case 1: //finish and switch
@@ -105,13 +114,20 @@ public class Network_Utils {
                             case 4: //finish and switch with extras
                                 Activity_Utils.start_activity_with_string_extras_and_finish(current_activity, to_switch_activity, next_class_extras);
                                 break;
+
+                            case 5: //No Action
+                                Log.d(TAG, "No Action...");
+                                further_actions.onSuccess();
+                                break;
                         }
                         break;
+
                     case "1":
                         Toast.makeText(current_activity, "Error...", Toast.LENGTH_LONG).show();
                         Log.d(TAG, "Error : " + json.getString("error"));
                         view_to_focus_on_error.requestFocus();
                         break;
+
                     default:
                         Toast.makeText(current_activity, "Error : Check json", Toast.LENGTH_LONG).show();
                 }
@@ -132,7 +148,7 @@ public class Network_Utils {
 
     public static void handle_json_insertion_response_and_switch_with_finish_and_toggle_view(String[] network_action_response_array, AppCompatActivity current_activity, Class to_switch_activity, View view_to_focus_on_error, View view_to_toggle, String TAG) {
 
-        handle_json_insertion_response_and_switch_with_finish_or_clear_fields(network_action_response_array, current_activity, to_switch_activity, new EditText[]{}, view_to_focus_on_error, TAG, 1, new Pair[]{});
+        handle_json_insertion_response_and_switch_with_finish_or_clear_fields(network_action_response_array, current_activity, to_switch_activity, new EditText[]{}, view_to_focus_on_error, TAG, 1, new Pair[]{}, further_actions);
         view_to_toggle.setEnabled(true);
     }
 
@@ -152,4 +168,7 @@ public class Network_Utils {
         }
     }
 
+    public interface further_Actions {
+        void onSuccess();
+    }
 }
