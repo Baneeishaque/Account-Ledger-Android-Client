@@ -9,8 +9,9 @@ public class Account {
     private String name;
     private String commodityType;
     private String commodityValue;
+    private String full_name;
 
-    public Account(String accountType, String accountId, String notes, String parentAccountId, String ownerId, String name, String commodityType, String commodityValue) {
+    public Account(String accountType, String accountId, String notes, String parentAccountId, String ownerId, String name, String commodityType, String commodityValue, String full_name) {
         this.accountType = accountType;
         this.accountId = accountId;
         this.notes = notes;
@@ -19,6 +20,15 @@ public class Account {
         this.name = name;
         this.commodityType = commodityType;
         this.commodityValue = commodityValue;
+        this.full_name = full_name;
+    }
+
+    public String getFull_name() {
+        return full_name;
+    }
+
+    public void setFull_name(String full_name) {
+        this.full_name = full_name;
     }
 
     public String getAccountType() {
@@ -87,16 +97,16 @@ public class Account {
 
     @Override
     public String toString() {
-        return
-                "Account{" +
-                        "account_type = '" + accountType + '\'' +
-                        ",account_id = '" + accountId + '\'' +
-                        ",notes = '" + notes + '\'' +
-                        ",parent_account_id = '" + parentAccountId + '\'' +
-                        ",owner_id = '" + ownerId + '\'' +
-                        ",name = '" + name + '\'' +
-                        ",commodity_type = '" + commodityType + '\'' +
-                        ",commodity_value = '" + commodityValue + '\'' +
-                        "}";
+        return "Account{" +
+                "accountType='" + accountType + '\'' +
+                ", accountId='" + accountId + '\'' +
+                ", notes='" + notes + '\'' +
+                ", parentAccountId='" + parentAccountId + '\'' +
+                ", ownerId='" + ownerId + '\'' +
+                ", name='" + name + '\'' +
+                ", commodityType='" + commodityType + '\'' +
+                ", commodityValue='" + commodityValue + '\'' +
+                ", full_name='" + full_name + '\'' +
+                '}';
     }
 }

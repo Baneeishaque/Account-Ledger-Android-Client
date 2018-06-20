@@ -29,31 +29,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <!--android:id="@+id/email_login_form"-->
-
-            <!--<android.support.design.widget.TextInputLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
-
-            <!--<EditText-->
-            <!--android:id="@+id/username"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="Date"-->
-            <!--android:inputType="text"-->
-            <!--android:maxLines="1" />-->
-
-            <!--</android.support.design.widget.TextInputLayout>-->
-
-            <!--<Button-->
-            <!--android:id="@+id/button_date"-->
-            <!--style="?android:textAppearanceSmall"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="16dp"-->
-            <!--android:text="Date"-->
-            <!--android:textAllCaps="false"-->
-            <!--android:textStyle="bold" />-->
 
             <Button
                 android:id="@+id/button_date"
@@ -102,7 +77,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/button_plus"
+                    android:id="@+id/button_fplus"
                     android:layout_width="49dp"
                     android:layout_height="53dp"
                     android:layout_marginEnd="8dp"
@@ -113,12 +88,55 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <android.support.design.widget.TextInputLayout
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/button_fplus"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextView_from"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:dropDownHeight="wrap_content"
+                        android:dropDownSelector="@color/light_gray"
+                        android:hint="From A/C"
+                        android:imeOptions="actionNext"
+                        android:inputType="textAutoComplete"
+                        android:maxLines="1"
+                        android:popupBackground="@color/white" />
+                </android.support.design.widget.TextInputLayout>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button_tplus"
+                    android:layout_width="49dp"
+                    android:layout_height="53dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="+"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <android.support.design.widget.TextInputLayout
+
                     android:id="@+id/textInputLayout"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/button_plus"
+                    app:layout_constraintEnd_toStartOf="@+id/button_tplus"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 

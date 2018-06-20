@@ -116,7 +116,13 @@ public class Network_Utils {
                                 break;
 
                             case 5: //No Action
-                                Log.d(TAG, "No Action...");
+                                Log.d(TAG, "Further Action...");
+                                further_actions.onSuccess();
+                                break;
+
+                            case 6: //clear fields & further actions
+                                Log.d(TAG, "Further Action...");
+                                Text_Clear_Utils.reset_fields(texts_to_clear);
                                 further_actions.onSuccess();
                                 break;
                         }

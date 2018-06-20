@@ -28,6 +28,8 @@ import ndk.utils.Spinner_Utils;
 import ndk.utils.Validation_Utils;
 import ndk.utils.network_task.REST_Insert_Task_Wrapper;
 
+import static ndk.utils.Network_Utils.*;
+
 public class Insert_Account extends AppCompatActivity {
 
     Context application_context;
@@ -131,7 +133,7 @@ public class Insert_Account extends AppCompatActivity {
          */
 
 
-        Network_Utils.further_Actions further_actions = new Network_Utils.further_Actions() {
+        further_Actions further_actions = new further_Actions() {
             @Override
             public void onSuccess() {
                 Intent returnIntent = new Intent();
@@ -141,11 +143,11 @@ public class Insert_Account extends AppCompatActivity {
         };
 
         if (getIntent().getStringExtra("ACTIVITY_FOR_RESULT_FLAG") != null) {
-            REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Account), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("full_name", button_full_name.getText().toString().replace(" : ", ":")), new Pair<>("name", edit_name.getText().toString()), new Pair<>("parent_account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID")), new Pair<>("account_type", spinner_account_type.getSelectedItem().toString()), new Pair<>("notes", edit_notes.getText().toString()), new Pair<>("commodity_type", spinner_commodity_type.getSelectedItem().toString()), new Pair<>("commodity_value", spinner_commodity_value.getSelectedItem().toString()), new Pair<>("owner_id", settings.getString("user_id", "0")), new Pair<>("taxable", checkBox_taxable.isSelected() ? "T" : "F"), new Pair<>("place_holder", checkBox_place_holder.isSelected() ? "T" : "F")}, edit_name, further_actions);
+            REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Account), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("full_name", button_full_name.getText().toString().replace(" : ", ":")), new Pair<>("name", edit_name.getText().toString().trim()), new Pair<>("parent_account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID")), new Pair<>("account_type", spinner_account_type.getSelectedItem().toString()), new Pair<>("notes", edit_notes.getText().toString().trim()), new Pair<>("commodity_type", spinner_commodity_type.getSelectedItem().toString()), new Pair<>("commodity_value", spinner_commodity_value.getSelectedItem().toString()), new Pair<>("owner_id", settings.getString("user_id", "0")), new Pair<>("taxable", checkBox_taxable.isSelected() ? "T" : "F"), new Pair<>("place_holder", checkBox_place_holder.isSelected() ? "T" : "F")}, edit_name, further_actions);
 
 
         } else {
-            REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Account), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("full_name", button_full_name.getText().toString().replace(" : ", ":")), new Pair<>("name", edit_name.getText().toString()), new Pair<>("parent_account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID")), new Pair<>("account_type", spinner_account_type.getSelectedItem().toString()), new Pair<>("notes", edit_notes.getText().toString()), new Pair<>("commodity_type", spinner_commodity_type.getSelectedItem().toString()), new Pair<>("commodity_value", spinner_commodity_value.getSelectedItem().toString()), new Pair<>("owner_id", settings.getString("user_id", "0")), new Pair<>("taxable", checkBox_taxable.isSelected() ? "T" : "F"), new Pair<>("place_holder", checkBox_place_holder.isSelected() ? "T" : "F")}, edit_name);
+            REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Account), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("full_name", button_full_name.getText().toString().replace(" : ", ":")), new Pair<>("name", edit_name.getText().toString().trim()), new Pair<>("parent_account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID")), new Pair<>("account_type", spinner_account_type.getSelectedItem().toString()), new Pair<>("notes", edit_notes.getText().toString().trim()), new Pair<>("commodity_type", spinner_commodity_type.getSelectedItem().toString()), new Pair<>("commodity_value", spinner_commodity_value.getSelectedItem().toString()), new Pair<>("owner_id", settings.getString("user_id", "0")), new Pair<>("taxable", checkBox_taxable.isSelected() ? "T" : "F"), new Pair<>("place_holder", checkBox_place_holder.isSelected() ? "T" : "F")}, edit_name);
 
         }
     }
