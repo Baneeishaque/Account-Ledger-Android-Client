@@ -30,7 +30,8 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.github.Baneeishaque:Android_Common_Utils:v1'
+//    implementation 'com.github.Baneeishaque:Android_Common_Utils:v1'
+    implementation 'com.github.Baneeishaque:Android_Common_Utils:08d1c983c7'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'com.github.Kunzisoft:Android-SwitchDateTimePicker:1.9'
     implementation 'com.github.bmelnychuk:atv:1.2.9'
