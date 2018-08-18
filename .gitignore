@@ -922,3 +922,4 @@ ASALocalRun/
 
 
 # End of https://www.gitignore.io/api/java,linux,macos,gradle,android,eclipse,windows,netbeans,firebase,intellij,notepadpp,visualstudio,intellij+all,intellij+iml,androidstudio,jetbrains+all,jetbrains+iml,visualstudiocode
+.DS_Store
