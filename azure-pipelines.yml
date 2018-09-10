@@ -20,16 +20,17 @@ steps:
     ls -R
   displayName: 'Command Line Script'
 
-# - task: FtpUpload@1
-#   displayName: 'FTP Upload: aria2_torrent_ftp_vsts_repository'
-#   inputs:
-#     credentialsOption: inputs
+- task: FtpUpload@1
+  displayName: 'FTP Upload: apk'
+  inputs:
+    credentialsOption: inputs
 
-#     serverUrl: 'ftp://192.254.233.216'
+    serverUrl: 'ftp://192.254.233.216'
 
-#     username: 'root@alaneesgroup.com'
+    username: 'root@alaneesgroup.com'
 
-#     password: 9895204814
+    password: 9895204814
 
-#     rootDirectory: 'aria2_torrent_ftp_vsts_repository'
+    rootDirectory: 'app/build/outputs/apk'
 
+    remoteDirectory: '/azure_devops_builds/account_ledger'
