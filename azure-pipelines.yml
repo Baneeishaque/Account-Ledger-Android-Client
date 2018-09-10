@@ -17,7 +17,7 @@ steps:
     tasks: 'assembleDebug'
 
 - script: |
-    DIR /s
+    ls -R
   displayName: 'Command Line Script'
 
 # - task: FtpUpload@1
