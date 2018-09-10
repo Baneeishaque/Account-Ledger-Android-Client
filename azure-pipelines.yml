@@ -15,3 +15,21 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'assembleDebug'
+
+- script: |
+    DIR /s
+  displayName: 'Command Line Script'
+
+# - task: FtpUpload@1
+#   displayName: 'FTP Upload: aria2_torrent_ftp_vsts_repository'
+#   inputs:
+#     credentialsOption: inputs
+
+#     serverUrl: 'ftp://192.254.233.216'
+
+#     username: 'root@alaneesgroup.com'
+
+#     password: 9895204814
+
+#     rootDirectory: 'aria2_torrent_ftp_vsts_repository'
+
