@@ -1,0 +1,46 @@
+language: android
+jdk: oraclejdk8
+sudo: false
+
+env:
+  global:
+    # - "FTP_USER=coordinator@edcccet.in"
+     - "FTP_USER=ndk@vfmob.com.md-in-64.webhostbox.net"
+     - "FTP_PASSWORD=9895204814"
+
+notifications:
+  email:
+    - baneeishaque@gmail.com
+
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-27.0.3
+    - android-27
+    - extra-android-m2repository
+
+before_cache:
+    - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+
+cache:
+  directories:      #Cache all dirs under .gradle folder
+    - $HOME/.gradle/daemon      #Cache daemon logs
+    - $HOME/.gradle/native      #Cache library downloaded from the gradle dependency
+    - $HOME/.gradle/wrapper     #Cache the gradle
+
+before_install:
+#    - mkdir "$ANDROID_HOME/licenses" || true
+#    - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+#    - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+
+    - yes | sdkmanager "platforms;android-27"
+
+    # - echo "org.gradle.parallel=true" >> ~/.gradle/gradle.properties
+    # - echo "org.gradle.configureondemand=true" >> ~/.gradle/gradle.properties
+    # - echo "org.gradle.jvmargs=-Xmx8192m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
+  
+script: ./gradlew build
+
+after_success:
+    - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://vfmob.com.md-in-64.webhostbox.net/public_html/wp-production/account_ledger_server/builds/travis/
