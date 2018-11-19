@@ -39,7 +39,9 @@ before_install:
     # - echo "org.gradle.parallel=true" >> ~/.gradle/gradle.properties
     # - echo "org.gradle.configureondemand=true" >> ~/.gradle/gradle.properties
     # - echo "org.gradle.jvmargs=-Xmx8192m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
-  
+    
+    - chmod +x gradlew
+
 script: ./gradlew build
 
 after_success:
