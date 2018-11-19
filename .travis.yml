@@ -5,8 +5,10 @@ sudo: false
 env:
   global:
     # - "FTP_USER=coordinator@edcccet.in"
-     - "FTP_USER=ndk@vfmob.com.md-in-64.webhostbox.net"
-     - "FTP_PASSWORD=9895204814"
+    # - "FTP_USER=ndk@vfmob.com.md-in-64.webhostbox.net"
+    # - "FTP_PASSWORD=9895204814"
+    - "FTP_USER=root@alaneesgroup.com"
+    - "FTP_PASSWORD=9895204814"
 
 notifications:
   email:
@@ -45,4 +47,4 @@ before_install:
 script: ./gradlew build
 
 after_success:
-    - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://vfmob.com.md-in-64.webhostbox.net/public_html/wp-production/account_ledger_server/builds/travis/
+    - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://192.254.233.216/travis_builds/account_ledger/
