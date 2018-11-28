@@ -7,12 +7,12 @@ env:
     # - "FTP_USER=coordinator@edcccet.in"
     # - "FTP_USER=ndk@vfmob.com.md-in-64.webhostbox.net"
     # - "FTP_PASSWORD=9895204814"
-    # - "FTP_USER=root@alaneesgroup.com"
-    # - "FTP_PASSWORD=9895204814"
+     - "FTP_USER=root@alaneesgroup.com"
+     - "FTP_PASSWORD=9895204814"
     # - "SFTP_USER=root"
     # - "SFTP_PASSWORD=aA!9895204814"
-     - "FTP_USER=sammy"
-     - "FTP_PASSWORD=1"
+    # - "FTP_USER=sammy"
+    # - "FTP_PASSWORD=1"
 
 notifications:
   email:
@@ -51,6 +51,6 @@ before_install:
 script: ./gradlew build
 
 after_success:
-    # - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://192.254.233.216/travis_builds/account_ledger/
-    - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://139.59.65.128/
+    - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://192.254.233.216/travis_builds/account_ledger/
+    #- curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://139.59.65.128/
     # - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $SFTP_USER:$SFTP_PASSWORD sftp://139.59.65.128/travis_builds/account_ledger/
