@@ -51,7 +51,7 @@ before_install:
 script: ./gradlew build
 
 after_success:
-    - ls -R "{${TRAVIS_BUILD_DIR}/${DIR}app/build/outputs/apk/"
+    - ls -R "${TRAVIS_BUILD_DIR}/${DIR}app/build/outputs/apk/"
     #- curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://192.254.233.216/travis_builds/account_ledger/
     #- curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://139.59.65.128/
     # - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $SFTP_USER:$SFTP_PASSWORD sftp://139.59.65.128/travis_builds/account_ledger/
