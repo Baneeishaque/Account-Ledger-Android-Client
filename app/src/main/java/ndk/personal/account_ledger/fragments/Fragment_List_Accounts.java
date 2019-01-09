@@ -337,6 +337,7 @@ public class Fragment_List_Accounts extends Fragment {
 
         //TODO : Header Long click
         mAdapter.SetOnHeaderLongClickListener(new List_Accounts_Adapter.OnHeaderLongClickListener() {
+
             @Override
             public void onHeaderClick(View view, String headerTitle) {
 
