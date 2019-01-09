@@ -26,6 +26,8 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private OnHeaderClickListener mHeaderClickListener;
 
+    private OnHeaderLongClickListener mHeaderLongClickListener;
+
     private ArrayList<Account> modelList;
 
     private OnItemClickListener mItemClickListener;
@@ -118,6 +120,10 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
         this.mHeaderClickListener = headerClickListener;
     }
 
+    public void SetOnHeaderLongClickListener(final OnHeaderLongClickListener headerLongClickListener) {
+        this.mHeaderLongClickListener = headerLongClickListener;
+    }
+
     private Account getItem(int position) {
         return modelList.get(position);
     }
@@ -127,6 +133,10 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     public interface OnHeaderClickListener {
+        void onHeaderClick(View view, String headerTitle);
+    }
+
+    public interface OnHeaderLongClickListener {
         void onHeaderClick(View view, String headerTitle);
     }
 
@@ -143,6 +153,14 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
                 public void onClick(View view) {
 
                     mHeaderClickListener.onHeaderClick(itemView, mHeaderTitle);
+                }
+            });
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    mHeaderLongClickListener.onHeaderClick(itemView, mHeaderTitle);
+                    return true;
                 }
             });
 

@@ -11,4 +11,5 @@ public class API {
     public static String select_Configuration = "select_Configuration";
     public static String select_User = "select_User";
     public static String select_User_Transactions_v2= "select_User_Transactions_v2";
+    public static String select_User_Transactions_v3 = "select_User_Transactions_v3";
 }

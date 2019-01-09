@@ -334,5 +334,19 @@ public class Fragment_List_Accounts extends Fragment {
 
             }
         });
+
+        //TODO : Header Long click
+        mAdapter.SetOnHeaderLongClickListener(new List_Accounts_Adapter.OnHeaderLongClickListener() {
+            @Override
+            public void onHeaderClick(View view, String headerTitle) {
+
+                if (!activity_for_result_flag) {
+
+                    Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
+
+                    Activity_Utils.start_activity_with_string_extras(getActivity(), Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v3), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id), new Pair<>("SORT_FLAG", String.valueOf(true))}, false, 0);
+                }
+            }
+        });
     }
 }

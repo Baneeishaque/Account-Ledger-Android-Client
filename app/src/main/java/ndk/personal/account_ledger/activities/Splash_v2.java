@@ -2,6 +2,7 @@ package ndk.personal.account_ledger.activities;
 
 import android.support.v4.util.Pair;
 
+import ndk.personal.account_ledger.BuildConfig;
 import ndk.personal.account_ledger.constants.API;
 import ndk.personal.account_ledger.constants.API_Wrapper;
 import ndk.personal.account_ledger.constants.Application_Specification;
@@ -37,5 +38,10 @@ public class Splash_v2 extends Splash_Base_URL {
         return new Pair[]{new Pair<>("APPLICATION_NAME", Application_Specification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", List_Accounts.class.getName()), new Pair<>("SELECT_USER_URL", API_Wrapper.get_http_API(API.select_User))};
 
 //        return new Pair[]{new Pair<>("APPLICATION_NAME", Application_Specification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", Insert_Transaction.class.getName()), new Pair<>("SELECT_USER_URL", API_Wrapper.get_http_API(API.select_User))};
+    }
+
+    @Override
+    protected boolean configure_is_debug() {
+        return BuildConfig.DEBUG;
     }
 }
