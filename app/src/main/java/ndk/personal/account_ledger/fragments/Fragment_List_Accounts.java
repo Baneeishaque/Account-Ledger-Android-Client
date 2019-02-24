@@ -26,7 +26,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -241,14 +240,16 @@ public class Fragment_List_Accounts extends Fragment {
 
     private void setAdapter() {
 
-        REST_Select_Task.Async_Response_JSON_array async_response_json_array = new REST_Select_Task.Async_Response_JSON_array() {
+//        if(activity_for_result_flag)
+//        {
+//            accounts.add(new Account(, , , , , , , , ));
+//        }
 
-            @Override
-            public void processFinish(JSONArray json_array) {
+        REST_Select_Task.Async_Response_JSON_array async_response_json_array = json_array -> {
 
-                for (int i = 1; i < json_array.length(); i++) {
+            for (int i = 1; i < json_array.length(); i++) {
 
-                    try {
+                try {
 
 //                        return
 //                                "Account{" +
@@ -262,17 +263,16 @@ public class Fragment_List_Accounts extends Fragment {
 //                                        ",commodity_value = '" + commodityValue + '\'' +
 //                                        "}";
 
-                        accounts.add(new Account(json_array.getJSONObject(i).getString("account_type"), json_array.getJSONObject(i).getString("account_id"), json_array.getJSONObject(i).getString("notes"), json_array.getJSONObject(i).getString("parent_account_id"), json_array.getJSONObject(i).getString("owner_id"), json_array.getJSONObject(i).getString("name"), json_array.getJSONObject(i).getString("commodity_type"), json_array.getJSONObject(i).getString("commodity_value"),json_array.getJSONObject(i).getString("name")));
+                    accounts.add(new Account(json_array.getJSONObject(i).getString("account_type"), json_array.getJSONObject(i).getString("account_id"), json_array.getJSONObject(i).getString("notes"), json_array.getJSONObject(i).getString("parent_account_id"), json_array.getJSONObject(i).getString("owner_id"), json_array.getJSONObject(i).getString("name"), json_array.getJSONObject(i).getString("commodity_type"), json_array.getJSONObject(i).getString("commodity_value"), json_array.getJSONObject(i).getString("name")));
 
-                    } catch (JSONException e) {
+                } catch (JSONException e) {
 
-                        Toast.makeText(getContext(), "Error : " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                        Log.d(Application_Specification.APPLICATION_NAME, "Error : " + e.getLocalizedMessage());
-                    }
+                    Toast.makeText(getContext(), "Error : " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                    Log.d(Application_Specification.APPLICATION_NAME, "Error : " + e.getLocalizedMessage());
                 }
-
-                view_recyclerView();
             }
+
+            view_recyclerView();
         };
 
         settings = Objects.requireNonNull(getContext()).getSharedPreferences(Application_Specification.APPLICATION_NAME, Context.MODE_PRIVATE);
@@ -302,37 +302,31 @@ public class Fragment_List_Accounts extends Fragment {
 
         recyclerView.setAdapter(mAdapter);
 
-        mAdapter.SetOnItemClickListener(new List_Accounts_Adapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position, Account model) {
+        mAdapter.SetOnItemClickListener((view, position, model) -> {
 
-                //handle item click events here
-                Toast.makeText(getActivity(), "Selected Accounts Ledger : " + model.getName(), Toast.LENGTH_SHORT).show();
+            //handle item click events here
+            Toast.makeText(getActivity(), "Selected Accounts Ledger : " + model.getName(), Toast.LENGTH_SHORT).show();
 
-                //TODO : Include Taxable & place holder in account object
-                Activity_Utils.start_activity_with_string_extras(getActivity(), List_Accounts.class, new Pair[]{new Pair<>("HEADER_TITLE", current_header_title.equals("NA") ? model.getName() : current_header_title + " : " + model.getName()), new Pair<>("PARENT_ACCOUNT_ID", model.getAccountId()), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(activity_for_result_flag)), new Pair<>("CURRENT_ACCOUNT_TYPE", model.getAccountType()), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", model.getCommodityType()), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", model.getCommodityValue()), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)}, activity_for_result_flag, 0);
+            //TODO : Include Taxable & place holder in account object
+            Activity_Utils.start_activity_with_string_extras(getActivity(), List_Accounts.class, new Pair[]{new Pair<>("HEADER_TITLE", current_header_title.equals("NA") ? model.getName() : current_header_title + " : " + model.getName()), new Pair<>("PARENT_ACCOUNT_ID", model.getAccountId()), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(activity_for_result_flag)), new Pair<>("CURRENT_ACCOUNT_TYPE", model.getAccountType()), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", model.getCommodityType()), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", model.getCommodityValue()), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)}, activity_for_result_flag, 0);
 
-            }
         });
 
-        mAdapter.SetOnHeaderClickListener(new List_Accounts_Adapter.OnHeaderClickListener() {
-            @Override
-            public void onHeaderClick(View view, String headerTitle) {
+        mAdapter.SetOnHeaderClickListener((view, headerTitle) -> {
 
-                if (activity_for_result_flag) {
-                    Intent returnIntent = new Intent();
-                    returnIntent.putExtra("SELECTED_ACCOUNT_FULL_NAME", current_header_title);
-                    returnIntent.putExtra("SELECTED_ACCOUNT_ID", current_parent_account_id);
-                    Objects.requireNonNull(getActivity()).setResult(RESULT_OK, returnIntent);
-                    getActivity().finish();
-                } else {
-                    //handle item click events here
-                    Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
+            if (activity_for_result_flag) {
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra("SELECTED_ACCOUNT_FULL_NAME", current_header_title);
+                returnIntent.putExtra("SELECTED_ACCOUNT_ID", current_parent_account_id);
+                Objects.requireNonNull(getActivity()).setResult(RESULT_OK, returnIntent);
+                getActivity().finish();
+            } else {
+                //handle item click events here
+                Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 
-                    Activity_Utils.start_activity_with_string_extras(getActivity(), Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id)}, false, 0);
-                }
-
+                Activity_Utils.start_activity_with_string_extras(getActivity(), Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id)}, false, 0);
             }
+
         });
 
         //TODO : Header Long click

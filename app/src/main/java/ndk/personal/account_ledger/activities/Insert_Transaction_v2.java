@@ -25,8 +25,6 @@ import android.widget.Toast;
 
 import com.kunzisoft.switchdatetime.SwitchDateTimeDialogFragment;
 
-import org.apache.commons.lang3.time.DateUtils;
-import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -44,11 +42,8 @@ import ndk.utils.Date_Utils;
 import ndk.utils.Toast_Utils;
 import ndk.utils.Validation_Utils;
 import ndk.utils.network_task.REST_GET_Task;
-import ndk.utils.network_task.REST_Insert_Task_Wrapper;
 import ndk.utils.network_task.REST_Select_Task;
 import ndk.utils.network_task.REST_Select_Task_Wrapper;
-
-import static ndk.utils.Network_Utils.further_Actions;
 
 public class Insert_Transaction_v2 extends AppCompatActivity {
 
@@ -79,8 +74,6 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
     Stack<Account> from_stack;
     Stack<Account> to_stack;
-    private boolean to_edit_flag = true;
-    private boolean from_edit_flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +105,8 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
         Button button_tplus = findViewById(R.id.button_tplus);
         Button button_fplus = findViewById(R.id.button_fplus);
 
-        associate_button_with_time_stamp();
+//        associate_button_with_time_stamp();
+        Insert_Transaction_v2_Utils.associate_button_with_time_stamp(button_date, calendar);
 
         button_from.setText("From : " + getIntent().getStringExtra("CURRENT_ACCOUNT_FULL_NAME"));
         autoCompleteTextView_from.setText(getIntent().getStringExtra("CURRENT_ACCOUNT_FULL_NAME"), false);
@@ -157,7 +151,8 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
                 calendar.set(Calendar.HOUR_OF_DAY, dateTimeFragment.getHourOfDay());
                 calendar.set(Calendar.MINUTE, dateTimeFragment.getMinute());
 
-                associate_button_with_time_stamp();
+//                associate_button_with_time_stamp();
+                Insert_Transaction_v2_Utils.associate_button_with_time_stamp(button_date, calendar);
 
                 Log.d(Application_Specification.APPLICATION_NAME, "Selected : " + Date_Utils.date_to_mysql_date_time_string((calendar.getTime())));
 
@@ -384,92 +379,92 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
     }
 
-    private void previous_from(boolean button_action) {
-
-        if ((autoCompleteTextView_from.getText().toString().isEmpty() || button_action) && from_edit_flag) {
-
-            if (from_stack.isEmpty()) {
-
-                initialize_from_account();
-
-            } else {
-
-                Account current_from_account = from_stack.pop();
-                if (current_from_account.getName().equals(autoCompleteTextView_from.getHint().toString())) {
-
-                    if (!from_stack.isEmpty()) {
-                        current_from_account = from_stack.pop();
-                    }
-                }
-
-                current_fparent_account_id = current_from_account.getAccountId();
-
-                if (current_fparent_account_id.equals("0")) {
-
-                    initialize_from_account();
-
-                } else {
-
-                    current_faccount_type = current_from_account.getAccountType();
-                    current_faccount_commodity_type = current_from_account.getCommodityType();
-                    current_faccount_commodity_value = current_from_account.getCommodityValue();
-
-                    from_selected_account_id = current_fparent_account_id;
-
-                    button_from.setText(current_from_account.getFull_name());
-
-                    autoCompleteTextView_from.setHint(current_from_account.getName());
-
-                    autoCompleteTextView_from.setText(autoCompleteTextView_from.getHint().toString().substring(0, autoCompleteTextView_from.getHint().length() - 3), false);
-                    autoCompleteTextView_from.setSelection(autoCompleteTextView_from.getText().length());
-
-                    bind_auto_text_view_from();
-                }
-            }
-        }
-    }
-
-    private void previous_to(boolean button_action) {
-
-        if ((autoCompleteTextView_to.getText().toString().isEmpty() || button_action) && to_edit_flag) {
-
-            if (to_stack.isEmpty()) {
-                initialize_to_account();
-            } else {
-
-                Account current_to_account = to_stack.pop();
-                if (current_to_account.getName().equals(autoCompleteTextView_to.getHint().toString())) {
-                    if (!to_stack.isEmpty()) {
-                        current_to_account = to_stack.pop();
-                    }
-                }
-
-                current_tparent_account_id = current_to_account.getAccountId();
-
-                if (current_tparent_account_id.equals("0")) {
-
-                    initialize_to_account();
-
-                } else {
-
-                    current_taccount_type = current_to_account.getAccountType();
-                    current_taccount_commodity_type = current_to_account.getCommodityType();
-                    current_taccount_commodity_value = current_to_account.getCommodityValue();
-
-                    to_selected_account_id = current_tparent_account_id;
-
-                    button_to.setText(current_to_account.getFull_name());
-
-                    autoCompleteTextView_to.setHint(current_to_account.getName());
-
-                    autoCompleteTextView_to.setText(autoCompleteTextView_to.getHint().toString().substring(0, autoCompleteTextView_to.getHint().length() - 3), false);
-                    autoCompleteTextView_to.setSelection(autoCompleteTextView_to.getText().length());
-
-                    bind_auto_text_view_to();
-                }
-            }
-        }
-    }
+//    private void previous_from(boolean button_action) {
+//
+//        if ((autoCompleteTextView_from.getText().toString().isEmpty() || button_action) && from_edit_flag) {
+//
+//            if (from_stack.isEmpty()) {
+//
+//                initialize_from_account();
+//
+//            } else {
+//
+//                Account current_from_account = from_stack.pop();
+//                if (current_from_account.getName().equals(autoCompleteTextView_from.getHint().toString())) {
+//
+//                    if (!from_stack.isEmpty()) {
+//                        current_from_account = from_stack.pop();
+//                    }
+//                }
+//
+//                current_fparent_account_id = current_from_account.getAccountId();
+//
+//                if (current_fparent_account_id.equals("0")) {
+//
+//                    initialize_from_account();
+//
+//                } else {
+//
+//                    current_faccount_type = current_from_account.getAccountType();
+//                    current_faccount_commodity_type = current_from_account.getCommodityType();
+//                    current_faccount_commodity_value = current_from_account.getCommodityValue();
+//
+//                    from_selected_account_id = current_fparent_account_id;
+//
+//                    button_from.setText(current_from_account.getFull_name());
+//
+//                    autoCompleteTextView_from.setHint(current_from_account.getName());
+//
+//                    autoCompleteTextView_from.setText(autoCompleteTextView_from.getHint().toString().substring(0, autoCompleteTextView_from.getHint().length() - 3), false);
+//                    autoCompleteTextView_from.setSelection(autoCompleteTextView_from.getText().length());
+//
+//                    bind_auto_text_view_from();
+//                }
+//            }
+//        }
+//    }
+//
+//    private void previous_to(boolean button_action) {
+//
+//        if ((autoCompleteTextView_to.getText().toString().isEmpty() || button_action) && to_edit_flag) {
+//
+//            if (to_stack.isEmpty()) {
+//                initialize_to_account();
+//            } else {
+//
+//                Account current_to_account = to_stack.pop();
+//                if (current_to_account.getName().equals(autoCompleteTextView_to.getHint().toString())) {
+//                    if (!to_stack.isEmpty()) {
+//                        current_to_account = to_stack.pop();
+//                    }
+//                }
+//
+//                current_tparent_account_id = current_to_account.getAccountId();
+//
+//                if (current_tparent_account_id.equals("0")) {
+//
+//                    initialize_to_account();
+//
+//                } else {
+//
+//                    current_taccount_type = current_to_account.getAccountType();
+//                    current_taccount_commodity_type = current_to_account.getCommodityType();
+//                    current_taccount_commodity_value = current_to_account.getCommodityValue();
+//
+//                    to_selected_account_id = current_tparent_account_id;
+//
+//                    button_to.setText(current_to_account.getFull_name());
+//
+//                    autoCompleteTextView_to.setHint(current_to_account.getName());
+//
+//                    autoCompleteTextView_to.setText(autoCompleteTextView_to.getHint().toString().substring(0, autoCompleteTextView_to.getHint().length() - 3), false);
+//                    autoCompleteTextView_to.setSelection(autoCompleteTextView_to.getText().length());
+//
+//                    bind_auto_text_view_to();
+//                }
+//            }
+//        }
+//    }
 
     private void initialize_from_account() {
 
@@ -477,7 +472,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
         button_from.setText("From : ");
         autoCompleteTextView_from.setHint("");
 
-        from_edit_flag = false;
+        boolean from_edit_flag = false;
         autoCompleteTextView_from.setText("", false);
         from_edit_flag = true;
 
@@ -491,7 +486,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
         button_to.setText("To : ");
         autoCompleteTextView_to.setHint("");
 
-        to_edit_flag = false;
+        boolean to_edit_flag = false;
         autoCompleteTextView_to.setText("", false);
         to_edit_flag = true;
 
@@ -537,42 +532,38 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
     private void bind_auto_text_view_to() {
 
-        REST_Select_Task.Async_Response_JSON_array async_response_json_array = new REST_Select_Task.Async_Response_JSON_array() {
+        REST_Select_Task.Async_Response_JSON_array async_response_json_array = json_array -> {
 
-            @Override
-            public void processFinish(JSONArray json_array) {
+            accounts = new ArrayList<>();
+            ArrayList<String> account_full_names = new ArrayList<>();
 
-                accounts = new ArrayList<>();
-                ArrayList<String> account_full_names = new ArrayList<>();
+            try {
 
-                try {
+                if (!json_array.getJSONObject(0).getString("status").equals("1")) {
 
-                    if (!json_array.getJSONObject(0).getString("status").equals("1")) {
+                    for (int i = 1; i < json_array.length(); i++) {
 
-                        for (int i = 1; i < json_array.length(); i++) {
-
-                            accounts.add(new Account(json_array.getJSONObject(i).getString("account_type"), json_array.getJSONObject(i).getString("account_id"), json_array.getJSONObject(i).getString("notes"), json_array.getJSONObject(i).getString("parent_account_id"), json_array.getJSONObject(i).getString("owner_id"), json_array.getJSONObject(i).getString("name"), json_array.getJSONObject(i).getString("commodity_type"), json_array.getJSONObject(i).getString("commodity_value"), json_array.getJSONObject(i).getString("name")));
-                            account_full_names.add(json_array.getJSONObject(i).getString("name"));
-                        }
-                    } else {
-                        edit_purpose.requestFocus();
+                        accounts.add(new Account(json_array.getJSONObject(i).getString("account_type"), json_array.getJSONObject(i).getString("account_id"), json_array.getJSONObject(i).getString("notes"), json_array.getJSONObject(i).getString("parent_account_id"), json_array.getJSONObject(i).getString("owner_id"), json_array.getJSONObject(i).getString("name"), json_array.getJSONObject(i).getString("commodity_type"), json_array.getJSONObject(i).getString("commodity_value"), json_array.getJSONObject(i).getString("name")));
+                        account_full_names.add(json_array.getJSONObject(i).getString("name"));
                     }
-
-                } catch (JSONException e) {
-
-                    Toast.makeText(getApplicationContext(), "Error : " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                    Log.d(Application_Specification.APPLICATION_NAME, "Error : " + e.getLocalizedMessage());
+                } else {
+                    edit_purpose.requestFocus();
                 }
 
-                //Creating the instance of ArrayAdapter containing list of fruit names
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(activity_context, android.R.layout.select_dialog_item, account_full_names);
+            } catch (JSONException e) {
 
-                autoCompleteTextView_to.setThreshold(1);//will start working from first character
-                autoCompleteTextView_to.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
-                autoCompleteTextView_to.setTextColor(Color.RED);
-                autoCompleteTextView_to.showDropDown();
-
+                Toast.makeText(getApplicationContext(), "Error : " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                Log.d(Application_Specification.APPLICATION_NAME, "Error : " + e.getLocalizedMessage());
             }
+
+            //Creating the instance of ArrayAdapter containing list of fruit names
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(activity_context, android.R.layout.select_dialog_item, account_full_names);
+
+            autoCompleteTextView_to.setThreshold(1);//will start working from first character
+            autoCompleteTextView_to.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+            autoCompleteTextView_to.setTextColor(Color.RED);
+            autoCompleteTextView_to.showDropDown();
+
         };
 
         REST_Select_Task_Wrapper.execute(REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Accounts), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("parent_account_id", current_tparent_account_id)}), this, Application_Specification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false, true);
@@ -580,42 +571,38 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
     private void bind_auto_text_view_from() {
 
-        REST_Select_Task.Async_Response_JSON_array async_response_json_array = new REST_Select_Task.Async_Response_JSON_array() {
+        REST_Select_Task.Async_Response_JSON_array async_response_json_array = json_array -> {
 
-            @Override
-            public void processFinish(JSONArray json_array) {
+            accounts = new ArrayList<>();
+            ArrayList<String> account_full_names = new ArrayList<>();
 
-                accounts = new ArrayList<>();
-                ArrayList<String> account_full_names = new ArrayList<>();
+            try {
 
-                try {
+                if (!json_array.getJSONObject(0).getString("status").equals("1")) {
 
-                    if (!json_array.getJSONObject(0).getString("status").equals("1")) {
+                    for (int i = 1; i < json_array.length(); i++) {
 
-                        for (int i = 1; i < json_array.length(); i++) {
-
-                            accounts.add(new Account(json_array.getJSONObject(i).getString("account_type"), json_array.getJSONObject(i).getString("account_id"), json_array.getJSONObject(i).getString("notes"), json_array.getJSONObject(i).getString("parent_account_id"), json_array.getJSONObject(i).getString("owner_id"), json_array.getJSONObject(i).getString("name"), json_array.getJSONObject(i).getString("commodity_type"), json_array.getJSONObject(i).getString("commodity_value"), json_array.getJSONObject(i).getString("name")));
-                            account_full_names.add(json_array.getJSONObject(i).getString("name"));
-                        }
-                    } else {
-                        autoCompleteTextView_to.requestFocus();
+                        accounts.add(new Account(json_array.getJSONObject(i).getString("account_type"), json_array.getJSONObject(i).getString("account_id"), json_array.getJSONObject(i).getString("notes"), json_array.getJSONObject(i).getString("parent_account_id"), json_array.getJSONObject(i).getString("owner_id"), json_array.getJSONObject(i).getString("name"), json_array.getJSONObject(i).getString("commodity_type"), json_array.getJSONObject(i).getString("commodity_value"), json_array.getJSONObject(i).getString("name")));
+                        account_full_names.add(json_array.getJSONObject(i).getString("name"));
                     }
-
-                } catch (JSONException e) {
-
-                    Toast.makeText(getApplicationContext(), "Error : " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                    Log.d(Application_Specification.APPLICATION_NAME, "Error : " + e.getLocalizedMessage());
+                } else {
+                    autoCompleteTextView_to.requestFocus();
                 }
 
-                //Creating the instance of ArrayAdapter containing list of fruit names
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(activity_context, android.R.layout.select_dialog_item, account_full_names);
+            } catch (JSONException e) {
 
-                autoCompleteTextView_from.setThreshold(1);//will start working from first character
-                autoCompleteTextView_from.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
-                autoCompleteTextView_from.setTextColor(Color.RED);
-                autoCompleteTextView_from.showDropDown();
-
+                Toast.makeText(getApplicationContext(), "Error : " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                Log.d(Application_Specification.APPLICATION_NAME, "Error : " + e.getLocalizedMessage());
             }
+
+            //Creating the instance of ArrayAdapter containing list of fruit names
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(activity_context, android.R.layout.select_dialog_item, account_full_names);
+
+            autoCompleteTextView_from.setThreshold(1);//will start working from first character
+            autoCompleteTextView_from.setAdapter(adapter);//setting the adapter data into the AutoCompleteTextView
+            autoCompleteTextView_from.setTextColor(Color.RED);
+            autoCompleteTextView_from.showDropDown();
+
         };
 
         REST_Select_Task_Wrapper.execute(REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Accounts), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("parent_account_id", current_fparent_account_id)}), this, Application_Specification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false, true);
@@ -644,14 +631,14 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
         }
     }
 
-    private void associate_button_with_time_stamp() {
-        button_date.setText(Date_Utils.normal_date_time_format_words.format(calendar.getTime()));
-    }
+//    private void associate_button_with_time_stamp() {
+//        button_date.setText(Date_Utils.normal_date_time_format_words.format(calendar.getTime()));
+//    }
 
-    private void associate_button_with_time_stamp_plus_one_minute() {
-        calendar.setTime(DateUtils.addMinutes(calendar.getTime(), 5));
-        associate_button_with_time_stamp();
-    }
+//    private void associate_button_with_time_stamp_plus_one_minute() {
+//        calendar.setTime(DateUtils.addMinutes(calendar.getTime(), 5));
+//        associate_button_with_time_stamp();
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -701,21 +688,24 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
                         zero_check_result.second.requestFocus();
                     }
                 } else {
-                    execute_insert_Transaction_Task();
+//                    execute_insert_Transaction_Task();
+                    Insert_Transaction_v2_Utils.execute_insert_Transaction_Task(login_progress, login_form, this, this, settings.getString("user_id", "0"), edit_purpose.getText().toString().trim(), Double.parseDouble(edit_amount.getText().toString().trim()), Integer.parseInt(from_selected_account_id), Integer.parseInt(to_selected_account_id), edit_purpose, edit_amount, button_date, calendar);
                 }
             }
         }
     }
 
-    private void execute_insert_Transaction_Task() {
-
-        further_Actions further_actions = new further_Actions() {
-            @Override
-            public void onSuccess() {
-                associate_button_with_time_stamp_plus_one_minute();
-            }
-        };
-
-        REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Transaction_v2), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", edit_purpose.getText().toString().trim()), new Pair<>("amount", edit_amount.getText().toString().trim()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, new EditText[]{edit_purpose, edit_amount}, further_actions);
-    }
+//    private void execute_insert_Transaction_Task() {
+//
+////        further_Actions further_actions = new further_Actions() {
+////            @Override
+////            public void onSuccess() {
+////                associate_button_with_time_stamp_plus_one_minute();
+////            }
+////        };
+////
+////        REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Transaction_v2), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", edit_purpose.getText().toString().trim()), new Pair<>("amount", edit_amount.getText().toString().trim()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, new EditText[]{edit_purpose, edit_amount}, further_actions);
+//
+//        Insert_Transaction_v2_Utils.execute_insert_Transaction_Task(login_progress, login_form, this, this, settings.getString("user_id", "0"), edit_purpose.getText().toString().trim(), Double.parseDouble(edit_amount.getText().toString().trim()), Integer.parseInt(from_selected_account_id), Integer.parseInt(to_selected_account_id), edit_purpose, edit_amount, button_date, calendar);
+//    }
 }

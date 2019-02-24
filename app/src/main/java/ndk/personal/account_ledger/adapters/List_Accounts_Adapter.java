@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.models.Account;
 
-
 /**
  * A custom adapter to use with the RecyclerView widget.
  */
@@ -70,10 +69,9 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         } else if (holder instanceof ViewHolder) {
             final Account model;
-            if(header_presence) {
+            if (header_presence) {
                 model = getItem(position - 1);
-            }
-            else {
+            } else {
                 model = getItem(position);
             }
             ViewHolder genericViewHolder = (ViewHolder) holder;
@@ -103,11 +101,9 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public int getItemCount() {
 
-        if(header_presence) {
+        if (header_presence) {
             return modelList.size() + 1;
-        }
-        else
-        {
+        } else {
             return modelList.size();
         }
     }
@@ -147,21 +143,11 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
             super(itemView);
             this.txt_Title_Header = itemView.findViewById(R.id.txt_header);
 
+            itemView.setOnClickListener(view -> mHeaderClickListener.onHeaderClick(itemView, mHeaderTitle));
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    mHeaderClickListener.onHeaderClick(itemView, mHeaderTitle);
-                }
-            });
-
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    mHeaderLongClickListener.onHeaderClick(itemView, mHeaderTitle);
-                    return true;
-                }
+            itemView.setOnLongClickListener(v -> {
+                mHeaderLongClickListener.onHeaderClick(itemView, mHeaderTitle);
+                return true;
             });
 
         }
@@ -171,7 +157,6 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         private TextView item_Txt_Account_Name;
         private TextView item_Txt_Account_Balance;
-
 
         // @BindView(R.id.img_user)
         // ImageView imgUser;
@@ -192,17 +177,12 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
             this.item_Txt_Account_Name = itemView.findViewById(R.id.item_txt_account_name);
             this.item_Txt_Account_Balance = itemView.findViewById(R.id.item_txt_account_balance);
 
+            itemView.setOnClickListener(view -> {
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if(header_presence) {
-                        mItemClickListener.onItemClick(itemView, getAdapterPosition(), modelList.get(getAdapterPosition() - 1));
-                    }
-                    else {
-                        mItemClickListener.onItemClick(itemView, getAdapterPosition(), modelList.get(getAdapterPosition()));
-                    }
+                if (header_presence) {
+                    mItemClickListener.onItemClick(itemView, getAdapterPosition(), modelList.get(getAdapterPosition() - 1));
+                } else {
+                    mItemClickListener.onItemClick(itemView, getAdapterPosition(), modelList.get(getAdapterPosition()));
                 }
             });
 
