@@ -24,6 +24,7 @@ public class List_Accounts extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             fragmentTransaction.replace(R.id.frameLayout, Fragment_List_Accounts.newInstance(getIntent().getStringExtra("HEADER_TITLE"), getIntent().getStringExtra("PARENT_ACCOUNT_ID"), getIntent().getStringExtra("ACTIVITY_FOR_RESULT_FLAG"), getIntent().getStringExtra("CURRENT_ACCOUNT_TYPE"), getIntent().getStringExtra("CURRENT_ACCOUNT_COMMODITY_TYPE"), getIntent().getStringExtra("CURRENT_ACCOUNT_COMMODITY_VALUE"), getIntent().getStringExtra("CURRENT_ACCOUNT_TAXABLE"), getIntent().getStringExtra("CURRENT_ACCOUNT_PLACE_HOLDER")));
         } else {
+            //TODO : Clean Code
             fragmentTransaction.replace(R.id.frameLayout, Fragment_List_Accounts.newInstance("NA", "0", String.valueOf(false), "Assets", "CURRENCY", "INR", "F", "F"));
         }
 
