@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.util.Pair;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -16,6 +14,9 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Pair;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -23,12 +24,10 @@ import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.API;
 import ndk.personal.account_ledger.constants.API_Wrapper;
 import ndk.personal.account_ledger.constants.Application_Specification;
-import ndk.utils.Network_Utils;
-import ndk.utils.Spinner_Utils;
-import ndk.utils.Validation_Utils;
-import ndk.utils.network_task.REST_Insert_Task_Wrapper;
-
-import static ndk.utils.Network_Utils.*;
+import ndk.utils_android16.Network_Utils;
+import ndk.utils_android16.Spinner_Utils;
+import ndk.utils_android16.Validation_Utils;
+import ndk.utils_android16.network_task.REST_Insert_Task_Wrapper;
 
 public class Insert_Account extends AppCompatActivity {
 
@@ -133,7 +132,7 @@ public class Insert_Account extends AppCompatActivity {
          */
 
 
-        further_Actions further_actions = new further_Actions() {
+        Network_Utils.further_Actions further_actions = new Network_Utils.further_Actions() {
             @Override
             public void onSuccess() {
                 Intent returnIntent = new Intent();

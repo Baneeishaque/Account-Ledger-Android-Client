@@ -1,13 +1,13 @@
 package ndk.personal.account_ledger.activities;
 
-import android.support.v4.util.Pair;
+import androidx.core.util.Pair;
 
 import ndk.personal.account_ledger.BuildConfig;
 import ndk.personal.account_ledger.constants.API;
 import ndk.personal.account_ledger.constants.API_Wrapper;
 import ndk.personal.account_ledger.constants.Application_Specification;
-import ndk.utils.activities.Login_Bundle;
-import ndk.utils.activities.Splash_Base_URL;
+import ndk.utils_android16.activities.Login_Bundle;
+import ndk.utils_android16.activities.Splash_Base_URL;
 
 import static ndk.personal.account_ledger.constants.Server_Endpoint.UPDATE_URL;
 

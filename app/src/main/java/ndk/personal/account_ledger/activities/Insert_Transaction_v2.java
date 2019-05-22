@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.util.Pair;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -23,6 +21,9 @@ import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Pair;
+
 import com.kunzisoft.switchdatetime.SwitchDateTimeDialogFragment;
 
 import org.json.JSONException;
@@ -37,13 +38,13 @@ import ndk.personal.account_ledger.constants.API;
 import ndk.personal.account_ledger.constants.API_Wrapper;
 import ndk.personal.account_ledger.constants.Application_Specification;
 import ndk.personal.account_ledger.models.Account;
-import ndk.utils.Activity_Utils;
-import ndk.utils.Date_Utils;
-import ndk.utils.Toast_Utils;
-import ndk.utils.Validation_Utils;
-import ndk.utils.network_task.REST_GET_Task;
-import ndk.utils.network_task.REST_Select_Task;
-import ndk.utils.network_task.REST_Select_Task_Wrapper;
+import ndk.utils_android14.ActivityUtils;
+import ndk.utils_android16.Date_Utils;
+import ndk.utils_android16.Toast_Utils;
+import ndk.utils_android16.Validation_Utils;
+import ndk.utils_android16.network_task.REST_GET_Task;
+import ndk.utils_android16.network_task.REST_Select_Task;
+import ndk.utils_android16.network_task.REST_Select_Task_Wrapper;
 
 public class Insert_Transaction_v2 extends AppCompatActivity {
 
@@ -326,7 +327,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
                 if (!current_tparent_account_id.equals("0")) {
 
-                    Activity_Utils.start_activity_with_string_extras(activity_context, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_tparent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", button_to.getText().toString().replace("To : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", current_taccount_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_taccount_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_taccount_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))}, true, 0);
+                    ActivityUtils.start_activity_with_string_extras(activity_context, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_tparent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", button_to.getText().toString().replace("To : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", current_taccount_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_taccount_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_taccount_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))}, true, 0);
                 } else {
                     Toast_Utils.longToast(getApplicationContext(), "Please Select a parent account...");
                 }
@@ -350,7 +351,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
                 if (!current_fparent_account_id.equals("0")) {
 
-                    Activity_Utils.start_activity_with_string_extras(activity_context, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_fparent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", button_from.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", current_faccount_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_faccount_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_faccount_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_faccount_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_faccount_place_holder), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))}, true, 1);
+                    ActivityUtils.start_activity_with_string_extras(activity_context, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_fparent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", button_from.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", current_faccount_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_faccount_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_faccount_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_faccount_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_faccount_place_holder), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))}, true, 1);
                 } else {
                     Toast_Utils.longToast(getApplicationContext(), "Please Select a parent account...");
                 }
@@ -657,7 +658,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
         if (id == R.id.menu_item_view_pass_book) {
 
-            Activity_Utils.start_activity_with_string_extras(this, Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))
+            ActivityUtils.start_activity_with_string_extras(this, Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))
             }, false, 0);
         }
 

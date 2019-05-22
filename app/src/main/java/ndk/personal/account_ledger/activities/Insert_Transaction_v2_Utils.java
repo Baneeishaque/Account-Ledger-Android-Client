@@ -1,12 +1,13 @@
 package ndk.personal.account_ledger.activities;
 
 import android.content.Context;
-import android.support.v4.util.Pair;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Pair;
 
 import org.apache.commons.lang3.time.DateUtils;
 
@@ -15,9 +16,10 @@ import java.util.Calendar;
 import ndk.personal.account_ledger.constants.API;
 import ndk.personal.account_ledger.constants.API_Wrapper;
 import ndk.personal.account_ledger.constants.Application_Specification;
-import ndk.utils.Date_Utils;
-import ndk.utils.Network_Utils;
-import ndk.utils.network_task.REST_Insert_Task_Wrapper;
+import ndk.utils_android16.Date_Utils;
+import ndk.utils_android16.Network_Utils;
+import ndk.utils_android16.network_task.REST_Insert_Task_Wrapper;
+
 
 class Insert_Transaction_v2_Utils {
 
