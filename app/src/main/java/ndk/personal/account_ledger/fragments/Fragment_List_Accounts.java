@@ -59,15 +59,15 @@ import static android.app.Activity.RESULT_OK;
 
 public class Fragment_List_Accounts extends Fragment {
 
-    String current_header_title, current_parent_account_id, current_account_type, current_account_commodity_type, current_account_commodity_value, current_account_taxable, current_account_place_holder;
+    private String current_header_title, current_parent_account_id, current_account_type, current_account_commodity_type, current_account_commodity_value, current_account_taxable, current_account_place_holder, currentAccountName, currentAccountFullName;
 
-    boolean activity_for_result_flag;
+    private boolean activity_for_result_flag;
 
     private RecyclerView recyclerView;
 
     private ProgressBar login_progressBar;
 
-    SharedPreferences settings;
+    private SharedPreferences sharedPreferences;
 
     // @BindView(R.id.recycler_view)
     // RecyclerView recyclerView;
@@ -80,7 +80,7 @@ public class Fragment_List_Accounts extends Fragment {
         // Required empty public constructor
     }
 
-    public static Fragment_List_Accounts newInstance(String header_title, String parent_account_id, String activity_for_result_flag, String account_type, String account_commodity_type, String account_commodity_value, String account_taxable, String account_place_holder) {
+    public static Fragment_List_Accounts newInstance(String header_title, String parent_account_id, String activity_for_result_flag, String account_type, String account_commodity_type, String account_commodity_value, String account_taxable, String account_place_holder, String accountName, String accountFullName) {
         Fragment_List_Accounts fragment = new Fragment_List_Accounts();
         Bundle args = new Bundle();
         args.putString("HEADER_TITLE", header_title);
@@ -91,6 +91,8 @@ public class Fragment_List_Accounts extends Fragment {
         args.putString("CURRENT_ACCOUNT_COMMODITY_VALUE", account_commodity_value);
         args.putString("CURRENT_ACCOUNT_TAXABLE", account_taxable);
         args.putString("CURRENT_ACCOUNT_PLACE_HOLDER", account_place_holder);
+        args.putString("CURRENT_ACCOUNT_NAME", accountName);
+        args.putString("CURRENT_ACCOUNT_FULL_NAME", accountFullName);
         fragment.setArguments(args);
         return fragment;
     }
@@ -109,6 +111,8 @@ public class Fragment_List_Accounts extends Fragment {
             current_account_commodity_value = getArguments().getString("CURRENT_ACCOUNT_COMMODITY_VALUE");
             current_account_taxable = getArguments().getString("CURRENT_ACCOUNT_TAXABLE");
             current_account_place_holder = getArguments().getString("CURRENT_ACCOUNT_PLACE_HOLDER");
+            currentAccountName = getArguments().getString("CURRENT_ACCOUNT_NAME");
+            currentAccountFullName = getArguments().getString("CURRENT_ACCOUNT_FULL_NAME");
         }
     }
 
@@ -217,21 +221,21 @@ public class Fragment_List_Accounts extends Fragment {
 
         if (item.getItemId() == R.id.action_add_transaction) {
 
-            ActivityUtils.start_activity_with_string_extras(getActivity(), Insert_Transaction_v2.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_parent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", current_header_title), new Pair<>("CURRENT_ACCOUNT_TYPE", current_account_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_account_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_account_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)}, false, 0);
+            ActivityUtils.start_activity_with_string_extras(Objects.requireNonNull(getActivity()), Insert_Transaction_v2.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_parent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", current_header_title), new Pair<>("CURRENT_ACCOUNT_TYPE", current_account_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_account_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_account_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)}, false, 0);
 
             return true;
         }
 
         if (item.getItemId() == R.id.action_quick_add_transaction) {
 
-            ActivityUtils.start_activity_with_string_extras(getActivity(), Insert_Transaction_v2_Quick.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", "6"), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", "Assets : Current Assets : Cash in Wallet")}, false, 0);
+            ActivityUtils.start_activity_with_string_extras(Objects.requireNonNull(getActivity()), Insert_Transaction_v2_Quick.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", "6"), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", "Assets : Current Assets : Cash in Wallet")}, false, 0);
 
             return true;
         }
 
         if (item.getItemId() == R.id.action_add_account) {
 
-            ActivityUtils.start_activity_with_string_extras_and_finish(getActivity(), Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_parent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", current_header_title), new Pair<>("CURRENT_ACCOUNT_TYPE", current_account_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_account_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_account_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)});
+            ActivityUtils.start_activity_with_string_extras_and_finish(Objects.requireNonNull(getActivity()), Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_parent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", current_header_title), new Pair<>("CURRENT_ACCOUNT_TYPE", current_account_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_account_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_account_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)});
 
             return true;
         }
@@ -276,9 +280,9 @@ public class Fragment_List_Accounts extends Fragment {
             view_recyclerView();
         };
 
-        settings = Objects.requireNonNull(getContext()).getSharedPreferences(Application_Specification.APPLICATION_NAME, Context.MODE_PRIVATE);
+        sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences(Application_Specification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
-        REST_Select_Task_Wrapper.execute(REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Accounts), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("parent_account_id", current_parent_account_id)}), getContext(), login_progressBar, recyclerView, Application_Specification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false);
+        REST_Select_Task_Wrapper.execute(REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", current_parent_account_id)}), getContext(), login_progressBar, recyclerView, Application_Specification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false);
 
 //        accounts.add(new Account("Asset", "1", " Assets", "Assets1", "NA", "0", "Assets", "Currency", "Rs."));
 //        accounts.add(new Account("Bsset", "1", " Assets", "Assets2", "NA", "0", "Bssets", "Currency", "Rs."));
@@ -309,7 +313,7 @@ public class Fragment_List_Accounts extends Fragment {
             Toast.makeText(getActivity(), "Selected Accounts Ledger : " + model.getName(), Toast.LENGTH_SHORT).show();
 
             //TODO : Include Taxable & place holder in account object
-            ActivityUtils.start_activity_with_string_extras(getActivity(), List_Accounts.class, new Pair[]{new Pair<>("HEADER_TITLE", current_header_title.equals("NA") ? model.getName() : current_header_title + " : " + model.getName()), new Pair<>("PARENT_ACCOUNT_ID", model.getAccountId()), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(activity_for_result_flag)), new Pair<>("CURRENT_ACCOUNT_TYPE", model.getAccountType()), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", model.getCommodityType()), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", model.getCommodityValue()), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)}, activity_for_result_flag, 0);
+            ActivityUtils.start_activity_with_string_extras(Objects.requireNonNull(getActivity()), List_Accounts.class, new Pair[]{new Pair<>("HEADER_TITLE", current_header_title.equals("NA") ? model.getName() : current_header_title + " : " + model.getName()), new Pair<>("PARENT_ACCOUNT_ID", model.getAccountId()), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(activity_for_result_flag)), new Pair<>("CURRENT_ACCOUNT_TYPE", model.getAccountType()), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", model.getCommodityType()), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", model.getCommodityValue()), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder), new Pair<>("ACCOUNT_NAME", model.getName()), new Pair<>("ACCOUNT_FULL_NAME", model.getFull_name())}, activity_for_result_flag, 0);
 
         });
 
@@ -325,23 +329,19 @@ public class Fragment_List_Accounts extends Fragment {
                 //handle item click events here
                 Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 
-                ActivityUtils.start_activity_with_string_extras(getActivity(), Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id)}, false, 0);
+                ActivityUtils.start_activity_with_string_extras(Objects.requireNonNull(getActivity()), Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName)}, false, 0);
             }
 
         });
 
         //TODO : Header Long click
-        mAdapter.SetOnHeaderLongClickListener(new List_Accounts_Adapter.OnHeaderLongClickListener() {
+        mAdapter.SetOnHeaderLongClickListener((view, headerTitle) -> {
 
-            @Override
-            public void onHeaderClick(View view, String headerTitle) {
+            if (!activity_for_result_flag) {
 
-                if (!activity_for_result_flag) {
+                Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 
-                    Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
-
-                    ActivityUtils.start_activity_with_string_extras(getActivity(), Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v3), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id), new Pair<>("SORT_FLAG", String.valueOf(true))}, false, 0);
-                }
+                ActivityUtils.start_activity_with_string_extras(Objects.requireNonNull(getActivity()), Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v3), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id), new Pair<>("SORT_FLAG", String.valueOf(true)), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName)}, false, 0);
             }
         });
     }

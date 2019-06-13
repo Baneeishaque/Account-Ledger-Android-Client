@@ -23,4 +23,16 @@ public class Clickable_Pass_Book_Bundle extends PassBookBundle {
 
         ActivityUtils.start_activity_with_string_extras_and_finish(activityContext, Edit_Transaction_v2.class, new Pair[]{new Pair<>("FROM_ACCOUNT_FULL_NAME", clickedData.getFrom_account_full_name().replace(":", " : ")), new Pair<>("FROM_ACCOUNT_ID", String.valueOf(clickedData.getFrom_account_id())), new Pair<>("TO_ACCOUNT_FULL_NAME", clickedData.getTo_account_full_name().replace(":", " : ")), new Pair<>("TO_ACCOUNT_ID", String.valueOf(clickedData.getTo_account_id())), new Pair<>("TRANSACTION_ID", String.valueOf(clickedData.getId())), new Pair<>("EVENT_DATE_TIME", Date_Utils.normal_date_time_format_words.format(clickedData.getInsertion_date())), new Pair<>("EVENT_PURPOSE", clickedData.getParticulars()), new Pair<>("EVENT_AMOUNT", String.valueOf(clickedData.getCredit_amount() == 0 ? clickedData.getDebit_amount() : clickedData.getCredit_amount()))});
     }
+
+    @Override
+    protected String configureCurrentAccountLongName() {
+//        return getIntent().getStringExtra("account_name");
+        return "";
+    }
+
+    @Override
+    protected String configureCurrentAccountShortName() {
+//        return getIntent().getStringExtra("account_full_name");
+        return "";
+    }
 }
