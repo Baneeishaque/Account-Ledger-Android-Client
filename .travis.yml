@@ -7,8 +7,8 @@ env:
     # - "FTP_USER=coordinator@edcccet.in"
     # - "FTP_USER=ndk@vfmob.com.md-in-64.webhostbox.net"
     # - "FTP_PASSWORD=9895204814"
-     - "FTP_USER=root@alaneesgroup.com"
-     - "FTP_PASSWORD=9895204814"
+    # - "FTP_USER=root@alaneesgroup.com"
+    # - "FTP_PASSWORD=9895204814"
     # - "SFTP_USER=root"
     # - "SFTP_PASSWORD=aA!9895204814"
     # - "FTP_USER=sammy"
@@ -40,8 +40,8 @@ before_install:
 #    - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
 #    - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 
-    - yes | sdkmanager "platforms;android-27"
-
+    # - yes | sdkmanager "platforms;android-27"
+    
     # - echo "org.gradle.parallel=true" >> ~/.gradle/gradle.properties
     # - echo "org.gradle.configureondemand=true" >> ~/.gradle/gradle.properties
     # - echo "org.gradle.jvmargs=-Xmx8192m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
@@ -52,6 +52,6 @@ script: ./gradlew build
 
 after_success:
     - ls -R "${TRAVIS_BUILD_DIR}/${DIR}app/build/outputs/apk/"
-    - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk,${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/release/app-release-unsigned.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://192.254.233.216/travis_builds/account_ledger/
-    #- curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://139.59.65.128/
+    # - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk,${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/release/app-release-unsigned.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://192.254.233.216/travis_builds/account_ledger/
+    # - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://139.59.65.128/
     # - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk}" -u $SFTP_USER:$SFTP_PASSWORD sftp://139.59.65.128/travis_builds/account_ledger/
