@@ -2,7 +2,7 @@ package ndk.personal.account_ledger.constants;
 
 public class Server_Endpoint {
 
-    public static String SERVER_IP_ADDRESS = "http://baneeishaque.byethost14.com/account_ledger_server";
+    public static String SERVER_IP_ADDRESS = "http://192.168.43.89/php/Account_Ledger_Server";
 
     public static String BUILD_FOLDER = "builds";
     public static String MODULE_NAME = "app";
