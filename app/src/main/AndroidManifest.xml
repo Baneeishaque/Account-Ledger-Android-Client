@@ -7,11 +7,13 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/clear_text_traffic_permitted_network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="android:allowBackup">
+        tools:replace="android:allowBackup"
+        tools:targetApi="n">
 
         <activity
             android:name=".activities.Splash_v2"
@@ -49,18 +51,17 @@
 
         <activity android:name=".activities.Insert_Transaction_v2" />
 
-        <activity android:name=".activities.List_Accounts">
-
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-
-        </activity>
+        <activity android:name=".activities.List_Accounts" />
 
         <activity android:name=".activities.Insert_Account" />
+
         <activity android:name=".activities.Insert_Transaction_v2_Quick" />
+
         <activity android:name=".activities.Edit_Transaction_v2" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
     </application>
 
