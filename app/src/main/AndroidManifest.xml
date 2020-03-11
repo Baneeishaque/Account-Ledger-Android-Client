@@ -47,7 +47,7 @@
         <activity
             android:name=".activities.Clickable_Pass_Book_Bundle"
             android:label="Pass Book"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="fullSensor" />
 
         <activity android:name=".activities.Insert_Transaction_v2" />
 
