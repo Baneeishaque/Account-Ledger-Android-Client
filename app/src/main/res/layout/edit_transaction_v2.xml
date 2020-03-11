@@ -194,6 +194,16 @@
                 android:textAllCaps="false"
                 android:textStyle="bold" />
 
+            <Button
+                android:id="@+id/button_delete"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Delete"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
     </ScrollView>

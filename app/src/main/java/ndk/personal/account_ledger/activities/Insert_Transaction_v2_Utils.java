@@ -31,11 +31,13 @@ class Insert_Transaction_v2_Utils {
     }
 
     private static void associate_button_with_time_stamp_plus_one_minute(Button button_date, Calendar calendar) {
+
         calendar.setTime(DateUtils.addMinutes(calendar.getTime(), 5));
         associate_button_with_time_stamp(button_date, calendar);
     }
 
     static void associate_button_with_time_stamp(Button button_date, Calendar calendar) {
+
         button_date.setText(Date_Utils.normal_date_time_format_words.format(calendar.getTime()));
     }
 }

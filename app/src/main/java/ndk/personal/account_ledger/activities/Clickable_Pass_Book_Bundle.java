@@ -13,6 +13,7 @@ public class Clickable_Pass_Book_Bundle extends PassBookBundle {
 
     @Override
     protected void configure_ROW_LONG_CLICK_ACTIONS(ndk.utils_android16.models.sortable_tableView.pass_book.Pass_Book_Entry_v2 clickedData) {
+
         Log.d(Application_Specification.APPLICATION_NAME, "From Custom Activity : " + clickedData.toString());
 
         Log.d(Application_Specification.APPLICATION_NAME, "MySQL Date Time String : " + Date_Utils.mysql_date_time_format.format(clickedData.getInsertion_date()));

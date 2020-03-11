@@ -436,7 +436,7 @@
     <string name="ic_work">&#xe1b0;</string>
     <string name="username">Username</string>
     <string name="passcode">Passcode</string>
-    <string name="sign_in">Sign in...</string>
+    <string name="sign_in">Sign in…</string>
     <string name="title_activity_main">List_Accounts</string>
 
     <string name="hello_world">Hello world!</string>

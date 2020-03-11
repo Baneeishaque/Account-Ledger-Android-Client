@@ -12,6 +12,7 @@ public class Account {
     private String full_name;
 
     public Account(String accountType, String accountId, String notes, String parentAccountId, String ownerId, String name, String commodityType, String commodityValue, String full_name) {
+
         this.accountType = accountType;
         this.accountId = accountId;
         this.notes = notes;

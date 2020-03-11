@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -20,6 +19,7 @@ import com.kunzisoft.switchdatetime.SwitchDateTimeDialogFragment;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.API;
@@ -65,7 +65,6 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
         button_date = findViewById(R.id.button_date);
         login_progress = findViewById(R.id.login_progress);
 
-//        associate_button_with_time_stamp();
         Insert_Transaction_v2_Utils.associate_button_with_time_stamp(button_date, calendar);
 
         button_from.setText("From : " + getIntent().getStringExtra("CURRENT_ACCOUNT_FULL_NAME"));
@@ -95,9 +94,12 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
 
         // Define new day and month format
         try {
+
             dateTimeFragment.setSimpleDateMonthAndDayFormat(Date_Utils.normal_stripped_date_format);
+
         } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
-            Log.e(Application_Specification.APPLICATION_NAME, e.getMessage());
+
+            Log.e(Application_Specification.APPLICATION_NAME, Objects.requireNonNull(e.getMessage()));
         }
 
         // Set listener
@@ -105,6 +107,7 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
 
             @Override
             public void onPositiveButtonClick(Date date) {
+
                 // Date is get on positive button click
                 calendar.set(Calendar.YEAR, dateTimeFragment.getYear());
                 calendar.set(Calendar.MONTH, dateTimeFragment.getMonth());
@@ -112,7 +115,6 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
                 calendar.set(Calendar.HOUR_OF_DAY, dateTimeFragment.getHourOfDay());
                 calendar.set(Calendar.MINUTE, dateTimeFragment.getMinute());
 
-//                associate_button_with_time_stamp();
                 Insert_Transaction_v2_Utils.associate_button_with_time_stamp(button_date, calendar);
 
                 Log.d(Application_Specification.APPLICATION_NAME, "Selected : " + Date_Utils.date_to_mysql_date_time_string((calendar.getTime())));
@@ -125,27 +127,30 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
             }
         });
 
-        button_date.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Show
-                dateTimeFragment.show(getSupportFragmentManager(), "dialog_time");
-            }
+        button_date.setOnClickListener(v -> {
+            // Show
+            dateTimeFragment.show(getSupportFragmentManager(), "dialog_time");
         });
 
         button_submit.setOnClickListener(v -> attempt_insert_Transaction());
 
         button_to.setOnClickListener(v -> {
+
             to_account_selection_flag = true;
             select_account();
         });
 
         button_from.setOnClickListener(v -> {
+
             to_account_selection_flag = false;
             select_account();
         });
 
+        button_date.setOnLongClickListener(v -> {
+
+//            exchange_accounts();
+            return true;
+        });
     }
 
     private void select_account() {
@@ -155,24 +160,27 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode == RESULT_OK) {
 
             if (to_account_selection_flag) {
+
                 button_to.setText("To : " + data.getStringExtra("SELECTED_ACCOUNT_FULL_NAME"));
                 to_selected_account_id = data.getStringExtra("SELECTED_ACCOUNT_ID");
+
             } else {
+
                 button_from.setText("From : " + data.getStringExtra("SELECTED_ACCOUNT_FULL_NAME"));
                 from_selected_account_id = data.getStringExtra("SELECTED_ACCOUNT_ID");
             }
         }
     }
 
-//    private void associate_button_with_time_stamp() {
-//        button_date.setText(Date_Utils.normal_date_time_format_words.format(calendar.getTime()));
-//    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.insert_transaction, menu);
         return true;
@@ -207,30 +215,27 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
             Pair<Boolean, EditText> empty_check_result = Validation_Utils.empty_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
 
             if (empty_check_result.first) {
+
                 // There was an error; don't attempt login and focus the first form field with an error.
                 if (empty_check_result.second != null) {
                     empty_check_result.second.requestFocus();
                 }
+
             } else {
 
                 Pair<Boolean, EditText> zero_check_result = Validation_Utils.zero_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
+
                 if (zero_check_result.first) {
+
                     if (zero_check_result.second != null) {
                         zero_check_result.second.requestFocus();
                     }
+
                 } else {
-//                    execute_insert_Transaction_Task();
+
                     Insert_Transaction_v2_Utils.execute_insert_Transaction_Task(login_progress, login_form, this, this, settings.getString("user_id", "0"), edit_purpose.getText().toString().trim(), Double.parseDouble(edit_amount.getText().toString().trim()), Integer.parseInt(from_selected_account_id), Integer.parseInt(to_selected_account_id), edit_purpose, edit_amount, button_date, calendar);
                 }
             }
         }
     }
-
-//    private void execute_insert_Transaction_Task() {
-//
-////        REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Transaction_v2), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, new EditText[]{edit_purpose, edit_amount});
-//
-//        Insert_Transaction_v2_Utils.execute_insert_Transaction_Task(login_progress, login_form, this, this, settings.getString("user_id", "0"), edit_purpose.getText().toString().trim(), Double.parseDouble(edit_amount.getText().toString().trim()), Integer.parseInt(from_selected_account_id), Integer.parseInt(to_selected_account_id), edit_purpose, edit_amount, button_date, calendar);
-//    }
-    //TODO : Derive Insert_Transaction_v2 Quick & AutoComplete from a common class
 }

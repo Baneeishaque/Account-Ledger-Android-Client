@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -48,11 +47,13 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
     private Calendar calendar = Calendar.getInstance();
     private ScrollView login_form;
 
+    Context activityContext = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_transaction_v2);
+        setContentView(R.layout.edit_transaction_v2);
 
         application_context = getApplicationContext();
 
@@ -131,40 +132,29 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
             }
         });
 
-        button_date.setOnClickListener(new View.OnClickListener() {
+        button_date.setOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v) {
-
-                //TODO : Confirmation
-                // Show
-                dateTimeFragment.show(getSupportFragmentManager(), "dialog_time");
-            }
+            //TODO : Confirmation
+            // Show
+            dateTimeFragment.show(getSupportFragmentManager(), "dialog_time");
         });
 
-        button_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                attempt_insert_Transaction();
-            }
+        button_submit.setOnClickListener(v -> attempt_insert_Transaction());
+
+        button_from.setOnClickListener(v -> {
+
+            from_account_select_flag = true;
+            select_account();
         });
 
-        button_from.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                from_account_select_flag = true;
-                select_account();
-            }
+        button_to.setOnClickListener(v -> {
+
+            from_account_select_flag = false;
+            select_account();
         });
 
-        button_to.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                from_account_select_flag = false;
-                select_account();
-            }
-        });
-
+        Button buttonDelete = findViewById(R.id.button_delete);
+        buttonDelete.setOnClickListener(v -> REST_Insert_Task_Wrapper.execute(activityContext, API_Wrapper.get_http_API(API.delete_Transaction_v2), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID"))}, edit_purpose, Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))}));
     }
 
     private void select_account() {
@@ -174,6 +164,9 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode == RESULT_OK) {
 
             if (from_account_select_flag) {

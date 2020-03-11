@@ -10,8 +10,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -31,6 +29,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Stack;
 
 import ndk.personal.account_ledger.R;
@@ -106,7 +105,6 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
         Button button_tplus = findViewById(R.id.button_tplus);
         Button button_fplus = findViewById(R.id.button_fplus);
 
-//        associate_button_with_time_stamp();
         Insert_Transaction_v2_Utils.associate_button_with_time_stamp(button_date, calendar);
 
         button_from.setText("From : " + getIntent().getStringExtra("CURRENT_ACCOUNT_FULL_NAME"));
@@ -121,11 +119,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
         current_faccount_place_holder = getIntent().getStringExtra("CURRENT_ACCOUNT_PLACE_HOLDER");
 
         // Initialize
-        final SwitchDateTimeDialogFragment dateTimeFragment = SwitchDateTimeDialogFragment.newInstance(
-                "Pick Time",
-                "OK",
-                "Cancel"
-        );
+        final SwitchDateTimeDialogFragment dateTimeFragment = SwitchDateTimeDialogFragment.newInstance("Pick Time", "OK", "Cancel");
 
         // Assign values
         dateTimeFragment.startAtCalendarView();
@@ -134,9 +128,12 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
         // Define new day and month format
         try {
+
             dateTimeFragment.setSimpleDateMonthAndDayFormat(Date_Utils.normal_stripped_date_format);
+
         } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
-            Log.e(Application_Specification.APPLICATION_NAME, e.getMessage());
+
+            Log.e(Application_Specification.APPLICATION_NAME, Objects.requireNonNull(e.getMessage()));
         }
 
         // Set listener
@@ -152,11 +149,9 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
                 calendar.set(Calendar.HOUR_OF_DAY, dateTimeFragment.getHourOfDay());
                 calendar.set(Calendar.MINUTE, dateTimeFragment.getMinute());
 
-//                associate_button_with_time_stamp();
                 Insert_Transaction_v2_Utils.associate_button_with_time_stamp(button_date, calendar);
 
                 Log.d(Application_Specification.APPLICATION_NAME, "Selected : " + Date_Utils.date_to_mysql_date_time_string((calendar.getTime())));
-
             }
 
             @Override
@@ -165,105 +160,74 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
             }
         });
 
-        button_date.setOnClickListener(new View.OnClickListener() {
+        button_date.setOnClickListener(v -> {
 
-            @Override
-            public void onClick(View v) {
-                // Show
-                dateTimeFragment.show(getSupportFragmentManager(), "dialog_time");
-            }
+            // Show
+            dateTimeFragment.show(getSupportFragmentManager(), "dialog_time");
         });
 
-        button_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                attempt_insert_Transaction();
-            }
+        button_submit.setOnClickListener(v -> attempt_insert_Transaction());
+
+        button_to.setOnLongClickListener(v -> {
+
+            initialize_to_account();
+            return true;
         });
 
-        button_to.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
+        button_from.setOnLongClickListener(v -> {
 
-                initialize_to_account();
-
-                return true;
-            }
-        });
-
-        button_from.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-
-                initialize_from_account();
-
-                return true;
-            }
+            initialize_from_account();
+            return true;
         });
 
         bind_auto_text_view_to();
 
-        autoCompleteTextView_to.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        autoCompleteTextView_to.setOnItemClickListener((parent, view, position, id) -> {
 
-                Log.d(Application_Specification.APPLICATION_NAME, "Item Position : " + position);
-                Log.d(Application_Specification.APPLICATION_NAME, "Selected Account : " + accounts.get(position).toString());
+            Log.d(Application_Specification.APPLICATION_NAME, "Item Position : " + position);
+            Log.d(Application_Specification.APPLICATION_NAME, "Selected Account : " + accounts.get(position).toString());
 
-                button_to.setText(button_to.getText().equals("To : ") ? button_to.getText() + autoCompleteTextView_to.getText().toString() : button_to.getText() + " : " + autoCompleteTextView_to.getText().toString());
-                autoCompleteTextView_to.setHint(autoCompleteTextView_to.getText().toString() + " : ");
+            button_to.setText(button_to.getText().equals("To : ") ? button_to.getText() + autoCompleteTextView_to.getText().toString() : button_to.getText() + " : " + autoCompleteTextView_to.getText().toString());
+            autoCompleteTextView_to.setHint(autoCompleteTextView_to.getText().toString() + " : ");
 
-                to_stack.push(new Account(current_taccount_type, current_tparent_account_id, "", "", "", autoCompleteTextView_to.getHint().toString(), current_taccount_commodity_type, current_taccount_commodity_value, button_to.getText().toString()));
+            current_tparent_account_id = accounts.get(position).getAccountId();
+            current_taccount_type = accounts.get(position).getAccountType();
+            current_taccount_commodity_type = accounts.get(position).getCommodityType();
+            current_taccount_commodity_value = accounts.get(position).getCommodityValue();
 
-                current_tparent_account_id = accounts.get(position).getAccountId();
-                current_taccount_type = accounts.get(position).getAccountType();
-                current_taccount_commodity_type = accounts.get(position).getCommodityType();
-                current_taccount_commodity_value = accounts.get(position).getCommodityValue();
+            to_selected_account_id = current_tparent_account_id;
 
-                to_selected_account_id = current_tparent_account_id;
+            bind_auto_text_view_to();
 
-                bind_auto_text_view_to();
-            }
+            to_stack.push(new Account(current_taccount_type, current_tparent_account_id, accounts.get(position).getNotes(), accounts.get(position).getParentAccountId(), accounts.get(position).getOwnerId(), autoCompleteTextView_to.getHint().toString(), current_taccount_commodity_type, current_taccount_commodity_value, button_to.getText().toString()));
         });
 
-        autoCompleteTextView_from.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        autoCompleteTextView_from.setOnItemClickListener((parent, view, position, id) -> {
 
-                Log.d(Application_Specification.APPLICATION_NAME, "Item Position : " + position);
-                Log.d(Application_Specification.APPLICATION_NAME, "Selected Account : " + accounts.get(position).toString());
+            Log.d(Application_Specification.APPLICATION_NAME, "Item Position : " + position);
+            Log.d(Application_Specification.APPLICATION_NAME, "Selected Account : " + accounts.get(position).toString());
 
-                button_from.setText(button_from.getText().equals("From : ") ? button_from.getText() + autoCompleteTextView_from.getText().toString() : button_from.getText() + " : " + autoCompleteTextView_from.getText().toString());
-                autoCompleteTextView_from.setHint(autoCompleteTextView_from.getText().toString() + " : ");
+            button_from.setText(button_from.getText().equals("From : ") ? button_from.getText() + autoCompleteTextView_from.getText().toString() : button_from.getText() + " : " + autoCompleteTextView_from.getText().toString());
+            autoCompleteTextView_from.setHint(autoCompleteTextView_from.getText().toString() + " : ");
 
-                from_stack.push(new Account(current_faccount_type, current_fparent_account_id, "", "", "", autoCompleteTextView_from.getHint().toString(), current_faccount_commodity_type, current_faccount_commodity_value, button_from.getText().toString()));
+            current_fparent_account_id = accounts.get(position).getAccountId();
+            current_faccount_type = accounts.get(position).getAccountType();
+            current_faccount_commodity_type = accounts.get(position).getCommodityType();
+            current_faccount_commodity_value = accounts.get(position).getCommodityValue();
 
-                current_fparent_account_id = accounts.get(position).getAccountId();
-                current_faccount_type = accounts.get(position).getAccountType();
-                current_faccount_commodity_type = accounts.get(position).getCommodityType();
-                current_faccount_commodity_value = accounts.get(position).getCommodityValue();
+            from_selected_account_id = current_fparent_account_id;
 
-                from_selected_account_id = current_fparent_account_id;
+            bind_auto_text_view_from();
 
-                bind_auto_text_view_from();
-            }
+            from_stack.push(new Account(current_faccount_type, current_fparent_account_id, accounts.get(position).getNotes(), accounts.get(position).getParentAccountId(), accounts.get(position).getOwnerId(), autoCompleteTextView_from.getHint().toString(), current_faccount_commodity_type, current_faccount_commodity_value, button_from.getText().toString()));
         });
 
-        autoCompleteTextView_to.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                autoCompleteTextView_to.showDropDown();
-            }
-        });
+        autoCompleteTextView_to.setOnClickListener(v -> autoCompleteTextView_to.showDropDown());
 
-        autoCompleteTextView_from.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                autoCompleteTextView_from.showDropDown();
-            }
-        });
+        autoCompleteTextView_from.setOnClickListener(v -> autoCompleteTextView_from.showDropDown());
 
         autoCompleteTextView_to.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -272,7 +236,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-//                previous_to(false);
+                //TODO : 2 Letter Delete : Previous to Two A/Cs & So on
             }
 
             @Override
@@ -282,6 +246,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
         });
 
         autoCompleteTextView_from.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -290,7 +255,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-//                previous_from(false);
+                // TODO : 2 Letter Delete : Previous to Two A/Cs & So on
             }
 
             @Override
@@ -299,173 +264,142 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
             }
         });
 
-        autoCompleteTextView_to.setOnDismissListener(new AutoCompleteTextView.OnDismissListener() {
-            @Override
-            public void onDismiss() {
+        autoCompleteTextView_to.setOnDismissListener(() -> {
 
-                if (autoCompleteTextView_to.getListSelection() != ListView.INVALID_POSITION) {
-                    autoCompleteTextView_to.setText(autoCompleteTextView_to.getHint().toString().substring(0, autoCompleteTextView_to.getHint().length() - 3), false);
-                    autoCompleteTextView_to.setSelection(autoCompleteTextView_to.getText().length());
-                }
+            if (autoCompleteTextView_to.getListSelection() != ListView.INVALID_POSITION) {
+
+                autoCompleteTextView_to.setText(autoCompleteTextView_to.getHint().toString().substring(0, autoCompleteTextView_to.getHint().length() - 3), false);
+                autoCompleteTextView_to.setSelection(autoCompleteTextView_to.getText().length());
             }
         });
 
-        autoCompleteTextView_from.setOnDismissListener(new AutoCompleteTextView.OnDismissListener() {
-            @Override
-            public void onDismiss() {
+        autoCompleteTextView_from.setOnDismissListener(() -> {
 
-                if (autoCompleteTextView_from.getListSelection() != ListView.INVALID_POSITION) {
-                    autoCompleteTextView_from.setText(autoCompleteTextView_from.getHint().toString().substring(0, autoCompleteTextView_from.getHint().length() - 3), false);
-                    autoCompleteTextView_from.setSelection(autoCompleteTextView_from.getText().length());
-                }
+            if (autoCompleteTextView_from.getListSelection() != ListView.INVALID_POSITION) {
+
+                autoCompleteTextView_from.setText(autoCompleteTextView_from.getHint().toString().substring(0, autoCompleteTextView_from.getHint().length() - 3), false);
+                autoCompleteTextView_from.setSelection(autoCompleteTextView_from.getText().length());
             }
         });
 
-        button_tplus.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
+        button_tplus.setOnLongClickListener(v -> {
 
-                if (!current_tparent_account_id.equals("0")) {
+            if (!current_tparent_account_id.equals("0")) {
 
-                    ActivityUtils.start_activity_with_string_extras(activity_context, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_tparent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", button_to.getText().toString().replace("To : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", current_taccount_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_taccount_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_taccount_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))}, true, 0);
-                } else {
-                    Toast_Utils.longToast(getApplicationContext(), "Please Select a parent account...");
-                }
-
-                return true;
+                ActivityUtils.start_activity_with_string_extras(activity_context, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_tparent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", button_to.getText().toString().replace("To : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", current_taccount_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_taccount_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_taccount_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))}, true, 0);
+            } else {
+                Toast_Utils.longToast(getApplicationContext(), "Please Select a parent account...");
             }
+
+            return true;
         });
 
-        button_tplus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        button_tplus.setOnClickListener(v -> {
 
-//                previous_to(true);
-
-            }
+            previous_to();
         });
 
-        button_fplus.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
+        button_fplus.setOnLongClickListener(v -> {
 
-                if (!current_fparent_account_id.equals("0")) {
+            if (!current_fparent_account_id.equals("0")) {
 
-                    ActivityUtils.start_activity_with_string_extras(activity_context, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_fparent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", button_from.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", current_faccount_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_faccount_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_faccount_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_faccount_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_faccount_place_holder), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))}, true, 1);
-                } else {
-                    Toast_Utils.longToast(getApplicationContext(), "Please Select a parent account...");
-                }
-
-                return true;
+                ActivityUtils.start_activity_with_string_extras(activity_context, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_fparent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", button_from.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", current_faccount_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_faccount_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_faccount_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_faccount_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_faccount_place_holder), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))}, true, 1);
+            } else {
+                Toast_Utils.longToast(getApplicationContext(), "Please Select a parent account...");
             }
+
+            return true;
         });
 
-        button_fplus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        button_fplus.setOnClickListener(v -> {
 
-//                previous_from(true);
-
-            }
+            previous_from();
         });
 
-        button_date.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
+        button_date.setOnLongClickListener(v -> {
 
-                exchange_accounts();
-                return true;
-            }
+            exchange_accounts();
+            return true;
         });
 
     }
 
-//    private void previous_from(boolean button_action) {
-//
-//        if ((autoCompleteTextView_from.getText().toString().isEmpty() || button_action) && from_edit_flag) {
-//
-//            if (from_stack.isEmpty()) {
-//
-//                initialize_from_account();
-//
-//            } else {
-//
-//                Account current_from_account = from_stack.pop();
-//                if (current_from_account.getName().equals(autoCompleteTextView_from.getHint().toString())) {
-//
-//                    if (!from_stack.isEmpty()) {
-//                        current_from_account = from_stack.pop();
-//                    }
-//                }
-//
-//                current_fparent_account_id = current_from_account.getAccountId();
-//
-//                if (current_fparent_account_id.equals("0")) {
-//
-//                    initialize_from_account();
-//
-//                } else {
-//
-//                    current_faccount_type = current_from_account.getAccountType();
-//                    current_faccount_commodity_type = current_from_account.getCommodityType();
-//                    current_faccount_commodity_value = current_from_account.getCommodityValue();
-//
-//                    from_selected_account_id = current_fparent_account_id;
-//
-//                    button_from.setText(current_from_account.getFull_name());
-//
-//                    autoCompleteTextView_from.setHint(current_from_account.getName());
-//
-//                    autoCompleteTextView_from.setText(autoCompleteTextView_from.getHint().toString().substring(0, autoCompleteTextView_from.getHint().length() - 3), false);
-//                    autoCompleteTextView_from.setSelection(autoCompleteTextView_from.getText().length());
-//
-//                    bind_auto_text_view_from();
-//                }
-//            }
-//        }
-//    }
-//
-//    private void previous_to(boolean button_action) {
-//
-//        if ((autoCompleteTextView_to.getText().toString().isEmpty() || button_action) && to_edit_flag) {
-//
-//            if (to_stack.isEmpty()) {
-//                initialize_to_account();
-//            } else {
-//
-//                Account current_to_account = to_stack.pop();
-//                if (current_to_account.getName().equals(autoCompleteTextView_to.getHint().toString())) {
-//                    if (!to_stack.isEmpty()) {
-//                        current_to_account = to_stack.pop();
-//                    }
-//                }
-//
-//                current_tparent_account_id = current_to_account.getAccountId();
-//
-//                if (current_tparent_account_id.equals("0")) {
-//
-//                    initialize_to_account();
-//
-//                } else {
-//
-//                    current_taccount_type = current_to_account.getAccountType();
-//                    current_taccount_commodity_type = current_to_account.getCommodityType();
-//                    current_taccount_commodity_value = current_to_account.getCommodityValue();
-//
-//                    to_selected_account_id = current_tparent_account_id;
-//
-//                    button_to.setText(current_to_account.getFull_name());
-//
-//                    autoCompleteTextView_to.setHint(current_to_account.getName());
-//
-//                    autoCompleteTextView_to.setText(autoCompleteTextView_to.getHint().toString().substring(0, autoCompleteTextView_to.getHint().length() - 3), false);
-//                    autoCompleteTextView_to.setSelection(autoCompleteTextView_to.getText().length());
-//
-//                    bind_auto_text_view_to();
-//                }
-//            }
-//        }
-//    }
+    private void previous_from() {
+
+
+        if (from_stack.isEmpty()) {
+
+            initialize_from_account();
+
+        } else {
+
+            Account current_from_account = from_stack.pop();
+
+            if (from_stack.isEmpty()) {
+
+                initialize_from_account();
+
+            } else {
+
+                Account previous_from_account = from_stack.peek();
+
+                current_fparent_account_id = previous_from_account.getAccountId();
+                current_faccount_type = previous_from_account.getAccountType();
+                current_faccount_commodity_type = previous_from_account.getCommodityType();
+                current_faccount_commodity_value = previous_from_account.getCommodityValue();
+
+                from_selected_account_id = current_fparent_account_id;
+
+                button_from.setText(previous_from_account.getFull_name());
+
+                autoCompleteTextView_from.setHint(previous_from_account.getName());
+
+                autoCompleteTextView_from.setText(autoCompleteTextView_from.getHint().toString().substring(0, autoCompleteTextView_from.getHint().length() - 3), false);
+                autoCompleteTextView_from.setSelection(autoCompleteTextView_from.getText().length());
+
+                bind_auto_text_view_from();
+            }
+
+        }
+    }
+
+    private void previous_to() {
+
+        if (to_stack.isEmpty()) {
+
+            initialize_to_account();
+
+        } else {
+
+            Account current_to_account = to_stack.pop();
+
+            if (to_stack.isEmpty()) {
+
+                initialize_to_account();
+
+            } else {
+
+                Account previous_to_account = to_stack.peek();
+
+                current_tparent_account_id = previous_to_account.getAccountId();
+                current_taccount_type = previous_to_account.getAccountType();
+                current_taccount_commodity_type = previous_to_account.getCommodityType();
+                current_taccount_commodity_value = previous_to_account.getCommodityValue();
+
+                to_selected_account_id = current_tparent_account_id;
+
+                button_to.setText(previous_to_account.getFull_name());
+
+                autoCompleteTextView_to.setHint(previous_to_account.getName());
+
+                autoCompleteTextView_to.setText(autoCompleteTextView_to.getHint().toString().substring(0, autoCompleteTextView_to.getHint().length() - 3), false);
+
+                autoCompleteTextView_to.setSelection(autoCompleteTextView_to.getText().length());
+
+                bind_auto_text_view_to();
+            }
+        }
+    }
 
     private void initialize_from_account() {
 
@@ -609,40 +543,31 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
         REST_Select_Task_Wrapper.execute(REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Accounts), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("parent_account_id", current_fparent_account_id)}), this, Application_Specification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false, true);
     }
 
-//    private void select_to_account() {
-//
-//        Activity_Utils.start_activity_with_string_extras(this, List_Accounts.class, new Pair[]{new Pair<>("HEADER_TITLE", "NA"), new Pair<>("PARENT_ACCOUNT_ID", "0"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true)), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", "CURRENCY"), new Pair<>("CURRENT_ACCOUNT_TYPE", "Assets"), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", "INR"), new Pair<>("CURRENT_ACCOUNT_TAXABLE", String.valueOf(false)), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", String.valueOf(false))}, true, 0);
-//    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK) {
 
             switch (requestCode) {
+
                 case 0:
+
                     bind_auto_text_view_to();
                     break;
+
                 case 1:
+
                     bind_auto_text_view_from();
                     break;
             }
-
-
         }
     }
 
-//    private void associate_button_with_time_stamp() {
-//        button_date.setText(Date_Utils.normal_date_time_format_words.format(calendar.getTime()));
-//    }
-
-//    private void associate_button_with_time_stamp_plus_one_minute() {
-//        calendar.setTime(DateUtils.addMinutes(calendar.getTime(), 5));
-//        associate_button_with_time_stamp();
-//    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.insert_transaction, menu);
         return true;
@@ -668,7 +593,9 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
     private void attempt_insert_Transaction() {
 
         if (to_selected_account_id.equals("0")) {
+
             Toast_Utils.longToast(this, "Please select To A/C...");
+
         } else {
 
             Validation_Utils.reset_errors(new EditText[]{edit_purpose, edit_amount});
@@ -678,35 +605,27 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
                 // There was an error; don't attempt login and focus the first form field with an error.
                 if (empty_check_result.second != null) {
+
                     empty_check_result.second.requestFocus();
                 }
 
             } else {
 
                 Pair<Boolean, EditText> zero_check_result = Validation_Utils.zero_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
+
                 if (zero_check_result.first) {
+
                     if (zero_check_result.second != null) {
+
                         zero_check_result.second.requestFocus();
                     }
+
                 } else {
+
 //                    execute_insert_Transaction_Task();
                     Insert_Transaction_v2_Utils.execute_insert_Transaction_Task(login_progress, login_form, this, this, settings.getString("user_id", "0"), edit_purpose.getText().toString().trim(), Double.parseDouble(edit_amount.getText().toString().trim()), Integer.parseInt(from_selected_account_id), Integer.parseInt(to_selected_account_id), edit_purpose, edit_amount, button_date, calendar);
                 }
             }
         }
     }
-
-//    private void execute_insert_Transaction_Task() {
-//
-////        further_Actions further_actions = new further_Actions() {
-////            @Override
-////            public void onSuccess() {
-////                associate_button_with_time_stamp_plus_one_minute();
-////            }
-////        };
-////
-////        REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Transaction_v2), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", edit_purpose.getText().toString().trim()), new Pair<>("amount", edit_amount.getText().toString().trim()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, new EditText[]{edit_purpose, edit_amount}, further_actions);
-//
-//        Insert_Transaction_v2_Utils.execute_insert_Transaction_Task(login_progress, login_form, this, this, settings.getString("user_id", "0"), edit_purpose.getText().toString().trim(), Double.parseDouble(edit_amount.getText().toString().trim()), Integer.parseInt(from_selected_account_id), Integer.parseInt(to_selected_account_id), edit_purpose, edit_amount, button_date, calendar);
-//    }
 }
