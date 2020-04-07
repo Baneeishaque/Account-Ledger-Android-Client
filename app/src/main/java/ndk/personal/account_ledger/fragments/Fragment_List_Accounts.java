@@ -81,6 +81,7 @@ public class Fragment_List_Accounts extends Fragment {
     }
 
     public static Fragment_List_Accounts newInstance(String header_title, String parent_account_id, String activity_for_result_flag, String account_type, String account_commodity_type, String account_commodity_value, String account_taxable, String account_place_holder, String accountName, String accountFullName) {
+
         Fragment_List_Accounts fragment = new Fragment_List_Accounts();
         Bundle args = new Bundle();
         args.putString("HEADER_TITLE", header_title);
@@ -99,10 +100,12 @@ public class Fragment_List_Accounts extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
         if (getArguments() != null) {
+
             current_header_title = getArguments().getString("HEADER_TITLE");
             current_parent_account_id = getArguments().getString("PARENT_ACCOUNT_ID");
             activity_for_result_flag = Boolean.parseBoolean(getArguments().getString("ACTIVITY_FOR_RESULT_FLAG"));
@@ -123,13 +126,10 @@ public class Fragment_List_Accounts extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_list_accounts, container, false);
 
-        // ButterKnife.bind(this);
-
         recyclerView = view.findViewById(R.id.recycler_view);
         login_progressBar = view.findViewById(R.id.login_progress);
 
         return view;
-
     }
 
 
@@ -139,7 +139,6 @@ public class Fragment_List_Accounts extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         setAdapter();
-
     }
 
     @Override
@@ -149,17 +148,21 @@ public class Fragment_List_Accounts extends Fragment {
         inflater.inflate(R.menu.menu_list_accounts, menu);
 
         if (activity_for_result_flag) {
+
             menu.findItem(R.id.action_add_transaction).setVisible(false);
             menu.findItem(R.id.action_quick_add_transaction).setVisible(false);
+
         } else if (!current_header_title.equals("NA")) {
+
             menu.findItem(R.id.action_quick_add_transaction).setVisible(false);
+
         } else {
+
             menu.findItem(R.id.action_add_transaction).setVisible(false);
         }
 
         // Retrieve the SearchView and plug it into SearchManager
-        final SearchView searchView = (SearchView) MenuItemCompat
-                .getActionView(menu.findItem(R.id.action_search));
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
 
         SearchManager searchManager = (SearchManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(Objects.requireNonNull(searchManager).getSearchableInfo(getActivity().getComponentName()));
@@ -173,18 +176,15 @@ public class Fragment_List_Accounts extends Fragment {
 
         InputFilter[] fArray = new InputFilter[2];
         fArray[0] = new InputFilter.LengthFilter(40);
-        fArray[1] = new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+        fArray[1] = (source, start, end, dest, dstart, dend) -> {
 
-                for (int i = start; i < end; i++) {
+            for (int i = start; i < end; i++) {
 
-                    if (!Character.isLetterOrDigit(source.charAt(i)))
-                        return "";
-                }
-
-                return null;
+                if (!Character.isLetterOrDigit(source.charAt(i)))
+                    return "";
             }
+
+            return null;
         };
         searchEdit.setFilters(fArray);
         View v = searchView.findViewById(androidx.appcompat.R.id.search_plate);
@@ -213,7 +213,6 @@ public class Fragment_List_Accounts extends Fragment {
                 return false;
             }
         });
-
     }
 
     @Override
@@ -245,28 +244,11 @@ public class Fragment_List_Accounts extends Fragment {
 
     private void setAdapter() {
 
-//        if(activity_for_result_flag)
-//        {
-//            accounts.add(new Account(, , , , , , , , ));
-//        }
-
         REST_Select_Task.Async_Response_JSON_array async_response_json_array = json_array -> {
 
             for (int i = 1; i < json_array.length(); i++) {
 
                 try {
-
-//                        return
-//                                "Account{" +
-//                                        "account_type = '" + accountType + '\'' +
-//                                        ",account_id = '" + accountId + '\'' +
-//                                        ",notes = '" + notes + '\'' +
-//                                        ",parent_account_id = '" + parentAccountId + '\'' +
-//                                        ",owner_id = '" + ownerId + '\'' +
-//                                        ",name = '" + name + '\'' +
-//                                        ",commodity_type = '" + commodityType + '\'' +
-//                                        ",commodity_value = '" + commodityValue + '\'' +
-//                                        "}";
 
                     accounts.add(new Account(json_array.getJSONObject(i).getString("account_type"), json_array.getJSONObject(i).getString("account_id"), json_array.getJSONObject(i).getString("notes"), json_array.getJSONObject(i).getString("parent_account_id"), json_array.getJSONObject(i).getString("owner_id"), json_array.getJSONObject(i).getString("name"), json_array.getJSONObject(i).getString("commodity_type"), json_array.getJSONObject(i).getString("commodity_value"), json_array.getJSONObject(i).getString("name")));
 
@@ -283,12 +265,6 @@ public class Fragment_List_Accounts extends Fragment {
         sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences(Application_Specification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
         REST_Select_Task_Wrapper.execute(REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", current_parent_account_id)}), getContext(), login_progressBar, recyclerView, Application_Specification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false);
-
-//        accounts.add(new Account("Asset", "1", " Assets", "Assets1", "NA", "0", "Assets", "Currency", "Rs."));
-//        accounts.add(new Account("Bsset", "1", " Assets", "Assets2", "NA", "0", "Bssets", "Currency", "Rs."));
-//        accounts.add(new Account("Csset", "1", " Assets", "Assets3", "NA", "0", "Cssets", "Currency", "Rs."));
-//        accounts.add(new Account("Dsset", "1", " Assets", "Assets4", "NA", "0", "Dssets", "Currency", "Rs."));
-
     }
 
     private void view_recyclerView() {
@@ -320,12 +296,15 @@ public class Fragment_List_Accounts extends Fragment {
         mAdapter.SetOnHeaderClickListener((view, headerTitle) -> {
 
             if (activity_for_result_flag) {
+
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("SELECTED_ACCOUNT_FULL_NAME", current_header_title);
                 returnIntent.putExtra("SELECTED_ACCOUNT_ID", current_parent_account_id);
                 Objects.requireNonNull(getActivity()).setResult(RESULT_OK, returnIntent);
                 getActivity().finish();
+
             } else {
+
                 //handle item click events here
                 Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 

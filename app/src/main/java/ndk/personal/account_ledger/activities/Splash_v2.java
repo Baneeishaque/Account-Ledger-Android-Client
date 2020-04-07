@@ -2,6 +2,7 @@ package ndk.personal.account_ledger.activities;
 
 import androidx.core.util.Pair;
 
+import ndk.personal.account_ledger.BuildConfig;
 import ndk.personal.account_ledger.constants.API;
 import ndk.personal.account_ledger.constants.API_Wrapper;
 import ndk.personal.account_ledger.constants.Application_Specification;
