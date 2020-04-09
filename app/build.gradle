@@ -75,6 +75,6 @@ dependencies {
 
     implementation 'com.github.Baneeishaque:Android_Common_Utils_API_1:f6cd92707d'
     implementation 'com.github.Baneeishaque:Android_Common_Utils_API_14:8de3adcf21'
-    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_16:444a91e474'
-    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_19:735dc05f03'
+    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_16:b44014470d'
+    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_19:3562021b06'
 }
