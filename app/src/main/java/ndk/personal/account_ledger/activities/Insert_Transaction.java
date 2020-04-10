@@ -30,7 +30,7 @@ import ndk.personal.account_ledger.constants.Application_Specification;
 import ndk.utils_android14.ActivityUtils;
 import ndk.utils_android16.Date_Utils;
 import ndk.utils_android16.Spinner_Utils;
-import ndk.utils_android16.Validation_Utils;
+import ndk.utils_android16.ValidationUtils;
 import ndk.utils_android16.network_task.REST_Insert_Task_Wrapper;
 
 
@@ -158,7 +158,7 @@ public class Insert_Transaction extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_item_view_pass_book) {
-            ActivityUtils.start_activity_with_string_extras(activity_context, Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", API_Wrapper.get_http_API(API.select_User_Transactions)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))}, false, 0);
+            ActivityUtils.startActivityWithStringExtras(activity_context, Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", API_Wrapper.get_http_API(API.select_User_Transactions)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
             return true;
         }
 
@@ -166,8 +166,8 @@ public class Insert_Transaction extends AppCompatActivity {
     }
 
     private void attempt_insert_Transaction() {
-        Validation_Utils.reset_errors(new EditText[]{edit_purpose, edit_amount});
-        Pair<Boolean, EditText> empty_check_result = Validation_Utils.empty_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
+        ValidationUtils.resetErrors(new EditText[]{edit_purpose, edit_amount});
+        Pair<Boolean, EditText> empty_check_result = ValidationUtils.emptyCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
 
         if (empty_check_result.first) {
             // There was an error; don't attempt login and focus the first form field with an error.
@@ -176,7 +176,7 @@ public class Insert_Transaction extends AppCompatActivity {
             }
         } else {
 
-            Pair<Boolean, EditText> zero_check_result = Validation_Utils.zero_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
+            Pair<Boolean, EditText> zero_check_result = ValidationUtils.zeroCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
             if (zero_check_result.first) {
                 if (zero_check_result.second != null) {
                     zero_check_result.second.requestFocus();

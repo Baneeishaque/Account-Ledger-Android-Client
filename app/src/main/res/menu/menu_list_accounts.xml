@@ -5,27 +5,22 @@
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/abc_ic_search_api_material"
-        android:title="Search Accounts"
+        android:title="@string/search_accounts"
         compat:actionViewClass="androidx.appcompat.widget.SearchView"
-        compat:showAsAction="collapseActionView|always" />
+        compat:showAsAction="collapseActionView|ifRoom" />
 
     <item
         android:id="@+id/action_add_account"
-        android:title="A+"
-        compat:showAsAction="always" />
+        android:title="@string/account_addition_acronym"
+        compat:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_add_transaction"
-        android:title="T+"
+        android:title="@string/transaction_Addition_acronym"
         compat:showAsAction="always" />
 
     <item
         android:id="@+id/action_quick_add_transaction"
-        android:title="QT+"
-        compat:showAsAction="always" />
-    
-    <item
-        android:id="@+id/action_wallet_ledger"
-        android:title="WL"
+        android:title="@string/quick_transaction_addition_acronym"
         compat:showAsAction="always" />
 </menu>

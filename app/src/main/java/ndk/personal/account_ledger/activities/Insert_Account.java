@@ -24,9 +24,9 @@ import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.API;
 import ndk.personal.account_ledger.constants.API_Wrapper;
 import ndk.personal.account_ledger.constants.Application_Specification;
-import ndk.utils_android16.Network_Utils;
+import ndk.utils_android16.NetworkUtils;
 import ndk.utils_android16.Spinner_Utils;
-import ndk.utils_android16.Validation_Utils;
+import ndk.utils_android16.ValidationUtils;
 import ndk.utils_android16.network_task.REST_Insert_Task_Wrapper;
 
 public class Insert_Account extends AppCompatActivity {
@@ -102,8 +102,8 @@ public class Insert_Account extends AppCompatActivity {
 
     private void attempt_insert_Account() {
 
-        Validation_Utils.reset_errors(new EditText[]{edit_name});
-        Pair<Boolean, EditText> empty_check_result = Validation_Utils.empty_check(new Pair[]{new Pair<>(edit_name, "Please Enter A/C Name...")});
+        ValidationUtils.resetErrors(new EditText[]{edit_name});
+        Pair<Boolean, EditText> empty_check_result = ValidationUtils.emptyCheckEditTextPairs(new Pair[]{new Pair<>(edit_name, "Please Enter A/C Name...")});
 
         if (empty_check_result.first) {
             // There was an error; don't attempt login and focus the first form field with an error.
@@ -132,20 +132,20 @@ public class Insert_Account extends AppCompatActivity {
          */
 
 
-        Network_Utils.further_Actions further_actions = new Network_Utils.further_Actions() {
-            @Override
-            public void onSuccess() {
-                Intent returnIntent = new Intent();
-                setResult(RESULT_OK, returnIntent);
-                finish();
-            }
+        NetworkUtils.further_Actions further_actions = () -> {
+
+            Intent returnIntent = new Intent();
+            setResult(RESULT_OK, returnIntent);
+            finish();
         };
 
         if (getIntent().getStringExtra("ACTIVITY_FOR_RESULT_FLAG") != null) {
+
             REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Account), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("full_name", button_full_name.getText().toString().replace(" : ", ":")), new Pair<>("name", edit_name.getText().toString().trim()), new Pair<>("parent_account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID")), new Pair<>("account_type", spinner_account_type.getSelectedItem().toString()), new Pair<>("notes", edit_notes.getText().toString().trim()), new Pair<>("commodity_type", spinner_commodity_type.getSelectedItem().toString()), new Pair<>("commodity_value", spinner_commodity_value.getSelectedItem().toString()), new Pair<>("owner_id", settings.getString("user_id", "0")), new Pair<>("taxable", checkBox_taxable.isSelected() ? "T" : "F"), new Pair<>("place_holder", checkBox_place_holder.isSelected() ? "T" : "F")}, edit_name, further_actions);
 
 
         } else {
+
             REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Account), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("full_name", button_full_name.getText().toString().replace(" : ", ":")), new Pair<>("name", edit_name.getText().toString().trim()), new Pair<>("parent_account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID")), new Pair<>("account_type", spinner_account_type.getSelectedItem().toString()), new Pair<>("notes", edit_notes.getText().toString().trim()), new Pair<>("commodity_type", spinner_commodity_type.getSelectedItem().toString()), new Pair<>("commodity_value", spinner_commodity_value.getSelectedItem().toString()), new Pair<>("owner_id", settings.getString("user_id", "0")), new Pair<>("taxable", checkBox_taxable.isSelected() ? "T" : "F"), new Pair<>("place_holder", checkBox_place_holder.isSelected() ? "T" : "F")}, edit_name);
 
         }

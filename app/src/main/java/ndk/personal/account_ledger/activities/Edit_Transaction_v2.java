@@ -26,7 +26,7 @@ import ndk.personal.account_ledger.constants.API_Wrapper;
 import ndk.personal.account_ledger.constants.Application_Specification;
 import ndk.utils_android14.ActivityUtils;
 import ndk.utils_android16.Date_Utils;
-import ndk.utils_android16.Validation_Utils;
+import ndk.utils_android16.ValidationUtils;
 import ndk.utils_android16.network_task.REST_GET_Task;
 import ndk.utils_android16.network_task.REST_Insert_Task_Wrapper;
 
@@ -159,7 +159,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
     private void select_account() {
 
-        ActivityUtils.start_activity_with_string_extras(this, List_Accounts.class, new Pair[]{new Pair<>("HEADER_TITLE", "NA"), new Pair<>("PARENT_ACCOUNT_ID", "0"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true)), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", "CURRENCY"), new Pair<>("CURRENT_ACCOUNT_TYPE", "Assets"), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", "INR"), new Pair<>("CURRENT_ACCOUNT_TAXABLE", String.valueOf(false)), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", String.valueOf(false))}, true, 0);
+        ActivityUtils.startActivityWithStringExtras(this, List_Accounts.class, new Pair[]{new Pair<>("HEADER_TITLE", "NA"), new Pair<>("PARENT_ACCOUNT_ID", "0"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true)), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", "CURRENCY"), new Pair<>("CURRENT_ACCOUNT_TYPE", "Assets"), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", "INR"), new Pair<>("CURRENT_ACCOUNT_TAXABLE", String.valueOf(false)), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", String.valueOf(false))});
     }
 
     @Override
@@ -201,14 +201,12 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
         if (id == R.id.menu_item_view_from_pass_book) {
 
-            ActivityUtils.start_activity_with_string_extras(this, Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", from_selected_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))
-            }, false, 0);
+            ActivityUtils.startActivityWithStringExtras(this, Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", from_selected_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
         }
 
         if (id == R.id.menu_item_view_to_pass_book) {
 
-            ActivityUtils.start_activity_with_string_extras(this, Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", to_selected_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", to_selected_account_id)
-            }, false, 0);
+            ActivityUtils.startActivityWithStringExtras(this, Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", to_selected_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", to_selected_account_id)});
         }
 
         return super.onOptionsItemSelected(item);
@@ -216,8 +214,8 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
     private void attempt_insert_Transaction() {
 
-        Validation_Utils.reset_errors(new EditText[]{edit_purpose, edit_amount});
-        Pair<Boolean, EditText> empty_check_result = Validation_Utils.empty_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
+        ValidationUtils.resetErrors(new EditText[]{edit_purpose, edit_amount});
+        Pair<Boolean, EditText> empty_check_result = ValidationUtils.emptyCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
 
         if (empty_check_result.first) {
             // There was an error; don't attempt login and focus the first form field with an error.
@@ -226,7 +224,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
             }
         } else {
 
-            Pair<Boolean, EditText> zero_check_result = Validation_Utils.zero_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
+            Pair<Boolean, EditText> zero_check_result = ValidationUtils.zeroCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
             if (zero_check_result.first) {
                 if (zero_check_result.second != null) {
                     zero_check_result.second.requestFocus();

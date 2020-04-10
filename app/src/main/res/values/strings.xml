@@ -440,5 +440,10 @@
     <string name="title_activity_main">List_Accounts</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="wallet_ledger_acronym">WL</string>
+    <string name="search_accounts">Search Accounts</string>
+    <string name="account_addition_acronym">A+</string>
+    <string name="transaction_Addition_acronym">T+</string>
+    <string name="quick_transaction_addition_acronym">QT+</string>
 
 </resources>

@@ -6,12 +6,12 @@ import ndk.personal.account_ledger.BuildConfig;
 import ndk.personal.account_ledger.constants.API;
 import ndk.personal.account_ledger.constants.API_Wrapper;
 import ndk.personal.account_ledger.constants.Application_Specification;
-import ndk.utils_android16.activities.Login_Bundle;
-import ndk.utils_android16.activities.Splash_Base_URL;
+import ndk.utils_android16.activities.LoginBundleActivity;
+import ndk.utils_android16.activities.SplashWithAutomatedUpdateActivity;
 
 import static ndk.personal.account_ledger.constants.Server_Endpoint.UPDATE_URL;
 
-public class Splash extends Splash_Base_URL {
+public class Splash extends SplashWithAutomatedUpdateActivity {
 
     @Override
     protected String configure_GET_CONFIGURATION_URL() {
@@ -30,7 +30,7 @@ public class Splash extends Splash_Base_URL {
 
     @Override
     protected Class configure_NEXT_ACTIVITY_CLASS() {
-        return Login_Bundle.class;
+        return LoginBundleActivity.class;
     }
 
     @Override
@@ -41,7 +41,9 @@ public class Splash extends Splash_Base_URL {
     }
 
     @Override
-    protected boolean configure_is_debug() {
+    protected boolean configure_SECURITY_FLAG() {
+
         return BuildConfig.DEBUG;
     }
+
 }

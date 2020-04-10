@@ -39,11 +39,11 @@ import ndk.personal.account_ledger.constants.Application_Specification;
 import ndk.personal.account_ledger.models.Account;
 import ndk.utils_android14.ActivityUtils;
 import ndk.utils_android16.Date_Utils;
-import ndk.utils_android16.Toast_Utils;
-import ndk.utils_android16.Validation_Utils;
+import ndk.utils_android16.ToastUtils;
+import ndk.utils_android16.ValidationUtils;
+import ndk.utils_android16.network_task.HttpApiSelectTask;
+import ndk.utils_android16.network_task.HttpApiSelectTaskWrapper;
 import ndk.utils_android16.network_task.REST_GET_Task;
-import ndk.utils_android16.network_task.REST_Select_Task;
-import ndk.utils_android16.network_task.REST_Select_Task_Wrapper;
 
 public class Insert_Transaction_v2 extends AppCompatActivity {
 
@@ -286,9 +286,9 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
             if (!current_tparent_account_id.equals("0")) {
 
-                ActivityUtils.start_activity_with_string_extras(activity_context, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_tparent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", button_to.getText().toString().replace("To : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", current_taccount_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_taccount_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_taccount_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))}, true, 0);
+                ActivityUtils.startActivityWithStringExtras(activity_context, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_tparent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", button_to.getText().toString().replace("To : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", current_taccount_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_taccount_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_taccount_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
             } else {
-                Toast_Utils.longToast(getApplicationContext(), "Please Select a parent account...");
+                ToastUtils.longToast(getApplicationContext(), "Please Select a parent account...");
             }
 
             return true;
@@ -303,9 +303,9 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
             if (!current_fparent_account_id.equals("0")) {
 
-                ActivityUtils.start_activity_with_string_extras(activity_context, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_fparent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", button_from.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", current_faccount_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_faccount_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_faccount_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_faccount_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_faccount_place_holder), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))}, true, 1);
+                ActivityUtils.startActivityWithStringExtras(activity_context, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_fparent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", button_from.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", current_faccount_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_faccount_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_faccount_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_faccount_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_faccount_place_holder), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
             } else {
-                Toast_Utils.longToast(getApplicationContext(), "Please Select a parent account...");
+                ToastUtils.longToast(getApplicationContext(), "Please Select a parent account...");
             }
 
             return true;
@@ -467,7 +467,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
     private void bind_auto_text_view_to() {
 
-        REST_Select_Task.Async_Response_JSON_array async_response_json_array = json_array -> {
+        HttpApiSelectTask.AsyncResponseJSONArray async_response_json_array = json_array -> {
 
             accounts = new ArrayList<>();
             ArrayList<String> account_full_names = new ArrayList<>();
@@ -501,12 +501,12 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
         };
 
-        REST_Select_Task_Wrapper.execute(REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Accounts), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("parent_account_id", current_tparent_account_id)}), this, Application_Specification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false, true);
+        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Accounts), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("parent_account_id", current_tparent_account_id)}), this, Application_Specification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false, true);
     }
 
     private void bind_auto_text_view_from() {
 
-        REST_Select_Task.Async_Response_JSON_array async_response_json_array = json_array -> {
+        HttpApiSelectTask.AsyncResponseJSONArray async_response_json_array = json_array -> {
 
             accounts = new ArrayList<>();
             ArrayList<String> account_full_names = new ArrayList<>();
@@ -540,7 +540,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
         };
 
-        REST_Select_Task_Wrapper.execute(REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Accounts), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("parent_account_id", current_fparent_account_id)}), this, Application_Specification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false, true);
+        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Accounts), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("parent_account_id", current_fparent_account_id)}), this, Application_Specification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false, true);
     }
 
     @Override
@@ -583,8 +583,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
         if (id == R.id.menu_item_view_pass_book) {
 
-            ActivityUtils.start_activity_with_string_extras(this, Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))
-            }, false, 0);
+            ActivityUtils.startActivityWithStringExtras(this, Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
         }
 
         return super.onOptionsItemSelected(item);
@@ -594,12 +593,12 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
         if (to_selected_account_id.equals("0")) {
 
-            Toast_Utils.longToast(this, "Please select To A/C...");
+            ToastUtils.longToast(this, "Please select To A/C...");
 
         } else {
 
-            Validation_Utils.reset_errors(new EditText[]{edit_purpose, edit_amount});
-            Pair<Boolean, EditText> empty_check_result = Validation_Utils.empty_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
+            ValidationUtils.resetErrors(new EditText[]{edit_purpose, edit_amount});
+            Pair<Boolean, EditText> empty_check_result = ValidationUtils.emptyCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
 
             if (empty_check_result.first) {
 
@@ -611,7 +610,7 @@ public class Insert_Transaction_v2 extends AppCompatActivity {
 
             } else {
 
-                Pair<Boolean, EditText> zero_check_result = Validation_Utils.zero_check(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
+                Pair<Boolean, EditText> zero_check_result = ValidationUtils.zeroCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
 
                 if (zero_check_result.first) {
 
