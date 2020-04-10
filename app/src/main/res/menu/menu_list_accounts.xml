@@ -23,4 +23,9 @@
         android:id="@+id/action_quick_add_transaction"
         android:title="QT+"
         compat:showAsAction="always" />
+    
+    <item
+        android:id="@+id/action_wallet_ledger"
+        android:title="WL"
+        compat:showAsAction="always" />
 </menu>
