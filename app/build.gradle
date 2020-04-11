@@ -56,11 +56,6 @@ android {
 //
 //        enabled = true
 //    }
-
-    packagingOptions {
-
-        pickFirst 'ndk/utils_j2se/JSON_Utils.java'
-    }
 }
 
 dependencies {
