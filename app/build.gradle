@@ -75,12 +75,7 @@ dependencies {
     implementation 'com.github.bmelnychuk:atv:1.2.9'
     implementation 'com.github.johnkil.print:print:1.3.1'
 
-//    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_1:0726486cb3'
-//    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_14:c1762751c7'
-//    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_16:2fcb1535eb'
-//    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_19:1949aabda5'
-//    implementation project(path: ':Android_Common_Utils_API_1:common1')
-//    implementation project(path: ':Android_Common_Utils_API_14:common14')
-//    implementation project(path: ':Android_Common_Utils_API_16:common16')
+    implementation project(path: ':Android_Common_Utils_API_14:common14')
+    implementation project(path: ':Android_Common_Utils_API_16:common16')
     implementation project(path: ':Android_Common_Utils_API_19:common19')
 }
