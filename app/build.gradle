@@ -27,6 +27,8 @@ android {
 
         versionCode 1
         versionName "1.0"
+
+//        multiDexEnabled true
     }
 
     buildTypes {
@@ -77,8 +79,8 @@ dependencies {
 //    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_14:c1762751c7'
 //    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_16:2fcb1535eb'
 //    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_19:1949aabda5'
-    implementation project(path: ':Android_Common_Utils_API_1:common1')
-    implementation project(path: ':Android_Common_Utils_API_14:common14')
-    implementation project(path: ':Android_Common_Utils_API_16:common16')
+//    implementation project(path: ':Android_Common_Utils_API_1:common1')
+//    implementation project(path: ':Android_Common_Utils_API_14:common14')
+//    implementation project(path: ':Android_Common_Utils_API_16:common16')
     implementation project(path: ':Android_Common_Utils_API_19:common19')
 }
