@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 //this should come after 'com.android.library' or 'com.android.application
 //apply plugin: 'com.raizlabs.griddle'
 
@@ -76,6 +75,6 @@ dependencies {
 
     implementation 'com.github.Baneeishaque:Android_Common_Utils_API_1:0726486cb3'
     implementation 'com.github.Baneeishaque:Android_Common_Utils_API_14:c1762751c7'
-    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_16:159bff5872'
-    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_19:d7df9425ff'
+    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_16:2fcb1535eb'
+    implementation 'com.github.Baneeishaque:Android_Common_Utils_API_19:1949aabda5'
 }
