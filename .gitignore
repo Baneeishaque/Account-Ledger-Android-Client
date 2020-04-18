@@ -383,3 +383,9 @@ gradle-app.setting
 .idea/gradle.xml
 
 .idea/vcs.xml
+
+.idea/codeStyles/Project.xml
+
+.idea/encodings.xml
+
+.idea/misc.xml

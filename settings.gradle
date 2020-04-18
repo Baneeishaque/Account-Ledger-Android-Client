@@ -1,1 +1,13 @@
-include ':app', ':Android_Common_Utils_API_1:common1', ':Android_Common_Utils_API_14:common14', ':Android_Common_Utils_API_16:common16', ':Android_Common_Utils_API_19:common19',':Android_Common_Utils_API_16:Java_Common_Utils'
+include ':app',':Android_Common_Utils_API_19:common19'
+
+include':Android_Common_Utils_API_16:common16'
+project(':Android_Common_Utils_API_16:common16').projectDir = new File(settingsDir, './Android_Common_Utils_API_19/Android_Common_Utils_API_16/common16')
+
+include ':Java_Common_Utils'
+project(':Java_Common_Utils').projectDir = new File(settingsDir, './Android_Common_Utils_API_19/Android_Common_Utils_API_16/Java_Common_Utils')
+
+include ':Android_Common_Utils_API_14:common14'
+project(':Android_Common_Utils_API_14:common14').projectDir = new File(settingsDir, './Android_Common_Utils_API_19/Android_Common_Utils_API_16/Android_Common_Utils_API_14/common14')
+
+include ':Android_Common_Utils_API_1:common1'
+project(':Android_Common_Utils_API_1:common1').projectDir = new File(settingsDir, './Android_Common_Utils_API_19/Android_Common_Utils_API_16/Android_Common_Utils_API_14/Android_Common_Utils_API_1/common1')
