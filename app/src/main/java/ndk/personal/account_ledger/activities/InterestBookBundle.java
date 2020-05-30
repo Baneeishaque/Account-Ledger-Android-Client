@@ -1,4 +1,34 @@
 package ndk.personal.account_ledger.activities;
 
-class InterestBookBundle {
+import ndk.utils_android16.models.sortable_tableView.pass_book.PassBookEntryV2;
+import ndk.utils_android19.PassBookBundle;
+
+public class InterestBookBundle extends PassBookBundle {
+
+    private static final int writeExternalStoragePermissionRequestCode = 0;
+
+    @Override
+    protected void configure_ROW_LONG_CLICK_ACTIONS(PassBookEntryV2 clickedData) {
+
+    }
+
+    @Override
+    protected String configureCurrentAccountLongName() {
+
+        //        TODO : Use this
+        return "";
+    }
+
+    @Override
+    protected String configureCurrentAccountShortName() {
+
+        //        TODO : Use this
+        return "";
+    }
+
+    @Override
+    protected int configureWriteExternalStoragePermissionRequestCode() {
+
+        return writeExternalStoragePermissionRequestCode;
+    }
 }

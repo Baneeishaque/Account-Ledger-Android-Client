@@ -445,5 +445,7 @@
     <string name="account_addition_acronym">A+</string>
     <string name="transaction_Addition_acronym">T+</string>
     <string name="quick_transaction_addition_acronym">QT+</string>
+    <string name="interest_calculator_acronym">IC</string>
+    <string name="interest_calculator_pnb_acronym">IC - PNB</string>
 
 </resources>
