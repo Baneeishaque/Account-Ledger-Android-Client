@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import ndk.personal.account_ledger.R;
-import ndk.personal.account_ledger.activities.Clickable_Pass_Book_Bundle;
+import ndk.personal.account_ledger.activities.ClickablePassBookBundle;
 import ndk.personal.account_ledger.activities.Insert_Account;
 import ndk.personal.account_ledger.activities.Insert_Transaction_v2;
 import ndk.personal.account_ledger.activities.Insert_Transaction_v2_Quick;
@@ -67,9 +67,6 @@ public class Fragment_List_Accounts extends Fragment {
     private ProgressBar login_progressBar;
 
     private SharedPreferences sharedPreferences;
-
-    // @BindView(R.id.recycler_view)
-    // RecyclerView recyclerView;
 
     private List_Accounts_Adapter mAdapter;
 
@@ -120,8 +117,7 @@ public class Fragment_List_Accounts extends Fragment {
 
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_list_accounts, container, false);
 
@@ -141,19 +137,23 @@ public class Fragment_List_Accounts extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
 
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_list_accounts, menu);
 
         if (activity_for_result_flag) {
 
+//            TODO : No Transaction in place holder A/Cs
             menu.findItem(R.id.action_add_transaction).setVisible(false);
             menu.findItem(R.id.action_quick_add_transaction).setVisible(false);
+            menu.findItem(R.id.action_interest_calculator_pnb).setVisible(false);
 
         } else if (!current_header_title.equals("NA")) {
 
             menu.findItem(R.id.action_quick_add_transaction).setVisible(false);
+//            TODO : Sub Menu of Savings Accounts
+            menu.findItem(R.id.action_interest_calculator_pnb).setVisible(false);
 
         } else {
 
@@ -166,7 +166,7 @@ public class Fragment_List_Accounts extends Fragment {
         SearchManager searchManager = (SearchManager) Objects.requireNonNull(getActivity()).getSystemService(Context.SEARCH_SERVICE);
         searchView.setSearchableInfo(Objects.requireNonNull(searchManager).getSearchableInfo(getActivity().getComponentName()));
 
-        //changing edittext color
+        //Changing edittext color
         EditText searchEdit = searchView.findViewById(androidx.appcompat.R.id.search_src_text);
         searchEdit.setTextColor(Color.WHITE);
         searchEdit.setHintTextColor(Color.WHITE);
@@ -217,25 +217,30 @@ public class Fragment_List_Accounts extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.action_add_transaction) {
+        switch (item.getItemId()) {
 
-            ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), Insert_Transaction_v2.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_parent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", current_header_title), new Pair<>("CURRENT_ACCOUNT_TYPE", current_account_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_account_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_account_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)});
+            case R.id.action_add_transaction:
+                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), Insert_Transaction_v2.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_parent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", current_header_title), new Pair<>("CURRENT_ACCOUNT_TYPE", current_account_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_account_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_account_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)});
 
-            return true;
-        }
+                return true;
 
-        if (item.getItemId() == R.id.action_quick_add_transaction) {
+            case R.id.action_quick_add_transaction:
 
-            ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), Insert_Transaction_v2_Quick.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", "6"), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", "Assets : Current Assets : Cash in Wallet")});
+                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), Insert_Transaction_v2_Quick.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", "6"), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", "Assets : Current Assets : Cash in Wallet")});
 
-            return true;
-        }
+                return true;
 
-        if (item.getItemId() == R.id.action_add_account) {
+            case R.id.action_add_account:
 
-            ActivityUtils.startActivityWithStringExtrasAndFinish(Objects.requireNonNull(getActivity()), Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_parent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", current_header_title), new Pair<>("CURRENT_ACCOUNT_TYPE", current_account_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_account_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_account_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)});
+                ActivityUtils.startActivityWithStringExtrasAndFinish(Objects.requireNonNull(getActivity()), Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_parent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", current_header_title), new Pair<>("CURRENT_ACCOUNT_TYPE", current_account_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_account_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_account_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)});
 
-            return true;
+                return true;
+
+            case R.id.action_interest_calculator_pnb:
+
+
+                return true;
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -258,7 +263,7 @@ public class Fragment_List_Accounts extends Fragment {
                 }
             }
 
-            view_recyclerView();
+            viewRecyclerView();
         };
 
         sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences(Application_Specification.APPLICATION_NAME, Context.MODE_PRIVATE);
@@ -266,7 +271,7 @@ public class Fragment_List_Accounts extends Fragment {
         HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatus(REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", current_parent_account_id)}), getContext(), login_progressBar, recyclerView, Application_Specification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false);
     }
 
-    private void view_recyclerView() {
+    private void viewRecyclerView() {
 
         if (current_header_title.equals("NA")) {
             mAdapter = new List_Accounts_Adapter(accounts);
@@ -307,7 +312,7 @@ public class Fragment_List_Accounts extends Fragment {
                 //handle item click events here
                 Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 
-                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName)});
+                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName)});
             }
 
         });
@@ -319,7 +324,7 @@ public class Fragment_List_Accounts extends Fragment {
 
                 Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 
-                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), Clickable_Pass_Book_Bundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v3), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id), new Pair<>("SORT_FLAG", String.valueOf(true)), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName)});
+                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v3), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id), new Pair<>("SORT_FLAG", String.valueOf(true)), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName)});
             }
         });
     }

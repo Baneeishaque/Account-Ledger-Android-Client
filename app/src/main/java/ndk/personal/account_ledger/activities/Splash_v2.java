@@ -46,5 +46,4 @@ public class Splash_v2 extends SplashWithAutomatedUpdateActivity {
 
         return BuildConfig.DEBUG;
     }
-
 }

@@ -45,7 +45,7 @@
             android:label="Wallet Ledger" />
 
         <activity
-            android:name=".activities.Clickable_Pass_Book_Bundle"
+            android:name=".activities.ClickablePassBookBundle"
             android:label="Pass Book"
             android:screenOrientation="fullSensor" />
 
