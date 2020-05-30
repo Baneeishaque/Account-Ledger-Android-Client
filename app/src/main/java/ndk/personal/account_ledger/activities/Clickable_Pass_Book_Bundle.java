@@ -1,10 +1,7 @@
 package ndk.personal.account_ledger.activities;
 
-import android.util.Log;
-
 import androidx.core.util.Pair;
 
-import ndk.personal.account_ledger.constants.Application_Specification;
 import ndk.utils_android14.ActivityUtils;
 import ndk.utils_android16.Date_Utils;
 import ndk.utils_android19.PassBookBundle;
@@ -40,5 +37,11 @@ public class Clickable_Pass_Book_Bundle extends PassBookBundle {
     protected int configureWriteExternalStoragePermissionRequestCode() {
 
         return writeExternalStoragePermissionRequestCode;
+    }
+
+    @Override
+    protected String configurePermissionRequiredMessage() {
+
+        return "Storage Permission is required to store ledger file...";
     }
 }
