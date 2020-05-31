@@ -1,6 +1,4 @@
 apply plugin: 'com.android.application'
-//this should come after 'com.android.library' or 'com.android.application
-//apply plugin: 'com.raizlabs.griddle'
 
 android {
 

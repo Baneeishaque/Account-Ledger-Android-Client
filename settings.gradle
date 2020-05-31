@@ -3,9 +3,6 @@ include ':app',':Utils_19:common19'
 include':Utils_16:common16'
 project(':Utils_16:common16').projectDir = new File(settingsDir, './Utils_19/Utils_16/common16')
 
-include ':Java_Utils'
-project(':Java_Utils').projectDir = new File(settingsDir, './Utils_19/Utils_16/Java_Utils')
-
 include ':Utils_14:common14'
 project(':Utils_14:common14').projectDir = new File(settingsDir, './Utils_19/Utils_16/Utils_14/common14')
 
