@@ -2,7 +2,6 @@ package ndk.personal.account_ledger.constants;
 
 public class Server_Endpoint {
 
-    // public static String SERVER_IP_ADDRESS = "http://adgarage.co/wp-production/account_ledger_server";
     public static String SERVER_IP_ADDRESS = "http://account-ledger-server.herokuapp.com";
     // public static String SERVER_IP_ADDRESS = "http://ssquared.qa/cgi-bin/account_ledger_server";
     public static String HTTP_API_FOLDER = "http_API";
