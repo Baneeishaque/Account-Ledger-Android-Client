@@ -24,15 +24,17 @@ import java.util.Objects;
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.Api;
 import ndk.personal.account_ledger.constants.ApiWrapper;
-import ndk.personal.account_ledger.constants.applicationSpecification;
+import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android14.ActivityUtils;
 import ndk.utils_android16.DateUtils;
 import ndk.utils_android16.ToastUtils;
 import ndk.utils_android16.ValidationUtils;
 import ndk.utils_android16.network_task.REST_GET_Task;
 
+import static ndk.utils_android16.ButtonUtils.associateButtonWithTimeStamp;
 
-public class Insert_Transaction_v2_Quick extends AppCompatActivity {
+
+public class InsertTransactionV2Quick extends AppCompatActivity {
 
     Context application_context;
     SharedPreferences settings;
@@ -54,7 +56,7 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
 
         application_context = getApplicationContext();
 
-        settings = getApplicationContext().getSharedPreferences(applicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
+        settings = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
         login_form = findViewById(R.id.login_form);
         Button button_submit = findViewById(R.id.button_submit);
@@ -65,7 +67,7 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
         button_date = findViewById(R.id.button_date);
         login_progress = findViewById(R.id.login_progress);
 
-        InsertTransactionV2Utils.associateButtonWithTimeStamp(button_date, calendar);
+        associateButtonWithTimeStamp(button_date, calendar);
 
         button_from.setText("From : " + getIntent().getStringExtra("CURRENT_ACCOUNT_FULL_NAME"));
         from_selected_account_id = getIntent().getStringExtra("CURRENT_ACCOUNT_ID");
@@ -99,7 +101,7 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
 
         } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
 
-            Log.e(applicationSpecification.APPLICATION_NAME, Objects.requireNonNull(e.getMessage()));
+            Log.e(ApplicationSpecification.APPLICATION_NAME, Objects.requireNonNull(e.getMessage()));
         }
 
         // Set listener
@@ -115,9 +117,9 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
                 calendar.set(Calendar.HOUR_OF_DAY, dateTimeFragment.getHourOfDay());
                 calendar.set(Calendar.MINUTE, dateTimeFragment.getMinute());
 
-                InsertTransactionV2Utils.associateButtonWithTimeStamp(button_date, calendar);
+                associateButtonWithTimeStamp(button_date, calendar);
 
-                Log.d(applicationSpecification.APPLICATION_NAME, "Selected : " + DateUtils.dateToMysqlDateTimeString((calendar.getTime())));
+                Log.d(ApplicationSpecification.APPLICATION_NAME, "Selected : " + DateUtils.dateToMysqlDateTimeString((calendar.getTime())));
                 // dateTimeFragment.setDefaultDateTime(calendar.getTime());
             }
 
@@ -196,7 +198,7 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
 
         if (id == R.id.menu_item_view_pass_book) {
 
-            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", applicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
+            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
         }
 
         return super.onOptionsItemSelected(item);

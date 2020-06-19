@@ -24,14 +24,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 import ndk.personal.account_ledger.R;
-import ndk.personal.account_ledger.constants.API;
-import ndk.personal.account_ledger.constants.API_Wrapper;
-import ndk.personal.account_ledger.constants.Application_Specification;
+import ndk.personal.account_ledger.constants.Api;
+import ndk.personal.account_ledger.constants.ApiWrapper;
+import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android14.ActivityUtils;
-import ndk.utils_android16.Date_Utils;
+import ndk.utils_android16.DateUtils;
 import ndk.utils_android16.Spinner_Utils;
 import ndk.utils_android16.ValidationUtils;
-import ndk.utils_android16.network_task.REST_Insert_Task_Wrapper;
+import ndk.utils_android16.network_task.RestInsertTaskWrapper;
 
 
 public class Insert_Transaction extends AppCompatActivity {
@@ -54,7 +54,7 @@ public class Insert_Transaction extends AppCompatActivity {
 
         application_context = getApplicationContext();
 
-        settings = getApplicationContext().getSharedPreferences(Application_Specification.APPLICATION_NAME, Context.MODE_PRIVATE);
+        settings = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
         login_form = findViewById(R.id.login_form);
         Button button_submit = findViewById(R.id.button_submit);
@@ -90,9 +90,9 @@ public class Insert_Transaction extends AppCompatActivity {
 
         // Define new day and month format
         try {
-            dateTimeFragment.setSimpleDateMonthAndDayFormat(Date_Utils.normal_stripped_date_format);
+            dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils.normalStrippedDateFormat);
         } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
-            Log.e(Application_Specification.APPLICATION_NAME, e.getMessage());
+            Log.e(ApplicationSpecification.APPLICATION_NAME, e.getMessage());
         }
 
         // Set listener
@@ -109,7 +109,7 @@ public class Insert_Transaction extends AppCompatActivity {
 
                 associate_button_with_time_stamp();
 
-                Log.d(Application_Specification.APPLICATION_NAME, "Slected : " + Date_Utils.date_to_mysql_date_time_string((calendar.getTime())));
+                Log.d(ApplicationSpecification.APPLICATION_NAME, "Slected : " + DateUtils.dateToMysqlDateTimeString((calendar.getTime())));
                 // dateTimeFragment.setDefaultDateTime(calendar.getTime());
             }
 
@@ -139,7 +139,7 @@ public class Insert_Transaction extends AppCompatActivity {
     }
 
     private void associate_button_with_time_stamp() {
-        button_date.setText(Date_Utils.normal_date_time_format_words.format(calendar.getTime()));
+        button_date.setText(DateUtils.normalDateTimeFormatWords.format(calendar.getTime()));
     }
 
     @Override
@@ -158,7 +158,7 @@ public class Insert_Transaction extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_item_view_pass_book) {
-            ActivityUtils.startActivityWithStringExtras(activity_context, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", API_Wrapper.get_http_API(API.select_User_Transactions)), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
+            ActivityUtils.startActivityWithStringExtras(activity_context, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", ApiWrapper.getHttpApi(Api.select_User_Transactions)), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
             return true;
         }
 
@@ -189,6 +189,6 @@ public class Insert_Transaction extends AppCompatActivity {
 
     private void execute_insert_Transaction_Task() {
 
-        REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.insert_Transaction), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", Date_Utils.date_to_mysql_date_time_string(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, new EditText[]{edit_purpose, edit_amount});
+        RestInsertTaskWrapper.execute(this, ApiWrapper.getHttpApi(Api.insert_Transaction), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", DateUtils.dateToMysqlDateTimeString(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, new EditText[]{edit_purpose, edit_amount});
     }
 }

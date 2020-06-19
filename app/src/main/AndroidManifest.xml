@@ -55,7 +55,7 @@
 
         <activity android:name=".activities.Insert_Account" />
 
-        <activity android:name=".activities.Insert_Transaction_v2_Quick" />
+        <activity android:name=".activities.InsertTransactionV2Quick" />
 
         <activity android:name=".activities.Edit_Transaction_v2" />
 

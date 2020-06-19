@@ -21,14 +21,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 import ndk.personal.account_ledger.R;
-import ndk.personal.account_ledger.constants.API;
-import ndk.personal.account_ledger.constants.API_Wrapper;
-import ndk.personal.account_ledger.constants.Application_Specification;
+import ndk.personal.account_ledger.constants.Api;
+import ndk.personal.account_ledger.constants.ApiWrapper;
+import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android14.ActivityUtils;
-import ndk.utils_android16.Date_Utils;
+import ndk.utils_android16.DateUtils;
 import ndk.utils_android16.ValidationUtils;
 import ndk.utils_android16.network_task.REST_GET_Task;
-import ndk.utils_android16.network_task.REST_Insert_Task_Wrapper;
+import ndk.utils_android16.network_task.RestInsertTaskWrapper;
 
 
 public class Edit_Transaction_v2 extends AppCompatActivity {
@@ -57,7 +57,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
         application_context = getApplicationContext();
 
-        settings = getApplicationContext().getSharedPreferences(Application_Specification.APPLICATION_NAME, Context.MODE_PRIVATE);
+        settings = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
         login_form = findViewById(R.id.login_form);
         Button button_submit = findViewById(R.id.button_submit);
@@ -103,9 +103,9 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
         // Define new day and month format
         try {
-            dateTimeFragment.setSimpleDateMonthAndDayFormat(Date_Utils.normal_stripped_date_format);
+            dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils.normalStrippedDateFormat);
         } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
-            Log.e(Application_Specification.APPLICATION_NAME, e.getMessage());
+            Log.e(ApplicationSpecification.APPLICATION_NAME, e.getMessage());
         }
 
         // Set listener
@@ -122,7 +122,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
                 associate_button_with_time_stamp();
 
-                Log.d(Application_Specification.APPLICATION_NAME, "Selected : " + Date_Utils.date_to_mysql_date_time_string((calendar.getTime())));
+                Log.d(ApplicationSpecification.APPLICATION_NAME, "Selected : " + DateUtils.dateToMysqlDateTimeString((calendar.getTime())));
                 // dateTimeFragment.setDefaultDateTime(calendar.getTime());
             }
 
@@ -154,7 +154,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
         });
 
         Button buttonDelete = findViewById(R.id.button_delete);
-        buttonDelete.setOnClickListener(v -> REST_Insert_Task_Wrapper.execute(activityContext, API_Wrapper.get_http_API(API.delete_Transaction_v2), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID"))}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))}));
+        buttonDelete.setOnClickListener(v -> RestInsertTaskWrapper.execute(activityContext, ApiWrapper.getHttpApi(Api.delete_Transaction_v2), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID"))}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))}));
     }
 
     private void select_account() {
@@ -180,7 +180,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
     }
 
     private void associate_button_with_time_stamp() {
-        button_date.setText(Date_Utils.normal_date_time_format_words.format(calendar.getTime()));
+        button_date.setText(DateUtils.normalDateTimeFormatWords.format(calendar.getTime()));
         event_date_time_change_flag = true;
     }
 
@@ -201,12 +201,12 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
         if (id == R.id.menu_item_view_from_pass_book) {
 
-            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", from_selected_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
+            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", from_selected_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
         }
 
         if (id == R.id.menu_item_view_to_pass_book) {
 
-            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", to_selected_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", to_selected_account_id)});
+            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", to_selected_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", to_selected_account_id)});
         }
 
         return super.onOptionsItemSelected(item);
@@ -246,8 +246,8 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
         $id = filter_input(INPUT_POST, 'id');
          */
 
-        Log.d(Application_Specification.APPLICATION_NAME, "MySQL Date Time String : " + Date_Utils.normal_date_time_words_string_to_mysql_date_time_string(getIntent().getStringExtra("EVENT_DATE_TIME"), Application_Specification.APPLICATION_NAME));
+        Log.d(ApplicationSpecification.APPLICATION_NAME, "MySQL Date Time String : " + DateUtils.normalDateTimeWordsStringToMysqlDateTimeString(getIntent().getStringExtra("EVENT_DATE_TIME"), ApplicationSpecification.APPLICATION_NAME));
 
-        REST_Insert_Task_Wrapper.execute(this, API_Wrapper.get_http_API(API.update_Transaction_v2), this, login_progress, login_form, Application_Specification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", event_date_time_change_flag ? Date_Utils.date_to_mysql_date_time_string(calendar.getTime()) : Date_Utils.normal_date_time_words_string_to_mysql_date_time_string(getIntent().getStringExtra("EVENT_DATE_TIME"), Application_Specification.APPLICATION_NAME)), new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID")), new Pair<>("particulars", edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
+        RestInsertTaskWrapper.execute(this, ApiWrapper.getHttpApi(Api.update_Transaction_v2), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", event_date_time_change_flag ? DateUtils.dateToMysqlDateTimeString(calendar.getTime()) : DateUtils.normalDateTimeWordsStringToMysqlDateTimeString(getIntent().getStringExtra("EVENT_DATE_TIME"), ApplicationSpecification.APPLICATION_NAME)), new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID")), new Pair<>("particulars", edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
     }
 }

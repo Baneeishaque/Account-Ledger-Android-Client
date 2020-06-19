@@ -35,12 +35,12 @@ import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.activities.ClickablePassBookBundle;
 import ndk.personal.account_ledger.activities.Insert_Account;
 import ndk.personal.account_ledger.activities.Insert_Transaction_v2;
-import ndk.personal.account_ledger.activities.Insert_Transaction_v2_Quick;
+import ndk.personal.account_ledger.activities.InsertTransactionV2Quick;
 import ndk.personal.account_ledger.activities.List_Accounts;
 import ndk.personal.account_ledger.adapters.List_Accounts_Adapter;
-import ndk.personal.account_ledger.constants.API;
-import ndk.personal.account_ledger.constants.API_Wrapper;
-import ndk.personal.account_ledger.constants.Application_Specification;
+import ndk.personal.account_ledger.constants.Api;
+import ndk.personal.account_ledger.constants.ApiWrapper;
+import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.personal.account_ledger.models.Account;
 import ndk.utils_android14.ActivityUtils;
 import ndk.utils_android16.network_task.HttpApiSelectTask;
@@ -226,7 +226,7 @@ public class Fragment_List_Accounts extends Fragment {
 
             case R.id.action_quick_add_transaction:
 
-                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), Insert_Transaction_v2_Quick.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", "6"), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", "Assets : Current Assets : Cash in Wallet")});
+                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), InsertTransactionV2Quick.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", "6"), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", "Assets : Current Assets : Cash in Wallet")});
 
                 return true;
 
@@ -259,16 +259,16 @@ public class Fragment_List_Accounts extends Fragment {
                 } catch (JSONException e) {
 
                     Toast.makeText(getContext(), "Error : " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                    Log.d(Application_Specification.APPLICATION_NAME, "Error : " + e.getLocalizedMessage());
+                    Log.d(ApplicationSpecification.APPLICATION_NAME, "Error : " + e.getLocalizedMessage());
                 }
             }
 
             viewRecyclerView();
         };
 
-        sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences(Application_Specification.APPLICATION_NAME, Context.MODE_PRIVATE);
+        sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
-        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatus(REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", current_parent_account_id)}), getContext(), login_progressBar, recyclerView, Application_Specification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false);
+        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatus(REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", current_parent_account_id)}), getContext(), login_progressBar, recyclerView, ApplicationSpecification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false);
     }
 
     private void viewRecyclerView() {
@@ -312,7 +312,7 @@ public class Fragment_List_Accounts extends Fragment {
                 //handle item click events here
                 Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 
-                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName)});
+                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName)});
             }
 
         });
@@ -324,7 +324,7 @@ public class Fragment_List_Accounts extends Fragment {
 
                 Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 
-                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v3), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id), new Pair<>("SORT_FLAG", String.valueOf(true)), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName)});
+                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v3), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", current_parent_account_id), new Pair<>("SORT_FLAG", String.valueOf(true)), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName)});
             }
         });
     }
