@@ -99,7 +99,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/edit_amount"
+                    android:id="@+id/editTextAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Amount"
@@ -208,7 +208,7 @@
             <!--android:textStyle="bold" />-->
 
             <Button
-                android:id="@+id/button_submit"
+                android:id="@+id/buttonSubmit"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -9,6 +9,6 @@ public class ServerEndpoint {
     public static String BUILD_FOLDER = "builds";
     public static String MODULE_NAME = "app";
     public static String APK_PREFIX = "-debug.apk";
-    public static String UPDATE_URL = SERVER_IP_ADDRESS + "/" + BUILD_FOLDER + "/" + MODULE_NAME + APK_PREFIX;
+    public static String UPDATED_APK_URL = SERVER_IP_ADDRESS + "/" + BUILD_FOLDER + "/" + MODULE_NAME + APK_PREFIX;
 }
 

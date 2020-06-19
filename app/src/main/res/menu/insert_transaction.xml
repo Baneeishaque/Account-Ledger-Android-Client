@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_item_view_pass_book"
-        android:title="FPBook"
-        app:showAsAction="always" />
+        android:id="@+id/menu_item_view_from_account_pass_book"
+        android:title="@string/from_account_pass_book_acronym"
+        app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/menu_item_insert_via_transaction"
+        android:title="@string/insert_via_transaction_acronym"
+        app:showAsAction="ifRoom" />
 </menu>

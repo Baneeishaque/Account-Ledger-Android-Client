@@ -49,7 +49,7 @@
             android:label="Pass Book"
             android:screenOrientation="fullSensor" />
 
-        <activity android:name=".activities.Insert_Transaction_v2" />
+        <activity android:name=".activities.InsertTransactionV2" />
 
         <activity android:name=".activities.List_Accounts" />
 

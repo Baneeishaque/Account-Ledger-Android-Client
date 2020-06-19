@@ -9,9 +9,9 @@ public class Account {
     private String name;
     private String commodityType;
     private String commodityValue;
-    private String full_name;
+    private String fullName;
 
-    public Account(String accountType, String accountId, String notes, String parentAccountId, String ownerId, String name, String commodityType, String commodityValue, String full_name) {
+    public Account(String accountType, String accountId, String notes, String parentAccountId, String ownerId, String name, String commodityType, String commodityValue, String fullName) {
 
         this.accountType = accountType;
         this.accountId = accountId;
@@ -21,15 +21,15 @@ public class Account {
         this.name = name;
         this.commodityType = commodityType;
         this.commodityValue = commodityValue;
-        this.full_name = full_name;
+        this.fullName = fullName;
     }
 
-    public String getFull_name() {
-        return full_name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFull_name(String full_name) {
-        this.full_name = full_name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getAccountType() {
@@ -107,7 +107,7 @@ public class Account {
                 ", name='" + name + '\'' +
                 ", commodityType='" + commodityType + '\'' +
                 ", commodityValue='" + commodityValue + '\'' +
-                ", full_name='" + full_name + '\'' +
+                ", full_name='" + fullName + '\'' +
                 '}';
     }
 }

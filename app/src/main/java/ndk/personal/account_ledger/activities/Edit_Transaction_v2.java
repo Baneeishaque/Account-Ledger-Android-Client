@@ -27,7 +27,7 @@ import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android14.ActivityUtils;
 import ndk.utils_android16.DateUtils;
 import ndk.utils_android16.ValidationUtils;
-import ndk.utils_android16.network_task.REST_GET_Task;
+import ndk.utils_android16.network_task.RestGetTask;
 import ndk.utils_android16.network_task.RestInsertTaskWrapper;
 
 
@@ -60,10 +60,10 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
         settings = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
         login_form = findViewById(R.id.login_form);
-        Button button_submit = findViewById(R.id.button_submit);
+        Button button_submit = findViewById(R.id.buttonSubmit);
         button_from = findViewById(R.id.button_from);
         button_to = findViewById(R.id.button_to);
-        edit_amount = findViewById(R.id.edit_amount);
+        edit_amount = findViewById(R.id.editTextAmount);
         edit_purpose = findViewById(R.id.edit_purpose);
         button_date = findViewById(R.id.button_date);
         login_progress = findViewById(R.id.login_progress);
@@ -154,7 +154,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
         });
 
         Button buttonDelete = findViewById(R.id.button_delete);
-        buttonDelete.setOnClickListener(v -> RestInsertTaskWrapper.execute(activityContext, ApiWrapper.getHttpApi(Api.delete_Transaction_v2), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID"))}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))}));
+        buttonDelete.setOnClickListener(v -> RestInsertTaskWrapper.execute(activityContext, ApiWrapper.getHttpApi(Api.delete_Transaction_v2), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID"))}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))}));
     }
 
     private void select_account() {
@@ -201,12 +201,12 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
         if (id == R.id.menu_item_view_from_pass_book) {
 
-            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", from_selected_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
+            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", from_selected_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
         }
 
         if (id == R.id.menu_item_view_to_pass_book) {
 
-            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", to_selected_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", to_selected_account_id)});
+            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", to_selected_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", to_selected_account_id)});
         }
 
         return super.onOptionsItemSelected(item);
@@ -248,6 +248,6 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
         Log.d(ApplicationSpecification.APPLICATION_NAME, "MySQL Date Time String : " + DateUtils.normalDateTimeWordsStringToMysqlDateTimeString(getIntent().getStringExtra("EVENT_DATE_TIME"), ApplicationSpecification.APPLICATION_NAME));
 
-        RestInsertTaskWrapper.execute(this, ApiWrapper.getHttpApi(Api.update_Transaction_v2), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", event_date_time_change_flag ? DateUtils.dateToMysqlDateTimeString(calendar.getTime()) : DateUtils.normalDateTimeWordsStringToMysqlDateTimeString(getIntent().getStringExtra("EVENT_DATE_TIME"), ApplicationSpecification.APPLICATION_NAME)), new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID")), new Pair<>("particulars", edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
+        RestInsertTaskWrapper.execute(this, ApiWrapper.getHttpApi(Api.update_Transaction_v2), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", event_date_time_change_flag ? DateUtils.dateToMysqlDateTimeString(calendar.getTime()) : DateUtils.normalDateTimeWordsStringToMysqlDateTimeString(getIntent().getStringExtra("EVENT_DATE_TIME"), ApplicationSpecification.APPLICATION_NAME)), new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID")), new Pair<>("particulars", edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
     }
 }

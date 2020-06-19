@@ -29,7 +29,7 @@ import ndk.utils_android14.ActivityUtils;
 import ndk.utils_android16.DateUtils;
 import ndk.utils_android16.ToastUtils;
 import ndk.utils_android16.ValidationUtils;
-import ndk.utils_android16.network_task.REST_GET_Task;
+import ndk.utils_android16.network_task.RestGetTask;
 
 import static ndk.utils_android16.ButtonUtils.associateButtonWithTimeStamp;
 
@@ -59,10 +59,10 @@ public class InsertTransactionV2Quick extends AppCompatActivity {
         settings = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
         login_form = findViewById(R.id.login_form);
-        Button button_submit = findViewById(R.id.button_submit);
+        Button button_submit = findViewById(R.id.buttonSubmit);
         button_from = findViewById(R.id.button_from);
         button_to = findViewById(R.id.button_to);
-        edit_amount = findViewById(R.id.edit_amount);
+        edit_amount = findViewById(R.id.editTextAmount);
         edit_purpose = findViewById(R.id.edit_purpose);
         button_date = findViewById(R.id.button_date);
         login_progress = findViewById(R.id.login_progress);
@@ -196,9 +196,9 @@ public class InsertTransactionV2Quick extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.menu_item_view_pass_book) {
+        if (id == R.id.menu_item_view_from_account_pass_book) {
 
-            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
+            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
         }
 
         return super.onOptionsItemSelected(item);

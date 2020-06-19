@@ -51,7 +51,7 @@ public class Insert_Account extends AppCompatActivity {
         settings = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
         login_form = findViewById(R.id.login_form);
-        Button button_submit = findViewById(R.id.button_submit);
+        Button button_submit = findViewById(R.id.buttonSubmit);
         button_full_name = findViewById(R.id.button_full_name);
         edit_name = findViewById(R.id.name);
         edit_notes = findViewById(R.id.notes);
@@ -132,7 +132,7 @@ public class Insert_Account extends AppCompatActivity {
          */
 
 
-        NetworkUtils.furtherActions further_actions = () -> {
+        NetworkUtils.FurtherActions further_actions = () -> {
 
             Intent returnIntent = new Intent();
             setResult(RESULT_OK, returnIntent);

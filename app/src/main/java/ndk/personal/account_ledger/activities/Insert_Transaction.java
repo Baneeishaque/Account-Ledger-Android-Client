@@ -57,8 +57,8 @@ public class Insert_Transaction extends AppCompatActivity {
         settings = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
         login_form = findViewById(R.id.login_form);
-        Button button_submit = findViewById(R.id.button_submit);
-        edit_amount = findViewById(R.id.edit_amount);
+        Button button_submit = findViewById(R.id.buttonSubmit);
+        edit_amount = findViewById(R.id.editTextAmount);
         edit_purpose = findViewById(R.id.edit_purpose);
         spinner_section = findViewById(R.id.spinner_section);
         button_date = findViewById(R.id.button_date);
@@ -157,7 +157,7 @@ public class Insert_Transaction extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.menu_item_view_pass_book) {
+        if (id == R.id.menu_item_view_from_account_pass_book) {
             ActivityUtils.startActivityWithStringExtras(activity_context, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", ApiWrapper.getHttpApi(Api.select_User_Transactions)), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
             return true;
         }

@@ -9,9 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin">
 
-    <!-- Login progress -->
     <ProgressBar
-        android:id="@+id/login_progress"
+        android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -19,7 +18,7 @@
         android:visibility="gone" />
 
     <ScrollView
-        android:id="@+id/login_form"
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -29,12 +28,12 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button_date"
+                android:id="@+id/buttonDate"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Date"
+                android:text="@string/date_with_time"
                 android:textAllCaps="false"
                 android:textStyle="bold" />
 
@@ -43,12 +42,12 @@
                 android:layout_height="16dp" />
 
             <Button
-                android:id="@+id/button_from"
+                android:id="@+id/buttonFromAccount"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="From : "
+                android:text="@string/from"
                 android:textAllCaps="false"
                 android:textStyle="bold" />
 
@@ -57,12 +56,26 @@
                 android:layout_height="16dp" />
 
             <Button
-                android:id="@+id/button_to"
+                android:id="@+id/buttonViaAccount"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="To : "
+                android:text="@string/via"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <Button
+                android:id="@+id/buttonToAccount"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/to"
                 android:textAllCaps="false"
                 android:textStyle="bold" />
 
@@ -75,11 +88,11 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/button_fplus"
+                    android:id="@+id/buttonAddFromAccount"
                     android:layout_width="49dp"
                     android:layout_height="53dp"
                     android:layout_marginEnd="8dp"
-                    android:text="+"
+                    android:text="@string/plus"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -91,19 +104,19 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/button_fplus"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonAddFromAccount"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <AutoCompleteTextView
-                        android:id="@+id/autoCompleteTextView_from"
+                        android:id="@+id/autoCompleteTextViewFromAccount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:dropDownHeight="wrap_content"
                         android:dropDownSelector="@color/light_gray"
-                        android:hint="From A/C"
+                        android:hint="@string/from_a_c"
                         android:imeOptions="actionNext"
                         android:inputType="textAutoComplete"
                         android:maxLines="1"
@@ -117,11 +130,53 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/button_tplus"
+                    android:id="@+id/buttonAddViaAccount"
                     android:layout_width="49dp"
                     android:layout_height="53dp"
                     android:layout_marginEnd="8dp"
-                    android:text="+"
+                    android:text="@string/plus"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonAddViaAccount"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/autoCompleteTextViewViaAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:dropDownHeight="wrap_content"
+                        android:dropDownSelector="@color/light_gray"
+                        android:hint="@string/via_a_c"
+                        android:imeOptions="actionNext"
+                        android:inputType="textAutoComplete"
+                        android:maxLines="1"
+                        android:popupBackground="@color/white" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/buttonAddToAccount"
+                    android:layout_width="49dp"
+                    android:layout_height="53dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/plus"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -134,19 +189,19 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/button_tplus"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonAddToAccount"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <AutoCompleteTextView
-                        android:id="@+id/autoCompleteTextView_to"
+                        android:id="@+id/autoCompleteTextViewToAccount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:dropDownHeight="wrap_content"
                         android:dropDownSelector="@color/light_gray"
-                        android:hint="To A/C"
+                        android:hint="@string/to_a_c"
                         android:imeOptions="actionNext"
                         android:inputType="textAutoComplete"
                         android:maxLines="1"
@@ -159,11 +214,12 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/edit_purpose"
+                    android:id="@+id/editTextParticulars"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Purpose"
+                    android:hint="@string/particulars"
                     android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
                     android:inputType="text"
                     android:maxLines="1" />
 
@@ -177,8 +233,9 @@
                     android:id="@+id/editTextAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Amount"
+                    android:hint="@string/amount"
                     android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
                     android:inputType="numberDecimal"
                     android:maxLines="1" />
 
@@ -190,11 +247,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:textAllCaps="false"
                 android:textStyle="bold" />
 
         </LinearLayout>
-
     </ScrollView>
 </LinearLayout>

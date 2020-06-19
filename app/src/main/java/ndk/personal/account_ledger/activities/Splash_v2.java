@@ -9,7 +9,7 @@ import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android16.activities.LoginBundleActivity;
 import ndk.utils_android16.activities.SplashWithAutomatedUpdateActivity;
 
-import static ndk.personal.account_ledger.constants.ServerEndpoint.UPDATE_URL;
+import static ndk.personal.account_ledger.constants.ServerEndpoint.UPDATED_APK_URL;
 
 public class Splash_v2 extends SplashWithAutomatedUpdateActivity {
 
@@ -21,7 +21,7 @@ public class Splash_v2 extends SplashWithAutomatedUpdateActivity {
 
     @Override
     protected String configure_UPDATE_URL() {
-        return UPDATE_URL;
+        return UPDATED_APK_URL;
     }
 
     @Override

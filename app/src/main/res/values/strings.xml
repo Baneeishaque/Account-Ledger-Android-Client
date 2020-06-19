@@ -447,5 +447,18 @@
     <string name="quick_transaction_addition_acronym">QT+</string>
     <string name="interest_calculator_acronym">IC</string>
     <string name="interest_calculator_pnb_acronym">IC - PNB</string>
+    <string name="from_account_pass_book_acronym">FPBook</string>
+    <string name="insert_via_transaction_acronym">ViaTr+</string>
+    <string name="date_with_time">Date With Time</string>
+    <string name="from">From :</string>
+    <string name="to">To :</string>
+    <string name="via">Via. :</string>
+    <string name="plus">+</string>
+    <string name="from_a_c">From A/C</string>
+    <string name="to_a_c">To A/C</string>
+    <string name="particulars">Particulars</string>
+    <string name="amount">Amount</string>
+    <string name="submit">Submit</string>
+    <string name="via_a_c">Via. A/C</string>
 
 </resources>
