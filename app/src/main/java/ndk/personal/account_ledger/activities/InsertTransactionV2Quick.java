@@ -22,11 +22,11 @@ import java.util.Date;
 import java.util.Objects;
 
 import ndk.personal.account_ledger.R;
-import ndk.personal.account_ledger.constants.API;
-import ndk.personal.account_ledger.constants.API_Wrapper;
-import ndk.personal.account_ledger.constants.Application_Specification;
+import ndk.personal.account_ledger.constants.Api;
+import ndk.personal.account_ledger.constants.ApiWrapper;
+import ndk.personal.account_ledger.constants.applicationSpecification;
 import ndk.utils_android14.ActivityUtils;
-import ndk.utils_android16.Date_Utils;
+import ndk.utils_android16.DateUtils;
 import ndk.utils_android16.ToastUtils;
 import ndk.utils_android16.ValidationUtils;
 import ndk.utils_android16.network_task.REST_GET_Task;
@@ -54,7 +54,7 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
 
         application_context = getApplicationContext();
 
-        settings = getApplicationContext().getSharedPreferences(Application_Specification.APPLICATION_NAME, Context.MODE_PRIVATE);
+        settings = getApplicationContext().getSharedPreferences(applicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
         login_form = findViewById(R.id.login_form);
         Button button_submit = findViewById(R.id.button_submit);
@@ -65,7 +65,7 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
         button_date = findViewById(R.id.button_date);
         login_progress = findViewById(R.id.login_progress);
 
-        Insert_Transaction_v2_Utils.associate_button_with_time_stamp(button_date, calendar);
+        InsertTransactionV2Utils.associateButtonWithTimeStamp(button_date, calendar);
 
         button_from.setText("From : " + getIntent().getStringExtra("CURRENT_ACCOUNT_FULL_NAME"));
         from_selected_account_id = getIntent().getStringExtra("CURRENT_ACCOUNT_ID");
@@ -95,11 +95,11 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
         // Define new day and month format
         try {
 
-            dateTimeFragment.setSimpleDateMonthAndDayFormat(Date_Utils.normal_stripped_date_format);
+            dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils.normalStrippedDateFormat);
 
         } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
 
-            Log.e(Application_Specification.APPLICATION_NAME, Objects.requireNonNull(e.getMessage()));
+            Log.e(applicationSpecification.APPLICATION_NAME, Objects.requireNonNull(e.getMessage()));
         }
 
         // Set listener
@@ -115,9 +115,9 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
                 calendar.set(Calendar.HOUR_OF_DAY, dateTimeFragment.getHourOfDay());
                 calendar.set(Calendar.MINUTE, dateTimeFragment.getMinute());
 
-                Insert_Transaction_v2_Utils.associate_button_with_time_stamp(button_date, calendar);
+                InsertTransactionV2Utils.associateButtonWithTimeStamp(button_date, calendar);
 
-                Log.d(Application_Specification.APPLICATION_NAME, "Selected : " + Date_Utils.date_to_mysql_date_time_string((calendar.getTime())));
+                Log.d(applicationSpecification.APPLICATION_NAME, "Selected : " + DateUtils.dateToMysqlDateTimeString((calendar.getTime())));
                 // dateTimeFragment.setDefaultDateTime(calendar.getTime());
             }
 
@@ -196,7 +196,7 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
 
         if (id == R.id.menu_item_view_pass_book) {
 
-            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(API_Wrapper.get_http_API(API.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", Application_Specification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
+            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", REST_GET_Task.get_Get_URL(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", applicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
         }
 
         return super.onOptionsItemSelected(item);
@@ -232,7 +232,7 @@ public class Insert_Transaction_v2_Quick extends AppCompatActivity {
 
                 } else {
 
-                    Insert_Transaction_v2_Utils.execute_insert_Transaction_Task(login_progress, login_form, this, this, settings.getString("user_id", "0"), edit_purpose.getText().toString().trim(), Double.parseDouble(edit_amount.getText().toString().trim()), Integer.parseInt(from_selected_account_id), Integer.parseInt(to_selected_account_id), edit_purpose, edit_amount, button_date, calendar);
+                    InsertTransactionV2Utils.executeInsertTransactionTask(login_progress, login_form, this, this, settings.getString("user_id", "0"), edit_purpose.getText().toString().trim(), Double.parseDouble(edit_amount.getText().toString().trim()), Integer.parseInt(from_selected_account_id), Integer.parseInt(to_selected_account_id), edit_purpose, edit_amount, button_date, calendar);
                 }
             }
         }
