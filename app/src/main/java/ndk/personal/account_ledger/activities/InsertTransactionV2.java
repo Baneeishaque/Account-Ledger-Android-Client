@@ -484,7 +484,7 @@ public class InsertTransactionV2 extends AppCompatActivity {
             autoCompleteTextViewToAccount.showDropDown();
         };
 
-        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentToAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, new Pair[]{}, asyncResponseJsonArray, false, true);
+        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentToAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, asyncResponseJsonArray, false, true);
     }
 
     private void bindAutoTextViewOfFromAccount() {
@@ -522,7 +522,7 @@ public class InsertTransactionV2 extends AppCompatActivity {
             autoCompleteTextViewFromAccount.showDropDown();
         };
 
-        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentFromAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, new Pair[]{}, asyncResponseJsonArray, false, true);
+        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentFromAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, asyncResponseJsonArray, false, true);
     }
 
     @Override
