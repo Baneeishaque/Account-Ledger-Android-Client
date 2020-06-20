@@ -18,7 +18,6 @@ import ndk.utils_android16.NetworkUtils;
 import ndk.utils_android16.network_task.RestInsertTaskWrapper;
 
 import static ndk.utils_android16.ButtonUtils.associateButtonWithIncrementedTimeStampOfFiveMinutes;
-import static ndk.utils_android16.ButtonUtils.associateButtonWithIncrementedTimeStampOfOneMinute;
 
 class InsertTransactionV2Utils {
 
