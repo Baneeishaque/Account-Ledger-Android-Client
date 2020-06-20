@@ -17,15 +17,15 @@
     <item
         android:id="@+id/action_add_transaction"
         android:title="@string/transaction_Addition_acronym"
-        compat:showAsAction="always" />
+        compat:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_quick_add_transaction"
         android:title="@string/quick_transaction_addition_acronym"
-        compat:showAsAction="always" />
+        compat:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_interest_calculator_pnb"
         android:title="@string/interest_calculator_pnb_acronym"
-        compat:showAsAction="always" />
+        compat:showAsAction="ifRoom" />
 </menu>

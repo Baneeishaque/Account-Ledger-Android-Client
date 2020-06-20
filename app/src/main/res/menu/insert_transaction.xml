@@ -11,4 +11,9 @@
         android:id="@+id/menu_item_insert_via_transaction"
         android:title="@string/insert_via_transaction_acronym"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_item_insert_two_way_transaction"
+        android:title="@string/insert_two_way_transaction_acronym"
+        app:showAsAction="ifRoom" />
 </menu>

@@ -13,31 +13,29 @@ import java.util.Calendar;
 import ndk.personal.account_ledger.constants.Api;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
-import ndk.utils_android16.ButtonUtils;
 import ndk.utils_android16.DateUtils;
 import ndk.utils_android16.NetworkUtils;
 import ndk.utils_android16.network_task.RestInsertTaskWrapper;
 
-import static ndk.utils_android16.ButtonUtils.associateButtonWithTimeStampPlusOneMinute;
-
+import static ndk.utils_android16.ButtonUtils.associateButtonWithIncrementedTimeStampOfFiveMinutes;
+import static ndk.utils_android16.ButtonUtils.associateButtonWithIncrementedTimeStampOfOneMinute;
 
 class InsertTransactionV2Utils {
 
-    static void executeInsertTransactionTask(View progressBarView, View formView, Context context, AppCompatActivity currentActivity, String userId, String particulars, Double amount, int fromAccountId, int toAccountId, EditText editTextParticulars, EditText editTextAmount, Button buttonDate, Calendar calendar) {
+    static void executeInsertTransactionTaskWithClearingOfEditTextsAndIncrementingOfButtonTextTimeStampForFiveMinutes(View progressBarView, View formView, Context context, AppCompatActivity currentActivity, String userId, String particulars, Double amount, int fromAccountId, int toAccountId, EditText editTextParticulars, EditText editTextAmount, Button buttonDate, Calendar calendar) {
 
-        NetworkUtils.FurtherActions furtherActions = () -> associateButtonWithTimeStampPlusOneMinute(buttonDate, calendar);
+        NetworkUtils.FurtherActions furtherActions = () -> associateButtonWithIncrementedTimeStampOfFiveMinutes(buttonDate, calendar);
 
         RestInsertTaskWrapper.execute(context, ApiWrapper.getHttpApi(Api.insert_Transaction_v2), currentActivity, progressBarView, formView, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", DateUtils.dateToMysqlDateTimeString(calendar.getTime())), new Pair<>("user_id", userId), new Pair<>("particulars", particulars), new Pair<>("amount", amount), new Pair<>("from_account_id", fromAccountId), new Pair<>("to_account_id", toAccountId)}, editTextParticulars, new EditText[]{editTextParticulars, editTextAmount}, furtherActions);
     }
 
-    static void executeInsertTransactionTaskWithFurtherActions(View progressBarView, View formView, Context context, AppCompatActivity currentActivity, String userId, String particulars, Double amount, int fromAccountId, int toAccountId, EditText editTextParticulars, EditText editTextAmount, Button buttonDate, Calendar calendar, NetworkUtils.FurtherActions furtherActions) {
+    static void executeInsertTransactionTaskWithFurtherActionsAndClearingOfEditTexts(View progressBarView, View formView, Context context, AppCompatActivity currentActivity, String userId, String particulars, Double amount, int fromAccountId, int toAccountId, EditText editTextParticulars, EditText editTextAmount, Calendar calendar, NetworkUtils.FurtherActions furtherActions) {
 
-        NetworkUtils.FurtherActions furtherActionsWithButtonAssociationOfTimeStampWithPlusOneMinute = () -> {
+        RestInsertTaskWrapper.execute(context, ApiWrapper.getHttpApi(Api.insert_Transaction_v2), currentActivity, progressBarView, formView, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", DateUtils.dateToMysqlDateTimeString(calendar.getTime())), new Pair<>("user_id", userId), new Pair<>("particulars", particulars), new Pair<>("amount", amount), new Pair<>("from_account_id", fromAccountId), new Pair<>("to_account_id", toAccountId)}, editTextParticulars, new EditText[]{editTextParticulars, editTextAmount}, furtherActions);
+    }
 
-            associateButtonWithTimeStampPlusOneMinute(buttonDate, calendar);
-            furtherActions.onSuccess();
-        };
+    static void executeInsertTransactionTaskWithFurtherActions(View progressBarView, View formView, Context context, AppCompatActivity currentActivity, String userId, String particulars, Double amount, int fromAccountId, int toAccountId, EditText editTextParticulars, Calendar calendar, NetworkUtils.FurtherActions furtherActions) {
 
-        RestInsertTaskWrapper.execute(context, ApiWrapper.getHttpApi(Api.insert_Transaction_v2), currentActivity, progressBarView, formView, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", DateUtils.dateToMysqlDateTimeString(calendar.getTime())), new Pair<>("user_id", userId), new Pair<>("particulars", particulars), new Pair<>("amount", amount), new Pair<>("from_account_id", fromAccountId), new Pair<>("to_account_id", toAccountId)}, editTextParticulars, new EditText[]{editTextParticulars, editTextAmount}, furtherActionsWithButtonAssociationOfTimeStampWithPlusOneMinute);
+        RestInsertTaskWrapper.execute(context, ApiWrapper.getHttpApi(Api.insert_Transaction_v2), currentActivity, progressBarView, formView, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", DateUtils.dateToMysqlDateTimeString(calendar.getTime())), new Pair<>("user_id", userId), new Pair<>("particulars", particulars), new Pair<>("amount", amount), new Pair<>("from_account_id", fromAccountId), new Pair<>("to_account_id", toAccountId)}, editTextParticulars, furtherActions);
     }
 }

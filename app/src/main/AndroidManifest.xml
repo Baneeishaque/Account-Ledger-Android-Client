@@ -16,7 +16,7 @@
         tools:targetApi="n">
 
         <activity
-            android:name=".activities.Splash_v2"
+            android:name=".activities.SplashV2"
             android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter>
@@ -31,10 +31,10 @@
             android:label="Wallet Ledger"
             android:theme="@style/AppTheme.NoActionBar">
 
-<!--             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> -->
+            <!--             <intent-filter>
+                            <action android:name="android.intent.action.MAIN" />
+                            <category android:name="android.intent.category.LAUNCHER" />
+                        </intent-filter> -->
 
         </activity>
 
@@ -50,14 +50,12 @@
             android:screenOrientation="fullSensor" />
 
         <activity android:name=".activities.InsertTransactionV2" />
-
-        <activity android:name=".activities.List_Accounts" />
-
+        <activity android:name=".activities.InsertTransactionV2Via" />
+        <activity android:name=".activities.ListAccounts" />
         <activity android:name=".activities.Insert_Account" />
-
         <activity android:name=".activities.InsertTransactionV2Quick" />
-
         <activity android:name=".activities.Edit_Transaction_v2" />
+        <activity android:name=".activities.InsertTransactionV2TwoWay" />
 
         <uses-library
             android:name="org.apache.http.legacy"

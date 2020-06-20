@@ -14,36 +14,35 @@ import static ndk.personal.account_ledger.constants.ServerEndpoint.UPDATED_APK_U
 public class Splash extends SplashWithAutomatedUpdateActivity {
 
     @Override
-    protected String configure_GET_CONFIGURATION_URL() {
+    public String configure_GET_CONFIGURATION_URL() {
         return ApiWrapper.getHttpApi(Api.select_Configuration);
     }
 
     @Override
-    protected String configure_UPDATE_URL() {
+    public String configure_UPDATE_URL() {
         return UPDATED_APK_URL;
     }
 
     @Override
-    protected String configure_APPLICATION_NAME() {
+    public String configure_APPLICATION_NAME() {
         return ApplicationSpecification.APPLICATION_NAME;
     }
 
     @Override
-    protected Class configure_NEXT_ACTIVITY_CLASS() {
+    public Class configure_NEXT_ACTIVITY_CLASS() {
         return LoginBundleActivity.class;
     }
 
     @Override
-    protected Pair[] configure_NEXT_ACTIVITY_CLASS_EXTRAS() {
+    public Pair[] configure_NEXT_ACTIVITY_CLASS_EXTRAS() {
 //        return new Pair[]{new Pair<>("APPLICATION_NAME", Application_Specification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", List_Accounts.class.getName()), new Pair<>("SELECT_USER_URL", API_Wrapper.get_http_API(API.select_User))};
 
         return new Pair[]{new Pair<>("APPLICATION_NAME", ApplicationSpecification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", Insert_Transaction.class.getName()), new Pair<>("SELECT_USER_URL", ApiWrapper.getHttpApi(Api.select_User))};
     }
 
     @Override
-    protected boolean configure_SECURITY_FLAG() {
+    public boolean configure_SECURITY_FLAG() {
 
         return BuildConfig.DEBUG;
     }
-
 }

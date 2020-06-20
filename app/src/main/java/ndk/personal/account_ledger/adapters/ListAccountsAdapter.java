@@ -13,11 +13,7 @@ import java.util.ArrayList;
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.models.Account;
 
-/**
- * A custom adapter to use with the RecyclerView widget.
- */
-public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
+public class ListAccountsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_HEADER = 0;
     private static final int TYPE_ITEM = 1;
@@ -33,12 +29,12 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
     private OnItemClickListener mItemClickListener;
 
 
-    public List_Accounts_Adapter(ArrayList<Account> modelList, String headerTitle) {
+    public ListAccountsAdapter(ArrayList<Account> modelList, String headerTitle) {
         this.modelList = modelList;
         this.mHeaderTitle = headerTitle;
     }
 
-    public List_Accounts_Adapter(ArrayList<Account> modelList) {
+    public ListAccountsAdapter(ArrayList<Account> modelList) {
         this.modelList = modelList;
         this.header_presence = false;
     }
@@ -138,9 +134,11 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     class HeaderViewHolder extends RecyclerView.ViewHolder {
+
         TextView txt_Title_Header;
 
         HeaderViewHolder(final View itemView) {
+
             super(itemView);
             this.txt_Title_Header = itemView.findViewById(R.id.txt_header);
 
@@ -159,21 +157,9 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
         private TextView item_Txt_Account_Name;
         private TextView item_Txt_Account_Balance;
 
-        // @BindView(R.id.img_user)
-        // ImageView imgUser;
-        // @BindView(R.id.item_txt_title)
-        // TextView item_Txt_Account_Name;
-        // @BindView(R.id.item_txt_message)
-        // TextView item_Txt_Account_Balance;
-        // @BindView(R.id.radio_list)
-        // RadioButton item_Txt_Account_Balance;
-        // @BindView(R.id.check_list)
-        // CheckBox itemCheckList;
-
         ViewHolder(final View itemView) {
-            super(itemView);
 
-            // ButterKnife.bind(this, itemView);
+            super(itemView);
 
             this.item_Txt_Account_Name = itemView.findViewById(R.id.item_txt_account_name);
             this.item_Txt_Account_Balance = itemView.findViewById(R.id.item_txt_account_balance);
@@ -186,7 +172,6 @@ public class List_Accounts_Adapter extends RecyclerView.Adapter<RecyclerView.Vie
                     mItemClickListener.onItemClick(itemView, getAdapterPosition(), modelList.get(getAdapterPosition()));
                 }
             });
-
         }
     }
 }

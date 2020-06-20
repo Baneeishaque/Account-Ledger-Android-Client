@@ -53,13 +53,19 @@ public class InsertTransactionV2 extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     String currentToAccountIdParent = "0", currentToAccountType, currentToAccountCommodityType, currentToAccountCommodityValue;
     String currentFromAccountIdParent, currentFromAccountType, currentFromAccountCommodityType, currentFromAccountCommodityValue, currentFromAccountTaxable, currentFromAccountPlaceHolder;
-    private Calendar calendar = Calendar.getInstance();
-    private EditText editTextPurpose;
-    private EditText editTextAmount;
-    private ScrollView formView;
-    private ProgressBar progressBarView;
+
+    public Calendar calendar = Calendar.getInstance();
+
+    public EditText editTextPurpose;
+    public EditText editTextAmount;
+
+    public ProgressBar progressBarView;
+    public ScrollView formView;
+
     AutoCompleteTextView autoCompleteTextViewToAccount, autoCompleteTextViewFromAccount;
-    private Button buttonDate;
+
+    public Button buttonDate;
+
     private Button buttonToAccount, buttonFromAccount;
     private ArrayList<Account> accounts;
     String selectedFromAccountId;
@@ -478,7 +484,7 @@ public class InsertTransactionV2 extends AppCompatActivity {
             autoCompleteTextViewToAccount.showDropDown();
         };
 
-        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentToAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, new Pair[]{}, asyncResponseJsonArray, false, true);
+        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentToAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, asyncResponseJsonArray, false, true);
     }
 
     private void bindAutoTextViewOfFromAccount() {
@@ -516,7 +522,7 @@ public class InsertTransactionV2 extends AppCompatActivity {
             autoCompleteTextViewFromAccount.showDropDown();
         };
 
-        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentFromAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, new Pair[]{}, asyncResponseJsonArray, false, true);
+        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentFromAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, asyncResponseJsonArray, false, true);
     }
 
     @Override
@@ -542,9 +548,8 @@ public class InsertTransactionV2 extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.insert_transaction, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -558,8 +563,11 @@ public class InsertTransactionV2 extends AppCompatActivity {
 
         } else if (id == R.id.menu_item_insert_via_transaction) {
 
-            ActivityUtils.startActivityWithStringExtras(currentActivityContext, InsertViaTransactionV2.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder)});
-            return true;
+            ActivityUtils.startActivityWithStringExtrasAndFinish(currentActivityContext, InsertTransactionV2Via.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder)});
+
+        } else if (id == R.id.menu_item_insert_two_way_transaction) {
+
+            ActivityUtils.startActivityWithStringExtrasAndFinish(currentActivityContext, InsertTransactionV2TwoWay.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder)});
         }
         return super.onOptionsItemSelected(item);
     }
@@ -595,9 +603,14 @@ public class InsertTransactionV2 extends AppCompatActivity {
 
                 } else {
 
-                    InsertTransactionV2Utils.executeInsertTransactionTask(progressBarView, formView, this, this, sharedPreferences.getString("user_id", "0"), editTextPurpose.getText().toString().trim(), Double.parseDouble(editTextAmount.getText().toString().trim()), Integer.parseInt(selectedFromAccountId), Integer.parseInt(selectedToAccountId), editTextPurpose, editTextAmount, buttonDate, calendar);
+                    executeInsertTransaction();
                 }
             }
         }
+    }
+
+    public void executeInsertTransaction() {
+
+        InsertTransactionV2Utils.executeInsertTransactionTaskWithClearingOfEditTextsAndIncrementingOfButtonTextTimeStampForFiveMinutes(progressBarView, formView, this, this, sharedPreferences.getString("user_id", "0"), editTextPurpose.getText().toString().trim(), Double.parseDouble(editTextAmount.getText().toString().trim()), Integer.parseInt(selectedFromAccountId), Integer.parseInt(selectedToAccountId), editTextPurpose, editTextAmount, buttonDate, calendar);
     }
 }

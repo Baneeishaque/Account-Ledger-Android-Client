@@ -8,26 +8,26 @@ public class InterestBookBundle extends PassBookBundle {
     private static final int writeExternalStoragePermissionRequestCode = 0;
 
     @Override
-    protected void configure_ROW_LONG_CLICK_ACTIONS(PassBookEntryV2 clickedData) {
+    public void configure_ROW_LONG_CLICK_ACTIONS(PassBookEntryV2 clickedData) {
 
     }
 
     @Override
-    protected String configureCurrentAccountLongName() {
+    public String configureCurrentAccountLongName() {
 
         //        TODO : Use this
         return "";
     }
 
     @Override
-    protected String configureCurrentAccountShortName() {
+    public String configureCurrentAccountShortName() {
 
         //        TODO : Use this
         return "";
     }
 
     @Override
-    protected int configureWriteExternalStoragePermissionRequestCode() {
+    public int configureWriteExternalStoragePermissionRequestCode() {
 
         return writeExternalStoragePermissionRequestCode;
     }

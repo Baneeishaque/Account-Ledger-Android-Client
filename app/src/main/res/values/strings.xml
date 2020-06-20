@@ -460,5 +460,6 @@
     <string name="amount">Amount</string>
     <string name="submit">Submit</string>
     <string name="via_a_c">Via. A/C</string>
+    <string name="insert_two_way_transaction_acronym">TWTr+</string>
 
 </resources>
