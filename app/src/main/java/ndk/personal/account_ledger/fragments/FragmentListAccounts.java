@@ -255,7 +255,7 @@ public class Fragment_List_Accounts extends Fragment {
 
         sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
-        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", current_parent_account_id)}), getContext(), login_progressBar, recyclerView, ApplicationSpecification.APPLICATION_NAME, new Pair[]{}, async_response_json_array, false);
+        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", current_parent_account_id)}), getContext(), login_progressBar, recyclerView, ApplicationSpecification.APPLICATION_NAME, async_response_json_array, false);
     }
 
     private void viewRecyclerView() {

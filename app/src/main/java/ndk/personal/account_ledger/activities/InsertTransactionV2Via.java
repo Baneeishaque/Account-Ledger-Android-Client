@@ -278,7 +278,6 @@ public class InsertViaTransactionV2 extends ContextActivity {
 
                 autoCompleteTextViewFromAccount.setText(autoCompleteTextViewFromAccount.getHint().toString().substring(0, autoCompleteTextViewFromAccount.getHint().length() - 3), false);
                 autoCompleteTextViewFromAccount.setSelection(autoCompleteTextViewFromAccount.getText().length());
-                furtherFromAccountSelectedActions();
             }
         });
 
@@ -376,6 +375,7 @@ public class InsertViaTransactionV2 extends ContextActivity {
 
                 autoCompleteTextViewViaAccount.setText(autoCompleteTextViewViaAccount.getHint().toString().substring(0, autoCompleteTextViewViaAccount.getHint().length() - 3), false);
                 autoCompleteTextViewViaAccount.setSelection(autoCompleteTextViewViaAccount.getText().length());
+                furtherViaAccountSelectedActions();
             }
         });
         buttonAddViaAccount.setOnLongClickListener(v -> {
@@ -573,7 +573,7 @@ public class InsertViaTransactionV2 extends ContextActivity {
             autoCompleteTextViewToAccount.showDropDown();
         };
 
-        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentToAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, new Pair[]{}, asyncResponseJsonArray, false, true);
+        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentToAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, asyncResponseJsonArray, false, true);
     }
 
     private void bindAutoTextViewOfFromAccount() {
@@ -612,10 +612,10 @@ public class InsertViaTransactionV2 extends ContextActivity {
             autoCompleteTextViewFromAccount.showDropDown();
         };
 
-        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentFromAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, new Pair[]{}, asyncResponseJsonArray, false, true);
+        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentFromAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, asyncResponseJsonArray, false, true);
     }
 
-    public void furtherFromAccountSelectedActions() {
+    public void furtherViaAccountSelectedActions() {
 
         bindAutoTextViewOfToAccount();
     }
@@ -655,7 +655,7 @@ public class InsertViaTransactionV2 extends ContextActivity {
             autoCompleteTextViewViaAccount.showDropDown();
         };
 
-        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentViaAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, new Pair[]{}, asyncResponseJsonArray, false, true);
+        HttpApiSelectTaskWrapper.executePostThenReturnJsonArrayWithErrorStatusAndBackgroundWorkStatus(RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Accounts), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", currentViaAccountIdParent)}), this, ApplicationSpecification.APPLICATION_NAME, asyncResponseJsonArray, false, true);
     }
 
     @Override
@@ -736,10 +736,11 @@ public class InsertViaTransactionV2 extends ContextActivity {
 
                     String viaAccountFullName = buttonViaAccount.getText().toString();
                     String particulars = editTextParticulars.getText().toString().trim() + " Via. " + viaAccountFullName.substring(viaAccountFullName.lastIndexOf(" : ") + 3);
+                    double amount = Double.parseDouble(editTextAmount.getText().toString().trim());
 
-                    NetworkUtils.FurtherActions furtherActions = () -> InsertTransactionV2Utils.executeInsertTransactionTask(progressBarView, formView, currentActivityContext, currentAppCompatActivity, sharedPreferences.getString("user_id", "0"), particulars, Double.parseDouble(editTextAmount.getText().toString().trim()), Integer.parseInt(selectedViaAccountId), Integer.parseInt(selectedToAccountId), editTextParticulars, editTextAmount, buttonDate, calendar);
+                    NetworkUtils.FurtherActions furtherActions = () -> InsertTransactionV2Utils.executeInsertTransactionTaskWithClearingOfEditTextsAndIncrementingOfButtonTextTimeStampForFiveMinutes(progressBarView, formView, currentActivityContext, currentAppCompatActivity, sharedPreferences.getString("user_id", "0"), particulars, amount, Integer.parseInt(selectedViaAccountId), Integer.parseInt(selectedToAccountId), editTextParticulars, editTextAmount, buttonDate, calendar);
 
-                    InsertTransactionV2Utils.executeInsertTransactionTaskWithFurtherActions(progressBarView, formView, this, this, sharedPreferences.getString("user_id", "0"), particulars, Double.parseDouble(editTextAmount.getText().toString().trim()), Integer.parseInt(selectedFromAccountId), Integer.parseInt(selectedViaAccountId), editTextParticulars, editTextAmount, buttonDate, calendar, furtherActions);
+                    InsertTransactionV2Utils.executeInsertTransactionTaskWithFurtherActions(progressBarView, formView, this, this, sharedPreferences.getString("user_id", "0"), particulars, amount, Integer.parseInt(selectedFromAccountId), Integer.parseInt(selectedViaAccountId), editTextParticulars, calendar, furtherActions);
                 }
             }
         }
