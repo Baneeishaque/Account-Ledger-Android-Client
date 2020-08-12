@@ -42,11 +42,11 @@ import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.personal.account_ledger.models.Account;
 import ndk.personal.account_ledger.utils.AccountLedgerErrorUtils;
-import ndk.utils_android14.ActivityUtils;
+import ndk.utils_android1.ActivityUtils1;
+import ndk.utils_android1.RestGetTask;
 import ndk.utils_android16.TodoUtils;
 import ndk.utils_android16.network_task.HttpApiSelectTask;
 import ndk.utils_android16.network_task.HttpApiSelectTaskWrapper;
-import ndk.utils_android16.network_task.RestGetTask;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -216,15 +216,15 @@ public class FragmentListAccounts extends Fragment {
 
             case R.id.action_add_transaction:
 
-                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), InsertTransactionV2.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_parent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", current_header_title), new Pair<>("CURRENT_ACCOUNT_TYPE", current_account_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_account_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_account_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)});
+                ActivityUtils1.startActivityForClassWithStringExtras(Objects.requireNonNull(getActivity()), InsertTransactionV2.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_parent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", current_header_title), new Pair<>("CURRENT_ACCOUNT_TYPE", current_account_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_account_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_account_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)});
                 break;
 
             case R.id.action_quick_add_transaction:
-                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), InsertTransactionV2Quick.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", "6"), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", "Assets : Current Assets : Cash in Wallet")});
+                ActivityUtils1.startActivityForClassWithStringExtras(Objects.requireNonNull(getActivity()), InsertTransactionV2Quick.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", "6"), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", "Assets : Current Assets : Cash in Wallet")});
                 break;
 
             case R.id.action_add_account:
-                ActivityUtils.startActivityWithStringExtrasAndFinish(Objects.requireNonNull(getActivity()), Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_parent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", current_header_title), new Pair<>("CURRENT_ACCOUNT_TYPE", current_account_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_account_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_account_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)});
+                ActivityUtils1.startActivityWithStringExtrasAndFinish(Objects.requireNonNull(getActivity()), Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", current_parent_account_id), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", current_header_title), new Pair<>("CURRENT_ACCOUNT_TYPE", current_account_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", current_account_commodity_type), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", current_account_commodity_value), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder)});
                 break;
 
             case R.id.action_interest_calculator_pnb:
@@ -279,7 +279,7 @@ public class FragmentListAccounts extends Fragment {
             Toast.makeText(getActivity(), "Selected Accounts Ledger : " + model.getName(), Toast.LENGTH_SHORT).show();
 
             //TODO : Include Taxable & place holder in account object
-            ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), ListAccounts.class, new Pair[]{new Pair<>("HEADER_TITLE", current_header_title.equals("NA") ? model.getName() : current_header_title + " : " + model.getName()), new Pair<>("PARENT_ACCOUNT_ID", model.getAccountId()), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(activity_for_result_flag)), new Pair<>("CURRENT_ACCOUNT_TYPE", model.getAccountType()), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", model.getCommodityType()), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", model.getCommodityValue()), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder), new Pair<>("ACCOUNT_NAME", model.getName()), new Pair<>("ACCOUNT_FULL_NAME", model.getFullName())});
+            ActivityUtils1.startActivityForClassWithStringExtras(Objects.requireNonNull(getActivity()), ListAccounts.class, new Pair[]{new Pair<>("HEADER_TITLE", current_header_title.equals("NA") ? model.getName() : current_header_title + " : " + model.getName()), new Pair<>("PARENT_ACCOUNT_ID", model.getAccountId()), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(activity_for_result_flag)), new Pair<>("CURRENT_ACCOUNT_TYPE", model.getAccountType()), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", model.getCommodityType()), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", model.getCommodityValue()), new Pair<>("CURRENT_ACCOUNT_TAXABLE", current_account_taxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", current_account_place_holder), new Pair<>("ACCOUNT_NAME", model.getName()), new Pair<>("ACCOUNT_FULL_NAME", model.getFullName())});
 
         });
 
@@ -298,7 +298,7 @@ public class FragmentListAccounts extends Fragment {
                 //handle item click events here
                 Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 
-                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", String.valueOf(true)), new Pair<>("SORT_FLAG", String.valueOf(true)), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName), new Pair<>("current_account_id", current_parent_account_id)});
+                ActivityUtils1.startActivityForClassWithStringExtras(Objects.requireNonNull(getActivity()), ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", String.valueOf(true)), new Pair<>("SORT_FLAG", String.valueOf(true)), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName), new Pair<>("current_account_id", current_parent_account_id)});
             }
 
         });
@@ -309,7 +309,7 @@ public class FragmentListAccounts extends Fragment {
 
                 Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 
-                ActivityUtils.startActivityWithStringExtras(Objects.requireNonNull(getActivity()), ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v3), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", String.valueOf(true)), new Pair<>("SORT_FLAG", String.valueOf(true)), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName), new Pair<>("current_account_id", current_parent_account_id)});
+                ActivityUtils1.startActivityForClassWithStringExtras(Objects.requireNonNull(getActivity()), ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v3), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", String.valueOf(true)), new Pair<>("SORT_FLAG", String.valueOf(true)), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName), new Pair<>("current_account_id", current_parent_account_id)});
             }
         });
     }

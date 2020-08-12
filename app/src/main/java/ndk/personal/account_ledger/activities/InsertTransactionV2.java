@@ -37,15 +37,16 @@ import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.personal.account_ledger.models.Account;
 import ndk.personal.account_ledger.utils.AccountLedgerLogUtils;
-import ndk.utils_android14.ActivityUtils;
-import ndk.utils_android16.DateUtils;
-import ndk.utils_android16.ToastUtils;
+import ndk.utils_android1.ActivityUtils1;
+import ndk.utils_android1.DateUtils;
+import ndk.utils_android1.RestGetTask;
+import ndk.utils_android1.ToastUtils;
 import ndk.utils_android16.ValidationUtils;
 import ndk.utils_android16.network_task.HttpApiSelectTask;
 import ndk.utils_android16.network_task.HttpApiSelectTaskWrapper;
-import ndk.utils_android16.network_task.RestGetTask;
 
-import static ndk.utils_android16.ButtonUtils.associateButtonWithTimeStamp;
+import static ndk.utils_android1.ButtonUtils.associateButtonWithTimeStamp;
+
 
 public class InsertTransactionV2 extends AppCompatActivity {
 
@@ -273,7 +274,7 @@ public class InsertTransactionV2 extends AppCompatActivity {
 
             if (!currentToAccountIdParent.equals("0")) {
 
-                ActivityUtils.startActivityWithStringExtras(currentActivityContext, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentToAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonToAccount.getText().toString().replace("To : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentToAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentToAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentToAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
+                ActivityUtils1.startActivityForClassWithStringExtras(currentActivityContext, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentToAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonToAccount.getText().toString().replace("To : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentToAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentToAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentToAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
             } else {
                 ToastUtils.longToast(getApplicationContext(), "Please Select a parent account...");
             }
@@ -290,7 +291,7 @@ public class InsertTransactionV2 extends AppCompatActivity {
 
             if (!currentFromAccountIdParent.equals("0")) {
 
-                ActivityUtils.startActivityWithStringExtras(currentActivityContext, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
+                ActivityUtils1.startActivityForClassWithStringExtras(currentActivityContext, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
             } else {
                 ToastUtils.longToast(getApplicationContext(), "Please Select a parent account...");
             }
@@ -559,15 +560,15 @@ public class InsertTransactionV2 extends AppCompatActivity {
 
         if (id == R.id.menu_item_view_from_account_pass_book) {
 
-            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
+            ActivityUtils1.startActivityForClassWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
 
         } else if (id == R.id.menu_item_insert_via_transaction) {
 
-            ActivityUtils.startActivityWithStringExtrasAndFinish(currentActivityContext, InsertTransactionV2Via.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder)});
+            ActivityUtils1.startActivityForClassWithStringExtras(currentActivityContext, InsertTransactionV2Via.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder)});
 
         } else if (id == R.id.menu_item_insert_two_way_transaction) {
 
-            ActivityUtils.startActivityWithStringExtrasAndFinish(currentActivityContext, InsertTransactionV2TwoWay.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder)});
+            ActivityUtils1.startActivityWithStringExtrasAndFinish(currentActivityContext, InsertTransactionV2TwoWay.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder)});
         }
         return super.onOptionsItemSelected(item);
     }

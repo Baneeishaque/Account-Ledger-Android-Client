@@ -25,13 +25,13 @@ import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.Api;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
-import ndk.utils_android14.ActivityUtils;
-import ndk.utils_android16.DateUtils;
-import ndk.utils_android16.ToastUtils;
+import ndk.utils_android1.ActivityUtils1;
+import ndk.utils_android1.DateUtils;
+import ndk.utils_android1.RestGetTask;
+import ndk.utils_android1.ToastUtils;
 import ndk.utils_android16.ValidationUtils;
-import ndk.utils_android16.network_task.RestGetTask;
 
-import static ndk.utils_android16.ButtonUtils.associateButtonWithTimeStamp;
+import static ndk.utils_android1.ButtonUtils.associateButtonWithTimeStamp;
 
 
 public class InsertTransactionV2Quick extends AppCompatActivity {
@@ -157,7 +157,7 @@ public class InsertTransactionV2Quick extends AppCompatActivity {
 
     private void select_account() {
 
-        ActivityUtils.startActivityWithStringExtras(this, ListAccounts.class, new Pair[]{new Pair<>("HEADER_TITLE", "NA"), new Pair<>("PARENT_ACCOUNT_ID", "0"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true)), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", "CURRENCY"), new Pair<>("CURRENT_ACCOUNT_TYPE", "Assets"), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", "INR"), new Pair<>("CURRENT_ACCOUNT_TAXABLE", String.valueOf(false)), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", String.valueOf(false))});
+        ActivityUtils1.startActivityForClassWithStringExtras(this, ListAccounts.class, new Pair[]{new Pair<>("HEADER_TITLE", "NA"), new Pair<>("PARENT_ACCOUNT_ID", "0"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true)), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", "CURRENCY"), new Pair<>("CURRENT_ACCOUNT_TYPE", "Assets"), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", "INR"), new Pair<>("CURRENT_ACCOUNT_TAXABLE", String.valueOf(false)), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", String.valueOf(false))});
     }
 
     @Override
@@ -198,7 +198,7 @@ public class InsertTransactionV2Quick extends AppCompatActivity {
 
         if (id == R.id.menu_item_view_from_account_pass_book) {
 
-            ActivityUtils.startActivityWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
+            ActivityUtils1.startActivityForClassWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.getHttpApi(Api.select_User_Transactions_v2), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
         }
 
         return super.onOptionsItemSelected(item);

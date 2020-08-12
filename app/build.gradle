@@ -13,15 +13,15 @@ android {
         }
     }
 
-    compileSdkVersion 29
-    buildToolsVersion '29.0.3'
+    compileSdkVersion 30
+    buildToolsVersion '30.0.1'
 
     defaultConfig {
 
         applicationId "ndk.personal.account_ledger"
 
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 30
 
         versionCode 1
         versionName "1.0"
@@ -43,11 +43,66 @@ android {
             // minifyEnabled true
             // proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        //The `initWith` property allows you to copy configurations from other build types,then configure just the settings you want to change.
+        staging {
+
+            initWith release
+            debuggable true
+        }
     }
 
 //    lintOptions {
 //        abortOnError false
 //    }
+
+    // Specifies flavor dimension.
+    flavorDimensions "relevence"
+    productFlavors {
+
+        // When building a variant that uses this flavor, the following configurations override those in the defaultConfig block.
+
+        development {
+
+            dimension "relevence"
+
+            // To avoid using legacy multidex when building from the command line, set minSdkVersion to 21 or higher. When using Android Studio 2.3 or higher, the build automatically avoids legacy multidex when deploying to a device running API level 21 or higher—regardless of what you set as your minSdkVersion.
+//            minSdkVersion 21
+
+            // The following configuration limits the usage of mdpi screen-density resources.
+            resConfigs "mdpi"
+        }
+
+        production {
+
+            dimension "relevence"
+            // If you've configured the defaultConfig block for the release version of your app, you can leave this block empty and Gradle uses configurations in the defaultConfig block instead. You still need to create this flavor. Otherwise, all variants use the "development" flavor configurations.
+        }
+    }
+
+    variantFilter { variant ->
+
+        def names = variant.flavors*.name
+
+        // To check for a certain build type, use variant.buildType.name == "<buildType>"
+        if (names.contains("development") && names.contains("release")) {
+
+            // Gradle ignores any variants that satisfy the conditions above.
+            setIgnore(true)
+        }
+
+        if (names.contains("production") && names.contains("debug")) {
+
+            // Gradle ignores any variants that satisfy the conditions above.
+            setIgnore(true)
+        }
+
+        if (names.contains("development") && names.contains("staging")) {
+
+            // Gradle ignores any variants that satisfy the conditions above.
+            setIgnore(true)
+        }
+    }
 
     compileOptions {
 
@@ -67,12 +122,12 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.material:material:1.2.0'
 
-    implementation 'org.apache.commons:commons-lang3:3.10'
+    implementation 'org.apache.commons:commons-lang3:3.11'
 
     implementation 'com.github.Kunzisoft:Android-SwitchDateTimePicker:1.9'
     implementation 'com.github.bmelnychuk:atv:1.2.9'

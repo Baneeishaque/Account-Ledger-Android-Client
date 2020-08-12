@@ -13,11 +13,12 @@ import java.util.Calendar;
 import ndk.personal.account_ledger.constants.Api;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
-import ndk.utils_android16.DateUtils;
-import ndk.utils_android16.NetworkUtils;
+import ndk.utils_android1.DateUtils;
+import ndk.utils_android1.NetworkUtils;
 import ndk.utils_android16.network_task.RestInsertTaskWrapper;
 
-import static ndk.utils_android16.ButtonUtils.associateButtonWithIncrementedTimeStampOfFiveMinutes;
+import static ndk.utils_android1.ButtonUtils.associateButtonWithIncrementedTimeStampOfFiveMinutes;
+
 
 class InsertTransactionV2Utils {
 

@@ -1,12 +1,12 @@
 package ndk.personal.account_ledger.utils;
 
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
-import ndk.utils_android14.LogUtilsWrapperBase;
+import ndk.utils_android1.LogUtils;
 
-public class AccountLedgerLogUtils extends LogUtilsWrapperBase {
+public class AccountLedgerLogUtils{
 
-    public AccountLedgerLogUtils() {
+    public static void debug(String message) {
 
-        super(ApplicationSpecification.APPLICATION_NAME);
+        LogUtils.debug(ApplicationSpecification.APPLICATION_NAME, message);
     }
 }
