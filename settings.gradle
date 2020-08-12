@@ -1,10 +1,18 @@
-include ':app',':Utils_19:common19'
+include ':app'
+include ':Utils_19:common19'
+include ':Utils_19:common19_old'
+include ':Utils_19:tests19'
 
-include':Utils_16:common16'
+include ':Utils_16:common16'
 project(':Utils_16:common16').projectDir = new File(settingsDir, './Utils_19/Utils_16/common16')
+include ':Utils_16:tests16'
+project(':Utils_16:tests16').projectDir = new File(settingsDir, './Utils_19/Utils_16/tests16')
 
 include ':Utils_14:common14'
 project(':Utils_14:common14').projectDir = new File(settingsDir, './Utils_19/Utils_16/Utils_14/common14')
+
+include ':Utils11:common11'
+project(':Utils11:common11').projectDir = new File(settingsDir, './Utils_19/Utils_16/Utils11/common11')
 
 include ':Utils_1:common1'
 project(':Utils_1:common1').projectDir = new File(settingsDir, './Utils_19/Utils_16/Utils_14/Utils_1/common1')
