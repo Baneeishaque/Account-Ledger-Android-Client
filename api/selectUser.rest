@@ -1,0 +1,22 @@
+http://account-ledger-server.herokuapp.com/http_API/select_User.php
+
+&username=banee
+&password=banee
+%%%
+# Duration: 7327 ms
+# GET
+# http://account-ledger-server.herokuapp.com/http_API/select_User.php?&username=banee&password=banee
+
+
+# status 200
+
+@Connection: keep-alive
+@Date: Wed, 12 Aug 2020 22:39:34 GMT
+@Server: Apache
+@Transfer-Encoding: chunked
+@Content-Type: text/html; charset=UTF-8
+@Via: 1.1 vegur
+
+
+# length: [28]
+{"user_count":"0","id":null}

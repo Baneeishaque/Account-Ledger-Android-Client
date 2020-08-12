@@ -1,0 +1,22 @@
+http://localhost/account_ledger_server/http_API/select_User_Accounts_v2.php
+
+&user_id=13
+&parent_account_id=0
+
+%%%
+# Duration: 97 ms
+# GET
+# http://localhost/account_ledger_server/http_API/select_User_Accounts_v2.php?&user_id=13&parent_account_id=0
+
+
+# status 200
+
+@Date: Wed, 12 Aug 2020 22:37:26 GMT
+@Server: Apache/2.4.43 (Win64) OpenSSL/1.1.1f PHP/7.4.4
+@X-Powered-By: PHP/7.4.4
+@Content-Length: 1135
+@Keep-Alive: timeout=5, max=100
+@Connection: Keep-Alive
+@Content-Type: text/html; charset=UTF-8
+
+{"status":0,"accounts":[{"account_id":"1","full_name":"Assets","name":"Assets","parent_account_id":"0","account_type":"ASSET","notes":null,"commodity_type":"CURRENCY","commodity_value":"INR","owner_id":"0","taxable":"F","place_holder":"T"},{"account_id":"482","full_name":"Equity","name":"Equity","parent_account_id":"0","account_type":"EQUITY","notes":null,"commodity_type":"CURRENCY","commodity_value":"INR","owner_id":"0","taxable":"F","place_holder":"T"},{"account_id":"344","full_name":"Expenses","name":"Expenses","parent_account_id":"0","account_type":"EXPENSE","notes":null,"commodity_type":"CURRENCY","commodity_value":"INR","owner_id":"0","taxable":"F","place_holder":"T"},{"account_id":"338","full_name":"Income","name":"Income","parent_account_id":"0","account_type":"INCOME","notes":null,"commodity_type":"CURRENCY","commodity_value":"INR","owner_id":"0","taxable":"F","place_holder":"T"},{"account_id":"304","full_name":"Liabilities","name":"Liabilities","parent_account_id":"0","account_type":"LIABILITY","notes":null,"commodity_type":"CURRENCY","commodity_value":"INR","owner_id":"0","taxable":"F","place_holder":"T"}]}

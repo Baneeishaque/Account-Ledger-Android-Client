@@ -1,0 +1,23 @@
+http://account-ledger-server.herokuapp.com/http_API/select_User_Accounts.php
+
+&user_id=13
+&parent_account_id=0
+
+%%%
+# Duration: 806 ms
+# GET
+# http://account-ledger-server.herokuapp.com/http_API/select_User_Accounts.php?&user_id=13&parent_account_id=0
+
+
+# status 200
+
+@Connection: keep-alive
+@Date: Wed, 12 Aug 2020 22:39:55 GMT
+@Server: Apache
+@Transfer-Encoding: chunked
+@Content-Type: text/html; charset=UTF-8
+@Via: 1.1 vegur
+
+
+# length: [1126]
+[{"status":"0"},{"account_id":"1","full_name":"Assets","name":"Assets","parent_account_id":"0","account_type":"ASSET","notes":null,"commodity_type":"CURRENCY","commodity_value":"INR","owner_id":"0","taxable":"F","place_holder":"T"},{"account_id":"482","full_name":"Equity","name":"Equity","parent_account_id":"0","account_type":"EQUITY","notes":null,"commodity_type":"CURRENCY","commodity_value":"INR","owner_id":"0","taxable":"F","place_holder":"T"},{"account_id":"344","full_name":"Expenses","name":"Expenses","parent_account_id":"0","account_type":"EXPENSE","notes":null,"commodity_type":"CURRENCY","commodity_value":"INR","owner_id":"0","taxable":"F","place_holder":"T"},{"account_id":"338","full_name":"Income","name":"Income","parent_account_id":"0","account_type":"INCOME","notes":null,"commodity_type":"CURRENCY","commodity_value":"INR","owner_id":"0","taxable":"F","place_holder":"T"},{"account_id":"304","full_name":"Liabilities","name":"Liabilities","parent_account_id":"0","account_type":"LIABILITY","notes":null,"commodity_type":"CURRENCY","commodity_value":"INR","owner_id":"0","taxable":"F","place_holder":"T"}]
