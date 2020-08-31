@@ -137,7 +137,7 @@ obj/
 .idea/libraries/
 .idea/shelf/
 .idea/.name
-.idea/compiler.xml
+#.idea/compiler.xml
 .idea/copyright/profiles_settings.xml
 # .idea/encodings.xml
 # .idea/misc.xml

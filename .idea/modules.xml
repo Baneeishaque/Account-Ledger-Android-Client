@@ -3,8 +3,21 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Account_Ledger.iml" filepath="$PROJECT_DIR$/.idea/Account_Ledger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DebugUtils/Account_Ledger.DebugUtils.iml" filepath="$PROJECT_DIR$/.idea/modules/DebugUtils/Account_Ledger.DebugUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DebugUtils/common/Account_Ledger.DebugUtils.common.iml" filepath="$PROJECT_DIR$/.idea/modules/DebugUtils/common/Account_Ledger.DebugUtils.common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaUtils/Account_Ledger.JavaUtils.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaUtils/Account_Ledger.JavaUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Resources/Account_Ledger.Resources.iml" filepath="$PROJECT_DIR$/.idea/modules/Resources/Account_Ledger.Resources.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils9/Resources/common/Account_Ledger.Resources.common.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils9/Resources/common/Account_Ledger.Resources.common.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils11/Account_Ledger.Utils11.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils11/Account_Ledger.Utils11.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils_19/Utils_16/Utils11/common11/Account_Ledger.Utils11.common11.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils_19/Utils_16/Utils11/common11/Account_Ledger.Utils11.common11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils17/Account_Ledger.Utils17.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils17/Account_Ledger.Utils17.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils17/common/Account_Ledger.Utils17.common.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils17/common/Account_Ledger.Utils17.common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils3/Account_Ledger.Utils3.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils3/Account_Ledger.Utils3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils9/Utils3/common3/Account_Ledger.Utils3.common3.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils9/Utils3/common3/Account_Ledger.Utils3.common3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils7/Account_Ledger.Utils7.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils7/Account_Ledger.Utils7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils7/common7/Account_Ledger.Utils7.common7.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils7/common7/Account_Ledger.Utils7.common7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils9/Account_Ledger.Utils9.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils9/Account_Ledger.Utils9.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils9/common9/Account_Ledger.Utils9.common9.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils9/common9/Account_Ledger.Utils9.common9.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils_1/Account_Ledger.Utils_1.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils_1/Account_Ledger.Utils_1.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils_19/Utils_16/Utils_14/Utils_1/common1/Account_Ledger.Utils_1.common1.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils_19/Utils_16/Utils_14/Utils_1/common1/Account_Ledger.Utils_1.common1.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils_14/Account_Ledger.Utils_14.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils_14/Account_Ledger.Utils_14.iml" />
