@@ -1,0 +1,13 @@
+{
+    "npm.autoDetect": "off",
+    "android-dev-ext.codeCompletionLibraries": [
+        "androidx.appcompat:appcompat",
+        "androidx.constraintlayout:constraintlayout",
+        "androidx.cardview:cardview",
+        "androidx.swiperefreshlayout:swiperefreshlayout",
+        "androidx.legacy:legacy-support-core-utils",
+        "androidx.media:media",
+        "androidx.legacy:legacy-support-v4",
+        "androidx.annotation:annotation"
+    ]
+}
