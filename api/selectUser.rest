@@ -3,7 +3,7 @@ http://account-ledger-server.herokuapp.com/http_API/select_User.php
 &username=banee
 &password=banee
 %%%
-# Duration: 7327 ms
+# Duration: 6828 ms
 # GET
 # http://account-ledger-server.herokuapp.com/http_API/select_User.php?&username=banee&password=banee
 
@@ -11,7 +11,7 @@ http://account-ledger-server.herokuapp.com/http_API/select_User.php
 # status 200
 
 @Connection: keep-alive
-@Date: Wed, 12 Aug 2020 22:39:34 GMT
+@Date: Mon, 31 Aug 2020 11:03:28 GMT
 @Server: Apache
 @Transfer-Encoding: chunked
 @Content-Type: text/html; charset=UTF-8

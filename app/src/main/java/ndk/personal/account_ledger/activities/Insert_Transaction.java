@@ -158,7 +158,7 @@ public class Insert_Transaction extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_item_view_from_account_pass_book) {
-            ActivityUtils1.startActivityForClassWithStringExtras(activity_context, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", ApiWrapper.getHttpApi(Api.select_User_Transactions)), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
+            ActivityUtils1.startActivityForClassWithStringExtras(activity_context, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", ApiWrapper.selectUserTransactions()), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
             return true;
         }
 
@@ -189,6 +189,6 @@ public class Insert_Transaction extends AppCompatActivity {
 
     private void execute_insert_Transaction_Task() {
 
-        RestInsertTaskWrapper.execute(this, ApiWrapper.getHttpApi(Api.insert_Transaction), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", DateUtils.dateToMysqlDateTimeString(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, new EditText[]{edit_purpose, edit_amount});
+        RestInsertTaskWrapper.execute(this, ApiWrapper.insertTransaction(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", DateUtils.dateToMysqlDateTimeString(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, new EditText[]{edit_purpose, edit_amount});
     }
 }

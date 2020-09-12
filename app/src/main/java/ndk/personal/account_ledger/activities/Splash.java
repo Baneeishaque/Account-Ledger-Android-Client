@@ -15,7 +15,7 @@ public class Splash extends SplashWithAutomatedUpdateActivity {
 
     @Override
     public String configure_GET_CONFIGURATION_URL() {
-        return ApiWrapper.getHttpApi(Api.select_Configuration);
+        return ApiWrapper.selectConfiguration();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class Splash extends SplashWithAutomatedUpdateActivity {
     public Pair[] configure_NEXT_ACTIVITY_CLASS_EXTRAS() {
 //        return new Pair[]{new Pair<>("APPLICATION_NAME", Application_Specification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", List_Accounts.class.getName()), new Pair<>("SELECT_USER_URL", API_Wrapper.get_http_API(API.select_User))};
 
-        return new Pair[]{new Pair<>("APPLICATION_NAME", ApplicationSpecification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", Insert_Transaction.class.getName()), new Pair<>("SELECT_USER_URL", ApiWrapper.getHttpApi(Api.select_User))};
+        return new Pair[]{new Pair<>("APPLICATION_NAME", ApplicationSpecification.APPLICATION_NAME), new Pair<>("NEXT_ACTIVITY_CLASS", Insert_Transaction.class.getName()), new Pair<>("SELECT_USER_URL", ApiWrapper.selectUser())};
     }
 
     @Override
