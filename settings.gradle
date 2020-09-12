@@ -15,7 +15,7 @@ project(':Utils3:common3').projectDir=new File(settingsDir, './Utils9/Utils3/com
 include ':Utils17:common'
 
 include ':Utils_19:common19'
-include ':Utils_19:common19_old'
+//include ':Utils_19:common19_old'
 include ':Utils_19:tests19'
 include ':Utils_16:common16'
 project(':Utils_16:common16').projectDir = new File(settingsDir, './Utils_19/Utils_16/common16')
