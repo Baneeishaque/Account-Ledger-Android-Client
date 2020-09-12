@@ -33,6 +33,9 @@
     <content url="file://$MODULE_DIR$/../../../../DebugUtils/common">
       <sourceFolder url="file://$MODULE_DIR$/../../../../DebugUtils/common/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../../../DebugUtils/common/src/main/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../../DebugUtils/common/build/generated/ap_generated_sources/developmentDebug/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../../DebugUtils/common/build/generated/source/buildConfig/development/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../../DebugUtils/common/build/generated/res/resValues/development/debug" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/../../../../DebugUtils/common/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../../DebugUtils/common/build" />
     </content>
@@ -45,9 +48,9 @@
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:3.9.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio:1.13.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout-solver:2.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout-solver:2.0.1" level="project" />
     <orderEntry type="library" name="Gradle: com.github.whataa:pandora:v2.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout:2.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.material:material:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.1.0@aar" level="project" />

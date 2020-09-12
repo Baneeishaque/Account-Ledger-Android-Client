@@ -33,6 +33,9 @@
     <content url="file://$MODULE_DIR$/../../../../Utils9/common9">
       <sourceFolder url="file://$MODULE_DIR$/../../../../Utils9/common9/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../../../Utils9/common9/src/main/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../../Utils9/common9/build/generated/ap_generated_sources/developmentDebug/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../../Utils9/common9/build/generated/source/buildConfig/development/debug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../../Utils9/common9/build/generated/res/resValues/development/debug" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/../../../../Utils9/common9/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../../Utils9/common9/build" />
     </content>
