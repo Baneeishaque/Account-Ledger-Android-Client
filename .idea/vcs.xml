@@ -2,6 +2,15 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DebugUtils" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DebugUtils/Resources" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/JavaUtils" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils17" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils7" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils9" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils9/Resources" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils9/Utils1" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils9/Utils3" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Utils_19" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Utils_19/Utils_16" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Utils_19/Utils_16/Utils11" vcs="Git" />

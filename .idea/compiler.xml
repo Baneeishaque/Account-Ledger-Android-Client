@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="Account_Ledger.app" target="11" />
+      <module name="Account_Ledger.DebugUtils.common" target="11" />
+      <module name="Account_Ledger.Resources.common" target="11" />
+      <module name="Account_Ledger.Utils11.common11" target="11" />
+      <module name="Account_Ledger.Utils17.common" target="11" />
+      <module name="Account_Ledger.Utils3.common3" target="11" />
+      <module name="Account_Ledger.Utils7.common7" target="11" />
+      <module name="Account_Ledger.Utils9.common9" target="11" />
+      <module name="Account_Ledger.Utils_1.common1" target="11" />
+      <module name="Account_Ledger.Utils_14.common14" target="11" />
+      <module name="Account_Ledger.Utils_16.common16" target="11" />
+      <module name="Account_Ledger.Utils_16.tests16" target="11" />
+      <module name="Account_Ledger.Utils_19.common19" target="11" />
+      <module name="Account_Ledger.Utils_19.tests19" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

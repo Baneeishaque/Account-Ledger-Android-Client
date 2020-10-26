@@ -27,6 +27,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="Gradle: Account_Ledger.JavaUtils.JavaUtils-1.0" level="project" />
     <orderEntry type="library" name="Gradle: org.json:json:20190722" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:4.5.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio-jvm:2.5.0" level="project" />
@@ -35,6 +36,9 @@
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="module-library" scope="TEST">
       <library name="Gradle: junit:junit:4.13">
+        <ANNOTATIONS>
+          <root url="jar://$USER_HOME$/.m2/repository/org/jetbrains/externalAnnotations/junit/junit/4.12-an1/junit-4.12-an1-annotations.zip!/" />
+        </ANNOTATIONS>
         <CLASSES>
           <root url="jar://C:/Programs/gradle_repository/caches/modules-2/files-2.1/junit/junit/4.13/e49ccba652b735c93bd6e6f59760d8254cf597dd/junit-4.13.jar!/" />
         </CLASSES>
