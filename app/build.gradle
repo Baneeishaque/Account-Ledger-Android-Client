@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
 
@@ -18,7 +19,7 @@ android {
 
     defaultConfig {
 
-        applicationId "ndk.personal.account_ledger"
+        applicationId "ndk.account_ledger.firestore"
 
         minSdkVersion 19
         targetSdkVersion 30
@@ -123,9 +124,14 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+
+    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+    // Declare the dependency for the Cloud Firestore library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-firestore'
 
     implementation 'org.apache.commons:commons-lang3:3.11'
 

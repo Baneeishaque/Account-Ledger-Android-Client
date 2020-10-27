@@ -15,8 +15,19 @@
         tools:replace="android:allowBackup"
         tools:targetApi="n">
 
+<!--        <activity-->
+<!--            android:name=".activities.SplashV2"-->
+<!--            android:theme="@style/AppTheme.NoActionBar">-->
+
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+
+<!--        </activity>-->
+
         <activity
-            android:name=".activities.SplashV2"
+            android:name=".activities.SplashV2FireStore"
             android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter>
