@@ -1,0 +1,20 @@
+http://account-ledger-server.herokuapp.com/http_API/select_Configuration.php
+
+%%%
+# Duration: 8081 ms
+# GET
+# http://account-ledger-server.herokuapp.com/http_API/select_Configuration.php
+
+
+# status 200
+
+@Connection: keep-alive
+@Date: Mon, 26 Oct 2020 23:11:24 GMT
+@Server: Apache
+@Transfer-Encoding: chunked
+@Content-Type: text/html; charset=UTF-8
+@Via: 1.1 vegur
+
+
+# length: [61]
+[{"system_status":"1","version_code":"1","version_name":"1"}]
