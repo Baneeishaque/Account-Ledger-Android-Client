@@ -17,17 +17,23 @@ variables:
   MAPPED_FTP_USER: $(FTP_USER)
   MAPPED_FTP_PWD: $(FTP_PWD)
   
-steps:
-- checkout: self
-  submodules: recursive
-  
+steps:  
 - task: Cache@2
   inputs:
     key: 'gradle | "$(Agent.OS)"'
     restoreKeys: gradle
     path: $(GRADLE_USER_HOME)
   displayName: Gradle Build Cache
-  
+
+- checkout: self
+  submodules: recursive
+
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '11'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+
 - task: Gradle@2
   displayName: 'Gradle assembleDebug : Android APK'
   inputs:
