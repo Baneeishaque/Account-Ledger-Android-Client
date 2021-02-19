@@ -19,7 +19,7 @@ variables:
   
 steps:
 - checkout: self
-  submodules: true
+  submodules: recursive
   
 - task: Cache@2
   inputs:
