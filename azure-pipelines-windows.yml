@@ -1,0 +1,47 @@
+# Android
+# Build your Android project with Gradle.
+# Add steps that test, sign, and distribute the APK, save build artifacts, and more:
+# https://docs.microsoft.com/vsts/pipelines/languages/android
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
+  repositoryName: Account-Ledger-Android-Client
+  # Secret Variables
+  MAPPED_FTP_HOST: $(FTP_HOST)
+  MAPPED_FTP_USER: $(FTP_USER)
+  MAPPED_FTP_PWD: $(FTP_PWD)
+  
+steps:
+- task: Cache@2
+  inputs:
+    key: 'gradle | "$(Agent.OS)"'
+    restoreKeys: gradle
+    path: $(GRADLE_USER_HOME)
+  displayName: Gradle Build Cache
+  
+- task: Gradle@2
+  displayName: 'Gradle assembleDebug : Android APK'
+  inputs:
+    gradleOptions: '-Xmx3072m'
+    tasks: 'assembleDebug'
+    
+- script: 'gradlew --stop'    
+  displayName: Stop Gradle Daemon
+  
+# Upload Executable APK File
+- task: FtpUpload@2
+  displayName: 'FTP Upload $(repositoryName) APK File'
+  inputs:
+    credentialsOption: inputs
+    serverUrl: 'ftp://$(MAPPED_FTP_HOST)'
+    username: $(MAPPED_FTP_USER)
+    password: $(MAPPED_FTP_PWD)
+    # TODO : Add option for file instead of directory
+    rootDirectory: 'app/build/outputs/apk'
+    remoteDirectory: '/public_html/files/$(repositoryName)/$(Build.SourceVersion)'
