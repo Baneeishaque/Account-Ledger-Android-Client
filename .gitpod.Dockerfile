@@ -1,16 +1,22 @@
 FROM gitpod/workspace-full
 
+ARG androidCommandLineToolsLinuxDownloadUrl="https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip"
+ARG androidCommandLineToolsLinuxInstallationFile="commandlinetools-linux-6858069_latest.zip"
+
 RUN cd $HOME \
- && wget https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip \
- && unzip commandlinetools-linux-6858069_latest.zip \
+ && wget $androidCommandLineToolsLinuxDownloadUrl \
+ && unzip $androidCommandLineToolsLinuxInstallationFile \
  && mkdir -p android-sdk-linux/cmdline-tools/latest \
  && mv cmdline-tools/* android-sdk-linux/cmdline-tools/latest/ \
  && rmdir cmdline-tools/ \
- && rm commandlinetools-linux-6858069_latest.zip
+ && rm $androidCommandLineToolsLinuxInstallationFile
 
 ENV JAVA_HOME="$HOME/.sdkman/candidates/java/current"
 
+ARG androidPlatformVersion="android-30"
+ARG androidBuildToolsVersion="30.0.3"
+
 RUN yes | android-sdk-linux/cmdline-tools/latest/bin/sdkmanager --licenses \
- && android-sdk-linux/cmdline-tools/latest/bin/sdkmanager platform-tools "platforms;android-29" "build-tools;30.0.2"
+ && android-sdk-linux/cmdline-tools/latest/bin/sdkmanager platform-tools "platforms;$androidPlatformVersion" "build-tools;$androidBuildToolsVersion"
 
 ENV ANDROID_SDK_ROOT="$HOME/android-sdk-linux"
