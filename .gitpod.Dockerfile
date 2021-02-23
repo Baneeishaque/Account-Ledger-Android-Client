@@ -17,6 +17,6 @@ ARG androidPlatformVersion="android-30"
 ARG androidBuildToolsVersion="30.0.3"
 
 RUN yes | android-sdk-linux/cmdline-tools/latest/bin/sdkmanager --licenses \
- && android-sdk-linux/cmdline-tools/latest/bin/sdkmanager platform-tools "platforms;$androidPlatformVersion" "build-tools;$androidBuildToolsVersion"
+ && android-sdk-linux/cmdline-tools/latest/bin/sdkmanager "platforms;$androidPlatformVersion" "build-tools;$androidBuildToolsVersion"
 
 ENV ANDROID_SDK_ROOT="$HOME/android-sdk-linux"
