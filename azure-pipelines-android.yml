@@ -40,7 +40,7 @@ steps:
     key: 'projectSpecificBuildFolder | "$(Agent.OS)"'
     restoreKeys: projectSpecificBuildFolder
     path: $(Build.SourcesDirectory)/build
-  displayName: Project Specific BuildFolder Cache
+  displayName: Project Specific Build Folder Cache
 
 - task: JavaToolInstaller@0
   inputs:
