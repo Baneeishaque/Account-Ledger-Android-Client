@@ -1,4 +1,6 @@
 # Account Ledger Android Client
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/Baneeishaque/Account-Ledger-Android-Client)
+
 ## App Center
 Master : [![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/master/badge)](https://appcenter.ms)  
 Develop : [![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/develop/badge)](https://appcenter.ms)  
