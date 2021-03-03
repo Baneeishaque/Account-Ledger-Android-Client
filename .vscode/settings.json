@@ -9,5 +9,6 @@
         "androidx.media:media",
         "androidx.legacy:legacy-support-v4",
         "androidx.annotation:annotation"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
