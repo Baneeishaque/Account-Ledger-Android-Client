@@ -20,3 +20,5 @@ RUN yes | android-sdk-linux/cmdline-tools/latest/bin/sdkmanager --licenses \
  && android-sdk-linux/cmdline-tools/latest/bin/sdkmanager "platforms;$androidPlatformVersion" "build-tools;$androidBuildToolsVersion"
 
 ENV ANDROID_SDK_ROOT="$HOME/android-sdk-linux"
+
+ENV PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
