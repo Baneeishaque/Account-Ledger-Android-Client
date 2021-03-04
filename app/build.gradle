@@ -26,7 +26,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-       multiDexEnabled true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -50,10 +50,6 @@ android {
             initWith release
             debuggable true
         }
-    }
-
-    lintOptions {
-        abortOnError false
     }
 
     // Specifies flavor dimension.
