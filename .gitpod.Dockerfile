@@ -29,7 +29,7 @@ RUN sudo apt-get update \
   zsh \
  && sudo rm -rf /var/lib/apt/lists/*
 
+RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+
 # set the zsh theme 
 ENV ZSH_THEME xiong-chiamiov-plus
-
-RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
