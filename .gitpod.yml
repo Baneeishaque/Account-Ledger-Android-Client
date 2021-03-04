@@ -9,13 +9,13 @@ github:
   prebuilds:
     # enable for all branches in this repo (defaults to false)
     branches: true
-    # enable for pull requests coming from forks (defaults to false)
+# enable for pull requests coming from forks (defaults to false)
     pullRequestsFromForks: true
-    # add a "Review in Gitpod" button as a comment to pull requests (defaults to false)
+# add a "Review in Gitpod" button as a comment to pull requests (defaults to false)
     addComment: true
-    # add a "Review in Gitpod" button to the pull request's description (defaults to false)
+# add a "Review in Gitpod" button to the pull request's description (defaults to false)
     addBadge: true
-    # add a label once the prebuild is ready to pull requests (defaults to false)
+# add a label once the prebuild is ready to pull requests (defaults to false)
     addLabel: true
 
 vscode:
@@ -25,6 +25,5 @@ vscode:
     - guillaumeisabelle.gixdeko-comments@1.0.115:9iBdt1vwBj1/tP0ccsdtvw==
     - owenfarrell.vscode-microtask@1.0.3:HKM415Hmq45XFIL1HeIdbQ==
     - naturalclar.workspace-settings-json@0.0.10:dO7CSbCBQvxSAZIgNH/jUQ==
-    - spmeesseman.vscode-taskexplorer@2.0.7:f70aq01ubO8QuuHMDf8xzg==
     - hcltechnologies.hclappscancodesweep@1.1.1:6wPfTUX8vM4o0vq4jfTdLA==
     - mathiasfrohlich.kotlin@1.7.1:2Uw0hH38NcpgInldjuwF3g==
