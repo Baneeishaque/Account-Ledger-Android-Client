@@ -20,11 +20,9 @@ github:
 vscode:
   extensions:
     - codezombiech.gitignore@0.6.0:oJP0UqwrXt2Qgt5QRm1BIQ==
-    - richardwillis.vscode-gradle@3.5.2:VFae5svx3iYQNF9uAubDFw==
     - maddog986.autodocblocker@1.0.2:ey8TGFw83C4aegTkW13AGA==
     - guillaumeisabelle.gixdeko-comments@1.0.115:9iBdt1vwBj1/tP0ccsdtvw==
     - owenfarrell.vscode-microtask@1.0.3:HKM415Hmq45XFIL1HeIdbQ==
-    - spmeesseman.vscode-taskexplorer@1.26.3:jWv97Y3IpQAHv2qzpsQ5+A==
     - naturalclar.workspace-settings-json@0.0.10:dO7CSbCBQvxSAZIgNH/jUQ==
     - spmeesseman.vscode-taskexplorer@2.0.7:f70aq01ubO8QuuHMDf8xzg==
     - hcltechnologies.hclappscancodesweep@1.1.1:6wPfTUX8vM4o0vq4jfTdLA==
