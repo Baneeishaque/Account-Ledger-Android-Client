@@ -7,15 +7,12 @@ include ':JavaUtils'
 include ':Utils7:common7'
 
 include ':Utils9:common9'
-include ':Resources:common'
-project(':Resources:common').projectDir=new File(settingsDir, './Utils9/Resources/common')
 include ':Utils3:common3'
 project(':Utils3:common3').projectDir=new File(settingsDir, './Utils9/Utils3/common3')
 
 include ':Utils17:common'
 
 include ':Utils_19:common19'
-//include ':Utils_19:common19_old'
 include ':Utils_19:tests19'
 include ':Utils_16:common16'
 project(':Utils_16:common16').projectDir = new File(settingsDir, './Utils_19/Utils_16/common16')
@@ -25,6 +22,9 @@ include ':Utils11:common11'
 project(':Utils11:common11').projectDir = new File(settingsDir, './Utils_19/Utils_16/Utils11/common11')
 include ':Utils_14:common14'
 project(':Utils_14:common14').projectDir = new File(settingsDir, './Utils_19/Utils_16/Utils_14/common14')
+include ':Resources:common'
+project(':Resources:common').projectDir=new File(settingsDir, './Utils_19/Utils_16/Utils_14/Resources/common')
+
 include ':Utils_1:common1'
 project(':Utils_1:common1').projectDir = new File(settingsDir, './Utils_19/Utils_16/Utils_14/Utils_1/common1')
 

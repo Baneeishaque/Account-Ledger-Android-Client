@@ -25,6 +25,7 @@ import ndk.personal.account_ledger.constants.Api;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android1.NetworkUtils;
+import ndk.utils_android14.NetworkUtils14;
 import ndk.utils_android16.Spinner_Utils;
 import ndk.utils_android16.ValidationUtils;
 import ndk.utils_android16.network_task.RestInsertTaskWrapper;
@@ -132,7 +133,7 @@ public class Insert_Account extends AppCompatActivity {
          */
 
 
-        NetworkUtils.FurtherActions further_actions = () -> {
+        NetworkUtils14.FurtherActions further_actions = () -> {
 
             Intent returnIntent = new Intent();
             setResult(RESULT_OK, returnIntent);

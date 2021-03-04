@@ -28,6 +28,7 @@ import ndk.personal.account_ledger.constants.Api;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android1.ActivityUtils1;
+import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android1.DateUtils;
 import ndk.utils_android16.Spinner_Utils;
 import ndk.utils_android16.ValidationUtils;
@@ -158,7 +159,7 @@ public class Insert_Transaction extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_item_view_from_account_pass_book) {
-            ActivityUtils1.startActivityForClassWithStringExtras(activity_context, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", ApiWrapper.selectUserTransactions()), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
+            ActivityUtils14.startActivityForClassWithStringExtras(activity_context, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", ApiWrapper.selectUserTransactions()), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
             return true;
         }
 
