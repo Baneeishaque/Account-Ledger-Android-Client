@@ -26,7 +26,7 @@ ENV PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
 # Install zsh
 RUN sudo apt-get update \
  && sudo apt-get install -y \
-  zsh
+  zsh \
  && sudo rm -rf /var/lib/apt/lists/*
 
 # set the zsh theme 
