@@ -22,3 +22,14 @@ RUN yes | android-sdk-linux/cmdline-tools/latest/bin/sdkmanager --licenses \
 ENV ANDROID_SDK_ROOT="$HOME/android-sdk-linux"
 
 ENV PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools"
+
+# Install zsh
+RUN sudo apt-get update \
+ && sudo apt-get install -y \
+  zsh
+ && sudo rm -rf /var/lib/apt/lists/*
+
+# set the zsh theme 
+ENV ZSH_THEME xiong-chiamiov-plus
+
+RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
