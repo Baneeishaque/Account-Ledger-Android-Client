@@ -1,14 +1,20 @@
 {
-    "npm.autoDetect": "off",
-    "android-dev-ext.codeCompletionLibraries": [
-        "androidx.appcompat:appcompat",
-        "androidx.constraintlayout:constraintlayout",
-        "androidx.cardview:cardview",
-        "androidx.swiperefreshlayout:swiperefreshlayout",
-        "androidx.legacy:legacy-support-core-utils",
-        "androidx.media:media",
-        "androidx.legacy:legacy-support-v4",
-        "androidx.annotation:annotation"
-    ],
-    "java.configuration.updateBuildConfiguration": "automatic"
+    // "npm.autoDetect": "off",
+    // "android-dev-ext.codeCompletionLibraries": [
+    //     "androidx.appcompat:appcompat",
+    //     "androidx.constraintlayout:constraintlayout",
+    //     "androidx.cardview:cardview",
+    //     "androidx.swiperefreshlayout:swiperefreshlayout",
+    //     "androidx.legacy:legacy-support-core-utils",
+    //     "androidx.media:media",
+    //     "androidx.legacy:legacy-support-v4",
+    //     "androidx.annotation:annotation"
+    // ],
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "configureCloudCredentials": [
+        {
+            "keyId": "e06ca87a-0bfa-2036-f127-5d974251e9f5",
+            "keySecret": "aIwQJPzZpAD0Q0E2CuxKSP2PWuQLP8zCv55dW+BmFrQ="
+        }
+    ]
 }
