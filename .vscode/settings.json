@@ -11,12 +11,12 @@
     //     "androidx.annotation:annotation"
     // ],
     "java.configuration.updateBuildConfiguration": "automatic",
-    "configureCloudCredentials": [
-        {
-            "keyId": "e06ca87a-0bfa-2036-f127-5d974251e9f5",
-            "keySecret": "aIwQJPzZpAD0Q0E2CuxKSP2PWuQLP8zCv55dW+BmFrQ="
-        }
-    ],
+    // "configureCloudCredentials": [
+    //     {
+    //         "keyId": "e06ca87a-0bfa-2036-f127-5d974251e9f5",
+    //         "keySecret": "aIwQJPzZpAD0Q0E2CuxKSP2PWuQLP8zCv55dW+BmFrQ="
+    //     }
+    // ],
     "java.autobuild.enabled": false,
     "java.codeGeneration.generateComments": true,
     "java.codeGeneration.hashCodeEquals.useInstanceof": true,
