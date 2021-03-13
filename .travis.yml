@@ -1,5 +1,5 @@
 language: android
-jdk: openjdk8
+jdk: openjdk11
 sudo: false
 
 env:
@@ -15,8 +15,8 @@ android:
   components:
     - platform-tools
     - tools
-    - build-tools-29.0.3
-    - android-29
+    - build-tools-30.0.3
+    - android-30
 
 before_cache:
     - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
