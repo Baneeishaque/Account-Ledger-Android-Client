@@ -6,9 +6,9 @@
 ## App Center
 
 Master :
-[![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/master/badge)](https://appcenter.ms)  
+[![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/master/badge)](https://appcenter.ms)
 Develop :
-[![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/develop/badge)](https://appcenter.ms)  
+[![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/develop/badge)](https://appcenter.ms)
 Feature/Firestore/Login :
 [![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/feature%2Ffirestore%2Flogin/badge)](https://appcenter.ms)
 
@@ -20,7 +20,7 @@ Android Apk :
 ## Azure DevOps
 
 Android Apk :
-[![Build Status](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_apis/build/status/Baneeishaque.Account-Ledger-Android-Client%20Apk?branchName=master)](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_build/latest?definitionId=32&branchName=master)  
+[![Build Status](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_apis/build/status/Baneeishaque.Account-Ledger-Android-Client%20Apk?branchName=master)](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_build/latest?definitionId=32&branchName=master)
 Gitpod Docker Image :
 [![Build Status](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_apis/build/status/Baneeishaque.Account-Ledger-Android-Client%20Gitpod%20Docker%20Image?branchName=master)](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_build/latest?definitionId=48&branchName=master)
 
