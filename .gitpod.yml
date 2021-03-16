@@ -5,6 +5,7 @@ tasks:
   # - init: gh auth login
   # - init: ln -s /workspace/Android-Studio-Gitpod/AndroidStudio4.1-Configuration ~/.config/Google/AndroidStudio4.1
   # - init: ln -s /workspace/Android-Studio-Gitpod/AndroidStudio4.1-Plugins ~/.local/share/Google/AndroidStudio4.1
+  # /usr/bin/start-vnc-session.sh
   # - command: cd /usr/local/android-studio/bin/ && ./studio.sh
   - prebuild: ./gradlew build
   - command: zsh
@@ -20,13 +21,13 @@ github:
   prebuilds:
     # enable for all branches in this repo (defaults to false)
     branches: true
-    # enable for pull requests coming from forks (defaults to false)
+# enable for pull requests coming from forks (defaults to false)
     pullRequestsFromForks: true
-    # add a "Review in Gitpod" button as a comment to pull requests (defaults to false)
+# add a "Review in Gitpod" button as a comment to pull requests (defaults to false)
     addComment: true
-    # add a "Review in Gitpod" button to the pull request's description (defaults to false)
+# add a "Review in Gitpod" button to the pull request's description (defaults to false)
     addBadge: true
-    # add a label once the prebuild is ready to pull requests (defaults to false)
+# add a label once the prebuild is ready to pull requests (defaults to false)
     addLabel: true
 
 vscode:
@@ -37,3 +38,10 @@ vscode:
     - owenfarrell.vscode-microtask@1.0.3:HKM415Hmq45XFIL1HeIdbQ==
     - naturalclar.workspace-settings-json@0.0.10:dO7CSbCBQvxSAZIgNH/jUQ==
     - mathiasfrohlich.kotlin@1.7.1:2Uw0hH38NcpgInldjuwF3g==
+    - vikas.code-navigation@0.2.0:1hbbiHl71QiJoOjQyzbewQ==
+    - haugerbr.project-tasks@1.0.0:z8G8HNMDr3s2qYGsbM5MrQ==
+    - mhutchie.git-graph@1.28.0:8NH1WgOknx0p2byYkmBcrQ==
+    - reduckted.vscode-gitweblinks@2.3.0:3DLrLpucmTzBIefwl1BMuQ==
+    - caponetto.vscode-diff-viewer@1.1.1:2Hu660FHk2lvXzT4oy03lw==
+    - ivanhofer.git-assistant@1.3.8:WW3vAnV4pUAg4B5REJ50/g==
+    - adelphes.android-dev-ext@1.3.2:Corsm6bGBL7RCzNWjvZqZw==
