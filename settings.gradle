@@ -4,30 +4,33 @@ include ':DebugUtils:common'
 
 include ':JavaUtils'
 
-include ':Utils7:common7'
+include ':Utils19:common19'
+include ':Utils19:tests19'
+
+include ':Utils17:common17'
+project(':Utils17:common17').projectDir = new File(settingsDir, './Utils19/Utils17/common17')
+
+include ':Utils16:common16'
+project(':Utils16:common16').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/common16')
+include ':Utils16:tests16'
+project(':Utils16:tests16').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/tests16')
+
+include ':Utils14:common14'
+project(':Utils14:common14').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/common14')
+include ':Resources:common'
+project(':Resources:common').projectDir=new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Resources/common')
+
+include ':Utils11:common11'
+project(':Utils11:common11').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Utils11/common11')
 
 include ':Utils9:common9'
+project(':Utils9:common9').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/common9')
+
+include ':Utils7:common7'
+project(':Utils7:common7').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/common7')
+
 include ':Utils3:common3'
-project(':Utils3:common3').projectDir=new File(settingsDir, './Utils9/Utils3/common3')
+project(':Utils3:common3').projectDir=new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/Utils4/Utils3/common3')
 
-include ':Utils17:common'
-
-include ':Utils_19:common19'
-include ':Utils_19:tests19'
-include ':Utils_16:common16'
-project(':Utils_16:common16').projectDir = new File(settingsDir, './Utils_19/Utils_16/common16')
-include ':Utils_16:tests16'
-project(':Utils_16:tests16').projectDir = new File(settingsDir, './Utils_19/Utils_16/tests16')
-include ':Utils11:common11'
-project(':Utils11:common11').projectDir = new File(settingsDir, './Utils_19/Utils_16/Utils11/common11')
-include ':Utils_14:common14'
-project(':Utils_14:common14').projectDir = new File(settingsDir, './Utils_19/Utils_16/Utils_14/common14')
-include ':Resources:common'
-project(':Resources:common').projectDir=new File(settingsDir, './Utils_19/Utils_16/Utils_14/Resources/common')
-
-include ':Utils_1:common1'
-project(':Utils_1:common1').projectDir = new File(settingsDir, './Utils_19/Utils_16/Utils_14/Utils_1/common1')
-
-
-
-
+include ':Utils1:common1'
+project(':Utils1:common1').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/Utils4/Utils3/Utils1/common1')
