@@ -48,7 +48,6 @@ import ndk.utils_android16.network_task.HttpApiSelectTaskWrapper;
 
 import static ndk.utils_android1.ButtonUtils.associateButtonWithTimeStamp;
 
-
 public class InsertTransactionV2 extends AppCompatActivity {
 
     Context currentApplicationContext, currentActivityContext = this;

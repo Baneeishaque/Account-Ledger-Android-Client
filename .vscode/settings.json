@@ -1,14 +1,38 @@
 {
-    "npm.autoDetect": "off",
-    "android-dev-ext.codeCompletionLibraries": [
-        "androidx.appcompat:appcompat",
-        "androidx.constraintlayout:constraintlayout",
-        "androidx.cardview:cardview",
-        "androidx.swiperefreshlayout:swiperefreshlayout",
-        "androidx.legacy:legacy-support-core-utils",
-        "androidx.media:media",
-        "androidx.legacy:legacy-support-v4",
-        "androidx.annotation:annotation"
-    ],
-    "java.configuration.updateBuildConfiguration": "automatic"
+    // "npm.autoDetect": "off",
+    // "android-dev-ext.codeCompletionLibraries": [
+    //     "androidx.appcompat:appcompat",
+    //     "androidx.constraintlayout:constraintlayout",
+    //     "androidx.cardview:cardview",
+    //     "androidx.swiperefreshlayout:swiperefreshlayout",
+    //     "androidx.legacy:legacy-support-core-utils",
+    //     "androidx.media:media",
+    //     "androidx.legacy:legacy-support-v4",
+    //     "androidx.annotation:annotation"
+    // ],
+    "java.configuration.updateBuildConfiguration": "automatic",
+    // "configureCloudCredentials": [
+    //     {
+    //         "keyId": "e06ca87a-0bfa-2036-f127-5d974251e9f5",
+    //         "keySecret": "aIwQJPzZpAD0Q0E2CuxKSP2PWuQLP8zCv55dW+BmFrQ="
+    //     }
+    // ],
+    "java.autobuild.enabled": false,
+    "java.codeGeneration.generateComments": true,
+    "java.codeGeneration.hashCodeEquals.useInstanceof": true,
+    "java.codeGeneration.hashCodeEquals.useJava7Objects": true,
+    "java.codeGeneration.toString.skipNullValues": false,
+    "java.codeGeneration.useBlocks": true,
+    "java.completion.guessMethodArguments": true,
+    "java.debug.settings.showStaticVariables": true,
+    "java.debug.settings.showQualifiedNames": true,
+    "java.dependency.packagePresentation": "hierarchical",
+    "java.dependency.showMembers": true,
+    "java.eclipse.downloadSources": false,
+    "java.implementationsCodeLens.enabled": true,
+    "java.import.maven.enabled": false,
+    "java.referencesCodeLens.enabled": true,
+    "java.saveActions.organizeImports": true,
+    "java.showBuildStatusOnStart.enabled": true,
+    "java.signatureHelp.enabled": true
 }
