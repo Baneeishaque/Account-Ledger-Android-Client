@@ -1,18 +1,9 @@
-[submodule "Utils_19"]
-	path = Utils_19
-	url = https://github.com/Baneeishaque/Android_Common_Utils_API_19.git
-[submodule "Utils17"]
-	path = Utils17
-	url = https://github.com/Baneeishaque/Android_Common_Utils_API_17.git
 [submodule "JavaUtils"]
 	path = JavaUtils
 	url = https://github.com/Baneeishaque/Java_Common_Utils.git
 [submodule "DebugUtils"]
 	path = DebugUtils
 	url = https://github.com/Baneeishaque/Android_Common_Debug_Utils.git
-[submodule "Utils7"]
-	path = Utils7
-	url = https://github.com/Baneeishaque/Android_Common_Utils7.git
-[submodule "Utils9"]
-	path = Utils9
-	url = https://github.com/Baneeishaque/Android_Common_Utils_9.git
+[submodule "Utils19"]
+	path = Utils19
+	url = https://github.com/Baneeishaque/Android-Common-Utils19.git
