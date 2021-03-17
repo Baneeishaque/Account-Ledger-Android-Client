@@ -5,16 +5,16 @@
     <mapping directory="$PROJECT_DIR$/DebugUtils" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/DebugUtils/Resources" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/JavaUtils" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils17" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils7" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils9" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils9/Resources" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils9/Utils1" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils9/Utils3" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils_19" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils_19/Utils_16" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils_19/Utils_16/Utils11" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils_19/Utils_16/Utils_14" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils_19/Utils_16/Utils_14/Utils_1" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils19" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils19/Utils17" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Resources" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Utils11" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Utils11/Utils9" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/Utils4" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/Utils4/Utils3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/Utils4/Utils3/Utils1" vcs="Git" />
   </component>
 </project>
