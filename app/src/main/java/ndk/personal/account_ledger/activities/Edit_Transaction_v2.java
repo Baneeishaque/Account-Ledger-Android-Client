@@ -21,12 +21,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 import ndk.personal.account_ledger.R;
-import ndk.personal.account_ledger.constants.Api;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
-import ndk.utils_android1.ActivityUtils1;
-import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android1.DateUtils;
+import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android14.RestGetTask;
 import ndk.utils_android16.ValidationUtils;
 import ndk.utils_android16.network_task.RestInsertTaskWrapper;
@@ -40,6 +38,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
     String to_selected_account_id, from_selected_account_id;
     boolean event_date_time_change_flag = false;
     boolean from_account_select_flag = false;
+    Context activityContext = this;
     private ProgressBar login_progress;
     private Button button_date;
     private Button button_to;
@@ -47,8 +46,6 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
     private EditText edit_amount;
     private Calendar calendar = Calendar.getInstance();
     private ScrollView login_form;
-
-    Context activityContext = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

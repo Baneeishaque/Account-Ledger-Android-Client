@@ -21,10 +21,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import ndk.personal.account_ledger.R;
-import ndk.personal.account_ledger.constants.Api;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
-import ndk.utils_android1.NetworkUtils;
 import ndk.utils_android14.NetworkUtils14;
 import ndk.utils_android16.Spinner_Utils;
 import ndk.utils_android16.ValidationUtils;

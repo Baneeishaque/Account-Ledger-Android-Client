@@ -1,57 +1,57 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "gradle assembleDebug",
-            "type": "shell",
-            "command": "${workspaceFolder}/gradlew",
-            "args": [
-                "assembleDebug"
-            ],
-            "windows": {
-                "command": "${workspaceFolder}/gradlew.bat",
-                "args": [
-                    "assembleDebug"
-                ]
-            },
-            "problemMatcher": [],
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": true
-            }
-        },
-        {
-            "label": "gradle assembleDevelopmentDebug",
-            "type": "shell",
-            "command": "${workspaceFolder}/gradlew",
-            "args": [
-                "assembleDevelopmentDebug"
-            ],
-            "windows": {
-                "command": "${workspaceFolder}/gradlew.bat",
-                "args": [
-                    "assembleDevelopmentDebug"
-                ]
-            },
-            "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "dedicated",
-                "showReuseMessage": false,
-                "clear": true
-            }
-        }
-    ]
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "gradle assembleDebug",
+      "type": "shell",
+      "command": "${workspaceFolder}/gradlew",
+      "args": [
+        "assembleDebug"
+      ],
+      "windows": {
+        "command": "${workspaceFolder}/gradlew.bat",
+        "args": [
+          "assembleDebug"
+        ]
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+    {
+      "label": "gradle assembleDevelopmentDebug",
+      "type": "shell",
+      "command": "${workspaceFolder}/gradlew",
+      "args": [
+        "assembleDevelopmentDebug"
+      ],
+      "windows": {
+        "command": "${workspaceFolder}/gradlew.bat",
+        "args": [
+          "assembleDevelopmentDebug"
+        ]
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    }
+  ]
 }

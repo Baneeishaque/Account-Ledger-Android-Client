@@ -2,9 +2,8 @@ package ndk.personal.account_ledger.activities;
 
 import android.os.Bundle;
 
-import ndk.utils_android14.ActivityWithContexts;
-
 import ndk.personal.account_ledger.R;
+import ndk.utils_android14.ActivityWithContexts;
 
 public class InsertTo2SplitTransactionV2Activity extends ActivityWithContexts {
 

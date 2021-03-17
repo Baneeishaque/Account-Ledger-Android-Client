@@ -2,9 +2,8 @@ package ndk.personal.account_ledger.activities;
 
 import androidx.core.util.Pair;
 
-import ndk.utils_android1.ActivityUtils1;
-import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android1.DateUtils;
+import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android19.PassBookBundle;
 
 public class ClickablePassBookBundle extends PassBookBundle {

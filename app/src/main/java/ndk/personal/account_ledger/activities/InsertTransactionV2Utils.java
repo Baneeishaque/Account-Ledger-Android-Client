@@ -10,11 +10,9 @@ import androidx.core.util.Pair;
 
 import java.util.Calendar;
 
-import ndk.personal.account_ledger.constants.Api;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android1.DateUtils;
-import ndk.utils_android1.NetworkUtils;
 import ndk.utils_android14.NetworkUtils14;
 import ndk.utils_android16.network_task.RestInsertTaskWrapper;
 

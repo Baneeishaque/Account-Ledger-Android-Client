@@ -22,14 +22,12 @@ import java.util.Date;
 import java.util.Objects;
 
 import ndk.personal.account_ledger.R;
-import ndk.personal.account_ledger.constants.Api;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
-import ndk.utils_android1.ActivityUtils1;
-import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android1.DateUtils;
-import ndk.utils_android14.RestGetTask;
 import ndk.utils_android1.ToastUtils;
+import ndk.utils_android14.ActivityUtils14;
+import ndk.utils_android14.RestGetTask;
 import ndk.utils_android16.ValidationUtils;
 
 import static ndk.utils_android1.ButtonUtils.associateButtonWithTimeStamp;

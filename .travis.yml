@@ -6,7 +6,7 @@ env:
   global:
     - "FTP_USER=root@alaneesgroup.com"
     - "FTP_PASSWORD=9895204814"
-    
+
 notifications:
   email:
     - baneeishaque@gmail.com
@@ -19,7 +19,7 @@ android:
     - android-30
 
 before_cache:
-    - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 
 cache:
   directories:      #Cache all dirs under .gradle folder
@@ -28,14 +28,14 @@ cache:
     - $HOME/.gradle/wrapper     #Cache the gradle
 
 before_install:
-    # - echo "org.gradle.parallel=true" >> ~/.gradle/gradle.properties
-    # - echo "org.gradle.configureondemand=true" >> ~/.gradle/gradle.properties
-    # - echo "org.gradle.jvmargs=-Xmx8192m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
-    
-    - chmod +x gradlew
+  # - echo "org.gradle.parallel=true" >> ~/.gradle/gradle.properties
+  # - echo "org.gradle.configureondemand=true" >> ~/.gradle/gradle.properties
+  # - echo "org.gradle.jvmargs=-Xmx8192m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
+
+  - chmod +x gradlew
 
 script: ./gradlew build
 
 after_success:
-    - ls -R "${TRAVIS_BUILD_DIR}/${DIR}app/build/outputs/apk/"
-    - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk,${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/release/app-release.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://192.254.233.216/travis_builds/account_ledger/
+  - ls -R "${TRAVIS_BUILD_DIR}/${DIR}app/build/outputs/apk/"
+  - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/debug/app-debug.apk,${TRAVIS_BUILD_DIR}/${DIR}/app/build/outputs/apk/release/app-release.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://192.254.233.216/travis_builds/account_ledger/

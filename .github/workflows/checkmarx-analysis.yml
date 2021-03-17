@@ -19,22 +19,22 @@ jobs:
 
     # Steps require - checkout code, run CxFlow Action, Upload SARIF report (optional)
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-      with:
-        submodules: recursive
-    # Runs the Checkmarx Scan leveraging the latest version of CxFlow - REFER to Action README for list of inputs
-    - name: Checkmarx CxFlow Action
-      uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.1
-      with:
-        project: GithubActionTest
-        team: '\CxServer\SP\Checkmarx'
-        checkmarx_url: ${{ secrets.CHECKMARX_URL }}
-        checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
-        checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
-        checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
-    # Upload the Report for CodeQL/Security Alerts
-    - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: cx.sarif
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      # Runs the Checkmarx Scan leveraging the latest version of CxFlow - REFER to Action README for list of inputs
+      - name: Checkmarx CxFlow Action
+        uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.1
+        with:
+          project: GithubActionTest
+          team: '\CxServer\SP\Checkmarx'
+          checkmarx_url: ${{ secrets.CHECKMARX_URL }}
+          checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
+          checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
+          checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
+      # Upload the Report for CodeQL/Security Alerts
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: cx.sarif

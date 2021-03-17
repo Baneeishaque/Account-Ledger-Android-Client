@@ -32,16 +32,14 @@ import java.util.Date;
 import java.util.Stack;
 
 import ndk.personal.account_ledger.R;
-import ndk.personal.account_ledger.constants.Api;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.personal.account_ledger.models.Account;
 import ndk.personal.account_ledger.utils.AccountLedgerLogUtils;
-import ndk.utils_android1.ActivityUtils1;
-import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android1.DateUtils;
-import ndk.utils_android14.RestGetTask;
 import ndk.utils_android1.ToastUtils;
+import ndk.utils_android14.ActivityUtils14;
+import ndk.utils_android14.RestGetTask;
 import ndk.utils_android16.ValidationUtils;
 import ndk.utils_android16.network_task.HttpApiSelectTask;
 import ndk.utils_android16.network_task.HttpApiSelectTaskWrapper;
@@ -50,29 +48,23 @@ import static ndk.utils_android1.ButtonUtils.associateButtonWithTimeStamp;
 
 public class InsertTransactionV2 extends AppCompatActivity {
 
+    public Calendar calendar = Calendar.getInstance();
+    public EditText editTextPurpose;
+    public EditText editTextAmount;
+    public ProgressBar progressBarView;
+    public ScrollView formView;
+    public Button buttonDate;
     Context currentApplicationContext, currentActivityContext = this;
     SharedPreferences sharedPreferences;
     String currentToAccountIdParent = "0", currentToAccountType, currentToAccountCommodityType, currentToAccountCommodityValue;
     String currentFromAccountIdParent, currentFromAccountType, currentFromAccountCommodityType, currentFromAccountCommodityValue, currentFromAccountTaxable, currentFromAccountPlaceHolder;
-
-    public Calendar calendar = Calendar.getInstance();
-
-    public EditText editTextPurpose;
-    public EditText editTextAmount;
-
-    public ProgressBar progressBarView;
-    public ScrollView formView;
-
     AutoCompleteTextView autoCompleteTextViewToAccount, autoCompleteTextViewFromAccount;
-
-    public Button buttonDate;
-
-    private Button buttonToAccount, buttonFromAccount;
-    private ArrayList<Account> accounts;
     String selectedFromAccountId;
     String selectedToAccountId = "0";
     Stack<Account> fromAccountsStack;
     Stack<Account> toAccountsStack;
+    private Button buttonToAccount, buttonFromAccount;
+    private ArrayList<Account> accounts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -3,7 +3,6 @@ package ndk.personal.account_ledger.activities;
 import androidx.core.util.Pair;
 
 import ndk.personal.account_ledger.BuildConfig;
-import ndk.personal.account_ledger.constants.Api;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android16.activities.LoginBundleActivity;

@@ -57,6 +57,7 @@
         <activity android:name=".activities.Edit_Transaction_v2" />
         <activity android:name=".activities.InsertTransactionV2TwoWay" />
         <activity android:name=".activities.InsertTo2SplitTransactionV2Activity" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

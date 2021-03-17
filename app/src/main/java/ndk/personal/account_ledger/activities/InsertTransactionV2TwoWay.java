@@ -3,9 +3,8 @@ package ndk.personal.account_ledger.activities;
 import android.view.Menu;
 
 import ndk.personal.account_ledger.R;
-import ndk.utils_android16.CalendarUtils;
-import ndk.utils_android1.NetworkUtils;
 import ndk.utils_android14.NetworkUtils14;
+import ndk.utils_android16.CalendarUtils;
 
 public class InsertTransactionV2TwoWay extends InsertTransactionV2 {
 
