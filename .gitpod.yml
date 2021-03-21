@@ -15,7 +15,7 @@ ports:
   - port: 5900
     onOpen: ignore
   - port: 6080
-    onOpen: ignore
+    onOpen: open-preview
 
 github:
   prebuilds:
