@@ -1,14 +1,14 @@
-image:
-  file: .gitpod.Dockerfile
+image: baneeishaque/gitpod-workspace-full-vnc-1366x768-tint2-pcmanfm-zsh-android-studio-gh-chrome
 
 tasks:
-  # - init: gh auth login
+  - prebuild: ./gradlew build
+  # - init: /usr/bin/start-vnc-session.sh
+  - command: zsh
   # - init: ln -s /workspace/Android-Studio-Gitpod/AndroidStudio4.1-Configuration ~/.config/Google/AndroidStudio4.1
   # - init: ln -s /workspace/Android-Studio-Gitpod/AndroidStudio4.1-Plugins ~/.local/share/Google/AndroidStudio4.1
-  # /usr/bin/start-vnc-session.sh
-  # - command: cd /usr/local/android-studio/bin/ && ./studio.sh
-  - prebuild: ./gradlew build
-  - command: zsh
+  - command: cd /usr/local/android-studio/bin/ && ./studio.sh
+  # - init: gh auth login
+  - command: google-chrome
 
 # Ports to expose on workspace startup
 ports:
