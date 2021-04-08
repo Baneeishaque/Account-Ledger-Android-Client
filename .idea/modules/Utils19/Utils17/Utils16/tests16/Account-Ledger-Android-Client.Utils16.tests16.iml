@@ -4,8 +4,8 @@
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
         <option name="GRADLE_PROJECT_PATH" value=":Utils16:tests16" />
-        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="4.1.2" />
-        <option name="LAST_KNOWN_AGP_VERSION" value="4.1.2" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="4.1.3" />
+        <option name="LAST_KNOWN_AGP_VERSION" value="4.1.3" />
       </configuration>
     </facet>
     <facet type="android" name="Android">
@@ -37,6 +37,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../../../../../../Utils19/Utils17/Utils16/tests16/build/generated/source/buildConfig/development/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../../../../Utils19/Utils17/Utils16/tests16/src/main/res" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../../../../../Utils19/Utils17/Utils16/tests16/build/generated/res/resValues/development/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../../Utils19/Utils17/Utils16/tests16/build/generated/ap_generated_sources/developmentDebugUnitTest/out" isTestSource="true" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../../../../../Utils19/Utils17/Utils16/tests16/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../../../../Utils19/Utils17/Utils16/tests16/build" />
     </content>

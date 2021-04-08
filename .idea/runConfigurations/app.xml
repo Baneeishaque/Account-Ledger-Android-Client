@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
-    <module name="Account_Ledger.app" />
+  <configuration default="false" name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <module name="Account-Ledger-Android-Client.app" />
     <option name="DEPLOY" value="true" />
     <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
     <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -17,7 +17,7 @@
     <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
     <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
     <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-    <option name="DEBUGGER_TYPE" value="Java" />
+    <option name="DEBUGGER_TYPE" value="Auto" />
     <Auto>
       <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
       <option name="SHOW_STATIC_VARS" value="true" />

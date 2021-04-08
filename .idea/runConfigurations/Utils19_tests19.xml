@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Utils_19.tests19" type="AndroidRunConfigurationType" factoryName="Android App" singleton="true">
-    <module name="Account_Ledger.Utils_19.tests19" />
+  <configuration default="false" name="Utils19.tests19" type="AndroidRunConfigurationType" factoryName="Android App">
+    <module name="Account-Ledger-Android-Client.Utils19.tests19" />
     <option name="DEPLOY" value="true" />
     <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
     <option name="DEPLOY_AS_INSTANT" value="false" />
