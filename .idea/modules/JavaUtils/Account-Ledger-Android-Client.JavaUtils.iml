@@ -27,7 +27,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: org.json:json:20201115" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: Account-Ledger-Android-Client.JavaUtils.JavaUtils-1.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.json:json:20210307" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:5.0.0-alpha.2" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio-jvm:2.9.0" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.4.21" level="project" />
