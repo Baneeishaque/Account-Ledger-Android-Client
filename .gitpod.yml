@@ -3,12 +3,12 @@ image: baneeishaque/gitpod-workspace-full-vnc-1366x768-tint2-pcmanfm-zsh-android
 tasks:
   - prebuild: ./gradlew build
   # - init: /usr/bin/start-vnc-session.sh
-  - command: zsh
+  # - command: zsh
   # - init: ln -s /workspace/Android-Studio-Gitpod/AndroidStudio4.1-Configuration ~/.config/Google/AndroidStudio4.1
   # - init: ln -s /workspace/Android-Studio-Gitpod/AndroidStudio4.1-Plugins ~/.local/share/Google/AndroidStudio4.1
-  - command: cd /usr/local/android-studio/bin/ && ./studio.sh
+  # - command: cd /usr/local/android-studio/bin/ && ./studio.sh
   # - init: gh auth login
-  - command: google-chrome
+  # - command: google-chrome
 
 # Ports to expose on workspace startup
 ports:
@@ -43,5 +43,5 @@ vscode:
     - mhutchie.git-graph@1.28.0:8NH1WgOknx0p2byYkmBcrQ==
     - reduckted.vscode-gitweblinks@2.3.0:3DLrLpucmTzBIefwl1BMuQ==
     - caponetto.vscode-diff-viewer@1.1.1:2Hu660FHk2lvXzT4oy03lw==
-    - ivanhofer.git-assistant@1.3.8:WW3vAnV4pUAg4B5REJ50/g==
+    # - ivanhofer.git-assistant@1.3.8:WW3vAnV4pUAg4B5REJ50/g==
     - adelphes.android-dev-ext@1.3.2:Corsm6bGBL7RCzNWjvZqZw==
