@@ -1,4 +1,4 @@
-image: baneeishaque/gitpod-full-tint2-pcmanfm-zsh-as-gh-chrome-idea-pycharm-anaconda3-2020-11-as-canary-1366x621
+image: baneeishaque/gp-vnc-tint2-pcmanfm-zsh-as-gh-chrome-idea-pycharm-anaconda3-hb-scrcpy-r-littler-packrat-jupyter-lfs
 
 tasks:
   - prebuild: ./gradlew build
@@ -18,6 +18,16 @@ ports:
     onOpen: ignore
   - port: 6080
     onOpen: open-preview
+  - port: 6942
+    onOpen: ignore    
+  - port: 6943
+    onOpen: ignore   
+  - port: 6944
+    onOpen: ignore   
+  - port: 5037
+    onOpen: ignore
+  - port: 8599
+    onOpen: ignore
 
 github:
   prebuilds:
