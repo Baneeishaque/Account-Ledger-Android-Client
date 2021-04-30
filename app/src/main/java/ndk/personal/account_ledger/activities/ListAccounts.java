@@ -37,6 +37,8 @@ public class ListAccounts extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode == RESULT_OK) {
 
             Intent returnIntent = new Intent();
@@ -44,8 +46,6 @@ public class ListAccounts extends AppCompatActivity {
             returnIntent.putExtra("SELECTED_ACCOUNT_ID", data.getStringExtra("SELECTED_ACCOUNT_ID"));
             setResult(RESULT_OK, returnIntent);
             finish();
-
         }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 }
