@@ -13,7 +13,8 @@ Feature/Firestore/Login : [![Build status](https://build.appcenter.ms/v0.1/apps/
 Android Apk : ![GitHub Actions](https://github.com/Baneeishaque/Account-Ledger-Android-Client/actions/workflows/android.yml/badge.svg)
 ## Azure DevOps
 Android Apk : [![Build Status](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_apis/build/status/Baneeishaque.Account-Ledger-Android-Client%20Apk?branchName=master)](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_build/latest?definitionId=32&branchName=master)  
-Gitpod Docker Image : [![Build Status](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_apis/build/status/Baneeishaque.Account-Ledger-Android-Client%20Gitpod%20Docker%20Image?branchName=master)](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_build/latest?definitionId=48&branchName=master)
+
+[//]: # "Gitpod Docker Image : [![Build Status](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_apis/build/status/Baneeishaque.Account-Ledger-Android-Client%20Gitpod%20Docker%20Image?branchName=master)](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_build/latest?definitionId=48&branchName=master)"
 
 ## Travis CI
 Master : ![Travis (.com)](https://img.shields.io/travis/com/Baneeishaque/Account-Ledger-Android-Client?logo=travis)
