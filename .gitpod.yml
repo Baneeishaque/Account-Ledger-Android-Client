@@ -11,7 +11,12 @@ tasks:
   # - command: gh auth login
   # - command: git clone --depth 1 "https://gitlab.com/baneeishaque/gitpod-workspace-full-vnc-1366x768-tint2-pcmanfm-zsh-android-studio-gh-chrome-private.git" chrome-config && export CHROME_CONFIG_HOME="`pwd`/chrome-config" && google-chrome --disable-dev-shm-usage
   # - command: anaconda-navigator
-
+  # - command: R
+  # - command: cd .. && jupyter-lab --ContentsManager.allow_hidden=True
+  # - command: git clone --depth 1 https://github.com/Baneeishaque/configuartions-private.git config && cd /usr/local/FileZilla3/bin/ && ./filezilla
+  # - command: cd /usr/local/Telegram/ && ./Telegram
+  # - command: cd /usr/local/MATLAB/R2021a/bin && ./matlab
+  
 # Ports to expose on workspace startup
 ports:
   - port: 5900
