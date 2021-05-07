@@ -60,7 +60,7 @@ steps:
     inputs:
       # TODO : Add build scan, upload build scan results
       gradleOptions: '-Xmx3072m'
-      tasks: 'assembleProductionDebug'
+      tasks: 'assembleProductionRelease'
       
   - script: 'gradlew --stop'
     displayName: Stop Gradle Daemon
