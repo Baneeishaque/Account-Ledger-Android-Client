@@ -49,12 +49,19 @@ steps:
       jdkSourceOption: 'PreInstalled'
 
   - task: Gradle@2
-    displayName: 'Gradle assembleDebug : Android APK'
+    displayName: 'Gradle assembleDevelopmentDebug : Android APK'
     inputs:
       # TODO : Add build scan, upload build scan results
       gradleOptions: '-Xmx3072m'
-      tasks: 'assembleDebug'
+      tasks: 'assembleDevelopmentDebug'
 
+  - task: Gradle@2
+    displayName: 'Gradle assembleProductionRelease : Android APK'
+    inputs:
+      # TODO : Add build scan, upload build scan results
+      gradleOptions: '-Xmx3072m'
+      tasks: 'assembleProductionDebug'
+      
   - script: 'gradlew --stop'
     displayName: Stop Gradle Daemon
 
