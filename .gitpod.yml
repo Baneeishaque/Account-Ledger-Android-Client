@@ -1,4 +1,4 @@
-image: baneeishaque/gp-vnc-tint2-pcman-zsh-as-gh-chrome-idea-pycharm-conda3-hb-scrcpy-r-jupyter-lfs-7z-zilla-gram-matlab
+image: baneeishaque/gp-vnc-pcman-zsh-as-gh-chrome-idea-pycharm-conda3-hb-scrcpy-r-lfs-zilla-gram-matlab-mysql-phpstorm
 
 tasks:
   - prebuild: ./gradlew build
@@ -16,6 +16,8 @@ tasks:
   # - command: git clone --depth 1 https://github.com/Baneeishaque/configuartions-private.git config && cd /usr/local/FileZilla3/bin/ && ./filezilla
   # - command: cd /usr/local/Telegram/ && ./Telegram
   # - command: cd /usr/local/MATLAB/R2021a/bin && ./matlab
+  # - command: mysql -uroot
+  # - command: git clone --depth 1 "https://github.com/Baneeishaque/gp-vnc-pcman-zsh-as-gh-chrome-idea-pycharm-conda3-hb-scrcpy-r-lfs-zilla-gram-matlab-mysql-phpstorm.git" phpstorm-config && mkdir -p ~/.config/JetBrains && ln -s `pwd`/phpstorm-config/PhpStorm2021.1-config ~/.config/JetBrains/PhpStorm2021.1 && mkdir -p ~/.local/share/JetBrains && ln -s `pwd`/phpstorm-config/PhpStorm2021.1-local ~/.local/share/JetBrains/PhpStorm2021.1 && cd /usr/local/PhpStorm-211.7142.44/bin/ && ./phpstorm.sh
   
 # Ports to expose on workspace startup
 ports:
