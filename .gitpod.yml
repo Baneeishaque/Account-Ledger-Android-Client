@@ -35,6 +35,8 @@ ports:
     onOpen: ignore
   - port: 8599
     onOpen: ignore
+  - port: 3306
+    onOpen: ignore
 
 github:
   prebuilds:
