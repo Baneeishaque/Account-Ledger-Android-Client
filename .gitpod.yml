@@ -1,4 +1,4 @@
-image: baneeishaque/gp-vnc-pcman-zsh-as-gh-chrome-idea-pycharm-conda3-hb-scrcpy-r-lfs-zilla-gram-matlab-mysql-phpstorm
+image: baneeishaque/gp-vnc-pcman-zsh-as-gh-chrome-idea-pycharm-conda3-hb-scrcpy-r-zilla-gram-matlab-mysql-storm-1366x621
 
 tasks:
   - prebuild: ./gradlew build
