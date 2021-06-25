@@ -4,78 +4,9 @@
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
         <option name="GRADLE_PROJECT_PATH" value=":Utils19:common19" />
-        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="4.1.3" />
-        <option name="LAST_KNOWN_AGP_VERSION" value="4.1.3" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="4.1.2" />
+        <option name="LAST_KNOWN_AGP_VERSION" value="7.1.0-alpha02" />
       </configuration>
     </facet>
-    <facet type="android" name="Android">
-      <configuration>
-        <option name="SELECTED_BUILD_VARIANT" value="developmentDebug" />
-        <option name="ASSEMBLE_TASK_NAME" value="assembleDevelopmentDebug" />
-        <option name="COMPILE_JAVA_TASK_NAME" value="compileDevelopmentDebugSources" />
-        <afterSyncTasks>
-          <task>generateDevelopmentDebugSources</task>
-        </afterSyncTasks>
-        <option name="ALLOW_USER_CONFIGURATION" value="false" />
-        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
-        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../../Utils19/common19/src/main/res;file://$MODULE_DIR$/../../../../Utils19/common19/src/development/res;file://$MODULE_DIR$/../../../../Utils19/common19/src/debug/res;file://$MODULE_DIR$/../../../../Utils19/common19/src/developmentDebug/res;file://$MODULE_DIR$/../../../../Utils19/common19/build/generated/res/rs/development/debug;file://$MODULE_DIR$/../../../../Utils19/common19/build/generated/res/resValues/development/debug" />
-        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/../../../../Utils19/common19/src/androidTest/res;file://$MODULE_DIR$/../../../../Utils19/common19/src/androidTestDevelopment/res;file://$MODULE_DIR$/../../../../Utils19/common19/src/androidTestDebug/res;file://$MODULE_DIR$/../../../../Utils19/common19/src/androidTestDevelopmentDebug/res;file://$MODULE_DIR$/../../../../Utils19/common19/build/generated/res/rs/androidTest/development/debug;file://$MODULE_DIR$/../../../../Utils19/common19/build/generated/res/resValues/androidTest/development/debug" />
-        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
-        <option name="PROJECT_TYPE" value="1" />
-      </configuration>
-    </facet>
-  </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
-    <output url="file://$MODULE_DIR$/../../../../Utils19/common19/build/intermediates/javac/developmentDebug/classes" />
-    <output-test url="file://$MODULE_DIR$/../../../../Utils19/common19/build/intermediates/javac/developmentDebugUnitTest/classes" />
-    <exclude-output />
-    <content url="file://$MODULE_DIR$/../../../../Utils19/common19">
-      <sourceFolder url="file://$MODULE_DIR$/../../../../Utils19/common19/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../../Utils19/common19/build/generated/ap_generated_sources/developmentDebug/out" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../../Utils19/common19/build/generated/source/buildConfig/development/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../../Utils19/common19/src/main/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../../Utils19/common19/build/generated/res/resValues/development/debug" type="java-resource" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../../Utils19/common19/.gradle" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../../Utils19/common19/build" />
-    </content>
-    <orderEntry type="jdk" jdkName="Android API 30 Platform" jdkType="Android SDK" />
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.13" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
-    <orderEntry type="library" name="Gradle: org.apache.http.legacy" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.1.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.1.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.1.0" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout-solver:2.0.4" level="project" />
-    <orderEntry type="library" name="Gradle: com.itextpdf:itext-pdfa:5.5.6-1" level="project" />
-    <orderEntry type="library" name="Gradle: com.itextpdf:itextpdf:5.5.6" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout:2.0.4@aar" level="project" />
-    <orderEntry type="library" name="Gradle: de.codecrafters.tableview:tableview:2.8.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.2.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.swiperefreshlayout:swiperefreshlayout:1.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat-resources:1.2.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.drawerlayout:drawerlayout:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.viewpager:viewpager:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.loader:loader:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.activity:activity:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable-animated:1.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable:1.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.customview:customview:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.core:core:1.3.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.cursoradapter:cursoradapter:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.interpolator:interpolator:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.versionedparcelable:versionedparcelable:1.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.1.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime:2.0.0@aar" level="project" />
-    <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils16.common16" />
-    <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils14.common14" />
-    <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils1.common1" />
   </component>
 </module>

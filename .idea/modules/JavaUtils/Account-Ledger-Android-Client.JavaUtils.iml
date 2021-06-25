@@ -10,54 +10,8 @@
     </facet>
     <facet type="java-gradle" name="Java-Gradle">
       <configuration>
-        <option name="BUILD_FOLDER_PATH" value="$MODULE_DIR$/../../../JavaUtils/build" />
         <option name="BUILDABLE" value="true" />
       </configuration>
     </facet>
-  </component>
-  <component name="NewModuleRootManager">
-    <output url="file://$MODULE_DIR$/../../../JavaUtils/build/classes/java/main" />
-    <output-test url="file://$MODULE_DIR$/../../../JavaUtils/build/classes/java/test" />
-    <exclude-output />
-    <content url="file://$MODULE_DIR$/../../../JavaUtils">
-      <sourceFolder url="file://$MODULE_DIR$/../../../JavaUtils/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../JavaUtils/src/test/java" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../JavaUtils/.gradle" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../JavaUtils/build" />
-    </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="Gradle: Account-Ledger-Android-Client.JavaUtils.JavaUtils-1.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.json:json:20210307" level="project" />
-    <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:5.0.0-alpha.2" level="project" />
-    <orderEntry type="library" name="Gradle: com.squareup.okio:okio-jvm:2.9.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.4.21" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.21" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
-    <orderEntry type="module-library" scope="TEST">
-      <library name="Gradle: junit:junit:4.13.2">
-        <ANNOTATIONS>
-          <root url="jar://$USER_HOME$/.m2/repository/org/jetbrains/externalAnnotations/junit/junit/4.12-an1/junit-4.12-an1-annotations.zip!/" />
-        </ANNOTATIONS>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../.gradle/caches/modules-2/files-2.1/junit/junit/4.13.2/8ac9e16d933b6fb43bc7f576336b8f4d7eb5ba12/junit-4.13.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../../.gradle/caches/modules-2/files-2.1/junit/junit/4.13.2/33987872a811fe4d4001ed494b07854822257f42/junit-4.13.2-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library name="Gradle: org.hamcrest:hamcrest-core:1.3">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../../.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/../../../../.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/1dc37250fbc78e23a65a67fbbaf71d2e9cbc3c0b/hamcrest-core-1.3-sources.jar!/" />
-        </SOURCES>
-      </library>
-    </orderEntry>
   </component>
 </module>

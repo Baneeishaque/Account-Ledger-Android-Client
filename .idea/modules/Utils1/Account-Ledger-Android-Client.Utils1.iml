@@ -10,18 +10,8 @@
     </facet>
     <facet type="java-gradle" name="Java-Gradle">
       <configuration>
-        <option name="BUILD_FOLDER_PATH" value="$MODULE_DIR$/../../../Utils1/build" />
         <option name="BUILDABLE" value="false" />
       </configuration>
     </facet>
-  </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$/../../../Utils1">
-      <excludeFolder url="file://$MODULE_DIR$/../../../Utils1/.gradle" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../Utils1/build" />
-    </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
