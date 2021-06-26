@@ -3,9 +3,9 @@ package ndk.personal.account_ledger.activities;
 import android.os.Bundle;
 
 import ndk.personal.account_ledger.R;
-import ndk.utils_android14.ActivityWithContexts;
+import ndk.utils_android14.ActivityWithContexts14;
 
-public class InsertTo2SplitTransactionV2Activity extends ActivityWithContexts {
+public class InsertTo2SplitTransactionV2Activity extends ActivityWithContexts14 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class InsertTo2SplitTransactionV2Activity extends ActivityWithContexts {
 
 //         // Define new day and month format
 //         try {
-//             dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils.normalStrippedDateFormat);
+//             dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils1.normalStrippedDateFormat);
 //         } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
 //             Log.e(ApplicationSpecification.APPLICATION_NAME, e.getMessage());
 //         }
@@ -70,7 +70,7 @@ public class InsertTo2SplitTransactionV2Activity extends ActivityWithContexts {
 
 //                 associate_button_with_time_stamp();
 
-//                 Log.d(ApplicationSpecification.APPLICATION_NAME, "Slected : " + DateUtils.dateToMysqlDateTimeString((calendar.getTime())));
+//                 Log.d(ApplicationSpecification.APPLICATION_NAME, "Slected : " + DateUtils1.dateToMysqlDateTimeString((calendar.getTime())));
 //                 // dateTimeFragment.setDefaultDateTime(calendar.getTime());
 //             }
 

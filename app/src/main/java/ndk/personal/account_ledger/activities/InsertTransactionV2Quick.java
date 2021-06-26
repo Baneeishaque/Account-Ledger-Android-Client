@@ -24,11 +24,11 @@ import java.util.Objects;
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
-import ndk.utils_android1.DateUtils;
-import ndk.utils_android1.ToastUtils;
+import ndk.utils_android1.DateUtils1;
+import ndk.utils_android1.ToastUtils1;
 import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android14.RestGetTask;
-import ndk.utils_android16.ValidationUtils;
+import ndk.utils_android16.ValidationUtils16;
 
 import static ndk.utils_android1.ButtonUtils.associateButtonWithTimeStamp;
 
@@ -96,7 +96,7 @@ public class InsertTransactionV2Quick extends AppCompatActivity {
         // Define new day and month format
         try {
 
-            dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils.normalStrippedDateFormat);
+            dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils1.normalStrippedDateFormat);
 
         } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
 
@@ -118,7 +118,7 @@ public class InsertTransactionV2Quick extends AppCompatActivity {
 
                 associateButtonWithTimeStamp(button_date, calendar);
 
-                Log.d(ApplicationSpecification.APPLICATION_NAME, "Selected : " + DateUtils.dateToMysqlDateTimeString((calendar.getTime())));
+                Log.d(ApplicationSpecification.APPLICATION_NAME, "Selected : " + DateUtils1.dateToMysqlDateTimeString((calendar.getTime())));
                 // dateTimeFragment.setDefaultDateTime(calendar.getTime());
             }
 
@@ -207,12 +207,12 @@ public class InsertTransactionV2Quick extends AppCompatActivity {
 
         if (to_selected_account_id.equals("0")) {
 
-            ToastUtils.longToast(this, "Please select To A/C...");
+            ToastUtils1.longToast(this, "Please select To A/C...");
 
         } else {
 
-            ValidationUtils.resetErrors(new EditText[]{edit_purpose, edit_amount});
-            Pair<Boolean, EditText> empty_check_result = ValidationUtils.emptyCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
+            ValidationUtils16.resetErrors(new EditText[]{edit_purpose, edit_amount});
+            Pair<Boolean, EditText> empty_check_result = ValidationUtils16.emptyCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
 
             if (empty_check_result.first) {
 
@@ -223,7 +223,7 @@ public class InsertTransactionV2Quick extends AppCompatActivity {
 
             } else {
 
-                Pair<Boolean, EditText> zero_check_result = ValidationUtils.zeroCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
+                Pair<Boolean, EditText> zero_check_result = ValidationUtils16.zeroCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
 
                 if (zero_check_result.first) {
 

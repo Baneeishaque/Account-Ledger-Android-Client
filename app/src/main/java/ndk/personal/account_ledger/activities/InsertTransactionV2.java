@@ -36,11 +36,11 @@ import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.personal.account_ledger.models.Account;
 import ndk.personal.account_ledger.utils.AccountLedgerLogUtils;
-import ndk.utils_android1.DateUtils;
-import ndk.utils_android1.ToastUtils;
+import ndk.utils_android1.DateUtils1;
+import ndk.utils_android1.ToastUtils1;
 import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android14.RestGetTask;
-import ndk.utils_android16.ValidationUtils;
+import ndk.utils_android16.ValidationUtils16;
 import ndk.utils_android16.network_task.HttpApiSelectTask;
 import ndk.utils_android16.network_task.HttpApiSelectTaskWrapper;
 
@@ -109,7 +109,7 @@ public class InsertTransactionV2 extends AppCompatActivity {
         // Define new day and month format
         try {
 
-            dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils.normalStrippedDateFormat);
+            dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils1.normalStrippedDateFormat);
 
         } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
 
@@ -131,7 +131,7 @@ public class InsertTransactionV2 extends AppCompatActivity {
 
                 associateButtonWithTimeStamp(buttonDate, calendar);
 
-                AccountLedgerLogUtils.debug("Selected : " + DateUtils.dateToMysqlDateTimeString((calendar.getTime())));
+                AccountLedgerLogUtils.debug("Selected : " + DateUtils1.dateToMysqlDateTimeString((calendar.getTime())));
             }
 
             @Override
@@ -268,7 +268,7 @@ public class InsertTransactionV2 extends AppCompatActivity {
 
                 ActivityUtils14.startActivityForClassWithStringExtras(currentActivityContext, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentToAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonToAccount.getText().toString().replace("To : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentToAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentToAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentToAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
             } else {
-                ToastUtils.longToast(getApplicationContext(), "Please Select a parent account...");
+                ToastUtils1.longToast(getApplicationContext(), "Please Select a parent account...");
             }
 
             return true;
@@ -285,7 +285,7 @@ public class InsertTransactionV2 extends AppCompatActivity {
 
                 ActivityUtils14.startActivityForClassWithStringExtras(currentActivityContext, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
             } else {
-                ToastUtils.longToast(getApplicationContext(), "Please Select a parent account...");
+                ToastUtils1.longToast(getApplicationContext(), "Please Select a parent account...");
             }
 
             return true;
@@ -569,12 +569,12 @@ public class InsertTransactionV2 extends AppCompatActivity {
 
         if (selectedToAccountId.equals("0")) {
 
-            ToastUtils.longToast(this, "Please select To A/C...");
+            ToastUtils1.longToast(this, "Please select To A/C...");
 
         } else {
 
-            ValidationUtils.resetErrors(new EditText[]{editTextPurpose, editTextAmount});
-            Pair<Boolean, EditText> emptyCheckResult = ValidationUtils.emptyCheckEditTextPairs(new Pair[]{new Pair<>(editTextAmount, "Please Enter Valid Amount..."), new Pair<>(editTextPurpose, "Please Enter Purpose...")});
+            ValidationUtils16.resetErrors(new EditText[]{editTextPurpose, editTextAmount});
+            Pair<Boolean, EditText> emptyCheckResult = ValidationUtils16.emptyCheckEditTextPairs(new Pair[]{new Pair<>(editTextAmount, "Please Enter Valid Amount..."), new Pair<>(editTextPurpose, "Please Enter Purpose...")});
 
             if (emptyCheckResult.first) {
 
@@ -585,7 +585,7 @@ public class InsertTransactionV2 extends AppCompatActivity {
 
             } else {
 
-                Pair<Boolean, EditText> zeroCheckResult = ValidationUtils.zeroCheckEditTextPairs(new Pair[]{new Pair<>(editTextAmount, "Please Enter Valid Amount...")});
+                Pair<Boolean, EditText> zeroCheckResult = ValidationUtils16.zeroCheckEditTextPairs(new Pair[]{new Pair<>(editTextAmount, "Please Enter Valid Amount...")});
 
                 if (zeroCheckResult.first) {
 

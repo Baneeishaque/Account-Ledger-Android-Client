@@ -25,7 +25,7 @@ import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android14.NetworkUtils14;
 import ndk.utils_android16.Spinner_Utils;
-import ndk.utils_android16.ValidationUtils;
+import ndk.utils_android16.ValidationUtils16;
 import ndk.utils_android16.network_task.RestInsertTaskWrapper;
 
 public class Insert_Account extends AppCompatActivity {
@@ -101,8 +101,8 @@ public class Insert_Account extends AppCompatActivity {
 
     private void attempt_insert_Account() {
 
-        ValidationUtils.resetErrors(new EditText[]{edit_name});
-        Pair<Boolean, EditText> empty_check_result = ValidationUtils.emptyCheckEditTextPairs(new Pair[]{new Pair<>(edit_name, "Please Enter A/C Name...")});
+        ValidationUtils16.resetErrors(new EditText[]{edit_name});
+        Pair<Boolean, EditText> empty_check_result = ValidationUtils16.emptyCheckEditTextPairs(new Pair[]{new Pair<>(edit_name, "Please Enter A/C Name...")});
 
         if (empty_check_result.first) {
             // There was an error; don't attempt login and focus the first form field with an error.

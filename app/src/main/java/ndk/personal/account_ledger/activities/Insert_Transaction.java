@@ -26,10 +26,10 @@ import java.util.Date;
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
-import ndk.utils_android1.DateUtils;
+import ndk.utils_android1.DateUtils1;
 import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android16.Spinner_Utils;
-import ndk.utils_android16.ValidationUtils;
+import ndk.utils_android16.ValidationUtils16;
 import ndk.utils_android16.network_task.RestInsertTaskWrapper;
 
 
@@ -89,7 +89,7 @@ public class Insert_Transaction extends AppCompatActivity {
 
         // Define new day and month format
         try {
-            dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils.normalStrippedDateFormat);
+            dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils1.normalStrippedDateFormat);
         } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
             Log.e(ApplicationSpecification.APPLICATION_NAME, e.getMessage());
         }
@@ -108,7 +108,7 @@ public class Insert_Transaction extends AppCompatActivity {
 
                 associate_button_with_time_stamp();
 
-                Log.d(ApplicationSpecification.APPLICATION_NAME, "Slected : " + DateUtils.dateToMysqlDateTimeString((calendar.getTime())));
+                Log.d(ApplicationSpecification.APPLICATION_NAME, "Slected : " + DateUtils1.dateToMysqlDateTimeString((calendar.getTime())));
                 // dateTimeFragment.setDefaultDateTime(calendar.getTime());
             }
 
@@ -138,7 +138,7 @@ public class Insert_Transaction extends AppCompatActivity {
     }
 
     private void associate_button_with_time_stamp() {
-        button_date.setText(DateUtils.normalDateTimeFormatWords.format(calendar.getTime()));
+        button_date.setText(DateUtils1.normalDateTimeFormatWords.format(calendar.getTime()));
     }
 
     @Override
@@ -165,8 +165,8 @@ public class Insert_Transaction extends AppCompatActivity {
     }
 
     private void attempt_insert_Transaction() {
-        ValidationUtils.resetErrors(new EditText[]{edit_purpose, edit_amount});
-        Pair<Boolean, EditText> empty_check_result = ValidationUtils.emptyCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
+        ValidationUtils16.resetErrors(new EditText[]{edit_purpose, edit_amount});
+        Pair<Boolean, EditText> empty_check_result = ValidationUtils16.emptyCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
 
         if (empty_check_result.first) {
             // There was an error; don't attempt login and focus the first form field with an error.
@@ -175,7 +175,7 @@ public class Insert_Transaction extends AppCompatActivity {
             }
         } else {
 
-            Pair<Boolean, EditText> zero_check_result = ValidationUtils.zeroCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
+            Pair<Boolean, EditText> zero_check_result = ValidationUtils16.zeroCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
             if (zero_check_result.first) {
                 if (zero_check_result.second != null) {
                     zero_check_result.second.requestFocus();
@@ -188,6 +188,6 @@ public class Insert_Transaction extends AppCompatActivity {
 
     private void execute_insert_Transaction_Task() {
 
-        RestInsertTaskWrapper.execute(this, ApiWrapper.insertTransaction(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", DateUtils.dateToMysqlDateTimeString(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, new EditText[]{edit_purpose, edit_amount});
+        RestInsertTaskWrapper.execute(this, ApiWrapper.insertTransaction(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", DateUtils1.dateToMysqlDateTimeString(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, new EditText[]{edit_purpose, edit_amount});
     }
 }

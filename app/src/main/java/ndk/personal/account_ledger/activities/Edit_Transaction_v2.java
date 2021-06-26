@@ -23,10 +23,10 @@ import java.util.Date;
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
-import ndk.utils_android1.DateUtils;
+import ndk.utils_android1.DateUtils1;
 import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android14.RestGetTask;
-import ndk.utils_android16.ValidationUtils;
+import ndk.utils_android16.ValidationUtils16;
 import ndk.utils_android16.network_task.RestInsertTaskWrapper;
 
 
@@ -101,7 +101,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
         // Define new day and month format
         try {
-            dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils.normalStrippedDateFormat);
+            dateTimeFragment.setSimpleDateMonthAndDayFormat(DateUtils1.normalStrippedDateFormat);
         } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
             Log.e(ApplicationSpecification.APPLICATION_NAME, e.getMessage());
         }
@@ -120,7 +120,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
                 associate_button_with_time_stamp();
 
-                Log.d(ApplicationSpecification.APPLICATION_NAME, "Selected : " + DateUtils.dateToMysqlDateTimeString((calendar.getTime())));
+                Log.d(ApplicationSpecification.APPLICATION_NAME, "Selected : " + DateUtils1.dateToMysqlDateTimeString((calendar.getTime())));
                 // dateTimeFragment.setDefaultDateTime(calendar.getTime());
             }
 
@@ -178,7 +178,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
     }
 
     private void associate_button_with_time_stamp() {
-        button_date.setText(DateUtils.normalDateTimeFormatWords.format(calendar.getTime()));
+        button_date.setText(DateUtils1.normalDateTimeFormatWords.format(calendar.getTime()));
         event_date_time_change_flag = true;
     }
 
@@ -212,8 +212,8 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
 
     private void attempt_insert_Transaction() {
 
-        ValidationUtils.resetErrors(new EditText[]{edit_purpose, edit_amount});
-        Pair<Boolean, EditText> empty_check_result = ValidationUtils.emptyCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
+        ValidationUtils16.resetErrors(new EditText[]{edit_purpose, edit_amount});
+        Pair<Boolean, EditText> empty_check_result = ValidationUtils16.emptyCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount..."), new Pair<>(edit_purpose, "Please Enter Purpose...")});
 
         if (empty_check_result.first) {
             // There was an error; don't attempt login and focus the first form field with an error.
@@ -222,7 +222,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
             }
         } else {
 
-            Pair<Boolean, EditText> zero_check_result = ValidationUtils.zeroCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
+            Pair<Boolean, EditText> zero_check_result = ValidationUtils16.zeroCheckEditTextPairs(new Pair[]{new Pair<>(edit_amount, "Please Enter Valid Amount...")});
             if (zero_check_result.first) {
                 if (zero_check_result.second != null) {
                     zero_check_result.second.requestFocus();
@@ -244,8 +244,8 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
         $id = filter_input(INPUT_POST, 'id');
          */
 
-        Log.d(ApplicationSpecification.APPLICATION_NAME, "MySQL Date Time String : " + DateUtils.normalDateTimeWordsStringToMysqlDateTimeString(getIntent().getStringExtra("EVENT_DATE_TIME"), ApplicationSpecification.APPLICATION_NAME));
+        Log.d(ApplicationSpecification.APPLICATION_NAME, "MySQL Date Time String : " + DateUtils1.normalDateTimeWordsStringToMysqlDateTimeString(getIntent().getStringExtra("EVENT_DATE_TIME"), ApplicationSpecification.APPLICATION_NAME));
 
-        RestInsertTaskWrapper.execute(this, ApiWrapper.updateTransactionV2(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", event_date_time_change_flag ? DateUtils.dateToMysqlDateTimeString(calendar.getTime()) : DateUtils.normalDateTimeWordsStringToMysqlDateTimeString(getIntent().getStringExtra("EVENT_DATE_TIME"), ApplicationSpecification.APPLICATION_NAME)), new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID")), new Pair<>("particulars", edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV2(), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
+        RestInsertTaskWrapper.execute(this, ApiWrapper.updateTransactionV2(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", event_date_time_change_flag ? DateUtils1.dateToMysqlDateTimeString(calendar.getTime()) : DateUtils1.normalDateTimeWordsStringToMysqlDateTimeString(getIntent().getStringExtra("EVENT_DATE_TIME"), ApplicationSpecification.APPLICATION_NAME)), new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID")), new Pair<>("particulars", edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV2(), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
     }
 }
