@@ -10,11 +10,5 @@
     <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Resources" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Utils11" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Utils11/Utils9" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/Utils4" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/Utils4/Utils3" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/Utils4/Utils3/Utils1" vcs="Git" />
   </component>
 </project>

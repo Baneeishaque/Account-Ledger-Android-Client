@@ -138,7 +138,7 @@ public class Insert_Transaction extends AppCompatActivity {
     }
 
     private void associate_button_with_time_stamp() {
-        button_date.setText(DateUtils1.normalDateTimeFormatWords.format(calendar.getTime()));
+        button_date.setText(DateUtils1.normalDateTimeInWordsFormat.format(calendar.getTime()));
     }
 
     @Override

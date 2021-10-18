@@ -23,7 +23,9 @@ import java.util.Date;
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
+import ndk.personal.account_ledger.utils.AccountLedgerExceptionUtils;
 import ndk.utils_android1.DateUtils1;
+import ndk.utils_android1.ErrorUtils;
 import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android14.RestGetTask;
 import ndk.utils_android16.ValidationUtils16;
@@ -178,7 +180,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
     }
 
     private void associate_button_with_time_stamp() {
-        button_date.setText(DateUtils1.normalDateTimeFormatWords.format(calendar.getTime()));
+        button_date.setText(DateUtils1.normalDateTimeInWordsFormat.format(calendar.getTime()));
         event_date_time_change_flag = true;
     }
 
@@ -244,8 +246,15 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
         $id = filter_input(INPUT_POST, 'id');
          */
 
-        Log.d(ApplicationSpecification.APPLICATION_NAME, "MySQL Date Time String : " + DateUtils1.normalDateTimeWordsStringToMysqlDateTimeString(getIntent().getStringExtra("EVENT_DATE_TIME"), ApplicationSpecification.APPLICATION_NAME));
+        org.javatuples.Pair<Boolean, String> normalDateTimeInWordsStringToMysqlDateTimeStringResult = DateUtils1.normalDateTimeInWordsStringToMysqlDateTimeString(getIntent().getStringExtra("EVENT_DATE_TIME"));
+        if (normalDateTimeInWordsStringToMysqlDateTimeStringResult.getValue0()) {
+            Log.d(ApplicationSpecification.APPLICATION_NAME, "MySQL Date Time String : " + normalDateTimeInWordsStringToMysqlDateTimeStringResult.getValue1());
 
-        RestInsertTaskWrapper.execute(this, ApiWrapper.updateTransactionV2(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", event_date_time_change_flag ? DateUtils1.dateToMysqlDateTimeString(calendar.getTime()) : DateUtils1.normalDateTimeWordsStringToMysqlDateTimeString(getIntent().getStringExtra("EVENT_DATE_TIME"), ApplicationSpecification.APPLICATION_NAME)), new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID")), new Pair<>("particulars", edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV2(), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
+            RestInsertTaskWrapper.execute(this, ApiWrapper.updateTransactionV2(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", event_date_time_change_flag ? DateUtils1.dateToMysqlDateTimeString(calendar.getTime()) : normalDateTimeInWordsStringToMysqlDateTimeStringResult.getValue1()), new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID")), new Pair<>("particulars", edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV2(), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
+        } else {
+            AccountLedgerExceptionUtils.handleExceptionOnGui(application_context, normalDateTimeInWordsStringToMysqlDateTimeStringResult.getValue1());
+
+        }
+
     }
 }

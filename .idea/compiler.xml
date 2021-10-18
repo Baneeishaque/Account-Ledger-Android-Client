@@ -2,6 +2,11 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
+      <module name="Account-Ledger-Android-Client.Utils1.common1" target="11" />
+      <module name="Account-Ledger-Android-Client.Utils11.common11" target="11" />
+      <module name="Account-Ledger-Android-Client.Utils3.common3" target="11" />
+      <module name="Account-Ledger-Android-Client.Utils7.common7" target="11" />
+      <module name="Account-Ledger-Android-Client.Utils9.common9" target="11" />
       <module name="Account_Ledger.app" target="11" />
       <module name="Account_Ledger.DebugUtils.common" target="11" />
       <module name="Account_Ledger.Resources.common" target="11" />
