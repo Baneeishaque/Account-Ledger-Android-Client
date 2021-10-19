@@ -25,7 +25,7 @@ jobs:
           submodules: recursive
       # Runs the Checkmarx Scan leveraging the latest version of CxFlow - REFER to Action README for list of inputs
       - name: Checkmarx CxFlow Action
-        uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.1
+        uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.2
         with:
           project: GithubActionTest
           team: '\CxServer\SP\Checkmarx'
