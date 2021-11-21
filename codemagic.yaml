@@ -1,0 +1,21 @@
+workflows:
+  build-debug-apk:
+    name: Build Debug Apk
+    instance_type: mac_mini
+    max_build_duration: 5
+    environment:
+      java: 11
+    cache:
+      cache_paths:
+        - $HOME/.gradle/caches
+    scripts:
+      - name: Set up local properties
+        script: echo "sdk.dir=$ANDROID_SDK_ROOT" > "$FCI_BUILD_DIR/local.properties"
+      - name: Build Android app
+        script: ./gradlew assembleDebug
+    artifacts:
+      - app/build/**/outputs/apk/**/*.apk
+    publishing:
+      email:
+        recipients:
+          - baneeishaque@hotmail.com
