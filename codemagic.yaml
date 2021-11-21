@@ -2,7 +2,7 @@ workflows:
   build-debug-apk:
     name: Build Debug Apk
     instance_type: mac_mini
-    max_build_duration: 5
+    max_build_duration: 8
     environment:
       java: 11
     cache:
