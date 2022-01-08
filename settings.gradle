@@ -19,18 +19,3 @@ include ':Utils14:common14'
 project(':Utils14:common14').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/common14')
 include ':Resources:common'
 project(':Resources:common').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Resources/common')
-
-//include ':Utils11:common11'
-//project(':Utils11:common11').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Utils11/common11')
-
-//include ':Utils9:common9'
-//project(':Utils9:common9').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/common9')
-
-//include ':Utils7:common7'
-//project(':Utils7:common7').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/common7')
-
-//include ':Utils3:common3'
-//project(':Utils3:common3').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/Utils4/Utils3/common3')
-
-//include ':Utils1:common1'
-//project(':Utils1:common1').projectDir = new File(settingsDir, './Utils19/Utils17/Utils16/Utils14/Utils11/Utils9/Utils7/Utils4/Utils3/Utils1/common1')
