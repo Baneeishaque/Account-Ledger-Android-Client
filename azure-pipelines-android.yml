@@ -13,9 +13,9 @@ variables:
   GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
   repositoryName: Account-Ledger-Android-Client
   # Secret Variables
-  MAPPED_FTP_HOST: $(FTP_HOST)
-  MAPPED_FTP_USER: $(FTP_USER)
-  MAPPED_FTP_PWD: $(FTP_PWD)
+#  MAPPED_FTP_HOST: $(FTP_HOST)
+#  MAPPED_FTP_USER: $(FTP_USER)
+#  MAPPED_FTP_PWD: $(FTP_PWD)
 
 steps:
   - checkout: self
@@ -78,4 +78,4 @@ steps:
 #      remoteDirectory: '/public_html/files/$(repositoryName)/$(Build.SourceVersion)'
 
   - publish: build/outputs/apk/production/release/app-production-release.apk
-    artifact: Account-Ledger-Android-Client
+    artifact: $(repositoryName)
