@@ -21,7 +21,7 @@ steps:
   - checkout: self
     submodules: recursive
 
-  - task: Cache@2
+  - task: Cache@2.198.0
     inputs:
       key: 'gradleUserHome | "$(Agent.OS)"'
       restoreKeys: gradleUserHome
@@ -55,7 +55,7 @@ steps:
 #      gradleOptions: '-Xmx3072m'
 #      tasks: 'assembleDevelopmentDebug'
 
-  - task: Gradle@2
+  - task: Gradle@2.208.0
     displayName: 'Gradle assembleProductionRelease : Android APK'
     inputs:
       # TODO : Add build scan, upload build scan results
