@@ -1,0 +1,69 @@
+trigger:
+  - master
+
+pool:
+  vmImage: "windows-latest"
+
+variables:
+  GRADLE_USER_HOME: $(Pipeline.Workspace)/.gradle
+  repositoryName: Account-Ledger-Android-Client
+  # Secret Variables
+#  MAPPED_FTP_HOST: $(FTP_HOST)
+#  MAPPED_FTP_USER: $(FTP_USER)
+#  MAPPED_FTP_PWD: $(FTP_PWD)
+
+steps:
+  - checkout: self
+    submodules: recursive
+
+  - task: Cache@2.198.0
+    inputs:
+      key: 'gradleUserHome | "$(Agent.OS)"'
+      restoreKeys: gradleUserHome
+      path: $(GRADLE_USER_HOME)
+    displayName: Gradle User Home Cache
+
+  #  - task: Cache@2
+  #    inputs:
+  #      key: 'projectSpecificGradleCache | "$(Agent.OS)"'
+  #      restoreKeys: projectSpecificGradleCache
+  #      path: $(Build.SourcesDirectory)/.gradle
+  #    displayName: Project Specific Gradle Cache
+
+  #  - task: Cache@2
+  #    inputs:
+  #      key: 'projectSpecificBuildFolder | "$(Agent.OS)"'
+  #      restoreKeys: projectSpecificBuildFolder
+  #      path: $(Build.SourcesDirectory)/build
+  #    displayName: Project Specific Build Folder Cache
+
+  - task: JavaToolInstaller@0.209.0
+    inputs:
+      versionSpec: "11"
+      jdkArchitectureOption: "x64"
+      jdkSourceOption: "PreInstalled"
+
+  - task: Gradle@3.208.0
+    displayName: "Gradle assembleDevelopmentDebug : Android APK"
+    inputs:
+      # TODO : Add build scan, upload build scan results
+      gradleOptions: "-Xmx3072m"
+      tasks: "assembleDevelopmentDebug"
+
+  - script: "gradlew --stop"
+    displayName: Stop Gradle Daemon
+
+  #  # Upload Executable APK File
+  #  - task: FtpUpload@2
+  #    displayName: 'FTP Upload $(repositoryName) APK File'
+  #    inputs:
+  #      credentialsOption: inputs
+  #      serverUrl: 'ftp://$(MAPPED_FTP_HOST)'
+  #      username: $(MAPPED_FTP_USER)
+  #      password: $(MAPPED_FTP_PWD)
+  #      # TODO : Add option for file instead of directory
+  #      rootDirectory: 'app/build/outputs/apk'
+  #      remoteDirectory: '/public_html/files/$(repositoryName)/$(Build.SourceVersion)'
+
+  - publish: app/build/outputs/apk/development/debug/app-development-debug.apk
+    artifact: $(repositoryName) Debug Apk
