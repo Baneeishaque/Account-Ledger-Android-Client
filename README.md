@@ -5,10 +5,11 @@
 <a href="https://github1s.com/Baneeishaque/Account-Ledger-Android-Client"><img src="https://raw.githubusercontent.com/conwnet/github1s/master/resources/images/logo.svg" alt="Github1s Editor" width="100" height="100"></a>  
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/Baneeishaque/Account-Ledger-Android-Client) 
 
-## App Center
+[//]: # "## App Center
 Master : [![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/master/badge)](https://appcenter.ms)  
 Develop : [![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/develop/badge)](https://appcenter.ms)  
-Feature/Firestore/Login : [![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/feature%2Ffirestore%2Flogin/badge)](https://appcenter.ms)
+Feature/Firestore/Login : [![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/feature%2Ffirestore%2Flogin/badge)](https://appcenter.ms)"
+
 ## Github Actions
 Android Apk : ![GitHub Actions](https://github.com/Baneeishaque/Account-Ledger-Android-Client/actions/workflows/android.yml/badge.svg)
 ## Azure DevOps
