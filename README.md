@@ -17,8 +17,8 @@ Android Apk : [![Build Status](https://dev.azure.com/banee-ishaque-k-github-work
 
 [//]: # "Gitpod Docker Image : [![Build Status](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_apis/build/status/Baneeishaque.Account-Ledger-Android-Client%20Gitpod%20Docker%20Image?branchName=master)](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_build/latest?definitionId=48&branchName=master)"
 
-## Travis CI
-Master : ![Travis (.com)](https://img.shields.io/travis/com/Baneeishaque/Account-Ledger-Android-Client?logo=travis)
+[//]: # "## Travis CI
+Master : ![Travis (.com)](https://img.shields.io/travis/com/Baneeishaque/Account-Ledger-Android-Client?logo=travis)"
 
 [//]: # "## Codeship
 Master : [![Codeship Status for Baneeishaque/Account_Ledger](https://app.codeship.com/projects/914c3a10-aff0-0137-2203-6ecab3236d72/status?branch=master)](https://app.codeship.com/projects/362766)"
