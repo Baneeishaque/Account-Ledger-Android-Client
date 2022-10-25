@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 android {
 
+    namespace 'ndk.personal.account_ledger'
+
     signingConfigs {
 
         release {
