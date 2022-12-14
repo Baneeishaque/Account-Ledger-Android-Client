@@ -139,7 +139,7 @@ public class InsertTransactionV2Via extends ActivityWithContexts14 {
 
         } catch (SwitchDateTimeDialogFragment.SimpleDateMonthAndDayFormatException e) {
 
-            AccountLedgerLogUtils.debug(e.getMessage());
+            AccountLedgerLogUtils.debug(e.getMessage(), currentApplicationContext);
         }
 
         // Set listener
@@ -157,7 +157,7 @@ public class InsertTransactionV2Via extends ActivityWithContexts14 {
 
                 associateButtonWithTimeStamp(buttonDate, calendar);
 
-                AccountLedgerLogUtils.debug("Selected : " + DateUtils1.dateToMysqlDateTimeString((calendar.getTime())));
+                AccountLedgerLogUtils.debug("Selected : " + DateUtils1.dateToMysqlDateTimeString((calendar.getTime())), currentApplicationContext);
             }
 
             @Override
@@ -187,8 +187,8 @@ public class InsertTransactionV2Via extends ActivityWithContexts14 {
 
         autoCompleteTextViewToAccount.setOnItemClickListener((parent, view, position, id) -> {
 
-            AccountLedgerLogUtils.debug("Item Position : " + position);
-            AccountLedgerLogUtils.debug("Selected Account : " + accounts.get(position).toString());
+            AccountLedgerLogUtils.debug("Item Position : " + position, currentApplicationContext);
+            AccountLedgerLogUtils.debug("Selected Account : " + accounts.get(position).toString(), currentApplicationContext);
 
             buttonToAccount.setText(buttonToAccount.getText().equals("To : ") ? buttonToAccount.getText() + autoCompleteTextViewToAccount.getText().toString() : buttonToAccount.getText() + " : " + autoCompleteTextViewToAccount.getText().toString());
             autoCompleteTextViewToAccount.setHint(autoCompleteTextViewToAccount.getText().toString() + " : ");
@@ -206,8 +206,8 @@ public class InsertTransactionV2Via extends ActivityWithContexts14 {
         });
         autoCompleteTextViewFromAccount.setOnItemClickListener((parent, view, position, id) -> {
 
-            AccountLedgerLogUtils.debug("Item Position : " + position);
-            AccountLedgerLogUtils.debug("Selected Account : " + accounts.get(position).toString());
+            AccountLedgerLogUtils.debug("Item Position : " + position, currentApplicationContext);
+            AccountLedgerLogUtils.debug("Selected Account : " + accounts.get(position).toString(), currentApplicationContext);
 
             buttonFromAccount.setText(buttonFromAccount.getText().equals("From : ") ? buttonFromAccount.getText() + autoCompleteTextViewFromAccount.getText().toString() : buttonFromAccount.getText() + " : " + autoCompleteTextViewFromAccount.getText().toString());
             autoCompleteTextViewFromAccount.setHint(autoCompleteTextViewFromAccount.getText().toString() + " : ");
@@ -333,8 +333,8 @@ public class InsertTransactionV2Via extends ActivityWithContexts14 {
 
         autoCompleteTextViewViaAccount.setOnItemClickListener((parent, view, position, id) -> {
 
-            AccountLedgerLogUtils.debug("Item Position : " + position);
-            AccountLedgerLogUtils.debug("Selected Account : " + accounts.get(position).toString());
+            AccountLedgerLogUtils.debug("Item Position : " + position, currentApplicationContext);
+            AccountLedgerLogUtils.debug("Selected Account : " + accounts.get(position).toString(), currentApplicationContext);
 
             buttonViaAccount.setText(buttonViaAccount.getText().equals(getString(R.string.via)) ? getString(R.string.via) + autoCompleteTextViewViaAccount.getText().toString() : buttonViaAccount.getText() + " : " + autoCompleteTextViewViaAccount.getText().toString());
             autoCompleteTextViewViaAccount.setHint(autoCompleteTextViewViaAccount.getText().toString() + " : ");

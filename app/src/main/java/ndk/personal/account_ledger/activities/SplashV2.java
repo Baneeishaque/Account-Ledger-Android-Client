@@ -2,9 +2,9 @@ package ndk.personal.account_ledger.activities;
 
 import androidx.core.util.Pair;
 
-import ndk.personal.account_ledger.BuildConfig;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
+import ndk.utils_android1.DebugUtils;
 import ndk.utils_android16.activities.LoginBundleActivity;
 import ndk.utils_android16.activities.SplashWithAutomatedUpdateActivity;
 import ndk.utils_android16.constants.IntentExtraFields;
@@ -44,6 +44,6 @@ public class SplashV2 extends SplashWithAutomatedUpdateActivity {
     @Override
     public boolean configure_SECURITY_FLAG() {
 
-        return !BuildConfig.DEBUG;
+        return !DebugUtils.isDebugBuild(getApplicationContext());
     }
 }
