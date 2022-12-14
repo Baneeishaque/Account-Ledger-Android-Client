@@ -5,7 +5,7 @@
       <configuration>
         <option name="GRADLE_PROJECT_PATH" value=":Utils17:common17" />
         <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="7.3.0-alpha02" />
-        <option name="LAST_KNOWN_AGP_VERSION" value="7.3.0-alpha02" />
+        <option name="LAST_KNOWN_AGP_VERSION" value="8.0.0-alpha09" />
       </configuration>
     </facet>
   </component>
