@@ -3,7 +3,7 @@ package ndk.personal.account_ledger.constants;
 public class ServerEndpoint {
 
     public static final String SERVER_ADDRESS = "https://nomadllerindia.com/account_ledger_server";
-    public static final String HTTP_API_FOLDER = "http_API";
+    public static final String HTTP_API_FOLDER = "http_api";
     public static final String FILE_EXTENSION = ".php";
 
     public static final String BUILD_FOLDER = "builds";
