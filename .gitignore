@@ -381,11 +381,8 @@ gradle-app.setting
 # End of https://www.gitignore.io/api/java,linux,macos,gradle,android,windows,intellij,notepadpp,androidstudio,visualstudiocode
 
 .idea/gradle.xml
-
 #.idea/vcs.xml
-
 .idea/codeStyles/Project.xml
-
 .idea/encodings.xml
-
 #.idea/misc.xml
+.idea/deploymentTargetDropDown.xml
