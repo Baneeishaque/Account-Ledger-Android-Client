@@ -19,20 +19,6 @@ steps:
       path: $(GRADLE_USER_HOME)
     displayName: Gradle User Home Cache
 
-  #  - task: Cache@2
-  #    inputs:
-  #      key: 'projectSpecificGradleCache | "$(Agent.OS)"'
-  #      restoreKeys: projectSpecificGradleCache
-  #      path: $(Build.SourcesDirectory)/.gradle
-  #    displayName: Project Specific Gradle Cache
-
-  #  - task: Cache@2
-  #    inputs:
-  #      key: 'projectSpecificBuildFolder | "$(Agent.OS)"'
-  #      restoreKeys: projectSpecificBuildFolder
-  #      path: $(Build.SourcesDirectory)/build
-  #    displayName: Project Specific Build Folder Cache
-
   - task: JavaToolInstaller@0.209.0
     inputs:
       versionSpec: "11"
