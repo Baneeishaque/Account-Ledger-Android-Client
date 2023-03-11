@@ -10,8 +10,8 @@ Master : [![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c
 Develop : [![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/develop/badge)](https://appcenter.ms)  
 Feature/Firestore/Login : [![Build status](https://build.appcenter.ms/v0.1/apps/c1ece978-9386-48c8-89af-6f206fae606d/branches/feature%2Ffirestore%2Flogin/badge)](https://appcenter.ms)"
 
-## Github Actions
-Android Apk : ![GitHub Actions](https://github.com/Baneeishaque/Account-Ledger-Android-Client/actions/workflows/android.yml/badge.svg)
+[//]: # "## Github Actions
+Android Apk : ![GitHub Actions](https://github.com/Baneeishaque/Account-Ledger-Android-Client/actions/workflows/android.yml/badge.svg)"
 
 ## Azure DevOps
 Release Apk : [![Build Status](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_apis/build/status/Baneeishaque.Account-Ledger-Android-Client%20Release%20Apk?branchName=master)](https://dev.azure.com/banee-ishaque-k-github-works/Account-Ledger-Android-Client/_build/latest?definitionId=94&branchName=master)  
