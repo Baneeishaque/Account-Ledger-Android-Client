@@ -140,7 +140,7 @@ obj/
 #.idea/compiler.xml
 .idea/copyright/profiles_settings.xml
 # .idea/encodings.xml
-# .idea/misc.xml
+.idea/misc.xml
 .idea/scopes/scope_settings.xml
 # .idea/vcs.xml
 .idea/jsLibraryMappings.xml
@@ -384,5 +384,5 @@ gradle-app.setting
 #.idea/vcs.xml
 .idea/codeStyles/Project.xml
 .idea/encodings.xml
-#.idea/misc.xml
 .idea/deploymentTargetDropDown.xml
+.idea/kotlinc.xml
