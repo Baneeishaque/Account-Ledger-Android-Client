@@ -15,8 +15,7 @@ android {
         }
     }
 
-    compileSdkVersion 32
-    buildToolsVersion '30.0.3'
+    compileSdk 33
 
     defaultConfig {
 
