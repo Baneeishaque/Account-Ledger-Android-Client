@@ -13,7 +13,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup"
-        tools:targetApi="n">
+        tools:targetApi="s"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/full_backup_content">
 
         <activity
             android:name=".activities.SplashV2"
