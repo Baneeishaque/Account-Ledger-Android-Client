@@ -7,3 +7,6 @@
 [submodule "Utils19"]
 	path = Utils19
 	url = https://github.com/Baneeishaque/Android-Common-Utils19.git
+[submodule "api"]
+	path = api
+	url = https://github.com/Baneeishaque/Account-Ledger-Server-Api.git
