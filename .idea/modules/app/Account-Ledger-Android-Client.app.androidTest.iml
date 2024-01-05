@@ -32,7 +32,7 @@
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils14.common14.main" scope="TEST" />
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Resources.common.main" scope="TEST" />
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils16.common16.main" scope="TEST" />
-    <orderEntry type="module" module-name="Utils19.Account-Ledger-Android-Client.Utils17.common17.main~1" scope="TEST" />
+    <orderEntry type="module" module-name="Utils19.Account-Ledger-Android-Client.Utils17.common17.main" scope="TEST" />
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils19.common19.main" scope="TEST" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.multidex:multidex-instrumentation:2.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.multidex:multidex:2.0.1@aar" level="project" />
