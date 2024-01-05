@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8">
+    <bytecodeTargetLevel target="17">
+      <module name="Account-Ledger-Android-Client.JavaUtils" target="20" />
+      <module name="Account-Ledger-Android-Client.JavaUtils.main" target="20" />
+      <module name="Account-Ledger-Android-Client.JavaUtils.test" target="20" />
       <module name="Account-Ledger-Android-Client.Utils1.common1" target="11" />
       <module name="Account-Ledger-Android-Client.Utils11.common11" target="11" />
       <module name="Account-Ledger-Android-Client.Utils3.common3" target="11" />
