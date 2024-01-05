@@ -2,11 +2,16 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="17">
-      <module name="Account-Ledger-Android-Client.JavaUtils" target="20" />
-      <module name="Account-Ledger-Android-Client.JavaUtils.main" target="20" />
-      <module name="Account-Ledger-Android-Client.JavaUtils.test" target="20" />
+      <module name="Account-Ledger-Android-Client.app" target="21" />
+      <module name="Account-Ledger-Android-Client.DebugUtils.common" target="21" />
+      <module name="Account-Ledger-Android-Client.Resources.common" target="21" />
       <module name="Account-Ledger-Android-Client.Utils1.common1" target="11" />
       <module name="Account-Ledger-Android-Client.Utils11.common11" target="11" />
+      <module name="Account-Ledger-Android-Client.Utils14.common14" target="21" />
+      <module name="Account-Ledger-Android-Client.Utils16.common16" target="21" />
+      <module name="Account-Ledger-Android-Client.Utils16.tests16" target="21" />
+      <module name="Account-Ledger-Android-Client.Utils19.common19" target="21" />
+      <module name="Account-Ledger-Android-Client.Utils19.tests19" target="21" />
       <module name="Account-Ledger-Android-Client.Utils3.common3" target="11" />
       <module name="Account-Ledger-Android-Client.Utils7.common7" target="11" />
       <module name="Account-Ledger-Android-Client.Utils9.common9" target="11" />
@@ -24,6 +29,7 @@
       <module name="Account_Ledger.Utils_16.tests16" target="11" />
       <module name="Account_Ledger.Utils_19.common19" target="11" />
       <module name="Account_Ledger.Utils_19.tests19" target="11" />
+      <module name="Utils19.Account-Ledger-Android-Client.Utils17.common17" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>
