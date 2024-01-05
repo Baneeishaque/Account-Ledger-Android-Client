@@ -45,9 +45,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Account-Ledger-Android-Client.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Account-Ledger-Android-Client.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Account-Ledger-Android-Client.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Account-Ledger-Android-Client.app.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.androidTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.androidTest~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.main~1.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.main~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.unitTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/Utils19/Utils17/common17/Utils19.Account-Ledger-Android-Client.Utils17.common17.unitTest~1.iml" />
     </modules>
   </component>
 </project>

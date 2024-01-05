@@ -36,7 +36,7 @@
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils14.common14.main" />
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Resources.common.main" />
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils16.common16.main" />
-    <orderEntry type="module" module-name="Utils19.Account-Ledger-Android-Client.Utils17.common17.main" />
+    <orderEntry type="module" module-name="Utils19.Account-Ledger-Android-Client.Utils17.common17.main~1" />
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils19.common19.main" />
     <orderEntry type="library" name="Gradle: androidx.multidex:multidex:2.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.6.1@aar" level="project" />
