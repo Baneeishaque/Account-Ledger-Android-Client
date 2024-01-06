@@ -6,8 +6,9 @@ import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android1.DebugUtils;
 import ndk.utils_android16.activities.LoginBundleActivity;
-import ndk.utils_android16.activities.SplashWithAutomatedUpdateActivity;
+import ndk.utils_android19.activities.SplashWithAutomatedUpdateActivity;
 import ndk.utils_android16.constants.IntentExtraFields;
+import ndk.utils_android19.models.PairOfStringsModel;
 
 import static ndk.personal.account_ledger.constants.ServerEndpoint.UPDATED_APK_URL;
 
@@ -29,14 +30,14 @@ public class Splash extends SplashWithAutomatedUpdateActivity {
     }
 
     @Override
-    public Class configure_NEXT_ACTIVITY_CLASS() {
+    public Class<LoginBundleActivity> configureNextActivityClass() {
         return LoginBundleActivity.class;
     }
 
     @Override
-    public Pair[] configure_NEXT_ACTIVITY_CLASS_EXTRAS() {
+    public PairOfStringsModel[] configureNextActivityClassExtras() {
 
-        return new Pair[]{new Pair<>(IntentExtraFields.APPLICATION_NAME, ApplicationSpecification.APPLICATION_NAME), new Pair<>(IntentExtraFields.NEXT_ACTIVITY_CLASS, Insert_Transaction.class.getName()), new Pair<>(IntentExtraFields.SELECT_USER_URL, ApiWrapper.selectUser())};
+        return new PairOfStringsModel[]{new PairOfStringsModel(IntentExtraFields.APPLICATION_NAME, ApplicationSpecification.APPLICATION_NAME), new PairOfStringsModel(IntentExtraFields.NEXT_ACTIVITY_CLASS, Insert_Transaction.class.getName()), new PairOfStringsModel(IntentExtraFields.SELECT_USER_URL, ApiWrapper.selectUser())};
     }
 
     @Override
