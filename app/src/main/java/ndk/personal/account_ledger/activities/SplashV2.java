@@ -5,7 +5,7 @@ import static ndk.personal.account_ledger.constants.ServerEndpoint.UPDATED_APK_U
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android1.DebugUtils;
-import ndk.utils_android16.activities.LoginBundleActivity;
+import ndk.utils_android19.activities.LoginBundleActivity;
 import ndk.utils_android16.constants.IntentExtraFields;
 import ndk.utils_android19.activities.SplashWithAutomatedUpdateActivity;
 import ndk.utils_android19.models.PairOfStringsModel;

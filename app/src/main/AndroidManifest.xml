@@ -33,7 +33,7 @@
             android:label="Wallet Ledger"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name="ndk.utils_android16.activities.LoginBundleActivity" />
+        <activity android:name="ndk.utils_android19.activities.LoginBundleActivity" />
 
         <activity
             android:name=".activities.Insert_Transaction"
