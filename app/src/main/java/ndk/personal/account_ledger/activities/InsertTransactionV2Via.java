@@ -38,7 +38,6 @@ import ndk.personal.account_ledger.utils.AccountLedgerErrorUtils;
 import ndk.personal.account_ledger.utils.AccountLedgerLogUtils;
 import ndk.utils_android1.DateUtils1;
 import ndk.utils_android1.ToastUtils1;
-import ndk.utils_android14.ActivityUtils14;
 import ndk.utils_android14.ActivityWithContexts14;
 import ndk.utils_android14.NetworkUtils14;
 import ndk.utils_android14.RestGetTask;
@@ -46,6 +45,7 @@ import ndk.utils_android16.CalendarUtils;
 import ndk.utils_android16.ValidationUtils16;
 import ndk.utils_android16.network_task.HttpApiSelectTask;
 import ndk.utils_android16.network_task.HttpApiSelectTaskWrapper;
+import ndk.utils_android19.ActivityUtils19;
 
 import static ndk.utils_android1.ButtonUtils.associateButtonWithTimeStamp;
 
@@ -285,7 +285,7 @@ public class InsertTransactionV2Via extends ActivityWithContexts14 {
 
             if (!currentToAccountIdParent.equals("0")) {
 
-                ActivityUtils14.startActivityForClassWithStringExtras(currentActivityContext, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentToAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonToAccount.getText().toString().replace("To : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentToAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentToAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentToAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
+                ActivityUtils19.startActivityForClassWithStringExtras(currentActivityContext, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentToAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonToAccount.getText().toString().replace("To : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentToAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentToAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentToAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
 
             } else {
 
@@ -299,7 +299,7 @@ public class InsertTransactionV2Via extends ActivityWithContexts14 {
 
             if (!currentFromAccountIdParent.equals("0")) {
 
-                ActivityUtils14.startActivityForClassWithStringExtras(currentActivityContext, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
+                ActivityUtils19.startActivityForClassWithStringExtras(currentActivityContext, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
 
             } else {
 
@@ -382,7 +382,7 @@ public class InsertTransactionV2Via extends ActivityWithContexts14 {
 
             if (!currentViaAccountIdParent.equals("0")) {
 
-                ActivityUtils14.startActivityForClassWithStringExtras(currentActivityContext, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentViaAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonViaAccount.getText().toString().replace(getString(R.string.via), "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentViaAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentViaAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentViaAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
+                ActivityUtils19.startActivityForClassWithStringExtras(currentActivityContext, Insert_Account.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentViaAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonViaAccount.getText().toString().replace(getString(R.string.via), "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentViaAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentViaAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentViaAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", "F"), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", "F"), new Pair<>("ACTIVITY_FOR_RESULT_FLAG", String.valueOf(true))});
 
             } else {
 
@@ -693,7 +693,7 @@ public class InsertTransactionV2Via extends ActivityWithContexts14 {
 
         if (id == R.id.menu_item_view_from_account_pass_book) {
 
-            ActivityUtils14.startActivityForClassWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV2(), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
+            ActivityUtils19.startActivityForClassWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV2(), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
         }
         return super.onOptionsItemSelected(item);
     }

@@ -14,7 +14,7 @@ import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.utils_android1.DateUtils1;
 import ndk.utils_android14.NetworkUtils14;
-import ndk.utils_android16.network_task.RestInsertTaskWrapper;
+import ndk.utils_android19.network_task.RestInsertTaskWrapper;
 
 import static ndk.utils_android1.ButtonUtils.associateButtonWithIncrementedTimeStampOfFiveMinutes;
 
