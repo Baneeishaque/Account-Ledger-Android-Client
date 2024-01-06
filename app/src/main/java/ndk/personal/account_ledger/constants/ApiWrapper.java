@@ -12,56 +12,56 @@ public class ApiWrapper {
 
     public static String deleteTransactionV2() {
 
-        return getHttpApi(Api.deleteTransactionV2);
+        return getHttpApi(ApiMethods.API_METHOD_DELETE_TRANSACTION_V_2);
     }
 
     public static String selectUserTransactionsV2() {
 
-        return getHttpApi(Api.selectUserTransactionsV2);
+        return getHttpApi(ApiMethods.API_METHOD_SELECT_USER_TRANSACTIONS_V_2);
     }
 
     public static String updateTransactionV2() {
 
-        return getHttpApi(Api.updateTransactionV2);
+        return getHttpApi(ApiMethods.API_METHOD_UPDATE_TRANSACTION_V_2);
     }
 
     public static String selectUserAccounts() {
 
-        return getHttpApi(Api.selectUserAccounts);
+        return getHttpApi(ApiMethods.API_METHOD_SELECT_USER_ACCOUNTS);
     }
 
     public static String insertTransactionV2() {
 
-        return getHttpApi(Api.insertTransactionV2);
+        return getHttpApi(ApiMethods.API_METHOD_INSERT_TRANSACTION_V_2);
     }
 
     public static String insertAccount() {
 
-        return getHttpApi(Api.insertAccount);
+        return getHttpApi(ApiMethods.API_METHOD_INSERT_ACCOUNT);
     }
 
     public static String selectUserTransactions() {
 
-        return getHttpApi(Api.selectUserTransactions);
+        return getHttpApi(ApiMethods.API_METHOD_SELECT_USER_TRANSACTIONS);
     }
 
     public static String insertTransaction() {
 
-        return getHttpApi(Api.insertTransaction);
+        return getHttpApi(ApiMethods.API_METHOD_INSERT_TRANSACTION);
     }
 
     public static String selectConfiguration() {
 
-        return getHttpApi(Api.selectConfiguration);
+        return getHttpApi(ApiMethods.API_METHOD_SELECT_CONFIGURATION);
     }
 
     public static String selectUser() {
 
-        return getHttpApi(Api.selectUser);
+        return getHttpApi(ApiMethods.API_METHOD_SELECT_USER);
     }
 
     public static String selectUserTransactionsV3() {
 
-        return getHttpApi(Api.selectUserTransactionsV3);
+        return getHttpApi(ApiMethods.API_METHOD_SELECT_USER_TRANSACTIONS_V_3);
     }
 }

@@ -37,8 +37,10 @@ import ndk.personal.account_ledger.activities.InsertTransactionV2Quick;
 import ndk.personal.account_ledger.activities.Insert_Account;
 import ndk.personal.account_ledger.activities.ListAccounts;
 import ndk.personal.account_ledger.adapters.ListAccountsAdapter;
+import ndk.personal.account_ledger.constants.ApiMethodParameters;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
+import ndk.personal.account_ledger.constants.SharedPreferenceKeys;
 import ndk.personal.account_ledger.models.Account;
 import ndk.personal.account_ledger.utils.AccountLedgerErrorUtils;
 import ndk.utils_android14.RestGetTask;
@@ -254,7 +256,21 @@ public class FragmentListAccounts extends Fragment {
 
         sharedPreferences = requireContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
-        HttpApiSelectTaskWrapper.executeGetThenReturnJsonArrayWithErrorStatus(RestGetTask.prepareGetUrl(ApiWrapper.selectUserAccounts(), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("parent_account_id", current_parent_account_id)}), getContext(), login_progressBar, recyclerView, ApplicationSpecification.APPLICATION_NAME, async_response_json_array, false);
+        HttpApiSelectTaskWrapper.executeGetThenReturnJsonArrayWithErrorStatus(
+                RestGetTask.prepareGetUrl(
+                        ApiWrapper.selectUserAccounts(),
+                        new Pair[]{
+                                new Pair<>(ApiMethodParameters.API_METHOD_PARAMETER_USER_ID, sharedPreferences.getString(SharedPreferenceKeys.SHARED_PREFERENCES_KEY_USER_ID, "0")),
+                                new Pair<>("parent_account_id", current_parent_account_id)
+                        }
+                ),
+                getContext(),
+                login_progressBar,
+                recyclerView,
+                ApplicationSpecification.APPLICATION_NAME,
+                async_response_json_array,
+                false
+        );
     }
 
     private void viewRecyclerView() {
@@ -298,7 +314,28 @@ public class FragmentListAccounts extends Fragment {
                 //handle item click events here
                 Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 
-                ActivityUtils19.startActivityForClassWithStringExtras(requireActivity(), ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV2(), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", String.valueOf(true)), new Pair<>("SORT_FLAG", String.valueOf(true)), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName), new Pair<>("current_account_id", current_parent_account_id)});
+                ActivityUtils19.startActivityForClassWithStringExtras(
+                        requireActivity(),
+                        ClickablePassBookBundle.class,
+                        new Pair[]{
+                                new Pair<>(
+                                        "URL",
+                                        RestGetTask.prepareGetUrl(
+                                                ApiWrapper.selectUserTransactionsV2(),
+                                                new Pair[]{
+                                                        new Pair<>(ApiMethodParameters.API_METHOD_PARAMETER_USER_ID, sharedPreferences.getString(SharedPreferenceKeys.SHARED_PREFERENCES_KEY_USER_ID, "0")),
+                                                        new Pair<>("account_id", current_parent_account_id)
+                                                }
+                                        )
+                                ),
+                                new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME),
+                                new Pair<>("V2_FLAG", String.valueOf(true)),
+                                new Pair<>("SORT_FLAG", String.valueOf(true)),
+                                new Pair<>("account_name", currentAccountName),
+                                new Pair<>("account_full_name", currentAccountFullName),
+                                new Pair<>("current_account_id", current_parent_account_id)
+                        }
+                );
             }
 
         });
@@ -309,7 +346,28 @@ public class FragmentListAccounts extends Fragment {
 
                 Toast.makeText(getActivity(), "Selected Transactions Ledger : " + headerTitle, Toast.LENGTH_SHORT).show();
 
-                ActivityUtils19.startActivityForClassWithStringExtras(requireActivity(), ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV3(), new Pair[]{new Pair<>("user_id", sharedPreferences.getString("user_id", "0")), new Pair<>("account_id", current_parent_account_id)})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", String.valueOf(true)), new Pair<>("SORT_FLAG", String.valueOf(true)), new Pair<>("account_name", currentAccountName), new Pair<>("account_full_name", currentAccountFullName), new Pair<>("current_account_id", current_parent_account_id)});
+                ActivityUtils19.startActivityForClassWithStringExtras(
+                        requireActivity(),
+                        ClickablePassBookBundle.class,
+                        new Pair[]{
+                                new Pair<>(
+                                        "URL",
+                                        RestGetTask.prepareGetUrl(
+                                                ApiWrapper.selectUserTransactionsV3(),
+                                                new Pair[]{
+                                                        new Pair<>(ApiMethodParameters.API_METHOD_PARAMETER_USER_ID, sharedPreferences.getString(SharedPreferenceKeys.SHARED_PREFERENCES_KEY_USER_ID, "0")),
+                                                        new Pair<>("account_id", current_parent_account_id)
+                                                }
+                                        )
+                                ),
+                                new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME),
+                                new Pair<>("V2_FLAG", String.valueOf(true)),
+                                new Pair<>("SORT_FLAG", String.valueOf(true)),
+                                new Pair<>("account_name", currentAccountName),
+                                new Pair<>("account_full_name", currentAccountFullName),
+                                new Pair<>("current_account_id", current_parent_account_id)
+                        }
+                );
             }
         });
     }

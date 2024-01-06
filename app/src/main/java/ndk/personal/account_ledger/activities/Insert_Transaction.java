@@ -24,11 +24,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 import ndk.personal.account_ledger.R;
+import ndk.personal.account_ledger.constants.ApiMethodParameters;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
+import ndk.personal.account_ledger.constants.SharedPreferenceKeys;
 import ndk.utils_android1.DateUtils1;
 import ndk.utils_android16.Spinner_Utils;
 import ndk.utils_android16.ValidationUtils16;
+import ndk.utils_android16.constants.IntentExtendedDataItemNames;
 import ndk.utils_android19.network_task.RestInsertTaskWrapper;
 import ndk.utils_android19.ActivityUtils19;
 
@@ -36,7 +39,7 @@ import ndk.utils_android19.ActivityUtils19;
 public class Insert_Transaction extends AppCompatActivity {
 
     Context application_context, activity_context = this;
-    SharedPreferences settings;
+    SharedPreferences sharedPreferences;
     private ProgressBar login_progress;
     private Button button_date;
     private Spinner spinner_section;
@@ -53,7 +56,7 @@ public class Insert_Transaction extends AppCompatActivity {
 
         application_context = getApplicationContext();
 
-        settings = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
+        sharedPreferences = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
         login_form = findViewById(R.id.login_form);
         Button button_submit = findViewById(R.id.buttonSubmit);
@@ -157,7 +160,15 @@ public class Insert_Transaction extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_item_view_from_account_pass_book) {
-            ActivityUtils19.startActivityForClassWithStringExtras(activity_context, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", ApiWrapper.selectUserTransactions()), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("user_id", settings.getString("user_id", "0"))});
+            ActivityUtils19.startActivityForClassWithStringExtras(
+                    activity_context,
+                    ClickablePassBookBundle.class,
+                    new Pair[]{
+                            new Pair<>("URL", ApiWrapper.selectUserTransactions()),
+                            new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME),
+                            new Pair<>(IntentExtendedDataItemNames.INTENT_EXTENDED_DATA_ITEM_NAME_SHARED_PREFERENCES_KEY_USER_ID, sharedPreferences.getString(SharedPreferenceKeys.SHARED_PREFERENCES_KEY_USER_ID, "0"))
+                    }
+            );
             return true;
         }
 
@@ -188,6 +199,24 @@ public class Insert_Transaction extends AppCompatActivity {
 
     private void execute_insert_Transaction_Task() {
 
-        RestInsertTaskWrapper.execute(this, ApiWrapper.insertTransaction(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", DateUtils1.dateToMysqlDateTimeString(calendar.getTime())), new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString())}, edit_purpose, new EditText[]{edit_purpose, edit_amount});
+        RestInsertTaskWrapper.execute(
+                this,
+                ApiWrapper.insertTransaction(),
+                this,
+                login_progress,
+                login_form,
+                ApplicationSpecification.APPLICATION_NAME,
+                new Pair[]{
+                        new Pair<>("event_date_time", DateUtils1.dateToMysqlDateTimeString(calendar.getTime())),
+                        new Pair<>(ApiMethodParameters.API_METHOD_PARAMETER_USER_ID, sharedPreferences.getString(SharedPreferenceKeys.SHARED_PREFERENCES_KEY_USER_ID, "0")),
+                        new Pair<>("particulars", spinner_section.getSelectedItem().toString() + " : " + edit_purpose.getText().toString()),
+                        new Pair<>("amount", edit_amount.getText().toString())
+                },
+                edit_purpose,
+                new EditText[]{
+                        edit_purpose,
+                        edit_amount
+                }
+        );
     }
 }

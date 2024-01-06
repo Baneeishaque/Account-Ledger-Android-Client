@@ -2,6 +2,7 @@ package ndk.personal.account_ledger.activities;
 
 import androidx.core.util.Pair;
 
+import ndk.personal.account_ledger.constants.ApiMethodParameters;
 import ndk.utils_android1.DateUtils1;
 import ndk.utils_android19.ActivityUtils19;
 import ndk.utils_android19.PassBookBundle;
@@ -10,6 +11,11 @@ import ndk.utils_android19.models.PairOfStringsModel;
 public class ClickablePassBookBundle extends PassBookBundle {
 
     private int writeExternalStoragePermissionRequestCode = 0;
+
+    @Override
+    protected String configureApiMethodParameterNameForUserId() {
+        return ApiMethodParameters.API_METHOD_PARAMETER_USER_ID;
+    }
 
     @Override
     public void configure_ROW_LONG_CLICK_ACTIONS(ndk.utils_android16.models.sortable_tableView.pass_book.PassBookEntryV2 clickedData) {

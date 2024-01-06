@@ -23,6 +23,7 @@ import java.util.Collections;
 import ndk.personal.account_ledger.R;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
+import ndk.personal.account_ledger.constants.SharedPreferenceKeys;
 import ndk.utils_android14.NetworkUtils14;
 import ndk.utils_android16.Spinner_Utils;
 import ndk.utils_android16.ValidationUtils16;
@@ -31,7 +32,7 @@ import ndk.utils_android19.network_task.RestInsertTaskWrapper;
 public class Insert_Account extends AppCompatActivity {
 
     Context application_context;
-    SharedPreferences settings;
+    SharedPreferences sharedPreferences;
     Spinner spinner_account_type, spinner_commodity_type, spinner_commodity_value;
     CheckBox checkBox_taxable, checkBox_place_holder;
     private ProgressBar login_progress;
@@ -47,7 +48,7 @@ public class Insert_Account extends AppCompatActivity {
 
         application_context = getApplicationContext();
 
-        settings = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
+        sharedPreferences = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
         login_form = findViewById(R.id.login_form);
         Button button_submit = findViewById(R.id.buttonSubmit);
@@ -140,12 +141,12 @@ public class Insert_Account extends AppCompatActivity {
 
         if (getIntent().getStringExtra("ACTIVITY_FOR_RESULT_FLAG") != null) {
 
-            RestInsertTaskWrapper.execute(this, ApiWrapper.insertAccount(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("full_name", button_full_name.getText().toString().replace(" : ", ":")), new Pair<>("name", edit_name.getText().toString().trim()), new Pair<>("parent_account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID")), new Pair<>("account_type", spinner_account_type.getSelectedItem().toString()), new Pair<>("notes", edit_notes.getText().toString().trim()), new Pair<>("commodity_type", spinner_commodity_type.getSelectedItem().toString()), new Pair<>("commodity_value", spinner_commodity_value.getSelectedItem().toString()), new Pair<>("owner_id", settings.getString("user_id", "0")), new Pair<>("taxable", checkBox_taxable.isSelected() ? "T" : "F"), new Pair<>("place_holder", checkBox_place_holder.isSelected() ? "T" : "F")}, edit_name, further_actions);
+            RestInsertTaskWrapper.execute(this, ApiWrapper.insertAccount(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("full_name", button_full_name.getText().toString().replace(" : ", ":")), new Pair<>("name", edit_name.getText().toString().trim()), new Pair<>("parent_account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID")), new Pair<>("account_type", spinner_account_type.getSelectedItem().toString()), new Pair<>("notes", edit_notes.getText().toString().trim()), new Pair<>("commodity_type", spinner_commodity_type.getSelectedItem().toString()), new Pair<>("commodity_value", spinner_commodity_value.getSelectedItem().toString()), new Pair<>("owner_id", sharedPreferences.getString(SharedPreferenceKeys.SHARED_PREFERENCES_KEY_USER_ID, "0")), new Pair<>("taxable", checkBox_taxable.isSelected() ? "T" : "F"), new Pair<>("place_holder", checkBox_place_holder.isSelected() ? "T" : "F")}, edit_name, further_actions);
 
 
         } else {
 
-            RestInsertTaskWrapper.execute(this, ApiWrapper.insertAccount(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("full_name", button_full_name.getText().toString().replace(" : ", ":")), new Pair<>("name", edit_name.getText().toString().trim()), new Pair<>("parent_account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID")), new Pair<>("account_type", spinner_account_type.getSelectedItem().toString()), new Pair<>("notes", edit_notes.getText().toString().trim()), new Pair<>("commodity_type", spinner_commodity_type.getSelectedItem().toString()), new Pair<>("commodity_value", spinner_commodity_value.getSelectedItem().toString()), new Pair<>("owner_id", settings.getString("user_id", "0")), new Pair<>("taxable", checkBox_taxable.isSelected() ? "T" : "F"), new Pair<>("place_holder", checkBox_place_holder.isSelected() ? "T" : "F")}, edit_name);
+            RestInsertTaskWrapper.execute(this, ApiWrapper.insertAccount(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("full_name", button_full_name.getText().toString().replace(" : ", ":")), new Pair<>("name", edit_name.getText().toString().trim()), new Pair<>("parent_account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID")), new Pair<>("account_type", spinner_account_type.getSelectedItem().toString()), new Pair<>("notes", edit_notes.getText().toString().trim()), new Pair<>("commodity_type", spinner_commodity_type.getSelectedItem().toString()), new Pair<>("commodity_value", spinner_commodity_value.getSelectedItem().toString()), new Pair<>("owner_id", sharedPreferences.getString(SharedPreferenceKeys.SHARED_PREFERENCES_KEY_USER_ID, "0")), new Pair<>("taxable", checkBox_taxable.isSelected() ? "T" : "F"), new Pair<>("place_holder", checkBox_place_holder.isSelected() ? "T" : "F")}, edit_name);
 
         }
     }

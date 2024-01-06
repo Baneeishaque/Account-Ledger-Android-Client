@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
 
@@ -104,6 +105,9 @@ android {
     lintOptions {
         abortOnError false
     }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 
 dependencies {
@@ -114,9 +118,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.core:core-ktx:1.13.0-alpha02'
 
     implementation 'org.apache.commons:commons-lang3:3.14.0'
-
     implementation 'com.github.Kunzisoft:Android-SwitchDateTimePicker:2.1'
     implementation 'com.github.bmelnychuk:atv:1.2.9'
     implementation 'com.github.johnkil.print:print:1.3.1'
@@ -129,4 +133,8 @@ dependencies {
     implementation project(path: ':Utils16:common16')
     implementation project(path: ':Utils17:common17')
     implementation project(path: ':Utils19:common19')
+}
+
+kotlin {
+    jvmToolchain(17)
 }

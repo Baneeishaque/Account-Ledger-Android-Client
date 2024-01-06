@@ -22,8 +22,10 @@ import java.util.Date;
 import java.util.Objects;
 
 import ndk.personal.account_ledger.R;
+import ndk.personal.account_ledger.constants.ApiMethodParameters;
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
+import ndk.personal.account_ledger.constants.SharedPreferenceKeys;
 import ndk.utils_android1.DateUtils1;
 import ndk.utils_android1.ToastUtils1;
 import ndk.utils_android14.RestGetTask;
@@ -36,7 +38,7 @@ import static ndk.utils_android1.ButtonUtils.associateButtonWithTimeStamp;
 public class InsertTransactionV2Quick extends AppCompatActivity {
 
     Context application_context;
-    SharedPreferences settings;
+    SharedPreferences sharedPreferences;
     boolean to_account_selection_flag = true;
     String from_selected_account_id;
     String to_selected_account_id = "0";
@@ -55,7 +57,7 @@ public class InsertTransactionV2Quick extends AppCompatActivity {
 
         application_context = getApplicationContext();
 
-        settings = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
+        sharedPreferences = getApplicationContext().getSharedPreferences(ApplicationSpecification.APPLICATION_NAME, Context.MODE_PRIVATE);
 
         login_form = findViewById(R.id.login_form);
         Button button_submit = findViewById(R.id.buttonSubmit);
@@ -190,14 +192,28 @@ public class InsertTransactionV2Quick extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         if (id == R.id.menu_item_view_from_account_pass_book) {
 
-            ActivityUtils19.startActivityForClassWithStringExtras(this, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV2(), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))});
+            ActivityUtils19.startActivityForClassWithStringExtras(
+                    this,
+                    ClickablePassBookBundle.class,
+                    new Pair[]{
+                            new Pair<>(
+                                    "URL",
+                                    RestGetTask.prepareGetUrl(
+                                            ApiWrapper.selectUserTransactionsV2(),
+                                            new Pair[]{
+                                                    new Pair<>(ApiMethodParameters.API_METHOD_PARAMETER_USER_ID, sharedPreferences.getString(SharedPreferenceKeys.SHARED_PREFERENCES_KEY_USER_ID, "0")),
+                                                    new Pair<>("account_id", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))
+                                            }
+                                    )
+                            ),
+                            new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME),
+                            new Pair<>("V2_FLAG", getIntent().getStringExtra("CURRENT_ACCOUNT_ID"))
+                    }
+            );
         }
 
         return super.onOptionsItemSelected(item);
@@ -233,7 +249,20 @@ public class InsertTransactionV2Quick extends AppCompatActivity {
 
                 } else {
 
-                    InsertTransactionV2Utils.executeInsertTransactionTaskWithClearingOfEditTextsAndIncrementingOfButtonTextTimeStampForFiveMinutes(login_progress, login_form, this, this, settings.getString("user_id", "0"), edit_purpose.getText().toString().trim(), Double.parseDouble(edit_amount.getText().toString().trim()), Integer.parseInt(from_selected_account_id), Integer.parseInt(to_selected_account_id), edit_purpose, edit_amount, button_date, calendar);
+                    InsertTransactionV2Utils.executeInsertTransactionTaskWithClearingOfEditTextsAndIncrementingOfButtonTextTimeStampForFiveMinutes(
+                            login_progress,
+                            login_form,
+                            this,
+                            this,
+                            sharedPreferences.getString(SharedPreferenceKeys.SHARED_PREFERENCES_KEY_USER_ID, "0"),
+                            edit_purpose.getText().toString().trim(),
+                            Double.parseDouble(edit_amount.getText().toString().trim()),
+                            Integer.parseInt(from_selected_account_id),
+                            Integer.parseInt(to_selected_account_id),
+                            edit_purpose,
+                            edit_amount,
+                            button_date,
+                            calendar);
                 }
             }
         }
