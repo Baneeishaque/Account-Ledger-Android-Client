@@ -26,7 +26,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils16.common16.main" scope="TEST" />
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils14.common14.main" scope="TEST" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.github.kimkevin:cachepot:1.2.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.chootdev:csnackbar:1.4.2@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.appcompat:appcompat:1.6.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.activity:activity:1.8.0@aar" level="project" />

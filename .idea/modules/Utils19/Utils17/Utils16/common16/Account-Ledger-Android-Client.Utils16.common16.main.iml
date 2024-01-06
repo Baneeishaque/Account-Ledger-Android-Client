@@ -33,7 +33,6 @@
     <orderEntry type="jdk" jdkName="Android API 34, extension level 7 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils14.common14.main" />
-    <orderEntry type="library" name="Gradle: com.github.kimkevin:cachepot:1.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.chootdev:csnackbar:1.4.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.6.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.activity:activity:1.8.0@aar" level="project" />
