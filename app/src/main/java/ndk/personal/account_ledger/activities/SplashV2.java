@@ -4,6 +4,7 @@ import static ndk.personal.account_ledger.constants.ServerEndpoint.UPDATED_APK_U
 
 import ndk.personal.account_ledger.constants.ApiWrapper;
 import ndk.personal.account_ledger.constants.ApplicationSpecification;
+import ndk.personal.account_ledger.constants.SharedPreferenceKeys;
 import ndk.utils_android1.DebugUtils;
 import ndk.utils_android19.activities.LoginBundleActivity;
 import ndk.utils_android16.constants.IntentExtraFields;
@@ -37,7 +38,7 @@ public class SplashV2 extends SplashWithAutomatedUpdateActivity {
     @Override
     public PairOfStringsModel[] configureNextActivityClassExtras() {
 
-        return new PairOfStringsModel[]{new PairOfStringsModel(IntentExtraFields.APPLICATION_NAME, ApplicationSpecification.APPLICATION_NAME), new PairOfStringsModel(IntentExtraFields.NEXT_ACTIVITY_CLASS, ListAccounts.class.getName()), new PairOfStringsModel(IntentExtraFields.SELECT_USER_URL, ApiWrapper.selectUser()), new PairOfStringsModel(IntentExtraFields.TEST_USERNAME, "test"), new PairOfStringsModel(IntentExtraFields.TEST_PASSWORD, "test")};
+        return new PairOfStringsModel[]{new PairOfStringsModel(IntentExtraFields.APPLICATION_NAME, ApplicationSpecification.APPLICATION_NAME), new PairOfStringsModel(IntentExtraFields.NEXT_ACTIVITY_CLASS, ListAccounts.class.getName()), new PairOfStringsModel(IntentExtraFields.SELECT_USER_URL, ApiWrapper.selectUser()), new PairOfStringsModel(IntentExtraFields.TEST_USERNAME, "test"), new PairOfStringsModel(IntentExtraFields.TEST_PASSWORD, "test"), new PairOfStringsModel(IntentExtraFields.SHARED_PREFERENCES_KEY_USER_ID, SharedPreferenceKeys.SHARED_PREFERENCES_KEY_USER_ID)};
     }
 
     @Override
