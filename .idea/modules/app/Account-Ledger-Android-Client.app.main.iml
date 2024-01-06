@@ -36,7 +36,7 @@
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils14.common14.main" />
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Resources.common.main" />
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils16.common16.main" />
-    <orderEntry type="module" module-name="Utils19.Account-Ledger-Android-Client.Utils17.common17.main" />
+    <orderEntry type="module" module-name="Utils19.Account-Ledger-Android-Client.Utils17.common17.main~1" />
     <orderEntry type="module" module-name="Account-Ledger-Android-Client.Utils19.common19.main" />
     <orderEntry type="library" name="Gradle: androidx.multidex:multidex:2.0.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.6.1@aar" level="project" />
@@ -78,7 +78,7 @@
     <orderEntry type="library" name="Gradle: com.github.bmelnychuk:atv:1.2.9@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.johnkil.print:print:1.3.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation-jvm:1.6.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.9.21" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.9.22" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:24.1.0" level="project" />
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.2.0" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.6.2" level="project" />
