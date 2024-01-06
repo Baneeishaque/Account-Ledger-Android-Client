@@ -27,6 +27,7 @@ import ndk.personal.account_ledger.utils.AccountLedgerExceptionUtils;
 import ndk.utils_android1.DateUtils1;
 import ndk.utils_android14.RestGetTask;
 import ndk.utils_android16.ValidationUtils16;
+import ndk.utils_android19.models.PairOfStringsModel;
 import ndk.utils_android19.network_task.RestInsertTaskWrapper;
 import ndk.utils_android19.ActivityUtils19;
 
@@ -153,7 +154,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
         });
 
         Button buttonDelete = findViewById(R.id.button_delete);
-        buttonDelete.setOnClickListener(v -> RestInsertTaskWrapper.execute(activityContext, ApiWrapper.deleteTransactionV2(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID"))}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV2(), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))}));
+        buttonDelete.setOnClickListener(v -> RestInsertTaskWrapper.execute(activityContext, ApiWrapper.deleteTransactionV2(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new PairOfStringsModel[]{new PairOfStringsModel("id", getIntent().getStringExtra("TRANSACTION_ID"))}, edit_purpose, ClickablePassBookBundle.class, new PairOfStringsModel[]{new PairOfStringsModel("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV2(), new Pair[]{new PairOfStringsModel("user_id", settings.getString("user_id", "0")), new PairOfStringsModel("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new PairOfStringsModel("application_name", ApplicationSpecification.APPLICATION_NAME), new PairOfStringsModel("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))}));
     }
 
     private void select_account() {
@@ -249,7 +250,7 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
         if (normalDateTimeInWordsStringToMysqlDateTimeStringResult.getValue0()) {
             Log.d(ApplicationSpecification.APPLICATION_NAME, "MySQL Date Time String : " + normalDateTimeInWordsStringToMysqlDateTimeStringResult.getValue1());
 
-            RestInsertTaskWrapper.execute(this, ApiWrapper.updateTransactionV2(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new Pair[]{new Pair<>("event_date_time", event_date_time_change_flag ? DateUtils1.dateToMysqlDateTimeString(calendar.getTime()) : normalDateTimeInWordsStringToMysqlDateTimeStringResult.getValue1()), new Pair<>("id", getIntent().getStringExtra("TRANSACTION_ID")), new Pair<>("particulars", edit_purpose.getText().toString()), new Pair<>("amount", edit_amount.getText().toString()), new Pair<>("from_account_id", from_selected_account_id), new Pair<>("to_account_id", to_selected_account_id)}, edit_purpose, ClickablePassBookBundle.class, new Pair[]{new Pair<>("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV2(), new Pair[]{new Pair<>("user_id", settings.getString("user_id", "0")), new Pair<>("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new Pair<>("application_name", ApplicationSpecification.APPLICATION_NAME), new Pair<>("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
+            RestInsertTaskWrapper.execute(this, ApiWrapper.updateTransactionV2(), this, login_progress, login_form, ApplicationSpecification.APPLICATION_NAME, new PairOfStringsModel[]{new PairOfStringsModel("event_date_time", event_date_time_change_flag ? DateUtils1.dateToMysqlDateTimeString(calendar.getTime()) : normalDateTimeInWordsStringToMysqlDateTimeStringResult.getValue1()), new PairOfStringsModel("id", getIntent().getStringExtra("TRANSACTION_ID")), new PairOfStringsModel("particulars", edit_purpose.getText().toString()), new PairOfStringsModel("amount", edit_amount.getText().toString()), new PairOfStringsModel("from_account_id", from_selected_account_id), new PairOfStringsModel("to_account_id", to_selected_account_id)}, edit_purpose, ClickablePassBookBundle.class, new PairOfStringsModel[]{new PairOfStringsModel("URL", RestGetTask.prepareGetUrl(ApiWrapper.selectUserTransactionsV2(), new Pair[]{new PairOfStringsModel("user_id", settings.getString("user_id", "0")), new PairOfStringsModel("account_id", getIntent().getStringExtra("FROM_ACCOUNT_ID"))})), new PairOfStringsModel("application_name", ApplicationSpecification.APPLICATION_NAME), new PairOfStringsModel("V2_FLAG", getIntent().getStringExtra("FROM_ACCOUNT_ID"))});
         } else {
             AccountLedgerExceptionUtils.handleExceptionOnGui(application_context, normalDateTimeInWordsStringToMysqlDateTimeStringResult.getValue1());
 

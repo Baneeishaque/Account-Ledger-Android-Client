@@ -43,6 +43,7 @@ import ndk.utils_android16.ValidationUtils16;
 import ndk.utils_android16.network_task.HttpApiSelectTask;
 import ndk.utils_android16.network_task.HttpApiSelectTaskWrapper;
 import ndk.utils_android19.ActivityUtils19;
+import ndk.utils_android19.models.PairOfStringsModel;
 
 import static ndk.utils_android1.ButtonUtils.associateButtonWithTimeStamp;
 
@@ -560,7 +561,7 @@ public class InsertTransactionV2 extends AppCompatActivity {
 
         } else if (id == R.id.menu_item_insert_two_way_transaction) {
 
-            ActivityUtils19.startActivityWithStringExtrasAndFinish(currentActivityContext, InsertTransactionV2TwoWay.class, new Pair[]{new Pair<>("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new Pair<>("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new Pair<>("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new Pair<>("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new Pair<>("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new Pair<>("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder)});
+            ActivityUtils19.startActivityWithStringExtrasAndFinish(currentActivityContext, InsertTransactionV2TwoWay.class, new PairOfStringsModel[]{new PairOfStringsModel("CURRENT_ACCOUNT_ID", currentFromAccountIdParent), new PairOfStringsModel("CURRENT_ACCOUNT_FULL_NAME", buttonFromAccount.getText().toString().replace("From : ", "")), new PairOfStringsModel("CURRENT_ACCOUNT_TYPE", currentFromAccountType), new PairOfStringsModel("CURRENT_ACCOUNT_COMMODITY_TYPE", currentFromAccountCommodityType), new PairOfStringsModel("CURRENT_ACCOUNT_COMMODITY_VALUE", currentFromAccountCommodityValue), new PairOfStringsModel("CURRENT_ACCOUNT_TAXABLE", currentFromAccountTaxable), new PairOfStringsModel("CURRENT_ACCOUNT_PLACE_HOLDER", currentFromAccountPlaceHolder)});
         }
         return super.onOptionsItemSelected(item);
     }
