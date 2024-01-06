@@ -35,7 +35,6 @@ public class Splash extends SplashWithAutomatedUpdateActivity {
 
     @Override
     public Pair[] configure_NEXT_ACTIVITY_CLASS_EXTRAS() {
-//        return new Pair[]{new Pair<>(IntentExtraFields.APPLICATION_NAME, Application_Specification.APPLICATION_NAME), new Pair<>(IntentExtraFields.NEXT_ACTIVITY_CLASS, List_Accounts.class.getName()), new Pair<>(IntentExtraFields.SELECT_USER_URL, API_Wrapper.get_http_API(API.select_User))};
 
         return new Pair[]{new Pair<>(IntentExtraFields.APPLICATION_NAME, ApplicationSpecification.APPLICATION_NAME), new Pair<>(IntentExtraFields.NEXT_ACTIVITY_CLASS, Insert_Transaction.class.getName()), new Pair<>(IntentExtraFields.SELECT_USER_URL, ApiWrapper.selectUser())};
     }
