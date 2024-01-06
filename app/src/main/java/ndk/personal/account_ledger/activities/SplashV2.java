@@ -13,18 +13,18 @@ import ndk.utils_android19.models.PairOfStringsModel;
 public class SplashV2 extends SplashWithAutomatedUpdateActivity {
 
     @Override
-    public String configure_GET_CONFIGURATION_URL() {
+    public String configureGetConfigurationUrl() {
 
         return ApiWrapper.selectConfiguration();
     }
 
     @Override
-    public String configure_UPDATE_URL() {
+    public String configureUpdateUrl() {
         return UPDATED_APK_URL;
     }
 
     @Override
-    public String configure_APPLICATION_NAME() {
+    public String configureApplicationName() {
 
         return ApplicationSpecification.APPLICATION_NAME;
     }
@@ -41,7 +41,7 @@ public class SplashV2 extends SplashWithAutomatedUpdateActivity {
     }
 
     @Override
-    public boolean configure_SECURITY_FLAG() {
+    public boolean configureSecurityFlag() {
 
         return !DebugUtils.isDebugBuild(getApplicationContext());
     }
