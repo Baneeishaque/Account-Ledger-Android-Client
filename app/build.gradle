@@ -118,7 +118,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.11.0'
-    implementation 'androidx.core:core-ktx:1.13.0-alpha02'
+    implementation 'androidx.core:core-ktx:1.13.0-alpha03'
 
     implementation 'org.apache.commons:commons-lang3:3.14.0'
     implementation 'com.github.Kunzisoft:Android-SwitchDateTimePicker:2.1'
