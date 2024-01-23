@@ -30,7 +30,22 @@
     <orderEntry type="jdk" jdkName="Android API 34, extension level 7 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.6.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.activity:activity:1.6.0@aar" level="project" />
+    <orderEntry type="module-library">
+      <library name="Gradle: androidx.activity:activity:1.6.0@aar">
+        <ANNOTATIONS>
+          <root url="jar://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/transforms-4/7918a14f60dc9c06ca94afe25172a564/transformed/jetified-activity-1.6.0/annotations.zip!/" />
+        </ANNOTATIONS>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/transforms-4/7918a14f60dc9c06ca94afe25172a564/transformed/jetified-activity-1.6.0/jars/classes.jar!/" />
+          <root url="file://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/transforms-4/7918a14f60dc9c06ca94afe25172a564/transformed/jetified-activity-1.6.0/res" />
+          <root url="file://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/transforms-4/7918a14f60dc9c06ca94afe25172a564/transformed/jetified-activity-1.6.0/AndroidManifest.xml" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/modules-2/files-2.1/androidx.activity/activity/1.6.0/8af90d35b111258f964b0f3743a695a8deb574a0/activity-1.6.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Gradle: androidx.core:core:1.9.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation-experimental:1.3.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.5.1@aar" level="project" />
@@ -45,13 +60,49 @@
     <orderEntry type="library" name="Gradle: androidx.vectordrawable:vectordrawable-animated:1.1.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.interpolator:interpolator:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.cursoradapter:cursoradapter:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.drawerlayout:drawerlayout:1.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.customview:customview:1.0.0@aar" level="project" />
+    <orderEntry type="module-library">
+      <library name="Gradle: androidx.drawerlayout:drawerlayout:1.0.0@aar">
+        <ANNOTATIONS>
+          <root url="jar://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/transforms-4/fa51fe1314cec4819c1a48e2697f7a40/transformed/drawerlayout-1.0.0/annotations.zip!/" />
+        </ANNOTATIONS>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/transforms-4/fa51fe1314cec4819c1a48e2697f7a40/transformed/drawerlayout-1.0.0/jars/classes.jar!/" />
+          <root url="file://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/transforms-4/fa51fe1314cec4819c1a48e2697f7a40/transformed/drawerlayout-1.0.0/AndroidManifest.xml" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/modules-2/files-2.1/androidx.drawerlayout/drawerlayout/1.0.0/9ecd4ecb7da215ba4c5c3e00bf8d290dad6f2bc5/drawerlayout-1.0.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: androidx.customview:customview:1.0.0@aar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/transforms-4/5c2adda36d88b4b680d50f2240e65615/transformed/customview-1.0.0/jars/classes.jar!/" />
+          <root url="file://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/transforms-4/5c2adda36d88b4b680d50f2240e65615/transformed/customview-1.0.0/AndroidManifest.xml" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/modules-2/files-2.1/androidx.customview/customview/1.0.0/61f6a717d144dff3a6bda413d9abeeb2bca71581/customview-1.0.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.3.6@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.viewpager:viewpager:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.loader:loader:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.0.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime:2.1.0@aar" level="project" />
+    <orderEntry type="module-library">
+      <library name="Gradle: androidx.arch.core:core-runtime:2.1.0@aar">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/transforms-4/349558ec23f7cc9ae5abe5248039b2fb/transformed/core-runtime-2.1.0/jars/classes.jar!/" />
+          <root url="file://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/transforms-4/349558ec23f7cc9ae5abe5248039b2fb/transformed/core-runtime-2.1.0/AndroidManifest.xml" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/scoop/persist/gradle-nightly/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-runtime/2.1.0/f19886651c9946b39f83d8c184fd0e2ce9f43c16/core-runtime-2.1.0-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Gradle: androidx.coordinatorlayout:coordinatorlayout:1.2.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.recyclerview:recyclerview:1.3.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.3.0" level="project" />
