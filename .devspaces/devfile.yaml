@@ -1,0 +1,17 @@
+schemaVersion: 2.2.0
+metadata:
+  name: account-ledger-android-client
+  description: Red Hat OpenShift Dev Spaces dev environment for Account Ledger Android Client
+components:
+  - name: main-container
+    container:
+      image: ubuntu:22.04
+      memoryRequest: 16Gi
+      memoryLimit: 32Gi
+      cpuRequest: '8'
+      cpuLimit: '16'
+      mountSources: true
+      command:
+        - sleep
+        - infinity
+commands: []
