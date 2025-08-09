@@ -4,7 +4,6 @@ buildscript {
 
         google()
         mavenCentral()
-        jcenter()
     }
 
     dependencies {
@@ -22,7 +21,9 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        jcenter()
+        maven {
+            url "https://artifactory.appodeal.com/appodeal-public"
+        }
     }
 }
 
