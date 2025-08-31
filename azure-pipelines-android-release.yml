@@ -37,8 +37,8 @@ steps:
       gradleOptions: "-Xmx3072m"
       tasks: "assembleProductionRelease"
 
-  - script: "./gradlew --stop"
-    displayName: Stop Gradle Daemon
-
   - publish: app/build/outputs/apk/production/release/app-production-release.apk
     artifact: $(repositoryName) Release Apk
+
+  - script: "./gradlew --stop"
+    displayName: Stop Gradle Daemon
