@@ -26,8 +26,9 @@ steps:
       jdkSourceOption: "PreInstalled"
 
   - script: |
-      sed -i 's|https://nomadller.in|https://baneeishaque.helioho.st|' app/src/main/java/ndk/personal/account_ledger/constants/ServerEndpoint.java
-      sed -i 's|http_api|GitHub_Banee-Ishaque_Account-Ledger-Server-PHP/http_API|' app/src/main/java/ndk/personal/account_ledger/constants/ServerEndpoint.java
+      sed -i "s|SERVER_ENDPOINT_URL|$SERVER_ENDPOINT_URL|" app/src/main/java/ndk/personal/account_ledger/constants/ServerEndpoint.java
+    env:
+      SERVER_ENDPOINT_URL: $(SERVER_ENDPOINT_URL)
     displayName: "Update ServerEndpoint constants"
 
   - task: Gradle@3.208.0
