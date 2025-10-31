@@ -34,5 +34,10 @@
   "java.referencesCodeLens.enabled": true,
   "java.saveActions.organizeImports": true,
   "java.showBuildStatusOnStart.enabled": true,
-  "java.signatureHelp.enabled": true
+  "java.signatureHelp.enabled": true,
+  "cSpell.words": [
+    "Banee",
+    "gradlew",
+    "Ishaque"
+  ]
 }
