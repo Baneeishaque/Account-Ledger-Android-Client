@@ -343,9 +343,8 @@ public class Edit_Transaction_v2 extends AppCompatActivity {
                     }
             );
         } else {
+
             AccountLedgerExceptionUtils.handleExceptionOnGui(application_context, normalDateTimeInWordsStringToMysqlDateTimeStringResult.getValue1());
-
         }
-
     }
 }
