@@ -37,6 +37,7 @@ import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.personal.account_ledger.constants.SharedPreferenceKeys;
 import ndk.personal.account_ledger.models.Account;
 import ndk.personal.account_ledger.utils.AccountLedgerErrorUtils;
+import ndk.personal.account_ledger.utils.AccountLedgerExceptionUtils;
 import ndk.personal.account_ledger.utils.AccountLedgerLogUtils;
 import ndk.utils_android1.DateUtils1;
 import ndk.utils_android1.ToastUtils1;
@@ -561,7 +562,7 @@ public class InsertTransactionV2Via extends ActivityWithContexts14 {
 
             } catch (JSONException e) {
 
-                AccountLedgerErrorUtils.displayException(currentActivityContext, e);
+                AccountLedgerExceptionUtils.handleExceptionOnGui(currentActivityContext, e);
             }
 
             //Creating the instance of ArrayAdapter containing list of fruit names
@@ -615,7 +616,7 @@ public class InsertTransactionV2Via extends ActivityWithContexts14 {
 
             } catch (JSONException e) {
 
-                AccountLedgerErrorUtils.displayException(currentActivityContext, e);
+                AccountLedgerExceptionUtils.handleExceptionOnGui(currentActivityContext, e);
             }
 
             //Creating the instance of ArrayAdapter containing list of fruit names
@@ -671,7 +672,7 @@ public class InsertTransactionV2Via extends ActivityWithContexts14 {
 
             } catch (JSONException e) {
 
-                AccountLedgerErrorUtils.displayException(currentActivityContext, e);
+                AccountLedgerExceptionUtils.handleExceptionOnGui(currentActivityContext, e);
             }
 
             //Creating the instance of ArrayAdapter containing list of fruit names

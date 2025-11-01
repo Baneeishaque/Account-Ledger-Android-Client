@@ -43,6 +43,7 @@ import ndk.personal.account_ledger.constants.ApplicationSpecification;
 import ndk.personal.account_ledger.constants.SharedPreferenceKeys;
 import ndk.personal.account_ledger.models.Account;
 import ndk.personal.account_ledger.utils.AccountLedgerErrorUtils;
+import ndk.personal.account_ledger.utils.AccountLedgerExceptionUtils;
 import ndk.utils_android14.RestGetTask;
 import ndk.utils_android16.TodoUtils;
 import ndk.utils_android16.network_task.HttpApiSelectTask;
@@ -247,7 +248,7 @@ public class FragmentListAccounts extends Fragment {
 
                 } catch (JSONException e) {
 
-                    AccountLedgerErrorUtils.displayException(getActivity(), e);
+                    AccountLedgerExceptionUtils.handleExceptionOnGui(getActivity(), e);
                 }
             }
 
